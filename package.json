@@ -14,7 +14,7 @@
     "serve": "npm run build && npm run preview",
     "serve:static": "npm run build && npx serve dist -l 5000",
     "demo:prepare": "npm run build",
-    "demo:start": "npx pm2 start 'npx serve site -l 8080' --name demo-server --update-env",
+    "demo:start": "npx pm2 start 'npx serve dist -l 8080' --name demo-server --update-env",
     "demo": "npm run demo:prepare && npm run demo:start",
     "demo:stop": "npx pm2 delete demo-server 2>/dev/null || echo 'Demo server not running'",
     "typecheck": "tsc --noEmit",
@@ -24,7 +24,7 @@
     "format:check": "prettier --check .",
     "test": "playwright test",
     "test:unit": "vitest",
-    "validate:data": "node --loader ts-node/esm tests/schema.spec.ts",
+    "validate:data": "npm run test:unit -- tests/schema.spec.ts",
     "prepare": "husky install"
   },
   "devDependencies": {
