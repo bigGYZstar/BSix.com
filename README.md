@@ -18,7 +18,7 @@
 ## 🚀 デモ
 
 ### 🌟 Live Demo
-**[✨ サッカーマッチプレビューサイト](https://8080-ig0pvsg3dlmlgb0ftgw1t-6532622b.e2b.dev/)** 
+**[✨ サッカーマッチプレビューサイト（Live Demo）](https://8080-ig0pvsg3dlmlgb0ftgw1t-6532622b.e2b.dev/BSix.com/)** 
 
 完全に動作するlive demoをお試しください！
 - ✅ エラーフリー環境 

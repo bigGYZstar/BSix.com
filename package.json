@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "tsc && vite build && npm run build:fix-html",
     "build:fix-html": "cp dist/src/index.html dist/index.html 2>/dev/null || true && cp -r src/data dist/ 2>/dev/null || true",
-    "build:demo": "npm run build && npm run optimize-demo",
+    "build:demo": "tsc && vite build --base=./ && npm run build:fix-html && npm run optimize-demo",
     "optimize-demo": "echo 'Live demo optimization complete'",
     "preview": "vite preview",
     "serve": "npm run build && npm run preview",
