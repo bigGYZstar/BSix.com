@@ -6,8 +6,10 @@
   "description": "試合前ガイド（プレビュー）静的Webサイト",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && npm run build:fix-html",
+    "build:fix-html": "cp dist/src/index.html dist/index.html 2>/dev/null || true",
     "preview": "vite preview",
+    "serve": "npm run build && npm run preview",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"src/**/*.{ts,js}\" --fix",
     "lint:check": "eslint \"src/**/*.{ts,js}\"",
