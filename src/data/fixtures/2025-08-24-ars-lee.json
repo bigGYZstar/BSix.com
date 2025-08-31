@@ -1,0 +1,347 @@
+{
+  "_meta": {
+    "source": "手動作成",
+    "lastUpdated": "2025-08-31T00:00:00Z",
+    "version": "1.0"
+  },
+  "fixtureId": "2025-08-24-ars-lee",
+  "league": "プレミアリーグ",
+  "round": "第2節",
+  "dateJST": "2025-08-24T22:00",
+  "venue": "エミレーツ・スタジアム",
+  "home": {
+    "teamId": "ars",
+    "name": "アーセナル",
+    "key": "ARS",
+    "formation": "4-3-3",
+    "lineup": [
+      {
+        "jp": "ダビド・ラヤ",
+        "intl": "David Raya",
+        "pos": "GK",
+        "num": 22,
+        "stats": { "apps": 25, "cleanSheets": 12, "saves": 89 },
+        "avatar": { "skin": "medium", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "ベン・ホワイト",
+        "intl": "Ben White",
+        "pos": "RB",
+        "num": 4,
+        "stats": { "apps": 30, "goals": 2, "assists": 3 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "ウィリアム・サリバ",
+        "intl": "William Saliba",
+        "pos": "CB",
+        "num": 2,
+        "stats": { "apps": 32, "goals": 1, "assists": 1 },
+        "avatar": { "skin": "dark", "hair": "black", "style": "short" }
+      },
+      {
+        "jp": "ガブリエウ",
+        "intl": "Gabriel Magalhaes",
+        "pos": "CB",
+        "num": 6,
+        "stats": { "apps": 31, "goals": 3, "assists": 0 },
+        "avatar": { "skin": "tan", "hair": "black", "style": "short" }
+      },
+      {
+        "jp": "ジンチェンコ",
+        "intl": "Oleksandr Zinchenko",
+        "pos": "LB",
+        "num": 35,
+        "stats": { "apps": 22, "goals": 1, "assists": 4 },
+        "avatar": { "skin": "light", "hair": "blonde", "style": "short" }
+      },
+      {
+        "jp": "パーティ",
+        "intl": "Thomas Partey",
+        "pos": "DM",
+        "num": 5,
+        "stats": { "apps": 28, "goals": 2, "assists": 3 },
+        "avatar": { "skin": "dark", "hair": "black", "style": "buzz" }
+      },
+      {
+        "jp": "デクラン・ライス",
+        "intl": "Declan Rice",
+        "pos": "CM",
+        "num": 41,
+        "stats": { "apps": 35, "goals": 5, "assists": 4 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "エーデゴール",
+        "intl": "Martin Odegaard",
+        "pos": "AM",
+        "num": 8,
+        "stats": { "apps": 33, "goals": 8, "assists": 12 },
+        "avatar": { "skin": "light", "hair": "blonde", "style": "short" }
+      },
+      {
+        "jp": "サカ",
+        "intl": "Bukayo Saka",
+        "pos": "RW",
+        "num": 7,
+        "stats": { "apps": 34, "goals": 14, "assists": 9 },
+        "avatar": { "skin": "dark", "hair": "black", "style": "short" }
+      },
+      {
+        "jp": "ハフェルツ",
+        "intl": "Kai Havertz",
+        "pos": "ST",
+        "num": 29,
+        "stats": { "apps": 30, "goals": 12, "assists": 6 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "マルティネッリ",
+        "intl": "Gabriel Martinelli",
+        "pos": "LW",
+        "num": 11,
+        "stats": { "apps": 32, "goals": 9, "assists": 5 },
+        "avatar": { "skin": "tan", "hair": "black", "style": "short" }
+      }
+    ],
+    "bench": [
+      "Aaron Ramsdale",
+      "Takehiro Tomiyasu",
+      "Jakub Kiwior",
+      "Jorginho",
+      "Fabio Vieira",
+      "Leandro Trossard",
+      "Gabriel Jesus"
+    ],
+    "news": [
+      "エーデゴールがキャプテンとして好調",
+      "サカの右サイドからの突破が鍵",
+      "新加入ライスの中盤での安定感"
+    ],
+    "highlights": [
+      "ホームでの勝率85%",
+      "直近5試合4勝1分",
+      "攻撃陣の得点力向上"
+    ],
+    "eval": {
+      "寸評": "攻守のバランスが取れた理想的なスタイル。エーデゴールを中心とした攻撃は多彩で、ライス加入により中盤の安定感も向上。",
+      "攻撃力": 8,
+      "守備力": 7,
+      "総合力": 8
+    },
+    "keychips": [
+      "エーデゴールのクリエイティビティ",
+      "サカの個人技",
+      "ハフェルツの決定力",
+      "ライスの中盤支配"
+    ]
+  },
+  "away": {
+    "teamId": "lee",
+    "name": "リーズ・ユナイテッド",
+    "key": "LEE",
+    "formation": "4-2-3-1",
+    "lineup": [
+      {
+        "jp": "メリエ",
+        "intl": "Illan Meslier",
+        "pos": "GK",
+        "num": 1,
+        "stats": { "apps": 28, "cleanSheets": 8, "saves": 102 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "エイリング",
+        "intl": "Luke Ayling",
+        "pos": "RB",
+        "num": 2,
+        "stats": { "apps": 25, "goals": 1, "assists": 2 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "ロドン",
+        "intl": "Joe Rodon",
+        "pos": "CB",
+        "num": 14,
+        "stats": { "apps": 30, "goals": 2, "assists": 1 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "ストライク",
+        "intl": "Pascal Struijk",
+        "pos": "CB",
+        "num": 21,
+        "stats": { "apps": 29, "goals": 1, "assists": 0 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "フィルポ",
+        "intl": "Junior Firpo",
+        "pos": "LB",
+        "num": 3,
+        "stats": { "apps": 26, "goals": 0, "assists": 3 },
+        "avatar": { "skin": "tan", "hair": "black", "style": "short" }
+      },
+      {
+        "jp": "アンパドゥ",
+        "intl": "Ethan Ampadu",
+        "pos": "DM",
+        "num": 4,
+        "stats": { "apps": 32, "goals": 1, "assists": 2 },
+        "avatar": { "skin": "medium", "hair": "black", "style": "short" }
+      },
+      {
+        "jp": "グルエフ",
+        "intl": "Ilia Gruev",
+        "pos": "CM",
+        "num": 44,
+        "stats": { "apps": 24, "goals": 2, "assists": 1 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "サマービル",
+        "intl": "Crysencio Summerville",
+        "pos": "LW",
+        "num": 10,
+        "stats": { "apps": 31, "goals": 11, "assists": 7 },
+        "avatar": { "skin": "dark", "hair": "black", "style": "short" }
+      },
+      {
+        "jp": "カマラ",
+        "intl": "Glen Kamara",
+        "pos": "AM",
+        "num": 8,
+        "stats": { "apps": 27, "goals": 3, "assists": 5 },
+        "avatar": { "skin": "dark", "hair": "black", "style": "short" }
+      },
+      {
+        "jp": "ダン・ジェームズ",
+        "intl": "Daniel James",
+        "pos": "RW",
+        "num": 20,
+        "stats": { "apps": 33, "goals": 6, "assists": 8 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "バンフォード",
+        "intl": "Patrick Bamford",
+        "pos": "ST",
+        "num": 9,
+        "stats": { "apps": 22, "goals": 8, "assists": 2 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      }
+    ],
+    "bench": [
+      "Sam Byram",
+      "Archie Gray", 
+      "Wilfried Gnonto",
+      "Joel Piroe",
+      "Georginio Rutter",
+      "Mateo Joseph",
+      "Charlie Cresswell"
+    ],
+    "news": [
+      "サマービルの左サイドでの成長",
+      "バンフォードの怪我からの復帰",
+      "若手グレイの台頭"
+    ],
+    "highlights": [
+      "昇格1年目の挑戦",
+      "攻撃的なサッカーが持ち味",
+      "若手選手の成長株"
+    ],
+    "eval": {
+      "寸評": "昇格組ながら攻撃的なサッカーで魅せる。サマービルを中心とした両サイドからの攻撃は脅威だが、守備面での課題も多い。",
+      "攻撃力": 6,
+      "守備力": 5,
+      "総合力": 6
+    },
+    "keychips": [
+      "サマービルのドリブル",
+      "ジェームズのスピード",
+      "バンフォードの経験",
+      "若手の勢い"
+    ]
+  },
+  "timeline": [
+    {
+      "time": "キックオフ",
+      "phase": "開始",
+      "desc": "エミレーツ・スタジアムで試合開始"
+    },
+    {
+      "time": "15分",
+      "phase": "前半",
+      "desc": "アーセナルがポゼッションを握る展開",
+      "team": "home"
+    },
+    {
+      "time": "23分",
+      "phase": "前半", 
+      "desc": "サカが右サイドを突破、クロスボール",
+      "team": "home",
+      "player": "Bukayo Saka"
+    },
+    {
+      "time": "35分",
+      "phase": "前半",
+      "desc": "サマービルが左サイドからカウンター攻撃",
+      "team": "away",
+      "player": "Crysencio Summerville"
+    },
+    {
+      "time": "前半終了",
+      "phase": "前半",
+      "desc": "前半は0-0で終了"
+    },
+    {
+      "time": "後半開始",
+      "phase": "後半",
+      "desc": "両チーム無交代で後半開始"
+    },
+    {
+      "time": "58分",
+      "phase": "後半",
+      "desc": "エーデゴールのシュートがポスト直撃",
+      "team": "home",
+      "player": "Martin Odegaard"
+    },
+    {
+      "time": "72分",
+      "phase": "後半",
+      "desc": "リーズ、ニョントを投入",
+      "team": "away",
+      "type": "substitution"
+    },
+    {
+      "time": "80分",
+      "phase": "後半",
+      "desc": "ハフェルツがヘディングでゴール！",
+      "team": "home",
+      "player": "Kai Havertz",
+      "type": "goal"
+    },
+    {
+      "time": "試合終了",
+      "phase": "終了",
+      "desc": "アーセナルが1-0で勝利"
+    }
+  ],
+  "keyPoints": [
+    "アーセナルのポゼッション主体のゲーム運び",
+    "サカの右サイド突破が効果的",
+    "リーズは前線からのプレッシングで対抗",
+    "サマービルの個人技が光る",
+    "ハフェルツの決勝ゴールが勝負を決める",
+    "エーデゴールの創造性が際立つ"
+  ],
+  "weather": {
+    "condition": "曇り",
+    "temperature": 22,
+    "humidity": 65
+  },
+  "referee": {
+    "main": "マイケル・オリバー",
+    "assistants": ["スチュアート・バート", "サイモン・ベネット"]
+  }
+}
