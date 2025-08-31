@@ -58,7 +58,7 @@
 
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <!-- X-Frame-Options should be set via HTTP header, not meta tag -->
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
 
     <!-- Performance Hints -->
@@ -227,26 +227,23 @@
       }, 3000)
     </script>
 
-    <!-- Service Worker登録（将来のPWA対応用） -->
+    <!-- Service Worker登録（デモ用に無効化） -->
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-          // 本番環境でのみService Workerを登録
-          if (
-            location.protocol === 'https:' ||
-            location.hostname === 'localhost'
-          ) {
-            navigator.serviceWorker
-              .register('/sw.js')
-              .then(function (registration) {
-                console.log('SW registered: ', registration)
-              })
-              .catch(function (registrationError) {
-                console.log('SW registration failed: ', registrationError)
-              })
-          }
-        })
-      }
+      // Service Worker registration disabled for demo stability
+      // if ('serviceWorker' in navigator) {
+      //   window.addEventListener('load', function () {
+      //     if (location.protocol === 'https:' || location.hostname === 'localhost') {
+      //       navigator.serviceWorker
+      //         .register('/sw.js')
+      //         .then(function (registration) {
+      //           console.log('SW registered: ', registration)
+      //         })
+      //         .catch(function (registrationError) {
+      //           console.log('SW registration failed: ', registrationError)
+      //         })
+      //     }
+      //   })
+      // }
     </script>
   </body>
 </html>
