@@ -23,20 +23,20 @@ export default tseslint.config(
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
-      
+
       // General rules
       'no-console': 'warn',
       'no-debugger': 'error',
       'prefer-const': 'error',
       'no-var': 'error',
-      
+
       // Import/Export rules
       'no-duplicate-imports': 'error',
-      
+
       // Code quality
-      'eqeqeq': ['error', 'always'],
-      'curly': ['error', 'all'],
+      eqeqeq: ['error', 'always'],
+      curly: ['error', 'all'],
       'brace-style': ['error', '1tbs'],
     },
-  },
+  }
 )

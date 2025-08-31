@@ -11,23 +11,23 @@ import { getTeamColors, getTeamEmblem } from '@/ui/emblems'
  * 布陣セクション描画
  */
 export async function renderLineup(
-  fixture: Fixture, 
+  fixture: Fixture,
   selectedTeam: 'home' | 'away'
 ): Promise<HTMLElement> {
   const container = document.createElement('div')
   container.className = 'lineup-section'
-  
+
   // チーム切り替えピル
   const teamSwitcher = createTeamSwitcher(fixture, selectedTeam)
   container.appendChild(teamSwitcher)
-  
+
   // 現在選択中のチーム
   const currentTeam = selectedTeam === 'home' ? fixture.home : fixture.away
-  
+
   // チーム情報ヘッダー
   const teamHeader = createTeamHeader(currentTeam)
   container.appendChild(teamHeader)
-  
+
   // ピッチ表示
   const pitchContainer = renderPitch(
     currentTeam.formation,
@@ -35,60 +35,67 @@ export async function renderLineup(
     currentTeam.teamId
   )
   container.appendChild(pitchContainer)
-  
+
   // ベンチメンバー
   const benchSection = await createBenchSection(currentTeam)
   container.appendChild(benchSection)
-  
+
   return container
 }
 
 /**
  * チーム切り替えピル
  */
-function createTeamSwitcher(fixture: Fixture, selectedTeam: 'home' | 'away'): HTMLElement {
+function createTeamSwitcher(
+  fixture: Fixture,
+  selectedTeam: 'home' | 'away'
+): HTMLElement {
   const container = document.createElement('div')
   container.className = 'mb-6'
-  
+
   const header = document.createElement('div')
   header.className = 'flex items-center justify-between mb-4'
-  
+
   const title = document.createElement('h2')
   title.className = 'text-lg font-semibold'
   title.textContent = '予想スタメン'
-  
+
   const pills = document.createElement('div')
   pills.className = 'team-pills'
-  
+
   // ホームチームピル
   const homePill = createTeamPill(fixture.home, 'home', selectedTeam === 'home')
   pills.appendChild(homePill)
-  
+
   // アウェイチームピル
   const awayPill = createTeamPill(fixture.away, 'away', selectedTeam === 'away')
   pills.appendChild(awayPill)
-  
+
   header.appendChild(title)
   header.appendChild(pills)
   container.appendChild(header)
-  
+
   return container
 }
 
 /**
  * 個別チームピル
  */
-function createTeamPill(team: any, teamType: 'home' | 'away', isActive: boolean): HTMLElement {
+function createTeamPill(
+  team: any,
+  teamType: 'home' | 'away',
+  isActive: boolean
+): HTMLElement {
   const pill = document.createElement('button')
   pill.className = `team-pill ${team.teamId} ${isActive ? 'active' : ''}`
   pill.setAttribute('data-team', teamType)
-  
+
   // チームアイコンとテキストを含む
   pill.innerHTML = `
     ${getTeamEmblem(team.teamId, 20)}
     <span class="ml-2">${team.name}</span>
   `
-  
+
   // クリックイベント
   pill.addEventListener('click', () => {
     // 状態を更新（実際の実装では状態管理を通して行う）
@@ -96,7 +103,7 @@ function createTeamPill(team: any, teamType: 'home' | 'away', isActive: boolean)
       setActiveTeam(teamType)
     })
   })
-  
+
   return pill
 }
 
@@ -106,9 +113,9 @@ function createTeamPill(team: any, teamType: 'home' | 'away', isActive: boolean)
 function createTeamHeader(team: any): HTMLElement {
   const header = document.createElement('div')
   header.className = 'text-center mb-6'
-  
+
   const colors = getTeamColors(team.teamId)
-  
+
   header.innerHTML = `
     <div class="flex items-center justify-center gap-4 mb-2">
       ${getTeamEmblem(team.teamId, 40)}
@@ -118,7 +125,7 @@ function createTeamHeader(team: any): HTMLElement {
       </div>
     </div>
   `
-  
+
   return header
 }
 
@@ -128,16 +135,16 @@ function createTeamHeader(team: any): HTMLElement {
 async function createBenchSection(team: any): Promise<HTMLElement> {
   const section = document.createElement('div')
   section.className = 'bench-area'
-  
+
   const title = document.createElement('h3')
   title.className = 'bench-title'
   title.textContent = 'ベンチメンバー'
   section.appendChild(title)
-  
+
   try {
     // ベンチメンバーを正規化
     const normalizedBench = await normalizeBench(team.bench)
-    
+
     if (normalizedBench.length === 0) {
       const emptyMessage = document.createElement('div')
       emptyMessage.className = 'text-center py-8 text-muted'
@@ -145,18 +152,17 @@ async function createBenchSection(team: any): Promise<HTMLElement> {
       section.appendChild(emptyMessage)
       return section
     }
-    
+
     // ベンチグリッド
     const grid = document.createElement('div')
     grid.className = 'bench-grid'
-    
+
     normalizedBench.forEach(player => {
       const playerCard = createBenchPlayerCard(player, team.teamId)
       grid.appendChild(playerCard)
     })
-    
+
     section.appendChild(grid)
-    
   } catch (error) {
     console.error('Failed to create bench section:', error)
     const errorMessage = document.createElement('div')
@@ -164,7 +170,7 @@ async function createBenchSection(team: any): Promise<HTMLElement> {
     errorMessage.textContent = 'ベンチメンバーの読み込みに失敗しました'
     section.appendChild(errorMessage)
   }
-  
+
   return section
 }
 
@@ -174,25 +180,25 @@ async function createBenchSection(team: any): Promise<HTMLElement> {
 function createBenchPlayerCard(player: any, teamId: string): HTMLElement {
   const card = document.createElement('div')
   card.className = 'bench-player cursor-pointer'
-  
+
   const colors = getTeamColors(teamId)
-  
+
   // ドット（チーム色）
   const dot = document.createElement('div')
   dot.className = 'dot'
   dot.style.backgroundColor = colors.primary
   dot.style.borderColor = colors.secondary
-  
+
   // 名前ボックス
   const nameBox = document.createElement('div')
   nameBox.className = 'namebox'
   nameBox.textContent = getDisplayName(player)
-  
+
   // ポジション表示
   const posBox = document.createElement('div')
   posBox.className = 'text-xs text-muted mt-1'
   posBox.textContent = player.pos || 'SUB'
-  
+
   // 背番号表示（ある場合）
   if (player.num) {
     const numBox = document.createElement('div')
@@ -200,14 +206,14 @@ function createBenchPlayerCard(player: any, teamId: string): HTMLElement {
     numBox.textContent = `#${player.num}`
     card.appendChild(numBox)
   }
-  
+
   card.appendChild(dot)
   card.appendChild(nameBox)
   card.appendChild(posBox)
-  
+
   // モーダルトリガーを追加
   addPlayerModalTrigger(card, player)
-  
+
   return card
 }
 
@@ -217,7 +223,7 @@ function createBenchPlayerCard(player: any, teamId: string): HTMLElement {
 export function createFormationDetails(team: any): HTMLElement {
   const section = document.createElement('div')
   section.className = 'card mt-6'
-  
+
   section.innerHTML = `
     <div class="card-header">
       <h3 class="card-title">フォーメーション詳細</h3>
@@ -229,12 +235,16 @@ export function createFormationDetails(team: any): HTMLElement {
       <div>
         <h4 class="text-sm font-semibold text-secondary mb-3">戦術的特徴</h4>
         <div class="space-y-2 text-sm">
-          ${getTacticalFeatures(team.formation).map(feature => `
+          ${getTacticalFeatures(team.formation)
+            .map(
+              feature => `
             <div class="flex items-start gap-2">
               <span class="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-primary"></span>
               <span>${feature}</span>
             </div>
-          `).join('')}
+          `
+            )
+            .join('')}
         </div>
       </div>
       
@@ -242,7 +252,10 @@ export function createFormationDetails(team: any): HTMLElement {
       <div>
         <h4 class="text-sm font-semibold text-secondary mb-3">キープレイヤー</h4>
         <div class="space-y-2">
-          ${getKeyPlayers(team.lineup).slice(0, 3).map(player => `
+          ${getKeyPlayers(team.lineup)
+            .slice(0, 3)
+            .map(
+              player => `
             <div class="flex items-center gap-3 text-sm">
               <div class="w-6 h-6 rounded-full bg-primary text-white text-xs flex items-center justify-center font-mono">
                 ${player.num || '?'}
@@ -252,12 +265,14 @@ export function createFormationDetails(team: any): HTMLElement {
                 <div class="text-xs text-muted">${player.pos}</div>
               </div>
             </div>
-          `).join('')}
+          `
+            )
+            .join('')}
         </div>
       </div>
     </div>
   `
-  
+
   return section
 }
 
@@ -270,29 +285,34 @@ function getTacticalFeatures(formation: string): string[] {
       '攻撃的なウィングプレー',
       '高い位置でのプレス',
       '中盤でのポゼッション',
-      'サイドバックの積極的な上がり'
+      'サイドバックの積極的な上がり',
     ],
     '4-2-3-1': [
       '中盤の数的優位',
       'トップ下の創造性',
       '守備的な安定性',
-      'ボールホルダーへのサポート'
+      'ボールホルダーへのサポート',
     ],
     '3-5-2': [
       'ウィングバックの重要性',
       '中盤でのマンパワー',
       '3センターバックの安定性',
-      'コンパクトな守備ブロック'
+      'コンパクトな守備ブロック',
     ],
     '4-4-2': [
       'バランスの取れた配置',
       'サイドからの攻撃',
       '2トップの連携',
-      '守備時の4-4-2ブロック'
-    ]
+      '守備時の4-4-2ブロック',
+    ],
   }
-  
-  return features[formation] || ['カスタムフォーメーションの特徴', 'チーム独自の戦術']
+
+  return (
+    features[formation] || [
+      'カスタムフォーメーションの特徴',
+      'チーム独自の戦術',
+    ]
+  )
 }
 
 /**
@@ -315,11 +335,13 @@ export function addPitchViewToggle(container: HTMLElement): void {
   const toggleButton = document.createElement('button')
   toggleButton.className = 'btn btn-secondary mb-4'
   toggleButton.textContent = 'ピッチ向きを反転'
-  
+
   let isFlipped = false
-  
+
   toggleButton.addEventListener('click', () => {
-    const pitchContainer = container.querySelector('.pitch-container') as HTMLElement
+    const pitchContainer = container.querySelector(
+      '.pitch-container'
+    ) as HTMLElement
     if (pitchContainer) {
       isFlipped = !isFlipped
       if (isFlipped) {
@@ -331,7 +353,7 @@ export function addPitchViewToggle(container: HTMLElement): void {
       }
     }
   })
-  
+
   // ピッチの前に挿入
   const pitchContainer = container.querySelector('.pitch-container')
   if (pitchContainer) {

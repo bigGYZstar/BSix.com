@@ -59,7 +59,10 @@ export function getLeedsEmblem(size: number = 40): string {
 /**
  * 一般的なフットボール エンブレム（デフォルト）
  */
-export function getDefaultEmblem(size: number = 40, teamKey: string = 'TM'): string {
+export function getDefaultEmblem(
+  size: number = 40,
+  teamKey: string = 'TM'
+): string {
   return `
     <svg width="${size}" height="${size}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <!-- 背景 -->
@@ -86,11 +89,11 @@ export function getTeamEmblem(teamId: string, size: number = 40): string {
     case 'ars':
     case 'arsenal':
       return getArsenalEmblem(size)
-    
+
     case 'lee':
     case 'leeds':
       return getLeedsEmblem(size)
-    
+
     default:
       return getDefaultEmblem(size, teamId.toUpperCase().slice(0, 3))
   }
@@ -110,22 +113,22 @@ export function getTeamColors(teamId: string): {
       return {
         primary: 'var(--team-ars)',
         secondary: 'var(--team-ars-secondary)',
-        cssClass: 'team-ars'
+        cssClass: 'team-ars',
       }
-    
+
     case 'lee':
     case 'leeds':
       return {
         primary: 'var(--team-lee)',
         secondary: 'var(--team-lee-secondary)',
-        cssClass: 'team-lee'
+        cssClass: 'team-lee',
       }
-    
+
     default:
       return {
         primary: 'var(--color-primary)',
         secondary: 'var(--color-bg)',
-        cssClass: 'team-default'
+        cssClass: 'team-default',
       }
   }
 }
@@ -134,9 +137,11 @@ export function getTeamColors(teamId: string): {
  * SVGエンブレムをData URLに変換
  */
 export function emblemToDataUrl(svgString: string): string {
-  const base64 = btoa(encodeURIComponent(svgString).replace(/%([0-9A-F]{2})/g, 
-    (_, p1) => String.fromCharCode(parseInt(p1, 16))
-  ))
+  const base64 = btoa(
+    encodeURIComponent(svgString).replace(/%([0-9A-F]{2})/g, (_, p1) =>
+      String.fromCharCode(parseInt(p1, 16))
+    )
+  )
   return `data:image/svg+xml;base64,${base64}`
 }
 
@@ -158,24 +163,26 @@ export function getTeamIcon(teamId: string, size: number = 20): string {
  * 勝利予測などの統計表示用チャート
  */
 export function getStatsChart(
-  values: number[], 
-  _labels: string[], 
+  values: number[],
+  _labels: string[],
   size: number = 100
 ): string {
   const maxValue = Math.max(...values)
   const centerX = size / 2
   const centerY = size / 2
   const radius = size * 0.35
-  
+
   // レーダーチャート風の表示
-  const points = values.map((value, index) => {
-    const angle = (index * 2 * Math.PI) / values.length - Math.PI / 2
-    const normalizedValue = (value / maxValue) * radius
-    const x = centerX + Math.cos(angle) * normalizedValue
-    const y = centerY + Math.sin(angle) * normalizedValue
-    return `${x},${y}`
-  }).join(' ')
-  
+  const points = values
+    .map((value, index) => {
+      const angle = (index * 2 * Math.PI) / values.length - Math.PI / 2
+      const normalizedValue = (value / maxValue) * radius
+      const x = centerX + Math.cos(angle) * normalizedValue
+      const y = centerY + Math.sin(angle) * normalizedValue
+      return `${x},${y}`
+    })
+    .join(' ')
+
   return `
     <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">
       <!-- 背景グリッド -->
@@ -187,13 +194,15 @@ export function getStatsChart(
       <polygon points="${points}" fill="var(--color-primary)" fill-opacity="0.3" stroke="var(--color-primary)" stroke-width="2"/>
       
       <!-- データポイント -->
-      ${values.map((value, index) => {
-        const angle = (index * 2 * Math.PI) / values.length - Math.PI / 2
-        const normalizedValue = (value / maxValue) * radius
-        const x = centerX + Math.cos(angle) * normalizedValue
-        const y = centerY + Math.sin(angle) * normalizedValue
-        return `<circle cx="${x}" cy="${y}" r="3" fill="var(--color-primary)"/>`
-      }).join('')}
+      ${values
+        .map((value, index) => {
+          const angle = (index * 2 * Math.PI) / values.length - Math.PI / 2
+          const normalizedValue = (value / maxValue) * radius
+          const x = centerX + Math.cos(angle) * normalizedValue
+          const y = centerY + Math.sin(angle) * normalizedValue
+          return `<circle cx="${x}" cy="${y}" r="3" fill="var(--color-primary)"/>`
+        })
+        .join('')}
     </svg>
   `.trim()
 }
@@ -202,8 +211,8 @@ export function getStatsChart(
  * チーム名の表示用ロゴタイプ
  */
 export function getTeamLogotype(teamName: string, size: number = 100): string {
-  const fontSize = Math.min(size / teamName.length * 1.5, size / 4)
-  
+  const fontSize = Math.min((size / teamName.length) * 1.5, size / 4)
+
   return `
     <svg width="${size * 3}" height="${size}" viewBox="0 0 ${size * 3} ${size}" xmlns="http://www.w3.org/2000/svg">
       <defs>

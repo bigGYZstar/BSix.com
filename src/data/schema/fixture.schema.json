@@ -36,7 +36,7 @@
       "minLength": 1
     },
     "round": {
-      "type": "string", 
+      "type": "string",
       "description": "ラウンド（第1節、準々決勝等）",
       "minLength": 1
     },
@@ -55,7 +55,7 @@
       "description": "ホームチーム"
     },
     "away": {
-      "$ref": "team.schema.json", 
+      "$ref": "team.schema.json",
       "description": "アウェイチーム"
     },
     "timeline": {

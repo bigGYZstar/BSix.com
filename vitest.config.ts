@@ -15,9 +15,9 @@ export default defineConfig({
         'dist/',
         '**/*.d.ts',
         '**/*.config.*',
-        '**/coverage/**'
-      ]
-    }
+        '**/coverage/**',
+      ],
+    },
   },
   resolve: {
     alias: {

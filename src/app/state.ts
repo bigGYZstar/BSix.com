@@ -12,7 +12,7 @@ const defaultState: AppState = {
   theme: 'auto',
   modalPlayer: null,
   loading: false,
-  error: null
+  error: null,
 }
 
 /**
@@ -39,7 +39,7 @@ class StateManager {
   setState(partialState: Partial<AppState>): void {
     const prevState = { ...this.state }
     this.state = { ...this.state, ...partialState }
-    
+
     // 変更があった場合のみリスナーに通知
     if (this.hasStateChanged(prevState, this.state)) {
       this.persistState()
@@ -52,7 +52,7 @@ class StateManager {
    */
   subscribe(listener: (state: AppState) => void): () => void {
     this.listeners.add(listener)
-    
+
     // アンサブスクライブ関数を返す
     return () => {
       this.listeners.delete(listener)
@@ -76,7 +76,10 @@ class StateManager {
   /**
    * 状態が変更されたかチェック
    */
-  private hasStateChanged(prevState: AppState, currentState: AppState): boolean {
+  private hasStateChanged(
+    prevState: AppState,
+    currentState: AppState
+  ): boolean {
     // 簡単な浅い比較（より厳密にはdeep equalが必要）
     return JSON.stringify(prevState) !== JSON.stringify(currentState)
   }
@@ -94,7 +97,10 @@ class StateManager {
 
       // タブ設定を読み込み
       const savedTab = localStorage.getItem('match-preview-tab') as Route
-      if (savedTab && ['overview', 'tactics', 'lineup', 'timeline'].includes(savedTab)) {
+      if (
+        savedTab &&
+        ['overview', 'tactics', 'lineup', 'timeline'].includes(savedTab)
+      ) {
         this.state.selectedTab = savedTab
       }
 
@@ -187,8 +193,10 @@ class StateManager {
    */
   getCurrentTeam() {
     const fixture = this.state.currentFixture
-    if (!fixture) return null
-    
+    if (!fixture) {
+      return null
+    }
+
     return this.state.selectedTeam === 'home' ? fixture.home : fixture.away
   }
 
@@ -197,8 +205,10 @@ class StateManager {
    */
   getOpponentTeam() {
     const fixture = this.state.currentFixture
-    if (!fixture) return null
-    
+    if (!fixture) {
+      return null
+    }
+
     return this.state.selectedTeam === 'home' ? fixture.away : fixture.home
   }
 
@@ -207,10 +217,10 @@ class StateManager {
    */
   private applyThemeToDOM(theme: Theme): void {
     const root = document.documentElement
-    
+
     // 既存のテーマクラスを削除
     root.removeAttribute('data-theme')
-    
+
     if (theme === 'light') {
       root.setAttribute('data-theme', 'light')
     } else if (theme === 'dark') {
@@ -242,7 +252,9 @@ export function getAppState(): Readonly<AppState> {
 /**
  * 状態変更を購読
  */
-export function subscribeToState(listener: (state: AppState) => void): () => void {
+export function subscribeToState(
+  listener: (state: AppState) => void
+): () => void {
   return stateManager.subscribe(listener)
 }
 

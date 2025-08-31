@@ -16,7 +16,7 @@ const SKIN_COLORS = {
   light: '#fdbcb4',
   medium: '#e8ae82',
   dark: '#d08b5b',
-  tan: '#c68642'
+  tan: '#c68642',
 } as const
 
 /**
@@ -28,7 +28,7 @@ const HAIR_COLORS = {
   blonde: '#daa520',
   red: '#a0522d',
   gray: '#808080',
-  bald: 'none'
+  bald: 'none',
 } as const
 
 /**
@@ -39,7 +39,7 @@ export function getAvatarConfig(player: Player): AvatarConfig {
     skin: player.avatar?.skin || 'medium',
     hair: player.avatar?.hair || 'brown',
     style: player.avatar?.style || 'short',
-    size: 80
+    size: 80,
   }
 }
 
@@ -51,16 +51,16 @@ export function generateFaceSVG(config: AvatarConfig): string {
   const skinColor = SKIN_COLORS[config.skin || 'medium']
   const hairColor = HAIR_COLORS[config.hair || 'brown']
   const hairStyle = config.style || 'short'
-  
+
   const centerX = size / 2
   const centerY = size / 2
-  
+
   // 顔の基本サイズ
   const faceRadius = size * 0.35
   const eyeY = centerY - size * 0.1
   const eyeSize = size * 0.06
   const eyeSpacing = size * 0.12
-  
+
   return `
     <svg 
       width="${size}" 
@@ -179,9 +179,9 @@ function generateHairSVG(
   if (hairColor === 'none' || style === 'bald') {
     return '' // ハゲの場合は髪なし
   }
-  
+
   const faceRadius = size * 0.35
-  
+
   switch (style) {
     case 'buzz':
       return `
@@ -193,7 +193,7 @@ function generateHairSVG(
           fill="${hairColor}"
         />
       `
-    
+
     case 'curly':
       return `
         <ellipse 
@@ -208,7 +208,7 @@ function generateHairSVG(
         <circle cx="${centerX - faceRadius * 0.4}" cy="${centerY - size * 0.2}" r="${size * 0.06}" fill="${hairColor}" />
         <circle cx="${centerX + faceRadius * 0.4}" cy="${centerY - size * 0.2}" r="${size * 0.06}" fill="${hairColor}" />
       `
-    
+
     case 'long':
       return `
         <ellipse 
@@ -233,7 +233,7 @@ function generateHairSVG(
           fill="${hairColor}"
         />
       `
-    
+
     case 'short':
     default:
       return `
@@ -257,12 +257,12 @@ function adjustBrightness(color: string, factor: number): string {
   const r = parseInt(hex.substr(0, 2), 16)
   const g = parseInt(hex.substr(2, 2), 16)
   const b = parseInt(hex.substr(4, 2), 16)
-  
+
   // 明度調整
-  const adjustedR = Math.max(0, Math.min(255, r + (r * factor)))
-  const adjustedG = Math.max(0, Math.min(255, g + (g * factor)))
-  const adjustedB = Math.max(0, Math.min(255, b + (b * factor)))
-  
+  const adjustedR = Math.max(0, Math.min(255, r + r * factor))
+  const adjustedG = Math.max(0, Math.min(255, g + g * factor))
+  const adjustedB = Math.max(0, Math.min(255, b + b * factor))
+
   // 16進数に戻す
   const toHex = (n: number) => Math.round(n).toString(16).padStart(2, '0')
   return `#${toHex(adjustedR)}${toHex(adjustedG)}${toHex(adjustedB)}`
@@ -273,13 +273,19 @@ function adjustBrightness(color: string, factor: number): string {
  */
 export function generateRandomAvatar(): AvatarConfig {
   const skins: AvatarConfig['skin'][] = ['light', 'medium', 'dark', 'tan']
-  const hairs: AvatarConfig['hair'][] = ['black', 'brown', 'blonde', 'red', 'gray']
+  const hairs: AvatarConfig['hair'][] = [
+    'black',
+    'brown',
+    'blonde',
+    'red',
+    'gray',
+  ]
   const styles: AvatarConfig['style'][] = ['short', 'buzz', 'curly', 'long']
-  
+
   return {
     skin: skins[Math.floor(Math.random() * skins.length)],
     hair: hairs[Math.floor(Math.random() * hairs.length)],
-    style: styles[Math.floor(Math.random() * styles.length)]
+    style: styles[Math.floor(Math.random() * styles.length)],
   }
 }
 
@@ -291,18 +297,24 @@ export function generateDeterministicAvatar(playerName: string): AvatarConfig {
   let hash = 0
   for (let i = 0; i < playerName.length; i++) {
     const char = playerName.charCodeAt(i)
-    hash = ((hash << 5) - hash) + char
+    hash = (hash << 5) - hash + char
     hash = hash & hash // 32bit integer
   }
-  
+
   const skins: AvatarConfig['skin'][] = ['light', 'medium', 'dark', 'tan']
-  const hairs: AvatarConfig['hair'][] = ['black', 'brown', 'blonde', 'red', 'gray']
+  const hairs: AvatarConfig['hair'][] = [
+    'black',
+    'brown',
+    'blonde',
+    'red',
+    'gray',
+  ]
   const styles: AvatarConfig['style'][] = ['short', 'buzz', 'curly', 'long']
-  
+
   return {
     skin: skins[Math.abs(hash) % skins.length],
     hair: hairs[Math.abs(hash >> 8) % hairs.length],
-    style: styles[Math.abs(hash >> 16) % styles.length]
+    style: styles[Math.abs(hash >> 16) % styles.length],
   }
 }
 
@@ -310,9 +322,11 @@ export function generateDeterministicAvatar(playerName: string): AvatarConfig {
  * SVG文字列をData URLに変換
  */
 export function svgToDataUrl(svgString: string): string {
-  const base64 = btoa(encodeURIComponent(svgString).replace(/%([0-9A-F]{2})/g, 
-    (_, p1) => String.fromCharCode(parseInt(p1, 16))
-  ))
+  const base64 = btoa(
+    encodeURIComponent(svgString).replace(/%([0-9A-F]{2})/g, (_, p1) =>
+      String.fromCharCode(parseInt(p1, 16))
+    )
+  )
   return `data:image/svg+xml;base64,${base64}`
 }
 
@@ -324,7 +338,7 @@ export function getPlayerAvatar(player: Player, size: number = 80): string {
   if (player.photoUrl) {
     return player.photoUrl
   }
-  
+
   // アバター設定から生成
   const config = { ...getAvatarConfig(player), size }
   return svgToDataUrl(generateFaceSVG(config))

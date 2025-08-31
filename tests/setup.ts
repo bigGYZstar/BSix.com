@@ -52,7 +52,7 @@ global.IntersectionObserver = vi.fn().mockImplementation(() => ({
 if (!global.CustomEvent) {
   global.CustomEvent = class CustomEvent extends Event {
     detail: any
-    
+
     constructor(event: string, params: CustomEventInit = {}) {
       super(event, params)
       this.detail = params.detail

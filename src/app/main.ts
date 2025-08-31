@@ -1,13 +1,13 @@
 // アプリケーションエントリポイント
 
 import type { Fixture } from '@/types'
-import { 
-  stateManager, 
-  subscribeToState, 
-  setFixture, 
-  setLoading, 
+import {
+  stateManager,
+  subscribeToState,
+  setFixture,
+  setLoading,
   setError,
-  applyInitialTheme 
+  applyInitialTheme,
 } from './state'
 import { initRouter, onRouteChange, getAllRoutes } from './router'
 
@@ -29,32 +29,31 @@ export async function initApp(): Promise<void> {
   try {
     // 初期テーマを適用
     applyInitialTheme()
-    
+
     // ローディング状態を設定
     setLoading(true)
-    
+
     // ルーター初期化
     initRouter()
-    
+
     // ヘッダーとナビゲーションを描画
     await renderHeader()
     await renderTabNavigation()
-    
+
     // フィクスチャデータを読み込み
     const fixture = await loadFixtureData()
     setFixture(fixture)
-    
+
     // 初期コンテンツを描画
     await renderCurrentRoute()
-    
+
     // 状態変更とルート変更を監視
     setupEventListeners()
-    
+
     // ローディング完了
     setLoading(false)
-    
-    console.log('App initialized successfully')
-    
+
+    // アプリケーション初期化完了
   } catch (error) {
     console.error('App initialization failed:', error)
     setError(error instanceof Error ? error.message : '初期化に失敗しました')
@@ -67,23 +66,23 @@ export async function initApp(): Promise<void> {
 async function renderHeader(): Promise<void> {
   const header = document.createElement('header')
   header.className = 'header'
-  
+
   const container = document.createElement('div')
   container.className = 'container header-content'
-  
+
   // ロゴ
   const logo = document.createElement('a')
   logo.className = 'logo'
   logo.href = '#overview'
   logo.textContent = '試合プレビュー'
-  
+
   // テーマ切り替えボタン
   const themeToggle = createThemeToggle()
-  
+
   container.appendChild(logo)
   container.appendChild(themeToggle)
   header.appendChild(container)
-  
+
   // ヘッダーを挿入
   const existingHeader = document.querySelector('header')
   if (existingHeader) {
@@ -99,12 +98,12 @@ async function renderHeader(): Promise<void> {
 async function renderTabNavigation(): Promise<void> {
   const nav = document.createElement('nav')
   nav.className = 'container'
-  
+
   const tabNav = document.createElement('div')
   tabNav.className = 'tab-nav'
-  
+
   const routes = getAllRoutes()
-  
+
   routes.forEach(({ route, title, hash }) => {
     const button = document.createElement('button')
     button.className = 'tab-button'
@@ -113,12 +112,12 @@ async function renderTabNavigation(): Promise<void> {
     button.addEventListener('click', () => {
       window.location.hash = hash
     })
-    
+
     tabNav.appendChild(button)
   })
-  
+
   nav.appendChild(tabNav)
-  
+
   // ナビゲーションを挿入
   const header = document.querySelector('header')
   if (header) {
@@ -126,7 +125,7 @@ async function renderTabNavigation(): Promise<void> {
   } else {
     document.body.appendChild(nav)
   }
-  
+
   // アクティブタブを更新
   updateActiveTab()
 }
@@ -138,15 +137,15 @@ function createThemeToggle(): HTMLElement {
   const button = document.createElement('button')
   button.className = 'btn btn-secondary'
   button.setAttribute('aria-label', 'テーマ切り替え')
-  
+
   const icon = document.createElement('span')
   icon.textContent = '🌙'
   button.appendChild(icon)
-  
+
   button.addEventListener('click', () => {
     const currentState = stateManager.getState()
     const currentTheme = currentState.theme
-    
+
     let newTheme: 'light' | 'dark' | 'auto'
     if (currentTheme === 'light') {
       newTheme = 'dark'
@@ -158,10 +157,10 @@ function createThemeToggle(): HTMLElement {
       newTheme = 'light'
       icon.textContent = '🌙'
     }
-    
+
     stateManager.setTheme(newTheme)
   })
-  
+
   return button
 }
 
@@ -174,10 +173,9 @@ async function loadFixtureData(): Promise<Fixture> {
     if (!response.ok) {
       throw new Error(`Failed to load fixture data: ${response.status}`)
     }
-    
+
     const fixture = await response.json()
     return fixture
-    
   } catch (error) {
     console.error('Failed to load fixture data:', error)
     throw new Error('試合データの読み込みに失敗しました')
@@ -190,7 +188,7 @@ async function loadFixtureData(): Promise<Fixture> {
 async function renderCurrentRoute(): Promise<void> {
   const state = stateManager.getState()
   const currentRoute = state.selectedTab
-  
+
   // メインコンテンツエリアを取得または作成
   let main = document.querySelector('main')
   if (!main) {
@@ -198,7 +196,7 @@ async function renderCurrentRoute(): Promise<void> {
     main.className = 'container'
     document.body.appendChild(main)
   }
-  
+
   // ローディング表示
   if (state.loading) {
     main.innerHTML = `
@@ -208,7 +206,7 @@ async function renderCurrentRoute(): Promise<void> {
     `
     return
   }
-  
+
   // エラー表示
   if (state.error) {
     main.innerHTML = `
@@ -224,7 +222,7 @@ async function renderCurrentRoute(): Promise<void> {
     `
     return
   }
-  
+
   // フィクスチャデータなし
   if (!state.currentFixture) {
     main.innerHTML = `
@@ -237,11 +235,11 @@ async function renderCurrentRoute(): Promise<void> {
     `
     return
   }
-  
+
   // ルートに応じてコンテンツを描画
   try {
     let content: HTMLElement
-    
+
     switch (currentRoute) {
       case 'overview':
         content = await renderOverview(state.currentFixture)
@@ -258,11 +256,10 @@ async function renderCurrentRoute(): Promise<void> {
       default:
         throw new Error(`Unknown route: ${currentRoute}`)
     }
-    
+
     // コンテンツを更新
     main.innerHTML = ''
     main.appendChild(content)
-    
   } catch (error) {
     console.error('Failed to render route:', error)
     main.innerHTML = `
@@ -282,7 +279,7 @@ async function renderCurrentRoute(): Promise<void> {
 function updateActiveTab(): void {
   const state = stateManager.getState()
   const buttons = document.querySelectorAll('.tab-button')
-  
+
   buttons.forEach(button => {
     const route = button.getAttribute('data-route')
     if (route === state.selectedTab) {
@@ -302,13 +299,13 @@ function setupEventListeners(): void {
     updateActiveTab()
     renderCurrentRoute()
   })
-  
+
   // ルート変更を監視
   onRouteChange(() => {
     updateActiveTab()
     renderCurrentRoute()
   })
-  
+
   // ウィンドウリサイズを監視（レスポンシブ対応）
   let resizeTimeout: number
   window.addEventListener('resize', () => {
@@ -318,9 +315,9 @@ function setupEventListeners(): void {
       renderCurrentRoute()
     }, 250)
   })
-  
+
   // キーボードショートカット
-  document.addEventListener('keydown', (event) => {
+  document.addEventListener('keydown', event => {
     // Ctrl/Cmd + R で再読み込み
     if ((event.ctrlKey || event.metaKey) && event.key === 'r') {
       event.preventDefault()
@@ -342,12 +339,12 @@ export function startApp(): void {
 }
 
 // 未処理のエラーをキャッチ
-window.addEventListener('error', (event) => {
+window.addEventListener('error', event => {
   console.error('Unhandled error:', event.error)
   setError('予期しないエラーが発生しました')
 })
 
-window.addEventListener('unhandledrejection', (event) => {
+window.addEventListener('unhandledrejection', event => {
   console.error('Unhandled promise rejection:', event.reason)
   setError('非同期処理でエラーが発生しました')
 })

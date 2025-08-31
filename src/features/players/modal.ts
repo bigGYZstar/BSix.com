@@ -1,11 +1,11 @@
 // 選手モーダルの描画とイベント管理
 
 import type { Player, Modal } from '@/types'
-import { 
-  getFullName, 
-  getInternationalName, 
-  getPositionDisplay, 
-  getNumberDisplay 
+import {
+  getFullName,
+  getInternationalName,
+  getPositionDisplay,
+  getNumberDisplay,
 } from './displayName'
 import { getPlayerAvatar } from '@/ui/avatar'
 
@@ -17,7 +17,7 @@ class PlayerModal implements Modal {
   private backdropElement: HTMLElement | null = null
   private isModalOpen = false
   private focusBeforeModal: HTMLElement | null = null
-  
+
   constructor() {
     this.handleKeydown = this.handleKeydown.bind(this)
     this.handleBackdropClick = this.handleBackdropClick.bind(this)
@@ -36,23 +36,25 @@ class PlayerModal implements Modal {
 
     // モーダル要素を作成
     this.createModal(player)
-    
+
     // DOMに追加
     document.body.appendChild(this.backdropElement!)
-    
+
     // イベントリスナー追加
     document.addEventListener('keydown', this.handleKeydown)
     this.backdropElement!.addEventListener('click', this.handleBackdropClick)
-    
+
     // スクロール無効化
     document.body.style.overflow = 'hidden'
-    
+
     // 状態更新
     this.isModalOpen = true
-    
+
     // フォーカスをモーダルに移動
     setTimeout(() => {
-      const closeButton = this.modalElement!.querySelector('.modal-close') as HTMLElement
+      const closeButton = this.modalElement!.querySelector(
+        '.modal-close'
+      ) as HTMLElement
       closeButton?.focus()
     }, 100)
   }
@@ -67,20 +69,20 @@ class PlayerModal implements Modal {
 
     // イベントリスナー削除
     document.removeEventListener('keydown', this.handleKeydown)
-    
+
     // DOM要素削除
     if (this.backdropElement) {
       this.backdropElement.remove()
     }
-    
+
     // スクロール復元
     document.body.style.overflow = ''
-    
+
     // フォーカス復元
     if (this.focusBeforeModal) {
       this.focusBeforeModal.focus()
     }
-    
+
     // 状態更新
     this.isModalOpen = false
     this.modalElement = null
@@ -110,9 +112,9 @@ class PlayerModal implements Modal {
     this.modalElement = document.createElement('div')
     this.modalElement.className = 'modal'
     this.modalElement.innerHTML = this.generateModalContent(player)
-    
+
     this.backdropElement.appendChild(this.modalElement)
-    
+
     // 閉じるボタンのイベント
     const closeButton = this.modalElement.querySelector('.modal-close')
     closeButton?.addEventListener('click', () => this.close())
@@ -127,7 +129,7 @@ class PlayerModal implements Modal {
     const position = getPositionDisplay(player)
     const number = getNumberDisplay(player)
     const avatar = getPlayerAvatar(player, 80)
-    
+
     return `
       <div class="modal-header">
         <h2 id="modal-title" class="modal-title">${fullName}</h2>
@@ -170,8 +172,14 @@ class PlayerModal implements Modal {
       `
     }
 
-    const { apps = 0, goals = 0, assists = 0, cleanSheets, saves } = player.stats
-    
+    const {
+      apps = 0,
+      goals = 0,
+      assists = 0,
+      cleanSheets,
+      saves,
+    } = player.stats
+
     // GK用スタッツ
     if (player.pos === 'GK') {
       return `
@@ -182,23 +190,31 @@ class PlayerModal implements Modal {
               <div class="stat-value">${apps}</div>
               <div class="stat-label">出場</div>
             </div>
-            ${cleanSheets !== undefined ? `
+            ${
+              cleanSheets !== undefined
+                ? `
               <div class="stat-item">
                 <div class="stat-value">${cleanSheets}</div>
                 <div class="stat-label">CS</div>
               </div>
-            ` : ''}
-            ${saves !== undefined ? `
+            `
+                : ''
+            }
+            ${
+              saves !== undefined
+                ? `
               <div class="stat-item">
                 <div class="stat-value">${saves}</div>
                 <div class="stat-label">セーブ</div>
               </div>
-            ` : ''}
+            `
+                : ''
+            }
           </div>
         </div>
       `
     }
-    
+
     // フィールドプレーヤー用スタッツ
     return `
       <div class="modal-section">
@@ -226,12 +242,14 @@ class PlayerModal implements Modal {
    */
   private generateDetailsSection(player: Player): string {
     const details: string[] = []
-    
+
     if (player.avatar) {
       const { skin, hair, style } = player.avatar
-      details.push(`外見: ${this.translateAvatarFeature('skin', skin)} / ${this.translateAvatarFeature('hair', hair)} / ${this.translateAvatarFeature('style', style)}`)
+      details.push(
+        `外見: ${this.translateAvatarFeature('skin', skin)} / ${this.translateAvatarFeature('hair', hair)} / ${this.translateAvatarFeature('style', style)}`
+      )
     }
-    
+
     if (player.playerId) {
       details.push(`ID: ${player.playerId}`)
     }
@@ -254,14 +272,16 @@ class PlayerModal implements Modal {
    * アバター特徴を日本語に翻訳
    */
   private translateAvatarFeature(type: string, value?: string): string {
-    if (!value) return '不明'
-    
+    if (!value) {
+      return '不明'
+    }
+
     const translations: { [key: string]: { [key: string]: string } } = {
       skin: {
         light: '明るい肌',
         medium: '普通の肌',
-        dark: '濃い肌', 
-        tan: '日焼けした肌'
+        dark: '濃い肌',
+        tan: '日焼けした肌',
       },
       hair: {
         black: '黒髪',
@@ -269,17 +289,17 @@ class PlayerModal implements Modal {
         blonde: '金髪',
         red: '赤毛',
         gray: '白髪',
-        bald: 'ハゲ'
+        bald: 'ハゲ',
       },
       style: {
         short: 'ショート',
         buzz: '坊主',
         curly: 'カーリー',
         long: 'ロング',
-        bald: 'ハゲ'
-      }
+        bald: 'ハゲ',
+      },
     }
-    
+
     return translations[type]?.[value] || value
   }
 
@@ -291,7 +311,7 @@ class PlayerModal implements Modal {
       event.preventDefault()
       this.close()
     }
-    
+
     // Tab トラップ（モーダル内でのフォーカス循環）
     if (event.key === 'Tab' && this.modalElement) {
       this.trapFocus(event)
@@ -311,15 +331,17 @@ class PlayerModal implements Modal {
    * フォーカストラップ（アクセシビリティ）
    */
   private trapFocus(event: KeyboardEvent): void {
-    if (!this.modalElement) return
+    if (!this.modalElement) {
+      return
+    }
 
     const focusableElements = this.modalElement.querySelectorAll(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     ) as NodeListOf<HTMLElement>
-    
+
     const firstElement = focusableElements[0]
     const lastElement = focusableElements[focusableElements.length - 1]
-    
+
     if (event.shiftKey) {
       // Shift + Tab
       if (document.activeElement === firstElement) {
@@ -343,22 +365,22 @@ export const playerModal = new PlayerModal()
  * 選手要素にモーダル機能を追加
  */
 export function addPlayerModalTrigger(
-  element: HTMLElement, 
+  element: HTMLElement,
   player: Player
 ): void {
   // クリックイベント
-  element.addEventListener('click', (event) => {
+  element.addEventListener('click', event => {
     event.preventDefault()
     event.stopPropagation()
     playerModal.open(player)
   })
-  
+
   // キーボードアクセシビリティ
   element.setAttribute('role', 'button')
   element.setAttribute('tabindex', '0')
   element.setAttribute('aria-label', `${getFullName(player)}の詳細を表示`)
-  
-  element.addEventListener('keydown', (event) => {
+
+  element.addEventListener('keydown', event => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
       playerModal.open(player)

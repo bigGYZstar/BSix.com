@@ -28,17 +28,17 @@ function normalizeStringPlayer(
   avatarGuess?: AvatarGuess
 ): Player {
   const trimmedName = playerName.trim()
-  
+
   // 日本語名を取得（オーバーライドから）
   const japanseName = nameOverrides?.[trimmedName] || trimmedName
-  
+
   // ポジションを推測
   const guessedPosition = guessPosition(trimmedName)
-  
+
   // アバターを推測
-  const guessedAvatar = avatarGuess?.[trimmedName] || 
-                       generateDeterministicAvatar(trimmedName)
-  
+  const guessedAvatar =
+    avatarGuess?.[trimmedName] || generateDeterministicAvatar(trimmedName)
+
   return {
     jp: japanseName,
     intl: trimmedName,
@@ -47,8 +47,8 @@ function normalizeStringPlayer(
     stats: {
       apps: 0,
       goals: 0,
-      assists: 0
-    }
+      assists: 0,
+    },
   }
 }
 
@@ -58,16 +58,18 @@ function normalizeStringPlayer(
  */
 function guessPosition(playerName: string): string {
   const name = playerName.toLowerCase()
-  
+
   // GK の判定
-  if (name.includes('keeper') || 
-      name.includes('ramsdale') || 
-      name.includes('meslier') ||
-      name.includes('leno') ||
-      name.includes('turner')) {
+  if (
+    name.includes('keeper') ||
+    name.includes('ramsdale') ||
+    name.includes('meslier') ||
+    name.includes('leno') ||
+    name.includes('turner')
+  ) {
     return 'GK'
   }
-  
+
   // 既知の選手名からの推測
   const positionMap: { [key: string]: string } = {
     // Arsenal
@@ -75,14 +77,14 @@ function guessPosition(playerName: string): string {
     'takehiro tomiyasu': 'RB',
     'jakub kiwior': 'CB',
     'kieran tierney': 'LB',
-    'jorginho': 'CM',
+    jorginho: 'CM',
     'fabio vieira': 'AM',
     'leandro trossard': 'LW',
     'gabriel jesus': 'ST',
     'eddie nketiah': 'ST',
     'emile smith rowe': 'AM',
     'mohamed elneny': 'CM',
-    
+
     // Leeds
     'sam byram': 'RB',
     'archie gray': 'CM',
@@ -92,56 +94,54 @@ function guessPosition(playerName: string): string {
     'georginio rutter': 'AM',
     'mateo joseph': 'ST',
     'max wober': 'CB',
-    'tyler adams': 'DM'
+    'tyler adams': 'DM',
   }
-  
+
   const knownPosition = positionMap[name]
   if (knownPosition) {
     return knownPosition
   }
-  
+
   // デフォルト推測（名前の特徴から）
   if (name.includes('son') || name.includes('joseph')) {
     return 'ST' // よくある名前のパターン
   }
-  
+
   if (name.includes('gray') || name.includes('smith')) {
     return 'CM' // 中盤っぽい名前
   }
-  
+
   // フォールバック
   return 'SUB' // 控え選手の汎用ポジション
 }
-
-
 
 /**
  * ベンチの表示順序を調整（ポジション別）
  */
 export function sortBenchByPosition(players: Player[]): Player[] {
   const positionOrder: { [key: string]: number } = {
-    'GK': 1,
-    'CB': 2,
-    'LB': 3,
-    'RB': 4,
-    'DM': 5,
-    'CM': 6,
-    'AM': 7,
-    'LW': 8,
-    'RW': 9,
-    'ST': 10,
-    'SUB': 11
+    GK: 1,
+    CB: 2,
+    LB: 3,
+    RB: 4,
+    DM: 5,
+    CM: 6,
+    AM: 7,
+    LW: 8,
+    RW: 9,
+    ST: 10,
+    SUB: 11,
   }
-  
+
   return [...players].sort((a, b) => {
     const orderA = positionOrder[a.pos || 'SUB'] || 999
     const orderB = positionOrder[b.pos || 'SUB'] || 999
-    
+
     if (orderA === orderB) {
       // 同じポジションなら名前順
       return (a.jp || a.intl).localeCompare(b.jp || b.intl)
     }
-    
+
     return orderA - orderB
   })
 }
@@ -153,10 +153,10 @@ export function guessPlayerStats(player: Player): Player {
   if (player.stats && Object.keys(player.stats).length > 0) {
     return player // すでにスタッツがある
   }
-  
+
   // ポジションベースの基本スタッツ
   let baseStats = { apps: 0, goals: 0, assists: 0 }
-  
+
   switch (player.pos) {
     case 'GK':
       baseStats = { apps: 10, goals: 0, assists: 0 }
@@ -181,10 +181,10 @@ export function guessPlayerStats(player: Player): Player {
     default:
       baseStats = { apps: 8, goals: 1, assists: 1 }
   }
-  
+
   return {
     ...player,
-    stats: baseStats
+    stats: baseStats,
   }
 }
 
@@ -192,18 +192,18 @@ export function guessPlayerStats(player: Player): Player {
  * オーバーライドデータを読み込み
  */
 export async function loadOverrides(): Promise<{
-  nameOverrides: NameOverrides,
+  nameOverrides: NameOverrides
   avatarGuess: AvatarGuess
 }> {
   try {
     const [nameResponse, avatarResponse] = await Promise.all([
       fetch('/src/data/overrides/jp-name-overrides.json'),
-      fetch('/src/data/overrides/avatar-guess.json')
+      fetch('/src/data/overrides/avatar-guess.json'),
     ])
-    
+
     const nameOverrides = await nameResponse.json()
     const avatarGuess = await avatarResponse.json()
-    
+
     return { nameOverrides, avatarGuess }
   } catch (error) {
     console.warn('Failed to load overrides:', error)
@@ -214,14 +214,22 @@ export async function loadOverrides(): Promise<{
 /**
  * チーム全体のベンチを正規化（外部APIとして使用）
  */
-export async function normalizeBench(bench: (string | Player)[]): Promise<Player[]> {
+export async function normalizeBench(
+  bench: (string | Player)[]
+): Promise<Player[]> {
   const { nameOverrides, avatarGuess } = await loadOverrides()
-  
-  const normalizedPlayers = normalizeBenchPlayers(bench, nameOverrides, avatarGuess)
-  
+
+  const normalizedPlayers = normalizeBenchPlayers(
+    bench,
+    nameOverrides,
+    avatarGuess
+  )
+
   // スタッツ推測を適用
-  const playersWithStats = normalizedPlayers.map(player => guessPlayerStats(player))
-  
+  const playersWithStats = normalizedPlayers.map(player =>
+    guessPlayerStats(player)
+  )
+
   // ポジション順でソート
   return sortBenchByPosition(playersWithStats)
 }
@@ -229,23 +237,19 @@ export async function normalizeBench(bench: (string | Player)[]): Promise<Player
 /**
  * ベンチ選手の検索・フィルタリング
  */
-export function filterBenchPlayers(
-  players: Player[], 
-  query: string
-): Player[] {
+export function filterBenchPlayers(players: Player[], query: string): Player[] {
   if (!query.trim()) {
     return players
   }
-  
+
   const searchQuery = query.toLowerCase().trim()
-  
+
   return players.filter(player => {
-    const searchableText = [
-      player.jp,
-      player.intl,
-      player.pos
-    ].filter(Boolean).join(' ').toLowerCase()
-    
+    const searchableText = [player.jp, player.intl, player.pos]
+      .filter(Boolean)
+      .join(' ')
+      .toLowerCase()
+
     return searchableText.includes(searchQuery)
   })
 }
@@ -254,27 +258,28 @@ export function filterBenchPlayers(
  * ベンチ選手の統計情報を取得
  */
 export function getBenchStats(players: Player[]): {
-  totalPlayers: number,
-  byPosition: { [position: string]: number },
-  averageApps: number,
+  totalPlayers: number
+  byPosition: { [position: string]: number }
+  averageApps: number
   totalGoals: number
 } {
   const byPosition: { [position: string]: number } = {}
   let totalApps = 0
   let totalGoals = 0
-  
+
   players.forEach(player => {
     const pos = player.pos || 'Unknown'
     byPosition[pos] = (byPosition[pos] || 0) + 1
-    
+
     totalApps += player.stats?.apps || 0
     totalGoals += player.stats?.goals || 0
   })
-  
+
   return {
     totalPlayers: players.length,
     byPosition,
-    averageApps: players.length > 0 ? Math.round(totalApps / players.length) : 0,
-    totalGoals
+    averageApps:
+      players.length > 0 ? Math.round(totalApps / players.length) : 0,
+    totalGoals,
   }
 }

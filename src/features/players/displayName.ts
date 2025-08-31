@@ -9,33 +9,32 @@ import type { Player } from '@/types'
  * 2. 日本語名が閾値より長い → 姓のみ表示（最初の単語）
  * 3. 日本語名がない場合 → 英名の姓のみ
  */
-export function getDisplayName(
-  player: Player,
-  threshold: number = 5
-): string {
+export function getDisplayName(player: Player, threshold: number = 5): string {
   const japanseName = (player.jp || '').trim()
-  
+
   // 日本語名がない場合はフォールバック
   if (!japanseName) {
     return getLastName(player.intl || '')
   }
-  
+
   // 中点や空白で区切られている場合は、最初の部分を優先
-  const japaneseParts = japanseName.split(/[\s・]/g).filter(part => part.length > 0)
+  const japaneseParts = japanseName
+    .split(/[\s・]/g)
+    .filter(part => part.length > 0)
   if (japaneseParts.length > 1) {
     return japaneseParts[0] // 複数部分がある場合は最初の部分（姓）
   }
-  
+
   // 数字が含まれる場合はフル表示（例：プレイヤー1）
   if (/\d/.test(japanseName)) {
     return japanseName
   }
-  
+
   // 日本語名が閾値以下なら（短い和名）フル表示
   if (japanseName.length <= threshold) {
     return japanseName
   }
-  
+
   // 分割されない場合（例：冨安健洋）は、最初の2文字を姓とする
   // 但し、全体が3文字以下なら1文字目のみ
   if (japanseName.length <= 3) {
@@ -43,7 +42,7 @@ export function getDisplayName(
   } else {
     return japanseName.substring(0, 2)
   }
-  
+
   // フォールバック: 英名の姓
   return getLastName(player.intl || '')
 }
@@ -53,21 +52,21 @@ export function getDisplayName(
  */
 export function getLastName(fullName: string): string {
   const name = (fullName || '').trim()
-  
+
   if (!name) {
     return 'Unknown'
   }
-  
+
   const parts = name.split(/\s+/).filter(part => part.length > 0)
-  
+
   if (parts.length === 0) {
     return 'Unknown'
   }
-  
+
   if (parts.length === 1) {
     return parts[0]
   }
-  
+
   // 最後の単語を姓とする
   return parts[parts.length - 1]
 }
@@ -78,9 +77,13 @@ export function getLastName(fullName: string): string {
 export function getFullName(player: Player): string {
   const jp = (player.jp || '').trim()
   const intl = (player.intl || '').trim()
-  
-  if (jp) return jp
-  if (intl) return intl
+
+  if (jp) {
+    return jp
+  }
+  if (intl) {
+    return intl
+  }
   return 'Unknown Player'
 }
 
@@ -105,7 +108,7 @@ export function getNumberDisplay(player: Player): string {
   if (player.num === undefined || player.num === null) {
     return ''
   }
-  
+
   return String(player.num)
 }
 
@@ -114,29 +117,29 @@ export function getNumberDisplay(player: Player): string {
  */
 export function getSearchKeywords(player: Player): string[] {
   const keywords: string[] = []
-  
+
   if (player.jp) {
     keywords.push(player.jp.toLowerCase())
     // 日本語名の各部分も追加
     const parts = player.jp.split(/[\s・]/g).filter(part => part.length > 0)
     keywords.push(...parts.map(part => part.toLowerCase()))
   }
-  
+
   if (player.intl) {
     keywords.push(player.intl.toLowerCase())
     // 英名の各部分も追加
     const parts = player.intl.split(/\s+/).filter(part => part.length > 0)
     keywords.push(...parts.map(part => part.toLowerCase()))
   }
-  
+
   if (player.pos) {
     keywords.push(player.pos.toLowerCase())
   }
-  
+
   if (player.num) {
     keywords.push(String(player.num))
   }
-  
+
   return [...new Set(keywords)] // 重複除去
 }
 

@@ -64,7 +64,7 @@ describe('JSON Schema Validation', () => {
       testAjv.addSchema(playerSchema, 'player.schema.json')
       testAjv.addSchema(teamSchema, 'team.schema.json')
       testAjv.addSchema(fixtureSchema, 'fixture.schema.json')
-      
+
       // グローバルajvをtestAjvで置き換え
       ajv = testAjv
     })
@@ -115,16 +115,25 @@ describe('JSON Schema Validation', () => {
         if (key !== '_meta') {
           expect(key).toBeTypeOf('string')
           expect(value).toBeTypeOf('object')
-          
+
           const avatar = value as any
           if (avatar.skin) {
             expect(['light', 'medium', 'dark', 'tan']).toContain(avatar.skin)
           }
           if (avatar.hair) {
-            expect(['black', 'brown', 'blonde', 'red', 'gray', 'bald']).toContain(avatar.hair)
+            expect([
+              'black',
+              'brown',
+              'blonde',
+              'red',
+              'gray',
+              'bald',
+            ]).toContain(avatar.hair)
           }
           if (avatar.style) {
-            expect(['short', 'buzz', 'curly', 'long', 'bald']).toContain(avatar.style)
+            expect(['short', 'buzz', 'curly', 'long', 'bald']).toContain(
+              avatar.style
+            )
           }
         }
       })
@@ -138,28 +147,28 @@ describe('JSON Schema Validation', () => {
       // フィクスチャからサンプル選手データを取得
       const fixturePath = join(DATA_DIR, 'fixtures/2025-08-24-ars-lee.json')
       const fixture = JSON.parse(readFileSync(fixturePath, 'utf-8'))
-      samplePlayers = [
-        ...fixture.home.lineup,
-        ...fixture.away.lineup
-      ]
+      samplePlayers = [...fixture.home.lineup, ...fixture.away.lineup]
     })
 
     it('should validate all lineup players', () => {
       const schemaPath = join(SCHEMA_DIR, 'player.schema.json')
       const playerSchema = JSON.parse(readFileSync(schemaPath, 'utf-8'))
-      
+
       // 新しいAjvインスタンスを作成してスキーマの重複を避ける
       const testAjv = new Ajv({ allErrors: true, strict: false })
       const validatePlayer = testAjv.compile(playerSchema)
 
       samplePlayers.forEach((player, index) => {
         const isValid = validatePlayer(player)
-        
+
         if (!isValid) {
-          console.error(`Player ${index} validation errors:`, validatePlayer.errors)
+          console.error(
+            `Player ${index} validation errors:`,
+            validatePlayer.errors
+          )
           console.error('Player data:', JSON.stringify(player, null, 2))
         }
-        
+
         expect(isValid).toBe(true)
       })
     })
@@ -174,8 +183,24 @@ describe('JSON Schema Validation', () => {
     })
 
     it('should have valid positions', () => {
-      const validPositions = ['GK', 'CB', 'LB', 'RB', 'LWB', 'RWB', 'DM', 'CM', 'AM', 'LM', 'RM', 'LW', 'RW', 'CF', 'ST']
-      
+      const validPositions = [
+        'GK',
+        'CB',
+        'LB',
+        'RB',
+        'LWB',
+        'RWB',
+        'DM',
+        'CM',
+        'AM',
+        'LM',
+        'RM',
+        'LW',
+        'RW',
+        'CF',
+        'ST',
+      ]
+
       samplePlayers.forEach(player => {
         if (player.pos) {
           expect(validPositions).toContain(player.pos)
@@ -188,13 +213,18 @@ describe('JSON Schema Validation', () => {
         if (player.stats) {
           const stats = player.stats
           if (stats.apps !== undefined) expect(stats.apps).toBeTypeOf('number')
-          if (stats.goals !== undefined) expect(stats.goals).toBeTypeOf('number')
-          if (stats.assists !== undefined) expect(stats.assists).toBeTypeOf('number')
-          
+          if (stats.goals !== undefined)
+            expect(stats.goals).toBeTypeOf('number')
+          if (stats.assists !== undefined)
+            expect(stats.assists).toBeTypeOf('number')
+
           // 負の値はない
-          if (stats.apps !== undefined) expect(stats.apps).toBeGreaterThanOrEqual(0)
-          if (stats.goals !== undefined) expect(stats.goals).toBeGreaterThanOrEqual(0)
-          if (stats.assists !== undefined) expect(stats.assists).toBeGreaterThanOrEqual(0)
+          if (stats.apps !== undefined)
+            expect(stats.apps).toBeGreaterThanOrEqual(0)
+          if (stats.goals !== undefined)
+            expect(stats.goals).toBeGreaterThanOrEqual(0)
+          if (stats.assists !== undefined)
+            expect(stats.assists).toBeGreaterThanOrEqual(0)
         }
       })
     })
@@ -203,11 +233,11 @@ describe('JSON Schema Validation', () => {
   describe('Formation validation', () => {
     it('should validate formation format', () => {
       const formations = ['4-3-3', '4-2-3-1', '3-5-2', '4-4-2', '5-3-2']
-      
+
       formations.forEach(formation => {
         // フォーメーション形式のテスト
         expect(formation).toMatch(/^\d+(-\d+)+$/)
-        
+
         // 数字の合計が10であることをテスト（GK除く）
         const numbers = formation.split('-').map(n => parseInt(n))
         const sum = numbers.reduce((acc, n) => acc + n, 0)
@@ -224,15 +254,19 @@ describe('JSON Schema Validation', () => {
       // ホームチーム
       expect(fixture.home.lineup).toHaveLength(11)
       expect(fixture.home.formation).toBeTypeOf('string')
-      
+
       // アウェイチーム
       expect(fixture.away.lineup).toHaveLength(11)
       expect(fixture.away.formation).toBeTypeOf('string')
-      
+
       // 各チームにGKが1人ずついることを確認
-      const homeGKCount = fixture.home.lineup.filter((p: any) => p.pos === 'GK').length
-      const awayGKCount = fixture.away.lineup.filter((p: any) => p.pos === 'GK').length
-      
+      const homeGKCount = fixture.home.lineup.filter(
+        (p: any) => p.pos === 'GK'
+      ).length
+      const awayGKCount = fixture.away.lineup.filter(
+        (p: any) => p.pos === 'GK'
+      ).length
+
       expect(homeGKCount).toBe(1)
       expect(awayGKCount).toBe(1)
     })
@@ -245,11 +279,19 @@ describe('JSON Schema Validation', () => {
         expect(event.time).toBeTypeOf('string')
         expect(event.phase).toBeTypeOf('string')
         expect(event.desc).toBeTypeOf('string')
-        
+
         // 有効なフェーズかチェック
-        const validPhases = ['開始', '前半', '後半', '延長前半', '延長後半', 'PK戦', '終了']
+        const validPhases = [
+          '開始',
+          '前半',
+          '後半',
+          '延長前半',
+          '延長後半',
+          'PK戦',
+          '終了',
+        ]
         expect(validPhases).toContain(event.phase)
-        
+
         // チーム指定がある場合は有効な値かチェック
         if (event.team) {
           expect(['home', 'away']).toContain(event.team)

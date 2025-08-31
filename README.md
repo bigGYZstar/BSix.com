@@ -22,25 +22,29 @@
 ## 🏗️ 技術スタック
 
 ### フロントエンド
+
 - **TypeScript**: 型安全性とDX向上
 - **Vite**: 高速ビルドとHMR
 - **Vanilla DOM API**: フレームワーク非依存
 - **CSS Custom Properties**: デザイントークンによる統一感
 
 ### 品質管理
+
 - **ESLint + Prettier**: コード品質とフォーマット
 - **JSON Schema**: データ検証
 - **Vitest**: ユニットテスト
 - **Playwright**: E2Eテスト
 
 ### CI/CD
+
 - **GitHub Actions**: 自動化されたテスト・ビルド・デプロイ
 - **GitHub Pages**: 静的サイトホスティング
 
 ## 🛠️ 開発環境セットアップ
 
 ### 必要条件
-- Node.js 18+ 
+
+- Node.js 18+
 - npm 8+
 
 ### インストール
@@ -121,6 +125,7 @@ npm run validate:data
 ## 🎨 デザインシステム
 
 ### デザイントークン
+
 - **色**: ライト・ダークテーマ対応のCSS変数
 - **タイポグラフィ**: システムフォント中心の読みやすさ重視
 - **スペーシング**: 8pxベースのコンスタントなリズム
@@ -129,6 +134,7 @@ npm run validate:data
 詳細は [docs/design-tokens.md](docs/design-tokens.md) を参照してください。
 
 ### コンポーネント
+
 - **Tab Navigation**: ハッシュルーティング対応
 - **Pitch Visualization**: SVG + 絶対配置による正確な布陣表示
 - **Player Modal**: アクセシブルなモーダルダイアログ
@@ -139,11 +145,13 @@ npm run validate:data
 ## 📊 データモデル
 
 ### JSON Schema
+
 - **Player**: 選手の基本情報・統計・アバター設定
 - **Team**: チーム情報・フォーメーション・評価
 - **Fixture**: 試合情報・タイムライン・メタデータ
 
 ### データ管理
+
 - **Fixture**: `/src/data/fixtures/` に試合別JSONファイル
 - **Overrides**: 名前の日本語化・アバター推測データ
 - **Validation**: JSON Schema + CI による自動検証
@@ -153,6 +161,7 @@ npm run validate:data
 ## 🧪 テスト
 
 ### ユニットテスト
+
 ```bash
 # 全ユニットテスト実行
 npm run test:unit
@@ -165,6 +174,7 @@ npm run test:unit -- --coverage
 ```
 
 ### E2Eテスト
+
 ```bash
 # 全ブラウザでテスト
 npm run test
@@ -177,6 +187,7 @@ npm run test -- --headed
 ```
 
 ### 主要なテストケース
+
 - ✅ 表示名ロジック（姓のみ/フル表示）
 - ✅ JSONスキーマ検証
 - ✅ チームピルの1行表示（no-wrap）
@@ -186,9 +197,11 @@ npm run test -- --headed
 ## 🚀 デプロイ
 
 ### 自動デプロイ
+
 メインブランチへのプッシュで自動的にGitHub Pagesにデプロイされます。
 
 ### 手動デプロイ
+
 ```bash
 # ビルド
 npm run build
@@ -202,6 +215,7 @@ npm run preview
 ## 🤝 貢献
 
 ### 開発フロー
+
 1. 課題をIssuesで報告・議論
 2. フィーチャーブランチを作成
 3. 変更を実装（テスト含む）
@@ -209,6 +223,7 @@ npm run preview
 5. コードレビュー・マージ
 
 ### コーディング規約
+
 - ESLint + Prettier設定に従う
 - TypeScriptのstrictモードを使用
 - 関数・クラスには型注釈を必須
@@ -223,18 +238,21 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照してくださ�
 ## 🔄 ロードマップ
 
 ### Phase 1 ✅ (現在)
+
 - 基本的な試合プレビュー機能
 - ダーク/ライトテーマ
 - レスポンシブデザイン
 - JSON データ管理
 
 ### Phase 2 🚧 (予定)
+
 - 複数試合対応
 - 選手データの正規化
 - リアルタイムデータ連携
 - PWA対応
 
 ### Phase 3 📋 (将来)
+
 - 実際の顔写真対応
 - 詳細統計表示
 - 予測・分析機能

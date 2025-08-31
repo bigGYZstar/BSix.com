@@ -8,16 +8,16 @@ import { setActiveTab, subscribeToState } from './state'
  */
 const ROUTES: Record<string, Route> = {
   '#overview': 'overview',
-  '#tactics': 'tactics', 
+  '#tactics': 'tactics',
   '#lineup': 'lineup',
-  '#timeline': 'timeline'
+  '#timeline': 'timeline',
 } as const
 
 const ROUTE_TITLES: Record<Route, string> = {
   overview: '概要',
   tactics: '戦術',
   lineup: '布陣',
-  timeline: 'タイムライン'
+  timeline: 'タイムライン',
 } as const
 
 /**
@@ -37,10 +37,10 @@ class Router {
   private init(): void {
     // ハッシュ変更を監視
     window.addEventListener('hashchange', this.handleHashChange.bind(this))
-    
+
     // ページ読み込み時の初期ルート処理
     this.handleHashChange()
-    
+
     // 状態変更を監視してURLを同期
     subscribeToState(state => {
       if (state.selectedTab !== this.currentRoute) {
@@ -55,7 +55,7 @@ class Router {
   private handleHashChange(): void {
     const hash = window.location.hash || '#overview'
     const route = ROUTES[hash] as Route | undefined
-    
+
     if (route && route !== this.currentRoute) {
       this.navigateTo(route, false) // URL更新はしない（既に変更済み）
     } else if (!route) {
@@ -69,18 +69,18 @@ class Router {
    */
   navigateTo(route: Route, updateURL: boolean = true): void {
     this.currentRoute = route
-    
+
     // 状態を更新
     setActiveTab(route)
-    
+
     // URLを更新（必要に応じて）
     if (updateURL) {
       this.updateURL(route)
     }
-    
+
     // ページタイトルを更新
     this.updatePageTitle(route)
-    
+
     // ルート変更をリスナーに通知
     this.notifyListeners(route)
   }
@@ -89,8 +89,9 @@ class Router {
    * URLハッシュを更新
    */
   private updateURL(route: Route): void {
-    const hash = Object.keys(ROUTES).find(key => ROUTES[key] === route) || '#overview'
-    
+    const hash =
+      Object.keys(ROUTES).find(key => ROUTES[key] === route) || '#overview'
+
     if (window.location.hash !== hash) {
       // pushState を使ってブラウザ履歴に追加
       window.history.pushState(null, '', hash)
@@ -110,7 +111,7 @@ class Router {
    */
   subscribe(listener: (route: Route, prevRoute?: Route) => void): () => void {
     this.listeners.add(listener)
-    
+
     // アンサブスクライブ関数を返す
     return () => {
       this.listeners.delete(listener)
@@ -178,7 +179,9 @@ export function navigateTo(route: Route): void {
 /**
  * ルート変更を監視
  */
-export function onRouteChange(listener: (route: Route, prevRoute?: Route) => void): () => void {
+export function onRouteChange(
+  listener: (route: Route, prevRoute?: Route) => void
+): () => void {
   return router.subscribe(listener)
 }
 
@@ -199,11 +202,15 @@ export function getRouteTitle(route: Route): string {
 /**
  * 全ルートとタイトルの一覧を取得
  */
-export function getAllRoutes(): { route: Route; title: string; hash: string }[] {
+export function getAllRoutes(): {
+  route: Route
+  title: string
+  hash: string
+}[] {
   return Object.entries(ROUTES).map(([hash, route]) => ({
     route,
     title: ROUTE_TITLES[route],
-    hash
+    hash,
   }))
 }
 
@@ -212,28 +219,31 @@ export function getAllRoutes(): { route: Route; title: string; hash: string }[] 
  */
 export function initKeyboardNavigation(): void {
   const routes: Route[] = ['overview', 'tactics', 'lineup', 'timeline']
-  
-  document.addEventListener('keydown', (event) => {
+
+  document.addEventListener('keydown', event => {
     // モーダルが開いている間はキーボードナビゲーションを無効化
     if (document.querySelector('.modal-backdrop')) {
       return
     }
-    
+
     // フォーカスがinput/textarea上にある場合は無効化
     const activeElement = document.activeElement
-    if (activeElement && 
-        (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
+    if (
+      activeElement &&
+      (activeElement.tagName === 'INPUT' ||
+        activeElement.tagName === 'TEXTAREA')
+    ) {
       return
     }
-    
+
     const currentRoute = router.getCurrentRoute()
     const currentIndex = routes.indexOf(currentRoute)
-    
+
     if (event.key === 'ArrowLeft' && currentIndex > 0) {
       event.preventDefault()
       router.navigateTo(routes[currentIndex - 1])
     } else if (event.key === 'ArrowRight' && currentIndex < routes.length - 1) {
-      event.preventDefault()  
+      event.preventDefault()
       router.navigateTo(routes[currentIndex + 1])
     }
   })
@@ -247,7 +257,7 @@ export function initRouter(): void {
   window.addEventListener('popstate', () => {
     router.handlePopState()
   })
-  
+
   // キーボードナビゲーションを初期化
   initKeyboardNavigation()
 }
@@ -257,24 +267,29 @@ export function initRouter(): void {
  */
 export function generateBreadcrumb(): { label: string; route?: Route }[] {
   const currentRoute = router.getCurrentRoute()
-  
+
   return [
     { label: 'ホーム' },
     { label: '試合プレビュー' },
-    { label: ROUTE_TITLES[currentRoute], route: currentRoute }
+    { label: ROUTE_TITLES[currentRoute], route: currentRoute },
   ]
 }
 
 /**
  * ルート間の遷移アニメーション方向を判定
  */
-export function getTransitionDirection(fromRoute: Route, toRoute: Route): 'left' | 'right' | 'none' {
+export function getTransitionDirection(
+  fromRoute: Route,
+  toRoute: Route
+): 'left' | 'right' | 'none' {
   const routes: Route[] = ['overview', 'tactics', 'lineup', 'timeline']
   const fromIndex = routes.indexOf(fromRoute)
   const toIndex = routes.indexOf(toRoute)
-  
-  if (fromIndex === -1 || toIndex === -1) return 'none'
-  
+
+  if (fromIndex === -1 || toIndex === -1) {
+    return 'none'
+  }
+
   return toIndex > fromIndex ? 'right' : 'left'
 }
 
@@ -286,9 +301,9 @@ export function updateMetaTags(route: Route): void {
     overview: '試合の概要と基本情報',
     tactics: 'チームの戦術と分析',
     lineup: 'スターティングイレブンとベンチメンバー',
-    timeline: '試合の流れとキーポイント'
+    timeline: '試合の流れとキーポイント',
   }
-  
+
   // description meta tag
   let metaDescription = document.querySelector('meta[name="description"]')
   if (!metaDescription) {
@@ -297,7 +312,7 @@ export function updateMetaTags(route: Route): void {
     document.head.appendChild(metaDescription)
   }
   metaDescription.setAttribute('content', descriptions[route])
-  
+
   // robots meta tag
   let metaRobots = document.querySelector('meta[name="robots"]')
   if (!metaRobots) {

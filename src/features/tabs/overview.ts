@@ -9,19 +9,19 @@ import { getTeamEmblem, getTeamColors } from '@/ui/emblems'
 export async function renderOverview(fixture: Fixture): Promise<HTMLElement> {
   const container = document.createElement('div')
   container.className = 'overview-section'
-  
+
   // 試合基本情報
   const matchInfo = createMatchInfo(fixture)
   container.appendChild(matchInfo)
-  
+
   // チーム対戦カード
   const matchupCard = createMatchupCard(fixture)
   container.appendChild(matchupCard)
-  
+
   // チーム詳細情報
   const teamDetails = createTeamDetails(fixture)
   container.appendChild(teamDetails)
-  
+
   return container
 }
 
@@ -31,20 +31,20 @@ export async function renderOverview(fixture: Fixture): Promise<HTMLElement> {
 function createMatchInfo(fixture: Fixture): HTMLElement {
   const card = document.createElement('div')
   card.className = 'card mb-6'
-  
+
   // 日時フォーマット
   const matchDate = new Date(fixture.dateJST)
   const dateStr = matchDate.toLocaleDateString('ja-JP', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-    weekday: 'long'
+    weekday: 'long',
   })
   const timeStr = matchDate.toLocaleTimeString('ja-JP', {
     hour: '2-digit',
-    minute: '2-digit'
+    minute: '2-digit',
   })
-  
+
   card.innerHTML = `
     <div class="card-header">
       <h2 class="card-title">試合情報</h2>
@@ -67,7 +67,9 @@ function createMatchInfo(fixture: Fixture): HTMLElement {
         </div>
       </div>
       
-      ${fixture.weather ? `
+      ${
+        fixture.weather
+          ? `
         <div class="flex flex-col gap-3">
           <div class="flex items-center gap-3">
             <span class="text-sm font-semibold text-secondary">天候:</span>
@@ -77,17 +79,23 @@ function createMatchInfo(fixture: Fixture): HTMLElement {
             </div>
           </div>
           
-          ${fixture.referee ? `
+          ${
+            fixture.referee
+              ? `
             <div class="flex items-center gap-3">
               <span class="text-sm font-semibold text-secondary">主審:</span>
               <span class="font-medium">${fixture.referee.main || '未定'}</span>
             </div>
-          ` : ''}
+          `
+              : ''
+          }
         </div>
-      ` : ''}
+      `
+          : ''
+      }
     </div>
   `
-  
+
   return card
 }
 
@@ -97,10 +105,10 @@ function createMatchInfo(fixture: Fixture): HTMLElement {
 function createMatchupCard(fixture: Fixture): HTMLElement {
   const card = document.createElement('div')
   card.className = 'card mb-6'
-  
+
   const homeEmblem = getTeamEmblem(fixture.home.teamId, 80)
   const awayEmblem = getTeamEmblem(fixture.away.teamId, 80)
-  
+
   card.innerHTML = `
     <div class="text-center py-8">
       <div class="flex items-center justify-center gap-8 mb-6">
@@ -140,7 +148,7 @@ function createMatchupCard(fixture: Fixture): HTMLElement {
       </div>
     </div>
   `
-  
+
   return card
 }
 
@@ -150,15 +158,15 @@ function createMatchupCard(fixture: Fixture): HTMLElement {
 function createTeamDetails(fixture: Fixture): HTMLElement {
   const container = document.createElement('div')
   container.className = 'grid grid-cols-1 lg:grid-cols-2 gap-6'
-  
+
   // ホームチーム詳細
   const homeCard = createTeamCard(fixture.home, 'ホーム')
   container.appendChild(homeCard)
-  
+
   // アウェイチーム詳細
   const awayCard = createTeamCard(fixture.away, 'アウェイ')
   container.appendChild(awayCard)
-  
+
   return container
 }
 
@@ -168,9 +176,9 @@ function createTeamDetails(fixture: Fixture): HTMLElement {
 function createTeamCard(team: any, label: string): HTMLElement {
   const card = document.createElement('div')
   card.className = 'card'
-  
+
   const colors = getTeamColors(team.teamId)
-  
+
   card.innerHTML = `
     <div class="card-header">
       <h3 class="card-title flex items-center gap-3">
@@ -181,82 +189,126 @@ function createTeamCard(team: any, label: string): HTMLElement {
     </div>
     
     <!-- チーム評価 -->
-    ${team.eval ? `
+    ${
+      team.eval
+        ? `
       <div class="mb-6">
         <h4 class="text-sm font-semibold text-secondary mb-3">チーム評価</h4>
         <div class="grid grid-cols-3 gap-4 mb-4">
-          ${team.eval.攻撃力 ? `
+          ${
+            team.eval.攻撃力
+              ? `
             <div class="text-center">
               <div class="text-lg font-bold" style="color: ${colors.primary}">${team.eval.攻撃力}</div>
               <div class="text-xs text-muted">攻撃力</div>
             </div>
-          ` : ''}
-          ${team.eval.守備力 ? `
+          `
+              : ''
+          }
+          ${
+            team.eval.守備力
+              ? `
             <div class="text-center">
               <div class="text-lg font-bold" style="color: ${colors.primary}">${team.eval.守備力}</div>
               <div class="text-xs text-muted">守備力</div>
             </div>
-          ` : ''}
-          ${team.eval.総合力 ? `
+          `
+              : ''
+          }
+          ${
+            team.eval.総合力
+              ? `
             <div class="text-center">
               <div class="text-lg font-bold" style="color: ${colors.primary}">${team.eval.総合力}</div>
               <div class="text-xs text-muted">総合力</div>
             </div>
-          ` : ''}
+          `
+              : ''
+          }
         </div>
-        ${team.eval.寸評 ? `
+        ${
+          team.eval.寸評
+            ? `
           <div class="text-sm text-muted italic">
             「${team.eval.寸評}」
           </div>
-        ` : ''}
+        `
+            : ''
+        }
       </div>
-    ` : ''}
+    `
+        : ''
+    }
     
     <!-- キーポイント -->
-    ${team.keychips && team.keychips.length > 0 ? `
+    ${
+      team.keychips && team.keychips.length > 0
+        ? `
       <div class="mb-6">
         <h4 class="text-sm font-semibold text-secondary mb-3">キーポイント</h4>
         <div class="flex flex-wrap gap-2">
-          ${team.keychips.map((chip: string) => `
+          ${team.keychips
+            .map(
+              (chip: string) => `
             <span class="inline-block px-3 py-1 text-xs font-medium bg-secondary text-inverse rounded-full">
               ${chip}
             </span>
-          `).join('')}
+          `
+            )
+            .join('')}
         </div>
       </div>
-    ` : ''}
+    `
+        : ''
+    }
     
     <!-- 最新ニュース -->
-    ${team.news && team.news.length > 0 ? `
+    ${
+      team.news && team.news.length > 0
+        ? `
       <div class="mb-6">
         <h4 class="text-sm font-semibold text-secondary mb-3">最新ニュース</h4>
         <ul class="space-y-2">
-          ${team.news.map((news: string) => `
+          ${team.news
+            .map(
+              (news: string) => `
             <li class="flex items-start gap-2 text-sm">
               <span class="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-primary"></span>
               <span>${news}</span>
             </li>
-          `).join('')}
+          `
+            )
+            .join('')}
         </ul>
       </div>
-    ` : ''}
+    `
+        : ''
+    }
     
     <!-- ハイライト -->
-    ${team.highlights && team.highlights.length > 0 ? `
+    ${
+      team.highlights && team.highlights.length > 0
+        ? `
       <div>
         <h4 class="text-sm font-semibold text-secondary mb-3">注目ポイント</h4>
         <ul class="space-y-2">
-          ${team.highlights.map((highlight: string) => `
+          ${team.highlights
+            .map(
+              (highlight: string) => `
             <li class="flex items-start gap-2 text-sm">
               <span class="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full" style="background-color: ${colors.primary}"></span>
               <span>${highlight}</span>
             </li>
-          `).join('')}
+          `
+            )
+            .join('')}
         </ul>
       </div>
-    ` : ''}
+    `
+        : ''
+    }
   `
-  
+
   return card
 }
 
@@ -266,7 +318,7 @@ function createTeamCard(team: any, label: string): HTMLElement {
 export function createPredictionSection(): HTMLElement {
   const section = document.createElement('div')
   section.className = 'card mt-6'
-  
+
   section.innerHTML = `
     <div class="card-header">
       <h3 class="card-title">試合予測</h3>
@@ -279,6 +331,6 @@ export function createPredictionSection(): HTMLElement {
       </div>
     </div>
   `
-  
+
   return section
 }
