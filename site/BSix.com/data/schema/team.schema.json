@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "team.schema.json",
+  "title": "Team",
+  "description": "チームデータのスキーマ定義",
+  "type": "object",
+  "required": ["teamId", "name", "key", "formation", "lineup", "bench"],
+  "properties": {
+    "teamId": {
+      "type": "string",
+      "description": "チームID（3文字の小文字）",
+      "pattern": "^[a-z]{3}$"
+    },
+    "name": {
+      "type": "string",
+      "description": "日本語チーム名",
+      "minLength": 1
+    },
+    "key": {
+      "type": "string",
+      "description": "表示用短縮名（ARS/LEE等）",
+      "minLength": 2,
+      "maxLength": 4
+    },
+    "formation": {
+      "type": "string",
+      "description": "フォーメーション",
+      "pattern": "^[0-9](-[0-9])+$"
+    },
+    "lineup": {
+      "type": "array",
+      "description": "スターティングイレブン",
+      "minItems": 11,
+      "maxItems": 11,
+      "items": {
+        "$ref": "player.schema.json"
+      }
+    },
+    "bench": {
+      "type": "array",
+      "description": "ベンチメンバー（文字列またはプレイヤーオブジェクト）",
+      "items": {
+        "anyOf": [
+          {
+            "type": "string",
+            "description": "簡易表記（英名等）→後段で正規化",
+            "minLength": 1
+          },
+          {
+            "$ref": "player.schema.json"
+          }
+        ]
+      }
+    },
+    "news": {
+      "type": "array",
+      "description": "チームニュース",
+      "items": {
+        "type": "string"
+      }
+    },
+    "highlights": {
+      "type": "array",
+      "description": "ハイライト情報",
+      "items": {
+        "type": "string"
+      }
+    },
+    "eval": {
+      "type": "object",
+      "description": "チーム評価・寸評",
+      "properties": {
+        "寸評": {
+          "type": "string",
+          "description": "総合寸評"
+        },
+        "攻撃力": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "守備力": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "総合力": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 10
+        }
+      }
+    },
+    "keychips": {
+      "type": "array",
+      "description": "キーポイント・特徴",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
