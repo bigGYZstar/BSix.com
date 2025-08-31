@@ -169,7 +169,7 @@ function createThemeToggle(): HTMLElement {
  */
 async function loadFixtureData(): Promise<Fixture> {
   try {
-    const response = await fetch('/src/data/fixtures/2025-08-24-ars-lee.json')
+    const response = await fetch('./data/fixtures/2025-08-24-ars-lee.json')
     if (!response.ok) {
       throw new Error(`Failed to load fixture data: ${response.status}`)
     }

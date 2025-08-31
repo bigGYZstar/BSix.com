@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/BSix.com/' : './',
+  base: './',
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
@@ -29,9 +29,11 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 3000,
     open: false,
+    allowedHosts: 'all',
   },
   preview: {
     host: '0.0.0.0',
     port: 4173,
+    allowedHosts: 'all',
   },
 })
