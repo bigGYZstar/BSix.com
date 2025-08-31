@@ -13,7 +13,7 @@
     "preview": "vite preview",
     "serve": "npm run build && npm run preview",
     "serve:static": "npm run build && npx serve dist -l 5000",
-    "demo:prepare": "npm run build && rm -rf site && mkdir -p site/BSix.com && cp -r dist/* site/BSix.com/ && node -e \"require('fs').mkdirSync('site',{recursive:true}); require('fs').writeFileSync('site/index.html','<!doctype html><meta http-equiv=\\\"refresh\\\" content=\\\"0; url=/BSix.com/\\\">');\"",
+    "demo:prepare": "npm run build",
     "demo:start": "npx pm2 start 'npx serve site -l 8080' --name demo-server --update-env",
     "demo": "npm run demo:prepare && npm run demo:start",
     "demo:stop": "npx pm2 delete demo-server 2>/dev/null || echo 'Demo server not running'",
