@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>試合プレビュー</title>
+
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="試合前ガイド（プレビュー）- 布陣、戦術、選手情報を詳しく解析"
+    />
+    <meta
+      name="keywords"
+      content="サッカー, 試合, プレビュー, 布陣, 戦術, Arsenal, Leeds"
+    />
+    <meta name="author" content="Match Preview" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="試合プレビュー" />
+    <meta
+      property="og:description"
+      content="試合前ガイド（プレビュー）- 布陣、戦術、選手情報を詳しく解析"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ja_JP" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="試合プレビュー" />
+    <meta
+      name="twitter:description"
+      content="試合前ガイド（プレビュー）- 布陣、戦術、選手情報を詳しく解析"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/BSix.com/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/BSix.com/favicon.svg" />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#3b82f6" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Prevent zoom on iOS -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <!-- PWA Support -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="試合プレビュー" />
+
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <!-- X-Frame-Options should be set via HTTP header, not meta tag -->
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+
+    <!-- Performance Hints -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+
+    <style>
+      /* 初期ローディング用の最小スタイル */
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          sans-serif;
+        line-height: 1.5;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        color: #0f172a;
+        background-color: #ffffff;
+      }
+
+      /* ダークモードの基本対応 */
+      @media (prefers-color-scheme: dark) {
+        body {
+          color: #f8fafc;
+          background-color: #0f172a;
+        }
+      }
+
+      /* 初期ローディングスピナー */
+      .loading-spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        z-index: 9999;
+      }
+
+      .spinner {
+        width: 32px;
+        height: 32px;
+        border: 3px solid #e2e8f0;
+        border-top: 3px solid #3b82f6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      .loading-text {
+        font-size: 0.875rem;
+        color: #64748b;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* アプリ読み込み完了後にスピナーを隠す */
+      .app-loaded .loading-spinner {
+        display: none;
+      }
+
+      /* フォーカス表示の改善 */
+      :focus-visible {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+      }
+
+      /* アニメーションを無効化するユーザー向け */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .spinner {
+          animation: none;
+        }
+      }
+
+      /* 印刷スタイル */
+      @media print {
+        .loading-spinner {
+          display: none !important;
+        }
+
+        header,
+        nav,
+        .modal-backdrop {
+          display: none !important;
+        }
+
+        main {
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+      }
+    </style>
+    <script type="module" crossorigin src="/BSix.com/assets/index-sBiam5LK.js"></script>
+    <link rel="stylesheet" crossorigin href="/BSix.com/assets/index-C8-6cAA3.css">
+  </head>
+  <body>
+    <!-- 初期ローディング表示 -->
+    <div class="loading-spinner" id="initial-loading">
+      <div class="spinner" aria-hidden="true"></div>
+      <div class="loading-text">読み込み中...</div>
+    </div>
+
+    <!-- メインコンテンツはJavaScriptで動的生成 -->
+
+    <!-- エラー時のフォールバック -->
+    <noscript>
+      <div
+        style="
+          text-align: center;
+          padding: 2rem;
+          max-width: 600px;
+          margin: 0 auto;
+        "
+      >
+        <h1>JavaScriptが無効になっています</h1>
+        <p>
+          このアプリケーションを使用するにはJavaScriptを有効にしてください。
+        </p>
+        <p>
+          ブラウザの設定でJavaScriptを有効にして、ページを再読み込みしてください。
+        </p>
+      </div>
+    </noscript>
+
+    <!-- アプリケーション開始 -->
+
+    <!-- 読み込み完了時にローディングスピナーを隠す -->
+    <script>
+      // アプリ読み込み完了の検出
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          document.body.classList.add('app-loaded')
+        }, 500)
+      })
+
+      // 3秒後に強制的にスピナーを隠す（フォールバック）
+      setTimeout(function () {
+        var spinner = document.getElementById('initial-loading')
+        if (spinner) {
+          spinner.style.display = 'none'
+        }
+      }, 3000)
+    </script>
+
+    <!-- Service Worker登録（デモ用に無効化） -->
+    <script>
+      // Service Worker registration disabled for demo stability
+      // if ('serviceWorker' in navigator) {
+      //   window.addEventListener('load', function () {
+      //     if (location.protocol === 'https:' || location.hostname === 'localhost') {
+      //       navigator.serviceWorker
+      //         .register('/sw.js')
+      //         .then(function (registration) {
+      //           console.log('SW registered: ', registration)
+      //         })
+      //         .catch(function (registrationError) {
+      //           console.log('SW registration failed: ', registrationError)
+      //         })
+      //     }
+      //   })
+      // }
+    </script>
+  </body>
+</html>
