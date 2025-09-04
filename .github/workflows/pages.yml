@@ -2,7 +2,9 @@ name: Deploy static site to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - genspark_ai_developer   # 既定ブランチがこちらでも動くように保険
   workflow_dispatch:
 
 permissions:
@@ -17,14 +19,33 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # ビルド時のメモリ不足などを予防
+      NODE_OPTIONS: --max-old-space-size=4096
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 18
-      - run: npm ci
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+          cache: npm
+
+      # lockfile が無い/壊れているケースも拾うためフォールバック付き
+      - name: Install deps
+        run: |
+          npm ci || npm install --no-audit --no-fund
+
+      - name: Build
+        run: npm run build
+
+      # （推奨）Pages 用の設定を適用。base_url などが必要なケースを吸収
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
@@ -35,5 +56,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
