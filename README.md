@@ -18,7 +18,7 @@
 ## 🚀 デモ
 
 ### 🌟 Live Demo
-**[✨ サッカーマッチプレビューサイト](https://8080-ig0pvsg3dlmlgb0ftgw1t-6532622b.e2b.dev/)** 
+**[✨ サッカーマッチプレビューサイト（GitHub Pages）](https://bigGYZstar.github.io/BSix.com/)** 
 
 完全に動作するlive demoをお試しください！
 - ✅ エラーフリー環境 
@@ -75,6 +75,8 @@ npm run dev
 ```
 
 ブラウザで http://localhost:3000 を開いてアプリケーションにアクセスできます。
+
+> 注意: GitHub Pages のプロジェクトページ配信のため、Vite の base は "/BSix.com/" に設定しています。将来カスタムドメイン(CNAME)を使用する場合は base を "/" に変更してください。SPA を history ルーターに切り替える場合は 404.html の SPA fallback 設定が必要です。
 
 ## 📝 利用可能なスクリプト
 
