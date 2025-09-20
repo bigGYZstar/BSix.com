@@ -1,0 +1,135 @@
+{
+  "versionControl": {
+    "currentVersion": "2024-09-20_gw4_accurate",
+    "lastUpdated": "2024-09-20T08:24:00Z",
+    "dataIntegrity": "verified",
+    "rollbackEnabled": true,
+    "autoBackup": true
+  },
+  "availableVersions": [
+    {
+      "versionId": "2024-09-20_gw4_accurate",
+      "date": "2024-09-20",
+      "gameweek": 4,
+      "description": "第4節終了時点の正確な順位表（プレミアリーグ公式サイト + Yahoo Sports確認済み）",
+      "dataSource": ["Premier League Official", "Yahoo Sports Japan"],
+      "verified": true,
+      "rollbackId": "accurate_table_gw4_sept20",
+      "filePath": "data/versions/2024-09-20_gw4_accurate_premier_league_table.json",
+      "status": "current"
+    },
+    {
+      "versionId": "2024-09-15_gw4_premier_league_table",
+      "date": "2024-09-15",
+      "gameweek": 4,
+      "description": "第4節終了時点の順位表（Transfermarkt）",
+      "dataSource": ["Transfermarkt"],
+      "verified": false,
+      "rollbackId": "transfermarkt_gw4_sept15",
+      "filePath": "data/versions/2024-09-15_gw4_premier_league_table.json",
+      "status": "deprecated",
+      "note": "データに不正確な情報が含まれていたため非推奨"
+    }
+  ],
+  "dataValidation": {
+    "rules": [
+      {
+        "field": "points",
+        "validation": "勝利数×3 + 引き分け数×1 = 勝点",
+        "required": true
+      },
+      {
+        "field": "goalDifference",
+        "validation": "得点 - 失点 = 得失点差",
+        "required": true
+      },
+      {
+        "field": "played",
+        "validation": "勝利数 + 引き分け数 + 敗戦数 = 試合数",
+        "required": true
+      },
+      {
+        "field": "form",
+        "validation": "直近4試合の結果（W/D/L）",
+        "required": true
+      }
+    ],
+    "sources": [
+      {
+        "name": "Premier League Official",
+        "url": "https://www.premierleague.com/en/tables",
+        "priority": 1,
+        "reliability": "highest"
+      },
+      {
+        "name": "Yahoo Sports Japan",
+        "url": "https://soccer.yahoo.co.jp/ws/category/eng/standings",
+        "priority": 2,
+        "reliability": "high"
+      },
+      {
+        "name": "BBC Sport",
+        "url": "https://www.bbc.com/sport/football/premier-league/table",
+        "priority": 3,
+        "reliability": "high"
+      }
+    ]
+  },
+  "rollbackProcedure": {
+    "steps": [
+      "1. 現在のバージョンをバックアップ",
+      "2. 指定されたバージョンIDのデータを読み込み",
+      "3. データ整合性を検証",
+      "4. サイト全体のデータを更新",
+      "5. ロールバック完了ログを記録"
+    ],
+    "emergencyRollback": {
+      "enabled": true,
+      "safeVersion": "2024-09-20_gw4_accurate",
+      "autoTrigger": "データ検証失敗時"
+    }
+  },
+  "futureDataCollection": {
+    "schedule": [
+      {
+        "gameweek": 5,
+        "expectedDate": "2024-09-22",
+        "sources": ["Premier League Official", "Yahoo Sports Japan"],
+        "autoCollection": true
+      },
+      {
+        "gameweek": 6,
+        "expectedDate": "2024-09-29",
+        "sources": ["Premier League Official", "Yahoo Sports Japan"],
+        "autoCollection": true
+      }
+    ],
+    "playerStats": {
+      "topScorers": {
+        "source": "Premier League Official",
+        "updateFrequency": "weekly",
+        "rollbackEnabled": true
+      },
+      "assists": {
+        "source": "Premier League Official",
+        "updateFrequency": "weekly",
+        "rollbackEnabled": true
+      },
+      "cleanSheets": {
+        "source": "Premier League Official",
+        "updateFrequency": "weekly",
+        "rollbackEnabled": true
+      }
+    }
+  },
+  "qualityAssurance": {
+    "crossValidation": true,
+    "multipleSources": true,
+    "manualVerification": true,
+    "errorReporting": {
+      "enabled": true,
+      "alertThreshold": "データ不整合検出時",
+      "rollbackTrigger": "重大なエラー検出時"
+    }
+  }
+}
