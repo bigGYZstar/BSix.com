@@ -6,7 +6,8 @@
   "description": "試合前ガイド（プレビュー）静的Webサイト",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && npm run build:fix-html",
+    "build": "npm run build:static",
+    "build:static": "mkdir -p dist && cp -r assets data *.html dist/ && echo 'Static build complete'",
     "build:fix-html": "cp dist/src/index.html dist/index.html 2>/dev/null || true && cp -r src/data dist/ 2>/dev/null || true",
     "build:demo": "tsc && vite build --base=./ && npm run build:fix-html && npm run optimize-demo",
     "optimize-demo": "echo 'Live demo optimization complete'",

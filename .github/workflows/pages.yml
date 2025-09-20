@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - branch-1
       - genspark_ai_developer   # 既定ブランチがこちらでも動くように保険
   workflow_dispatch:
 
