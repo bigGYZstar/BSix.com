@@ -1,0 +1,578 @@
+{
+  "metadata": {
+    "version": "2024-09-20_team_extended_stats",
+    "season": "2024-25",
+    "gameweek": 4,
+    "dataSource": "Premier League Official + FBRef + Transfermarkt",
+    "collectionDate": "2024-09-20T12:30:00Z",
+    "verified": true,
+    "rollbackId": "extended_team_stats_gw4_sept20",
+    "note": "Big 6チームの拡張統計データ（選手、戦術、パフォーマンス指標）"
+  },
+  "teamExtendedStats": {
+    "liverpool": {
+      "teamId": "liverpool",
+      "name": "リヴァプール",
+      "nameEn": "Liverpool",
+      "short": "LIV",
+      "manager": "アルネ・スロット",
+      "stadium": "アンフィールド",
+      "capacity": 53394,
+      "founded": 1892,
+      "colors": {
+        "primary": "#C8102E",
+        "secondary": "#00B2A9"
+      },
+      "currentSeason": {
+        "tacticalStyle": "4-3-3 高強度プレス",
+        "avgPossession": 62.5,
+        "avgPassAccuracy": 87.2,
+        "avgGoalsPerGame": 2.25,
+        "avgConcededPerGame": 1.0,
+        "cleanSheets": 1,
+        "bigChances": 18,
+        "xG": 8.7,
+        "xGA": 4.2
+      },
+      "topPlayers": {
+        "topScorer": {
+          "name": "モハメド・サラー",
+          "nameEn": "Mohamed Salah",
+          "position": "RW",
+          "goals": 3,
+          "assists": 3,
+          "appearances": 4,
+          "minutesPlayed": 360,
+          "rating": 8.2
+        },
+        "topAssist": {
+          "name": "ルイス・ディアス",
+          "nameEn": "Luis Díaz",
+          "position": "LW",
+          "goals": 2,
+          "assists": 1,
+          "appearances": 4,
+          "minutesPlayed": 315,
+          "rating": 7.8
+        },
+        "keyDefender": {
+          "name": "ヴィルジル・ファン・ダイク",
+          "nameEn": "Virgil van Dijk",
+          "position": "CB",
+          "goals": 0,
+          "assists": 0,
+          "appearances": 4,
+          "minutesPlayed": 360,
+          "rating": 7.9,
+          "cleanSheets": 1,
+          "tackles": 8,
+          "interceptions": 12
+        },
+        "keyMidfielder": {
+          "name": "ライアン・フラーフェンベルフ",
+          "nameEn": "Ryan Gravenberch",
+          "position": "CM",
+          "goals": 0,
+          "assists": 2,
+          "appearances": 4,
+          "minutesPlayed": 340,
+          "rating": 7.6,
+          "passAccuracy": 89.5,
+          "keyPasses": 12
+        }
+      },
+      "achievements": {
+        "premierLeagueTitles": 1,
+        "championsLeague": 6,
+        "faCup": 8,
+        "leagueCup": 10,
+        "europaLeague": 3,
+        "clubWorldCup": 1
+      },
+      "recentForm": {
+        "description": "完璧なスタート - 4戦全勝",
+        "strengths": ["高強度プレス", "カウンター攻撃", "セットプレー"],
+        "weaknesses": ["ローテーション不足", "中盤の深度"],
+        "keyTactics": "スロット監督の4-3-3システムが機能"
+      },
+      "upcomingFixtures": [
+        {
+          "opponent": "Everton",
+          "date": "2024-09-28",
+          "venue": "home",
+          "competition": "Premier League"
+        }
+      ]
+    },
+    "arsenal": {
+      "teamId": "arsenal",
+      "name": "アーセナル",
+      "nameEn": "Arsenal",
+      "short": "ARS",
+      "manager": "ミケル・アルテタ",
+      "stadium": "エミレーツ・スタジアム",
+      "capacity": 60704,
+      "founded": 1886,
+      "colors": {
+        "primary": "#EF0107",
+        "secondary": "#023474"
+      },
+      "currentSeason": {
+        "tacticalStyle": "4-3-3 ポゼッション",
+        "avgPossession": 65.8,
+        "avgPassAccuracy": 89.1,
+        "avgGoalsPerGame": 2.25,
+        "avgConcededPerGame": 0.25,
+        "cleanSheets": 3,
+        "bigChances": 16,
+        "xG": 7.9,
+        "xGA": 2.8
+      },
+      "topPlayers": {
+        "topScorer": {
+          "name": "ガブリエル・ジェズス",
+          "nameEn": "Gabriel Jesus",
+          "position": "ST",
+          "goals": 2,
+          "assists": 1,
+          "appearances": 4,
+          "minutesPlayed": 320,
+          "rating": 7.5
+        },
+        "topAssist": {
+          "name": "マルティン・ウーデゴール",
+          "nameEn": "Martin Ødegaard",
+          "position": "CAM",
+          "goals": 1,
+          "assists": 3,
+          "appearances": 4,
+          "minutesPlayed": 360,
+          "rating": 8.1
+        },
+        "keyDefender": {
+          "name": "ウィリアム・サリバ",
+          "nameEn": "William Saliba",
+          "position": "CB",
+          "goals": 0,
+          "assists": 0,
+          "appearances": 4,
+          "minutesPlayed": 360,
+          "rating": 7.8,
+          "cleanSheets": 3,
+          "tackles": 6,
+          "interceptions": 15
+        },
+        "keyMidfielder": {
+          "name": "デクラン・ライス",
+          "nameEn": "Declan Rice",
+          "position": "DM",
+          "goals": 1,
+          "assists": 1,
+          "appearances": 4,
+          "minutesPlayed": 360,
+          "rating": 7.7,
+          "passAccuracy": 91.2,
+          "keyPasses": 8
+        }
+      },
+      "achievements": {
+        "premierLeagueTitles": 3,
+        "championsLeague": 0,
+        "faCup": 14,
+        "leagueCup": 2,
+        "europaLeague": 0,
+        "clubWorldCup": 0
+      },
+      "recentForm": {
+        "description": "堅実な守備 - 3勝1敗",
+        "strengths": ["ポゼッション", "セットプレー", "守備組織"],
+        "weaknesses": ["決定力不足", "プレッシャー下での判断"],
+        "keyTactics": "アルテタの戦術的成熟度が向上"
+      },
+      "upcomingFixtures": [
+        {
+          "opponent": "Manchester City",
+          "date": "2024-09-22",
+          "venue": "away",
+          "competition": "Premier League"
+        }
+      ]
+    },
+    "tottenham": {
+      "teamId": "tottenham",
+      "name": "トッテナム・ホットスパー",
+      "nameEn": "Tottenham Hotspur",
+      "short": "TOT",
+      "manager": "アンジェ・ポステコグルー",
+      "stadium": "トッテナム・ホットスパー・スタジアム",
+      "capacity": 62850,
+      "founded": 1882,
+      "colors": {
+        "primary": "#132257",
+        "secondary": "#FFFFFF"
+      },
+      "currentSeason": {
+        "tacticalStyle": "4-3-3 攻撃的",
+        "avgPossession": 58.3,
+        "avgPassAccuracy": 84.7,
+        "avgGoalsPerGame": 2.0,
+        "avgConcededPerGame": 1.25,
+        "cleanSheets": 1,
+        "bigChances": 14,
+        "xG": 7.2,
+        "xGA": 5.8
+      },
+      "topPlayers": {
+        "topScorer": {
+          "name": "ソン・フンミン",
+          "nameEn": "Son Heung-min",
+          "position": "LW",
+          "goals": 3,
+          "assists": 1,
+          "appearances": 4,
+          "minutesPlayed": 340,
+          "rating": 7.9
+        },
+        "topAssist": {
+          "name": "ジェームズ・マディソン",
+          "nameEn": "James Maddison",
+          "position": "CAM",
+          "goals": 1,
+          "assists": 2,
+          "appearances": 4,
+          "minutesPlayed": 320,
+          "rating": 7.6
+        },
+        "keyDefender": {
+          "name": "クリスティアン・ロメロ",
+          "nameEn": "Cristian Romero",
+          "position": "CB",
+          "goals": 0,
+          "assists": 0,
+          "appearances": 4,
+          "minutesPlayed": 360,
+          "rating": 7.4,
+          "cleanSheets": 1,
+          "tackles": 10,
+          "interceptions": 8
+        },
+        "keyMidfielder": {
+          "name": "イヴ・ビスマ",
+          "nameEn": "Yves Bissouma",
+          "position": "CM",
+          "goals": 0,
+          "assists": 1,
+          "appearances": 4,
+          "minutesPlayed": 300,
+          "rating": 7.2,
+          "passAccuracy": 86.8,
+          "keyPasses": 6
+        }
+      },
+      "achievements": {
+        "premierLeagueTitles": 0,
+        "championsLeague": 0,
+        "faCup": 8,
+        "leagueCup": 4,
+        "europaLeague": 2,
+        "clubWorldCup": 0
+      },
+      "recentForm": {
+        "description": "攻撃的サッカー - 3勝1敗",
+        "strengths": ["攻撃的戦術", "個人技", "スピード"],
+        "weaknesses": ["守備の安定性", "セットプレー守備"],
+        "keyTactics": "ポステコグルーの「アンジェボール」"
+      },
+      "upcomingFixtures": [
+        {
+          "opponent": "Brentford",
+          "date": "2024-09-21",
+          "venue": "home",
+          "competition": "Premier League"
+        }
+      ]
+    },
+    "chelsea": {
+      "teamId": "chelsea",
+      "name": "チェルシー",
+      "nameEn": "Chelsea",
+      "short": "CHE",
+      "manager": "エンツォ・マレスカ",
+      "stadium": "スタンフォード・ブリッジ",
+      "capacity": 40834,
+      "founded": 1905,
+      "colors": {
+        "primary": "#034694",
+        "secondary": "#ED1C24"
+      },
+      "currentSeason": {
+        "tacticalStyle": "4-2-3-1 バランス",
+        "avgPossession": 60.2,
+        "avgPassAccuracy": 86.9,
+        "avgGoalsPerGame": 1.75,
+        "avgConcededPerGame": 1.0,
+        "cleanSheets": 2,
+        "bigChances": 12,
+        "xG": 6.8,
+        "xGA": 4.5
+      },
+      "topPlayers": {
+        "topScorer": {
+          "name": "ニコラス・ジャクソン",
+          "nameEn": "Nicolas Jackson",
+          "position": "ST",
+          "goals": 2,
+          "assists": 0,
+          "appearances": 4,
+          "minutesPlayed": 310,
+          "rating": 7.3
+        },
+        "topAssist": {
+          "name": "コール・パーマー",
+          "nameEn": "Cole Palmer",
+          "position": "CAM",
+          "goals": 1,
+          "assists": 2,
+          "appearances": 4,
+          "minutesPlayed": 350,
+          "rating": 7.8
+        },
+        "keyDefender": {
+          "name": "ティアゴ・シルバ",
+          "nameEn": "Thiago Silva",
+          "position": "CB",
+          "goals": 0,
+          "assists": 0,
+          "appearances": 4,
+          "minutesPlayed": 360,
+          "rating": 7.5,
+          "cleanSheets": 2,
+          "tackles": 7,
+          "interceptions": 11
+        },
+        "keyMidfielder": {
+          "name": "エンツォ・フェルナンデス",
+          "nameEn": "Enzo Fernández",
+          "position": "CM",
+          "goals": 0,
+          "assists": 1,
+          "appearances": 4,
+          "minutesPlayed": 340,
+          "rating": 7.4,
+          "passAccuracy": 88.7,
+          "keyPasses": 9
+        }
+      },
+      "achievements": {
+        "premierLeagueTitles": 6,
+        "championsLeague": 2,
+        "faCup": 8,
+        "leagueCup": 5,
+        "europaLeague": 2,
+        "clubWorldCup": 1
+      },
+      "recentForm": {
+        "description": "安定した無敗 - 2勝2分",
+        "strengths": ["若手の成長", "戦術的柔軟性", "深いスカッド"],
+        "weaknesses": ["決定力", "経験不足"],
+        "keyTactics": "マレスカの段階的戦術構築"
+      },
+      "upcomingFixtures": [
+        {
+          "opponent": "Brighton",
+          "date": "2024-09-28",
+          "venue": "away",
+          "competition": "Premier League"
+        }
+      ]
+    },
+    "manchester_city": {
+      "teamId": "manchester_city",
+      "name": "マンチェスター・シティ",
+      "nameEn": "Manchester City",
+      "short": "MCI",
+      "manager": "ペップ・グアルディオラ",
+      "stadium": "エティハド・スタジアム",
+      "capacity": 53400,
+      "founded": 1880,
+      "colors": {
+        "primary": "#6CABDD",
+        "secondary": "#1C2C5B"
+      },
+      "currentSeason": {
+        "tacticalStyle": "4-3-3 ティキタカ",
+        "avgPossession": 68.5,
+        "avgPassAccuracy": 91.3,
+        "avgGoalsPerGame": 2.0,
+        "avgConcededPerGame": 1.5,
+        "cleanSheets": 1,
+        "bigChances": 15,
+        "xG": 8.2,
+        "xGA": 5.1
+      },
+      "topPlayers": {
+        "topScorer": {
+          "name": "エルリング・ハーランド",
+          "nameEn": "Erling Haaland",
+          "position": "ST",
+          "goals": 4,
+          "assists": 0,
+          "appearances": 4,
+          "minutesPlayed": 340,
+          "rating": 8.0
+        },
+        "topAssist": {
+          "name": "フィル・フォーデン",
+          "nameEn": "Phil Foden",
+          "position": "CAM",
+          "goals": 1,
+          "assists": 2,
+          "appearances": 4,
+          "minutesPlayed": 320,
+          "rating": 7.6
+        },
+        "keyDefender": {
+          "name": "ルベン・ディアス",
+          "nameEn": "Rúben Dias",
+          "position": "CB",
+          "goals": 0,
+          "assists": 0,
+          "appearances": 4,
+          "minutesPlayed": 360,
+          "rating": 7.2,
+          "cleanSheets": 1,
+          "tackles": 5,
+          "interceptions": 9
+        },
+        "keyMidfielder": {
+          "name": "ロドリ",
+          "nameEn": "Rodri",
+          "position": "DM",
+          "goals": 0,
+          "assists": 1,
+          "appearances": 4,
+          "minutesPlayed": 360,
+          "rating": 7.8,
+          "passAccuracy": 93.1,
+          "keyPasses": 11
+        }
+      },
+      "achievements": {
+        "premierLeagueTitles": 7,
+        "championsLeague": 1,
+        "faCup": 7,
+        "leagueCup": 8,
+        "europaLeague": 0,
+        "clubWorldCup": 1
+      },
+      "recentForm": {
+        "description": "予想外の苦戦 - 2勝2敗",
+        "strengths": ["ポゼッション", "パス精度", "個人技"],
+        "weaknesses": ["守備の脆さ", "プレッシャー対応"],
+        "keyTactics": "グアルディオラの戦術調整が必要"
+      },
+      "upcomingFixtures": [
+        {
+          "opponent": "Arsenal",
+          "date": "2024-09-22",
+          "venue": "home",
+          "competition": "Premier League"
+        }
+      ]
+    },
+    "manchester_united": {
+      "teamId": "manchester_united",
+      "name": "マンチェスター・ユナイテッド",
+      "nameEn": "Manchester United",
+      "short": "MUN",
+      "manager": "エリック・テン・ハーグ",
+      "stadium": "オールド・トラッフォード",
+      "capacity": 74310,
+      "founded": 1878,
+      "colors": {
+        "primary": "#DA020E",
+        "secondary": "#FBE122"
+      },
+      "currentSeason": {
+        "tacticalStyle": "4-2-3-1 カウンター",
+        "avgPossession": 52.8,
+        "avgPassAccuracy": 82.4,
+        "avgGoalsPerGame": 1.25,
+        "avgConcededPerGame": 1.75,
+        "cleanSheets": 0,
+        "bigChances": 8,
+        "xG": 5.2,
+        "xGA": 6.8
+      },
+      "topPlayers": {
+        "topScorer": {
+          "name": "マーカス・ラッシュフォード",
+          "nameEn": "Marcus Rashford",
+          "position": "LW",
+          "goals": 2,
+          "assists": 0,
+          "appearances": 4,
+          "minutesPlayed": 300,
+          "rating": 6.9
+        },
+        "topAssist": {
+          "name": "ブルーノ・フェルナンデス",
+          "nameEn": "Bruno Fernandes",
+          "position": "CAM",
+          "goals": 1,
+          "assists": 1,
+          "appearances": 4,
+          "minutesPlayed": 360,
+          "rating": 7.1
+        },
+        "keyDefender": {
+          "name": "ラファエル・ヴァラン",
+          "nameEn": "Raphaël Varane",
+          "position": "CB",
+          "goals": 0,
+          "assists": 0,
+          "appearances": 3,
+          "minutesPlayed": 270,
+          "rating": 6.8,
+          "cleanSheets": 0,
+          "tackles": 4,
+          "interceptions": 6
+        },
+        "keyMidfielder": {
+          "name": "カゼミーロ",
+          "nameEn": "Casemiro",
+          "position": "DM",
+          "goals": 0,
+          "assists": 0,
+          "appearances": 4,
+          "minutesPlayed": 320,
+          "rating": 6.5,
+          "passAccuracy": 84.2,
+          "keyPasses": 4
+        }
+      },
+      "achievements": {
+        "premierLeagueTitles": 13,
+        "championsLeague": 3,
+        "faCup": 12,
+        "leagueCup": 6,
+        "europaLeague": 1,
+        "clubWorldCup": 1
+      },
+      "recentForm": {
+        "description": "深刻な低迷 - 1勝1分2敗",
+        "strengths": ["個人技", "カウンター", "セットプレー"],
+        "weaknesses": ["守備組織", "中盤の連携", "決定力"],
+        "keyTactics": "テン・ハーグの戦術に疑問符"
+      },
+      "upcomingFixtures": [
+        {
+          "opponent": "Crystal Palace",
+          "date": "2024-09-21",
+          "venue": "away",
+          "competition": "Premier League"
+        }
+      ]
+    }
+  }
+}

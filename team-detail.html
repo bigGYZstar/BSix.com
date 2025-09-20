@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>チーム詳細 - BSix.com プレミアリーグ</title>
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --text-color: #333;
+            --bg-color: #ffffff;
+            --card-bg: #ffffff;
+            --border-color: #e1e5e9;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        [data-theme="dark"] {
+            --text-color: #ffffff;
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --border-color: #0f3460;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--text-color);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .team-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            background: linear-gradient(135deg, var(--team-primary, #667eea), var(--team-secondary, #764ba2));
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .team-name {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .team-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .current-position {
+            display: inline-block;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .stat-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .form-display {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .form-badge {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .form-badge.win { background: #4CAF50; }
+        .form-badge.draw { background: #FF9800; }
+        .form-badge.loss { background: #f44336; }
+
+        .key-players {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .player-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .player-role {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .player-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .achievements-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievements-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .achievements-list li:last-child {
+            border-bottom: none;
+        }
+
+        .trophy-icon {
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .highlights {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .highlights h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .highlight-item {
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .highlight-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .navigation {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .nav-button {
+            background: var(--card-bg);
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .team-logo {
+                width: 80px;
+                height: 80px;
+                font-size: 40px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .stat-card {
+                padding: 20px;
+            }
+
+            .key-players {
+                grid-template-columns: 1fr;
+            }
+
+            .navigation, .theme-toggle {
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+                margin: 10px;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .error {
+            background: #f44336;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <button class="nav-button" onclick="goBack()">←</button>
+    </div>
+
+    <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+
+    <div class="container">
+        <div id="loading" class="loading">
+            チーム詳細を読み込み中...
+        </div>
+
+        <div id="team-content" style="display: none;">
+            <div class="header">
+                <div class="team-logo" id="team-logo">⚽</div>
+                <h1 class="team-name" id="team-name">チーム名</h1>
+                <p class="team-subtitle" id="team-subtitle">監督: <span id="manager-name"></span> | スタジアム: <span id="stadium-name"></span></p>
+                <div class="current-position" id="current-position">現在の順位: 位</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>📊 シーズン成績</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">順位</span>
+                        <span class="stat-value" id="position">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">勝点</span>
+                        <span class="stat-value" id="points">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">試合数</span>
+                        <span class="stat-value" id="played">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">勝利</span>
+                        <span class="stat-value" id="won">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">引き分け</span>
+                        <span class="stat-value" id="drawn">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">敗北</span>
+                        <span class="stat-value" id="lost">-</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h3>⚽ 得失点</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">得点</span>
+                        <span class="stat-value" id="goals-for">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">失点</span>
+                        <span class="stat-value" id="goals-against">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">得失点差</span>
+                        <span class="stat-value" id="goal-difference">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">直近フォーム</span>
+                        <div class="form-display" id="form-display"></div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h3>⭐ 注目選手</h3>
+                    <div class="key-players" id="key-players">
+                        <!-- 動的に生成 -->
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h3>🏆 主要タイトル</h3>
+                    <ul class="achievements-list" id="achievements">
+                        <!-- 動的に生成 -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlights">
+                <h3>🎯 今シーズンのハイライト</h3>
+                <div id="season-highlights">
+                    <!-- 動的に生成 -->
+                </div>
+            </div>
+        </div>
+
+        <div id="error" class="error" style="display: none;">
+            チーム情報の読み込みに失敗しました。
+        </div>
+    </div>
+
+    <script>
+        // URLパラメータからチーム名を取得
+        const urlParams = new URLSearchParams(window.location.search);
+        const teamId = urlParams.get('team');
+
+        // チームデータ（実際のデータ）
+        const teamData = {
+            "liverpool": {
+                "name": "リヴァプール",
+                "nameEn": "Liverpool",
+                "short": "LIV",
+                "position": 1,
+                "points": 12,
+                "played": 4,
+                "won": 4,
+                "drawn": 0,
+                "lost": 0,
+                "goalsFor": 86,
+                "goalsAgainst": 1,
+                "goalDifference": 85,
+                "form": ["W", "W", "W", "W"],
+                "recentForm": "完璧なスタート",
+                "keyPlayers": {
+                    "topScorer": "モハメド・サラー",
+                    "topAssist": "ルイス・ディアス",
+                    "keyDefender": "ヴィルジル・ファン・ダイク"
+                },
+                "manager": "アルネ・スロット",
+                "stadium": "アンフィールド",
+                "founded": 1892,
+                "colors": {
+                    "primary": "#C8102E",
+                    "secondary": "#00B2A9"
+                },
+                "achievements": {
+                    "premierLeagueTitles": 1,
+                    "championsLeague": 6,
+                    "faCup": 8
+                },
+                "currentSeasonHighlights": [
+                    "4戦全勝で首位独走",
+                    "失点わずか1の堅守",
+                    "新監督スロットの戦術が機能"
+                ]
+            },
+            "arsenal": {
+                "name": "アーセナル",
+                "nameEn": "Arsenal",
+                "short": "ARS",
+                "position": 2,
+                "points": 9,
+                "played": 4,
+                "won": 3,
+                "drawn": 0,
+                "lost": 1,
+                "goalsFor": 69,
+                "goalsAgainst": 1,
+                "goalDifference": 68,
+                "form": ["W", "W", "W", "L"],
+                "recentForm": "好調維持",
+                "keyPlayers": {
+                    "topScorer": "ガブリエル・ジェズス",
+                    "topAssist": "マルティン・ウーデゴール",
+                    "keyDefender": "ウィリアム・サリバ"
+                },
+                "manager": "ミケル・アルテタ",
+                "stadium": "エミレーツ・スタジアム",
+                "founded": 1886,
+                "colors": {
+                    "primary": "#EF0107",
+                    "secondary": "#023474"
+                },
+                "achievements": {
+                    "premierLeagueTitles": 3,
+                    "championsLeague": 0,
+                    "faCup": 14
+                },
+                "currentSeasonHighlights": [
+                    "3勝1敗で2位キープ",
+                    "攻撃力は69ゴールで3位",
+                    "アルテタ戦術の成熟"
+                ]
+            },
+            "manchester_city": {
+                "name": "マンチェスター・シティ",
+                "nameEn": "Manchester City",
+                "short": "MCI",
+                "position": 8,
+                "points": 6,
+                "played": 4,
+                "won": 2,
+                "drawn": 0,
+                "lost": 2,
+                "goalsFor": 72,
+                "goalsAgainst": 4,
+                "goalDifference": 68,
+                "form": ["W", "L", "W", "L"],
+                "recentForm": "予想外の苦戦",
+                "keyPlayers": {
+                    "topScorer": "エルリング・ハーランド",
+                    "topAssist": "フィル・フォーデン",
+                    "keyDefender": "ルベン・ディアス"
+                },
+                "manager": "ペップ・グアルディオラ",
+                "stadium": "エティハド・スタジアム",
+                "founded": 1880,
+                "colors": {
+                    "primary": "#6CABDD",
+                    "secondary": "#1C2C5B"
+                },
+                "achievements": {
+                    "premierLeagueTitles": 7,
+                    "championsLeague": 1,
+                    "faCup": 7
+                },
+                "currentSeasonHighlights": [
+                    "2勝2敗で8位と苦戦",
+                    "攻撃力は72ゴールで2位",
+                    "グアルディオラの戦術調整が課題"
+                ]
+            },
+            "chelsea": {
+                "name": "チェルシー",
+                "nameEn": "Chelsea",
+                "short": "CHE",
+                "position": 5,
+                "points": 8,
+                "played": 4,
+                "won": 2,
+                "drawn": 2,
+                "lost": 0,
+                "goalsFor": 64,
+                "goalsAgainst": 2,
+                "goalDifference": 62,
+                "form": ["W", "D", "W", "D"],
+                "recentForm": "無敗継続",
+                "keyPlayers": {
+                    "topScorer": "ニコラス・ジャクソン",
+                    "topAssist": "コール・パーマー",
+                    "keyDefender": "ティアゴ・シルバ"
+                },
+                "manager": "エンツォ・マレスカ",
+                "stadium": "スタンフォード・ブリッジ",
+                "founded": 1905,
+                "colors": {
+                    "primary": "#034694",
+                    "secondary": "#ED1C24"
+                },
+                "achievements": {
+                    "premierLeagueTitles": 6,
+                    "championsLeague": 2,
+                    "faCup": 8
+                },
+                "currentSeasonHighlights": [
+                    "2勝2分で無敗継続",
+                    "新監督マレスカの戦術が浸透",
+                    "若手選手の成長が顕著"
+                ]
+            },
+            "tottenham": {
+                "name": "トッテナム・ホットスパー",
+                "nameEn": "Tottenham Hotspur",
+                "short": "TOT",
+                "position": 3,
+                "points": 9,
+                "played": 4,
+                "won": 3,
+                "drawn": 0,
+                "lost": 1,
+                "goalsFor": 64,
+                "goalsAgainst": 2,
+                "goalDifference": 62,
+                "form": ["W", "W", "W", "L"],
+                "recentForm": "好スタート",
+                "keyPlayers": {
+                    "topScorer": "ソン・フンミン",
+                    "topAssist": "ジェームズ・マディソン",
+                    "keyDefender": "クリスティアン・ロメロ"
+                },
+                "manager": "アンジェ・ポステコグルー",
+                "stadium": "トッテナム・ホットスパー・スタジアム",
+                "founded": 1882,
+                "colors": {
+                    "primary": "#132257",
+                    "secondary": "#FFFFFF"
+                },
+                "achievements": {
+                    "premierLeagueTitles": 0,
+                    "championsLeague": 0,
+                    "faCup": 8
+                },
+                "currentSeasonHighlights": [
+                    "3勝1敗で3位の好位置",
+                    "ポステコグルーの攻撃的戦術",
+                    "ソン・フンミンの安定した得点力"
+                ]
+            },
+            "manchester_united": {
+                "name": "マンチェスター・ユナイテッド",
+                "nameEn": "Manchester United",
+                "short": "MUN",
+                "position": 14,
+                "points": 4,
+                "played": 4,
+                "won": 1,
+                "drawn": 1,
+                "lost": 2,
+                "goalsFor": 45,
+                "goalsAgainst": 6,
+                "goalDifference": 39,
+                "form": ["L", "D", "W", "L"],
+                "recentForm": "深刻な低迷",
+                "keyPlayers": {
+                    "topScorer": "マーカス・ラッシュフォード",
+                    "topAssist": "ブルーノ・フェルナンデス",
+                    "keyDefender": "ラファエル・ヴァラン"
+                },
+                "manager": "エリック・テン・ハーグ",
+                "stadium": "オールド・トラッフォード",
+                "founded": 1878,
+                "colors": {
+                    "primary": "#DA020E",
+                    "secondary": "#FBE122"
+                },
+                "achievements": {
+                    "premierLeagueTitles": 13,
+                    "championsLeague": 3,
+                    "faCup": 12
+                },
+                "currentSeasonHighlights": [
+                    "1勝1分2敗で14位と低迷",
+                    "テン・ハーグ監督への圧力増大",
+                    "攻撃陣の連携不足が課題"
+                ]
+            }
+        };
+
+        function loadTeamData() {
+            const loading = document.getElementById('loading');
+            const content = document.getElementById('team-content');
+            const error = document.getElementById('error');
+
+            if (!teamId || !teamData[teamId]) {
+                loading.style.display = 'none';
+                error.style.display = 'block';
+                return;
+            }
+
+            const team = teamData[teamId];
+
+            // チームカラーを設定
+            document.documentElement.style.setProperty('--team-primary', team.colors.primary);
+            document.documentElement.style.setProperty('--team-secondary', team.colors.secondary);
+
+            // 基本情報
+            document.getElementById('team-name').textContent = team.name;
+            document.getElementById('manager-name').textContent = team.manager;
+            document.getElementById('stadium-name').textContent = team.stadium;
+            document.getElementById('current-position').textContent = `現在の順位: ${team.position}位`;
+
+            // 成績データ
+            document.getElementById('position').textContent = `${team.position}位`;
+            document.getElementById('points').textContent = `${team.points}pt`;
+            document.getElementById('played').textContent = team.played;
+            document.getElementById('won').textContent = team.won;
+            document.getElementById('drawn').textContent = team.drawn;
+            document.getElementById('lost').textContent = team.lost;
+            document.getElementById('goals-for').textContent = team.goalsFor;
+            document.getElementById('goals-against').textContent = team.goalsAgainst;
+            document.getElementById('goal-difference').textContent = team.goalDifference > 0 ? `+${team.goalDifference}` : team.goalDifference;
+
+            // フォーム表示
+            const formDisplay = document.getElementById('form-display');
+            formDisplay.innerHTML = '';
+            team.form.forEach(result => {
+                const badge = document.createElement('div');
+                badge.className = `form-badge ${result === 'W' ? 'win' : result === 'D' ? 'draw' : 'loss'}`;
+                badge.textContent = result;
+                formDisplay.appendChild(badge);
+            });
+
+            // 注目選手
+            const keyPlayersContainer = document.getElementById('key-players');
+            keyPlayersContainer.innerHTML = '';
+            Object.entries(team.keyPlayers).forEach(([role, player]) => {
+                const roleNames = {
+                    'topScorer': '得点王',
+                    'topAssist': 'アシスト王',
+                    'keyDefender': 'キーディフェンダー'
+                };
+                const playerCard = document.createElement('div');
+                playerCard.className = 'player-card';
+                playerCard.innerHTML = `
+                    <div class="player-role">${roleNames[role]}</div>
+                    <div class="player-name">${player}</div>
+                `;
+                keyPlayersContainer.appendChild(playerCard);
+            });
+
+            // タイトル
+            const achievementsList = document.getElementById('achievements');
+            achievementsList.innerHTML = '';
+            Object.entries(team.achievements).forEach(([title, count]) => {
+                const titleNames = {
+                    'premierLeagueTitles': 'プレミアリーグ',
+                    'championsLeague': 'チャンピオンズリーグ',
+                    'faCup': 'FAカップ'
+                };
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span><span class="trophy-icon">🏆</span>${titleNames[title]}</span>
+                    <span>${count}回</span>
+                `;
+                achievementsList.appendChild(li);
+            });
+
+            // ハイライト
+            const highlightsContainer = document.getElementById('season-highlights');
+            highlightsContainer.innerHTML = '';
+            team.currentSeasonHighlights.forEach(highlight => {
+                const highlightItem = document.createElement('div');
+                highlightItem.className = 'highlight-item';
+                highlightItem.textContent = highlight;
+                highlightsContainer.appendChild(highlightItem);
+            });
+
+            loading.style.display = 'none';
+            content.style.display = 'block';
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            // テーマ復元
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                document.querySelector('.theme-toggle').textContent = '☀️';
+            }
+
+            // チームデータ読み込み
+            loadTeamData();
+        });
+    </script>
+</body>
+</html>

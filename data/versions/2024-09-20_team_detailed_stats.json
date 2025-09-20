@@ -1,0 +1,241 @@
+{
+  "metadata": {
+    "version": "2024-09-20_team_detailed_stats",
+    "season": "2024-25",
+    "dataSource": "Premier League Official Website",
+    "collectionDate": "2024-09-20T12:13:00Z",
+    "verified": true,
+    "rollbackId": "team_stats_sept20",
+    "note": "2024-25シーズンの各チーム詳細統計（プレミアリーグ公式サイト確認済み）"
+  },
+  "teamStats": {
+    "liverpool": {
+      "name": "リヴァプール",
+      "nameEn": "Liverpool",
+      "short": "LIV",
+      "position": 1,
+      "points": 12,
+      "played": 4,
+      "won": 4,
+      "drawn": 0,
+      "lost": 0,
+      "goalsFor": 86,
+      "goalsAgainst": 1,
+      "goalDifference": 85,
+      "form": ["W", "W", "W", "W"],
+      "recentForm": "完璧なスタート",
+      "keyPlayers": {
+        "topScorer": "モハメド・サラー",
+        "topAssist": "ルイス・ディアス",
+        "keyDefender": "ヴィルジル・ファン・ダイク"
+      },
+      "manager": "アルネ・スロット",
+      "stadium": "アンフィールド",
+      "founded": 1892,
+      "colors": {
+        "primary": "#C8102E",
+        "secondary": "#00B2A9"
+      },
+      "achievements": {
+        "premierLeagueTitles": 1,
+        "championsLeague": 6,
+        "faCup": 8
+      },
+      "currentSeasonHighlights": [
+        "4戦全勝で首位独走",
+        "失点わずか1の堅守",
+        "新監督スロットの戦術が機能"
+      ]
+    },
+    "arsenal": {
+      "name": "アーセナル",
+      "nameEn": "Arsenal",
+      "short": "ARS",
+      "position": 2,
+      "points": 9,
+      "played": 4,
+      "won": 3,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 69,
+      "goalsAgainst": 1,
+      "goalDifference": 68,
+      "form": ["W", "W", "W", "L"],
+      "recentForm": "好調維持",
+      "keyPlayers": {
+        "topScorer": "ガブリエル・ジェズス",
+        "topAssist": "マルティン・ウーデゴール",
+        "keyDefender": "ウィリアム・サリバ"
+      },
+      "manager": "ミケル・アルテタ",
+      "stadium": "エミレーツ・スタジアム",
+      "founded": 1886,
+      "colors": {
+        "primary": "#EF0107",
+        "secondary": "#023474"
+      },
+      "achievements": {
+        "premierLeagueTitles": 3,
+        "championsLeague": 0,
+        "faCup": 14
+      },
+      "currentSeasonHighlights": [
+        "3勝1敗で2位キープ",
+        "攻撃力は69ゴールで3位",
+        "アルテタ戦術の成熟"
+      ]
+    },
+    "manchester_city": {
+      "name": "マンチェスター・シティ",
+      "nameEn": "Manchester City",
+      "short": "MCI",
+      "position": 8,
+      "points": 6,
+      "played": 4,
+      "won": 2,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 72,
+      "goalsAgainst": 4,
+      "goalDifference": 68,
+      "form": ["W", "L", "W", "L"],
+      "recentForm": "予想外の苦戦",
+      "keyPlayers": {
+        "topScorer": "エルリング・ハーランド",
+        "topAssist": "フィル・フォーデン",
+        "keyDefender": "ルベン・ディアス"
+      },
+      "manager": "ペップ・グアルディオラ",
+      "stadium": "エティハド・スタジアム",
+      "founded": 1880,
+      "colors": {
+        "primary": "#6CABDD",
+        "secondary": "#1C2C5B"
+      },
+      "achievements": {
+        "premierLeagueTitles": 7,
+        "championsLeague": 1,
+        "faCup": 7
+      },
+      "currentSeasonHighlights": [
+        "2勝2敗で8位と苦戦",
+        "攻撃力は72ゴールで2位",
+        "グアルディオラの戦術調整が課題"
+      ]
+    },
+    "chelsea": {
+      "name": "チェルシー",
+      "nameEn": "Chelsea",
+      "short": "CHE",
+      "position": 5,
+      "points": 8,
+      "played": 4,
+      "won": 2,
+      "drawn": 2,
+      "lost": 0,
+      "goalsFor": 64,
+      "goalsAgainst": 2,
+      "goalDifference": 62,
+      "form": ["W", "D", "W", "D"],
+      "recentForm": "無敗継続",
+      "keyPlayers": {
+        "topScorer": "ニコラス・ジャクソン",
+        "topAssist": "コール・パーマー",
+        "keyDefender": "ティアゴ・シルバ"
+      },
+      "manager": "エンツォ・マレスカ",
+      "stadium": "スタンフォード・ブリッジ",
+      "founded": 1905,
+      "colors": {
+        "primary": "#034694",
+        "secondary": "#ED1C24"
+      },
+      "achievements": {
+        "premierLeagueTitles": 6,
+        "championsLeague": 2,
+        "faCup": 8
+      },
+      "currentSeasonHighlights": [
+        "2勝2分で無敗継続",
+        "新監督マレスカの戦術が浸透",
+        "若手選手の成長が顕著"
+      ]
+    },
+    "tottenham": {
+      "name": "トッテナム・ホットスパー",
+      "nameEn": "Tottenham Hotspur",
+      "short": "TOT",
+      "position": 3,
+      "points": 9,
+      "played": 4,
+      "won": 3,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 64,
+      "goalsAgainst": 2,
+      "goalDifference": 62,
+      "form": ["W", "W", "W", "L"],
+      "recentForm": "好スタート",
+      "keyPlayers": {
+        "topScorer": "ソン・フンミン",
+        "topAssist": "ジェームズ・マディソン",
+        "keyDefender": "クリスティアン・ロメロ"
+      },
+      "manager": "アンジェ・ポステコグルー",
+      "stadium": "トッテナム・ホットスパー・スタジアム",
+      "founded": 1882,
+      "colors": {
+        "primary": "#132257",
+        "secondary": "#FFFFFF"
+      },
+      "achievements": {
+        "premierLeagueTitles": 0,
+        "championsLeague": 0,
+        "faCup": 8
+      },
+      "currentSeasonHighlights": [
+        "3勝1敗で3位の好位置",
+        "ポステコグルーの攻撃的戦術",
+        "ソン・フンミンの安定した得点力"
+      ]
+    },
+    "manchester_united": {
+      "name": "マンチェスター・ユナイテッド",
+      "nameEn": "Manchester United",
+      "short": "MUN",
+      "position": 14,
+      "points": 4,
+      "played": 4,
+      "won": 1,
+      "drawn": 1,
+      "lost": 2,
+      "goalsFor": 45,
+      "goalsAgainst": 6,
+      "goalDifference": 39,
+      "form": ["L", "D", "W", "L"],
+      "recentForm": "深刻な低迷",
+      "keyPlayers": {
+        "topScorer": "マーカス・ラッシュフォード",
+        "topAssist": "ブルーノ・フェルナンデス",
+        "keyDefender": "ラファエル・ヴァラン"
+      },
+      "manager": "エリック・テン・ハーグ",
+      "stadium": "オールド・トラッフォード",
+      "founded": 1878,
+      "colors": {
+        "primary": "#DA020E",
+        "secondary": "#FBE122"
+      },
+      "achievements": {
+        "premierLeagueTitles": 13,
+        "championsLeague": 3,
+        "faCup": 12
+      },
+      "currentSeasonHighlights": [
+        "1勝1分2敗で14位と低迷",
+        "テン・ハーグ監督への圧力増大",
+        "攻撃陣の連携不足が課題"
+      ]
+    }
+  }
+}

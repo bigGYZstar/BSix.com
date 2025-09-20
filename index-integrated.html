@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BSix.com - プレミアリーグ ビッグ6 試合プレビュー</title>
+    <meta name="description" content="プレミアリーグBig 6チームの試合を詳細分析。専門家予想、戦術解説、選手情報まで完全網羅。">
+    
+    <!-- PWA対応 -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="BSix.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .status-banner {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .nav-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-card:hover::before,
+        .nav-card:active::before {
+            opacity: 1;
+        }
+
+        .nav-card:hover,
+        .nav-card:active {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+        }
+
+        .nav-card a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .nav-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .nav-desc {
+            opacity: 0.85;
+            line-height: 1.4;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: #FF9800;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+
+        .mobile-badge {
+            background: #9C27B0;
+        }
+
+        .enhanced-badge {
+            background: #FF5722;
+        }
+
+        .team-section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .team-section h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .team-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card:hover {
+            transform: translateY(-3px);
+            text-decoration: none;
+            color: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .team-position {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .team-info {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .features {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .quick-access {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .quick-access h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .quick-link {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            min-width: 120px;
+        }
+
+        .quick-link:hover,
+        .quick-link:active {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            color: white;
+            text-decoration: none;
+        }
+
+        .github-section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .github-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .github-link:hover {
+            background: #555;
+            transform: translateY(-2px);
+            color: white;
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            opacity: 0.8;
+            margin-top: 40px;
+            padding: 20px 0;
+        }
+
+        /* モバイル専用スタイル */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .nav-grid, .team-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .nav-card, .team-section {
+                padding: 20px;
+            }
+
+            .nav-icon {
+                font-size: 2.5rem;
+            }
+
+            .nav-title {
+                font-size: 1.3rem;
+            }
+
+            .features {
+                padding: 20px;
+            }
+
+            .features h2 {
+                font-size: 1.5rem;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .quick-access, .github-section {
+                padding: 20px;
+            }
+
+            .quick-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .quick-link {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+        }
+
+        /* 超小画面対応 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            header {
+                margin-bottom: 25px;
+                padding-top: 15px;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .nav-card, .team-section {
+                padding: 15px;
+            }
+
+            .nav-icon {
+                font-size: 2rem;
+            }
+
+            .nav-title {
+                font-size: 1.2rem;
+            }
+
+            .nav-desc {
+                font-size: 0.9rem;
+            }
+
+            .features, .quick-access, .github-section {
+                padding: 15px;
+            }
+
+            .features h2 {
+                font-size: 1.3rem;
+            }
+
+            .feature-item {
+                padding: 8px;
+            }
+
+            .feature-icon {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* タッチデバイス用の改善 */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-card:active, .team-card:active {
+                transform: scale(0.98);
+            }
+            
+            .quick-link:active {
+                transform: scale(0.95);
+            }
+        }
+
+        /* アニメーション無効化対応 */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">⚽ BSix.com</div>
+            <div class="subtitle">プレミアリーグ ビッグ6 試合プレビュー</div>
+        </header>
+
+        <div class="status-banner">
+            <h3>🎉 サイト完成・公開準備完了</h3>
+            <p>✅ データ連動システム統合 | ✅ モバイル最適化完了 | ✅ GitHub連携対応</p>
+        </div>
+
+        <div class="nav-grid">
+            <div class="nav-card">
+                <a href="fixtures-synced.html">
+                    <div class="nav-icon">📅</div>
+                    <div class="nav-title">試合一覧</div>
+                    <div class="nav-desc">今週末の注目試合とスケジュール<span class="version-badge">SYNCED</span></div>
+                </a>
+            </div>
+
+            <div class="nav-card">
+                <a href="teams-synced.html">
+                    <div class="nav-icon">👥</div>
+                    <div class="nav-title">ビッグ6チーム</div>
+                    <div class="nav-desc">チーム詳細情報と最新成績<span class="version-badge">SYNCED</span></div>
+                </a>
+            </div>
+
+            <div class="nav-card">
+                <a href="stats-accurate.html">
+                    <div class="nav-icon">📊</div>
+                    <div class="nav-title">統計・順位表</div>
+                    <div class="nav-desc">正確なリーグ順位表と詳細統計<span class="version-badge">ACCURATE</span></div>
+                </a>
+            </div>
+
+            <div class="nav-card">
+                <a href="match-preview-synced.html?match=ars-mci">
+                    <div class="nav-icon">🔥</div>
+                    <div class="nav-title">注目の一戦</div>
+                    <div class="nav-desc">アーセナル vs マンチェスター・シティ<span class="version-badge">SYNCED</span></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="team-section">
+            <h2>🎯 チーム詳細ページ</h2>
+            <p style="text-align: center; margin-bottom: 20px; opacity: 0.9;">
+                各チームの詳細情報、戦術分析、選手統計を確認できます
+            </p>
+            
+            <div class="team-grid">
+                <a href="team-detail-mobile-optimized.html?team=liverpool" class="team-card">
+                    <div class="team-header">
+                        <h3 class="team-name">リヴァプール</h3>
+                        <div class="team-position">1位</div>
+                    </div>
+                    <div class="team-info">
+                        監督: アルネ・スロット<br>
+                        戦術: 4-3-3 高強度プレス<br>
+                        <span class="version-badge mobile-badge">MOBILE</span>
+                        <span class="version-badge enhanced-badge">ENHANCED</span>
+                    </div>
+                </a>
+
+                <a href="team-detail-mobile-optimized.html?team=arsenal" class="team-card">
+                    <div class="team-header">
+                        <h3 class="team-name">アーセナル</h3>
+                        <div class="team-position">2位</div>
+                    </div>
+                    <div class="team-info">
+                        監督: ミケル・アルテタ<br>
+                        戦術: 4-3-3 ポゼッション<br>
+                        <span class="version-badge mobile-badge">MOBILE</span>
+                        <span class="version-badge enhanced-badge">ENHANCED</span>
+                    </div>
+                </a>
+
+                <a href="team-detail-mobile-optimized.html?team=tottenham" class="team-card">
+                    <div class="team-header">
+                        <h3 class="team-name">トッテナム</h3>
+                        <div class="team-position">3位</div>
+                    </div>
+                    <div class="team-info">
+                        監督: アンジェ・ポステコグルー<br>
+                        戦術: 4-3-3 攻撃的<br>
+                        <span class="version-badge mobile-badge">MOBILE</span>
+                        <span class="version-badge enhanced-badge">ENHANCED</span>
+                    </div>
+                </a>
+
+                <a href="team-detail-mobile-optimized.html?team=chelsea" class="team-card">
+                    <div class="team-header">
+                        <h3 class="team-name">チェルシー</h3>
+                        <div class="team-position">5位</div>
+                    </div>
+                    <div class="team-info">
+                        監督: エンツォ・マレスカ<br>
+                        戦術: 4-2-3-1 バランス<br>
+                        <span class="version-badge mobile-badge">MOBILE</span>
+                        <span class="version-badge enhanced-badge">ENHANCED</span>
+                    </div>
+                </a>
+
+                <a href="team-detail-mobile-optimized.html?team=manchester_city" class="team-card">
+                    <div class="team-header">
+                        <h3 class="team-name">マンチェスター・シティ</h3>
+                        <div class="team-position">8位</div>
+                    </div>
+                    <div class="team-info">
+                        監督: ペップ・グアルディオラ<br>
+                        戦術: 4-3-3 ティキタカ<br>
+                        <span class="version-badge mobile-badge">MOBILE</span>
+                        <span class="version-badge enhanced-badge">ENHANCED</span>
+                    </div>
+                </a>
+
+                <a href="team-detail-mobile-optimized.html?team=manchester_united" class="team-card">
+                    <div class="team-header">
+                        <h3 class="team-name">マンチェスター・ユナイテッド</h3>
+                        <div class="team-position">14位</div>
+                    </div>
+                    <div class="team-info">
+                        監督: エリック・テン・ハーグ<br>
+                        戦術: 4-2-3-1 カウンター<br>
+                        <span class="version-badge mobile-badge">MOBILE</span>
+                        <span class="version-badge enhanced-badge">ENHANCED</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="quick-access">
+            <h3>🚀 クイックアクセス</h3>
+            <div class="quick-links">
+                <a href="fixtures-synced.html" class="quick-link">今週の試合</a>
+                <a href="teams-synced.html" class="quick-link">チーム比較</a>
+                <a href="stats-accurate.html" class="quick-link">正確な順位表</a>
+                <a href="match-preview-synced.html?match=ars-mci" class="quick-link">詳細分析</a>
+                <a href="mobile-test-page.html" class="quick-link">📱 スマホ版テスト</a>
+                <a href="team-detail-final-test.html" class="quick-link">🔧 統合テスト</a>
+            </div>
+        </div>
+
+        <div class="github-section">
+            <h3>🔗 GitHub連携</h3>
+            <p style="margin-bottom: 15px; opacity: 0.9;">
+                プロジェクトのソースコードとバージョン管理
+            </p>
+            <a href="https://github.com/bigGYZstar/BSix.com" class="github-link" target="_blank" rel="noopener">
+                <span style="font-size: 1.2rem;">📂</span>
+                GitHub リポジトリ
+            </a>
+        </div>
+
+        <div class="features">
+            <h2>✨ サイトの特徴</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span class="feature-icon">📱</span>
+                    <span>完全レスポンシブデザイン</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">⚡</span>
+                    <span>データ連動システム統合</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🎯</span>
+                    <span>詳細な試合分析</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🌙</span>
+                    <span>ダーク・ライトモード</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📊</span>
+                    <span>正確な順位表データ</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📈</span>
+                    <span>チーム統計比較</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🔄</span>
+                    <span>バージョン管理システム</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🚀</span>
+                    <span>GitHub連携対応</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 BSix.com - プレミアリーグ ビッグ6 専門サイト</p>
+            <p style="margin-top: 5px; font-size: 0.8em; opacity: 0.7;">
+                📱 モバイル最適化済み | 🌐 全デバイス対応 | 🔗 GitHub連携
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // タッチデバイス検出とクラス追加
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            document.body.classList.add('touch-device');
+        }
+
+        // ビューポート高さの調整（モバイルブラウザ対応）
+        function setViewportHeight() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+
+        setViewportHeight();
+        window.addEventListener('resize', setViewportHeight);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(setViewportHeight, 100);
+        });
+
+        // アクセシビリティ改善：フォーカス管理
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-navigation');
+        });
+
+        // データ連動システムの初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 BSix.com 統合ナビゲーション読み込み完了');
+            console.log('📊 データ連動システム: 有効');
+            console.log('📱 モバイル最適化: 有効');
+            console.log('🔗 GitHub連携: 有効');
+        });
+    </script>
+</body>
+</html>
