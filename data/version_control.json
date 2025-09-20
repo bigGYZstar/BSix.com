@@ -1,0 +1,73 @@
+{
+  "dataVersionControl": {
+    "currentVersion": "2024-09-15_gw4",
+    "lastUpdate": "2024-09-20T08:15:00Z",
+    "rollbackEnabled": true,
+    "autoBackup": true,
+    "retentionPeriod": "365 days"
+  },
+  "availableVersions": [
+    {
+      "versionId": "2024-09-15_gw4",
+      "gameweek": 4,
+      "date": "2024-09-15",
+      "description": "第4節終了時点の正確な順位表（Transfermarkt公式データ）",
+      "filePath": "data/versions/2024-09-15_gw4_premier_league_table.json",
+      "verified": true,
+      "rollbackId": "gw4_final_table",
+      "dataIntegrity": {
+        "checksum": "sha256:a1b2c3d4e5f6",
+        "recordCount": 20,
+        "lastVerified": "2024-09-20T08:15:00Z"
+      }
+    }
+  ],
+  "rollbackProcedure": {
+    "steps": [
+      "1. 現在のデータをバックアップ",
+      "2. 指定されたバージョンファイルを読み込み",
+      "3. データ整合性チェック実行",
+      "4. 全HTMLファイルのデータ参照を更新",
+      "5. GitHubにコミット・プッシュ"
+    ],
+    "rollbackCommand": "loadVersion(versionId)",
+    "emergencyRollback": "loadVersion('gw4_final_table')"
+  },
+  "dataCollectionStandards": {
+    "primarySources": [
+      "Transfermarkt Official",
+      "Premier League Official",
+      "BBC Sport",
+      "Sky Sports"
+    ],
+    "verificationRequired": true,
+    "minimumSources": 2,
+    "updateFrequency": "After each gameweek",
+    "qualityChecks": [
+      "Points calculation verification",
+      "Goal difference accuracy",
+      "Form sequence validation",
+      "Player statistics cross-check"
+    ]
+  },
+  "errorPrevention": {
+    "mandatoryChecks": [
+      "Total points = (wins * 3) + draws",
+      "Goal difference = goals for - goals against",
+      "Form matches recent results",
+      "Position matches points order"
+    ],
+    "automatedValidation": true,
+    "humanVerification": true,
+    "rollbackOnError": true
+  },
+  "futureVersions": {
+    "nextScheduled": "2024-09-22_gw5",
+    "plannedUpdates": [
+      "第5節終了後の順位表更新",
+      "得点王ランキング更新",
+      "チーム別詳細統計更新",
+      "選手個人成績更新"
+    ]
+  }
+}

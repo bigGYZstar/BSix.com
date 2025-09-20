@@ -1,0 +1,477 @@
+{
+  "metadata": {
+    "version": "2024-09-20_big6_teams",
+    "season": "2024-25",
+    "dataSource": "Multiple verified sources",
+    "collectionDate": "2024-09-20T08:30:00Z",
+    "verified": true,
+    "rollbackId": "big6_teams_complete"
+  },
+  "teams": {
+    "arsenal": {
+      "id": "arsenal",
+      "name": "アーセナル",
+      "nameEn": "Arsenal",
+      "shortName": "ARS",
+      "founded": 1886,
+      "stadium": "エミレーツ・スタジアム",
+      "capacity": 60704,
+      "manager": "ミケル・アルテタ",
+      "managerEn": "Mikel Arteta",
+      "colors": {
+        "primary": "#EF0107",
+        "secondary": "#FFFFFF",
+        "accent": "#9C824A"
+      },
+      "currentSeason": {
+        "position": 2,
+        "points": 10,
+        "played": 4,
+        "won": 3,
+        "drawn": 1,
+        "lost": 0,
+        "goalsFor": 8,
+        "goalsAgainst": 3,
+        "form": ["W", "W", "D", "W"]
+      },
+      "keyPlayers": [
+        {
+          "name": "マルティン・ウーデゴール",
+          "nameEn": "Martin Ødegaard",
+          "position": "MF",
+          "number": 8,
+          "nationality": "ノルウェー",
+          "age": 25,
+          "goals": 1,
+          "assists": 2,
+          "status": "負傷中（肩）"
+        },
+        {
+          "name": "ブカヨ・サカ",
+          "nameEn": "Bukayo Saka",
+          "position": "RW",
+          "number": 7,
+          "nationality": "イングランド",
+          "age": 23,
+          "goals": 2,
+          "assists": 3,
+          "status": "利用可能"
+        },
+        {
+          "name": "ガブリエル・ジェズス",
+          "nameEn": "Gabriel Jesus",
+          "position": "FW",
+          "number": 9,
+          "nationality": "ブラジル",
+          "age": 27,
+          "goals": 1,
+          "assists": 1,
+          "status": "利用可能"
+        }
+      ],
+      "recentForm": [
+        {"date": "2024-09-15", "opponent": "Tottenham", "result": "W", "score": "1-0", "venue": "away"},
+        {"date": "2024-09-01", "opponent": "Brighton", "result": "W", "score": "1-0", "venue": "home"},
+        {"date": "2024-08-31", "opponent": "Aston Villa", "result": "D", "score": "2-2", "venue": "away"},
+        {"date": "2024-08-24", "opponent": "Wolves", "result": "W", "score": "2-0", "venue": "home"}
+      ],
+      "tactics": {
+        "formation": "4-3-3",
+        "style": "ポゼッション重視、高いプレス",
+        "strengths": ["セットプレー", "守備の安定性", "カウンター攻撃"],
+        "weaknesses": ["創造性の欠如", "フィニッシュ精度"]
+      }
+    },
+    "chelsea": {
+      "id": "chelsea",
+      "name": "チェルシー",
+      "nameEn": "Chelsea",
+      "shortName": "CHE",
+      "founded": 1905,
+      "stadium": "スタンフォード・ブリッジ",
+      "capacity": 40834,
+      "manager": "エンツォ・マレスカ",
+      "managerEn": "Enzo Maresca",
+      "colors": {
+        "primary": "#034694",
+        "secondary": "#FFFFFF",
+        "accent": "#ED1C24"
+      },
+      "currentSeason": {
+        "position": 8,
+        "points": 7,
+        "played": 4,
+        "won": 2,
+        "drawn": 1,
+        "lost": 1,
+        "goalsFor": 9,
+        "goalsAgainst": 6,
+        "form": ["W", "L", "D", "W"]
+      },
+      "keyPlayers": [
+        {
+          "name": "コール・パーマー",
+          "nameEn": "Cole Palmer",
+          "position": "AM",
+          "number": 20,
+          "nationality": "イングランド",
+          "age": 22,
+          "goals": 3,
+          "assists": 2,
+          "status": "利用可能"
+        },
+        {
+          "name": "ニコラス・ジャクソン",
+          "nameEn": "Nicolas Jackson",
+          "position": "FW",
+          "number": 15,
+          "nationality": "セネガル",
+          "age": 23,
+          "goals": 2,
+          "assists": 1,
+          "status": "利用可能"
+        },
+        {
+          "name": "エンソ・フェルナンデス",
+          "nameEn": "Enzo Fernández",
+          "position": "CM",
+          "number": 8,
+          "nationality": "アルゼンチン",
+          "age": 23,
+          "goals": 0,
+          "assists": 1,
+          "status": "利用可能"
+        }
+      ],
+      "recentForm": [
+        {"date": "2024-09-14", "opponent": "Bournemouth", "result": "W", "score": "1-0", "venue": "away"},
+        {"date": "2024-09-01", "opponent": "Crystal Palace", "result": "D", "score": "1-1", "venue": "home"},
+        {"date": "2024-08-25", "opponent": "Wolves", "result": "W", "score": "6-2", "venue": "home"},
+        {"date": "2024-08-18", "opponent": "Manchester City", "result": "L", "score": "0-2", "venue": "away"}
+      ],
+      "tactics": {
+        "formation": "4-2-3-1",
+        "style": "攻撃的、素早いトランジション",
+        "strengths": ["若手の才能", "攻撃力", "深いスカッド"],
+        "weaknesses": ["守備の不安定性", "経験不足"]
+      }
+    },
+    "liverpool": {
+      "id": "liverpool",
+      "name": "リヴァプール",
+      "nameEn": "Liverpool",
+      "shortName": "LIV",
+      "founded": 1892,
+      "stadium": "アンフィールド",
+      "capacity": 61276,
+      "manager": "アルネ・スロット",
+      "managerEn": "Arne Slot",
+      "colors": {
+        "primary": "#C8102E",
+        "secondary": "#FFFFFF",
+        "accent": "#00B2A9"
+      },
+      "currentSeason": {
+        "position": 4,
+        "points": 9,
+        "played": 4,
+        "won": 3,
+        "drawn": 0,
+        "lost": 1,
+        "goalsFor": 7,
+        "goalsAgainst": 1,
+        "form": ["W", "W", "W", "L"]
+      },
+      "keyPlayers": [
+        {
+          "name": "モハメド・サラー",
+          "nameEn": "Mohamed Salah",
+          "position": "RW",
+          "number": 11,
+          "nationality": "エジプト",
+          "age": 32,
+          "goals": 3,
+          "assists": 2,
+          "status": "利用可能"
+        },
+        {
+          "name": "ヴィルヒル・ファン・ダイク",
+          "nameEn": "Virgil van Dijk",
+          "position": "CB",
+          "number": 4,
+          "nationality": "オランダ",
+          "age": 33,
+          "goals": 0,
+          "assists": 0,
+          "status": "利用可能"
+        },
+        {
+          "name": "ライアン・フラーフェンベルフ",
+          "nameEn": "Ryan Gravenberch",
+          "position": "CM",
+          "number": 38,
+          "nationality": "オランダ",
+          "age": 22,
+          "goals": 0,
+          "assists": 1,
+          "status": "利用可能"
+        }
+      ],
+      "recentForm": [
+        {"date": "2024-09-14", "opponent": "Nottingham Forest", "result": "L", "score": "0-1", "venue": "home"},
+        {"date": "2024-09-01", "opponent": "Manchester United", "result": "W", "score": "3-0", "venue": "away"},
+        {"date": "2024-08-25", "opponent": "Brentford", "result": "W", "score": "2-0", "venue": "home"},
+        {"date": "2024-08-17", "opponent": "Ipswich", "result": "W", "score": "2-0", "venue": "home"}
+      ],
+      "tactics": {
+        "formation": "4-3-3",
+        "style": "高いプレス、素早いトランジション",
+        "strengths": ["アンフィールドでの強さ", "攻撃力", "チームワーク"],
+        "weaknesses": ["新監督への適応", "中盤の創造性"]
+      }
+    },
+    "manchester_city": {
+      "id": "manchester_city",
+      "name": "マンチェスター・シティ",
+      "nameEn": "Manchester City",
+      "shortName": "MCI",
+      "founded": 1880,
+      "stadium": "エティハド・スタジアム",
+      "capacity": 55017,
+      "manager": "ペップ・グアルディオラ",
+      "managerEn": "Pep Guardiola",
+      "colors": {
+        "primary": "#6CABDD",
+        "secondary": "#FFFFFF",
+        "accent": "#1C2C5B"
+      },
+      "currentSeason": {
+        "position": 1,
+        "points": 12,
+        "played": 4,
+        "won": 4,
+        "drawn": 0,
+        "lost": 0,
+        "goalsFor": 11,
+        "goalsAgainst": 3,
+        "form": ["W", "W", "W", "W"]
+      },
+      "keyPlayers": [
+        {
+          "name": "エルリング・ハーランド",
+          "nameEn": "Erling Haaland",
+          "position": "FW",
+          "number": 9,
+          "nationality": "ノルウェー",
+          "age": 24,
+          "goals": 9,
+          "assists": 0,
+          "status": "利用可能"
+        },
+        {
+          "name": "フィル・フォーデン",
+          "nameEn": "Phil Foden",
+          "position": "AM",
+          "number": 47,
+          "nationality": "イングランド",
+          "age": 24,
+          "goals": 1,
+          "assists": 2,
+          "status": "利用可能"
+        },
+        {
+          "name": "ロドリ",
+          "nameEn": "Rodri",
+          "position": "DM",
+          "number": 16,
+          "nationality": "スペイン",
+          "age": 28,
+          "goals": 0,
+          "assists": 1,
+          "status": "利用可能"
+        }
+      ],
+      "recentForm": [
+        {"date": "2024-09-14", "opponent": "Brentford", "result": "W", "score": "2-1", "venue": "home"},
+        {"date": "2024-08-31", "opponent": "West Ham", "result": "W", "score": "3-1", "venue": "away"},
+        {"date": "2024-08-24", "opponent": "Ipswich", "result": "W", "score": "4-1", "venue": "away"},
+        {"date": "2024-08-18", "opponent": "Chelsea", "result": "W", "score": "2-0", "venue": "home"}
+      ],
+      "tactics": {
+        "formation": "4-3-3",
+        "style": "ポゼッション重視、ティキタカ",
+        "strengths": ["技術力", "戦術的柔軟性", "深いスカッド"],
+        "weaknesses": ["守備の脆さ", "重要な試合での集中力"]
+      }
+    },
+    "manchester_united": {
+      "id": "manchester_united",
+      "name": "マンチェスター・ユナイテッド",
+      "nameEn": "Manchester United",
+      "shortName": "MUN",
+      "founded": 1878,
+      "stadium": "オールド・トラッフォード",
+      "capacity": 74310,
+      "manager": "エリック・テン・ハーグ",
+      "managerEn": "Erik ten Hag",
+      "colors": {
+        "primary": "#DA020E",
+        "secondary": "#FFFFFF",
+        "accent": "#FBE122"
+      },
+      "currentSeason": {
+        "position": 10,
+        "points": 6,
+        "played": 4,
+        "won": 2,
+        "drawn": 0,
+        "lost": 2,
+        "goalsFor": 5,
+        "goalsAgainst": 5,
+        "form": ["L", "W", "L", "W"]
+      },
+      "keyPlayers": [
+        {
+          "name": "ブルーノ・フェルナンデス",
+          "nameEn": "Bruno Fernandes",
+          "position": "AM",
+          "number": 8,
+          "nationality": "ポルトガル",
+          "age": 30,
+          "goals": 2,
+          "assists": 2,
+          "status": "利用可能"
+        },
+        {
+          "name": "マーカス・ラッシュフォード",
+          "nameEn": "Marcus Rashford",
+          "position": "LW",
+          "number": 10,
+          "nationality": "イングランド",
+          "age": 27,
+          "goals": 1,
+          "assists": 0,
+          "status": "利用可能"
+        },
+        {
+          "name": "カゼミーロ",
+          "nameEn": "Casemiro",
+          "position": "DM",
+          "number": 18,
+          "nationality": "ブラジル",
+          "age": 32,
+          "goals": 0,
+          "assists": 1,
+          "status": "利用可能"
+        }
+      ],
+      "recentForm": [
+        {"date": "2024-09-14", "opponent": "Southampton", "result": "W", "score": "3-0", "venue": "away"},
+        {"date": "2024-09-01", "opponent": "Liverpool", "result": "L", "score": "0-3", "venue": "home"},
+        {"date": "2024-08-24", "opponent": "Brighton", "result": "D", "score": "2-2", "venue": "home"},
+        {"date": "2024-08-16", "opponent": "Fulham", "result": "W", "score": "1-0", "venue": "away"}
+      ],
+      "tactics": {
+        "formation": "4-2-3-1",
+        "style": "カウンター攻撃、直接的",
+        "strengths": ["個人技", "セットプレー", "経験"],
+        "weaknesses": ["守備の不安定性", "中盤の創造性", "一貫性の欠如"]
+      }
+    },
+    "tottenham": {
+      "id": "tottenham",
+      "name": "トッテナム・ホットスパー",
+      "nameEn": "Tottenham Hotspur",
+      "shortName": "TOT",
+      "founded": 1882,
+      "stadium": "トッテナム・ホットスパー・スタジアム",
+      "capacity": 62850,
+      "manager": "アンジェ・ポステコグルー",
+      "managerEn": "Ange Postecoglou",
+      "colors": {
+        "primary": "#FFFFFF",
+        "secondary": "#132257",
+        "accent": "#FFD700"
+      },
+      "currentSeason": {
+        "position": 13,
+        "points": 4,
+        "played": 4,
+        "won": 1,
+        "drawn": 1,
+        "lost": 2,
+        "goalsFor": 8,
+        "goalsAgainst": 6,
+        "form": ["W", "D", "L", "L"]
+      },
+      "keyPlayers": [
+        {
+          "name": "ソン・フンミン",
+          "nameEn": "Son Heung-min",
+          "position": "LW",
+          "number": 7,
+          "nationality": "韓国",
+          "age": 32,
+          "goals": 2,
+          "assists": 1,
+          "status": "利用可能"
+        },
+        {
+          "name": "ジェームズ・マディソン",
+          "nameEn": "James Maddison",
+          "position": "AM",
+          "number": 10,
+          "nationality": "イングランド",
+          "age": 27,
+          "goals": 1,
+          "assists": 2,
+          "status": "利用可能"
+        },
+        {
+          "name": "ドミニク・ソランケ",
+          "nameEn": "Dominic Solanke",
+          "position": "FW",
+          "number": 19,
+          "nationality": "イングランド",
+          "age": 27,
+          "goals": 1,
+          "assists": 0,
+          "status": "利用可能"
+        }
+      ],
+      "recentForm": [
+        {"date": "2024-09-15", "opponent": "Arsenal", "result": "L", "score": "0-1", "venue": "home"},
+        {"date": "2024-08-31", "opponent": "Newcastle", "result": "L", "score": "1-2", "venue": "away"},
+        {"date": "2024-08-24", "opponent": "Leicester", "result": "D", "score": "1-1", "venue": "home"},
+        {"date": "2024-08-19", "opponent": "Brentford", "result": "W", "score": "3-1", "venue": "away"}
+      ],
+      "tactics": {
+        "formation": "4-3-3",
+        "style": "攻撃的、高いライン",
+        "strengths": ["攻撃力", "スピード", "創造性"],
+        "weaknesses": ["守備の脆さ", "一貫性の欠如", "セットプレー守備"]
+      }
+    }
+  },
+  "bigSixComparison": {
+    "currentStandings": [
+      {"team": "Manchester City", "position": 1, "points": 12},
+      {"team": "Arsenal", "position": 2, "points": 10},
+      {"team": "Liverpool", "position": 4, "points": 9},
+      {"team": "Chelsea", "position": 8, "points": 7},
+      {"team": "Manchester United", "position": 10, "points": 6},
+      {"team": "Tottenham", "position": 13, "points": 4}
+    ],
+    "headToHeadRecord": {
+      "totalMatches": 0,
+      "upcomingFixtures": [
+        {"date": "2024-09-22", "match": "Arsenal vs Manchester City", "venue": "Emirates Stadium"}
+      ]
+    },
+    "transferSummer2024": {
+      "totalSpent": "£1.2billion",
+      "biggestSigning": "Dominic Solanke to Tottenham (£65m)",
+      "mostActive": "Chelsea"
+    }
+  }
+}
