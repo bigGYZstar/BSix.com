@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>試合一覧 - BSix.com</title>
+    <meta name="description" content="プレミアリーグBig 6チームの今週の試合一覧と詳細プレビュー">
+    
+    <!-- PWA対応 -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 10px 0;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .back-btn:hover, .back-btn:active {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .page-title {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover, .theme-toggle:active {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .matches-grid {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .match-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .match-card:hover, .match-card:active {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .match-date {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .match-category {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .match-teams {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .team-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .team-name {
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .team-status {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+
+        .vs {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0 15px;
+        }
+
+        .match-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+        }
+
+        .info-icon {
+            font-size: 1rem;
+        }
+
+        .match-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .action-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .action-btn:hover, .action-btn:active {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .fav-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .fav-btn:hover, .fav-btn:active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .fav-btn.active {
+            color: #ff6b6b;
+        }
+
+        /* チーム別カラー */
+        .ars { background: linear-gradient(135deg, #EF0107, #9C824A); }
+        .mci { background: linear-gradient(135deg, #6CABDD, #1C2C5B); }
+        .liv { background: linear-gradient(135deg, #C8102E, #F6EB61); }
+        .che { background: linear-gradient(135deg, #034694, #6A7FDB); }
+        .mun { background: linear-gradient(135deg, #DA020E, #FBE122); }
+        .tot { background: linear-gradient(135deg, #132257, #F7F7F7); color: #132257; }
+        .bri { background: linear-gradient(135deg, #0057B8, #FFCD00); }
+
+        /* モバイル専用スタイル */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .match-card {
+                padding: 15px;
+            }
+
+            .team-logo {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .match-info {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .match-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .action-btn {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .page-title {
+                order: -1;
+            }
+
+            .match-teams {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .vs {
+                order: 1;
+                margin: 5px 0;
+            }
+
+            .team {
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .team-logo {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-btn">← ホーム</a>
+            <h1 class="page-title">📅 試合一覧</h1>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        </div>
+
+        <div class="matches-grid">
+            <!-- リバプール vs エバートン -->
+            <div class="match-card">
+                <div class="match-header">
+                    <div class="match-date">9月20日(土) 07:30</div>
+                    <div class="match-category">ダービー</div>
+                </div>
+                <div class="match-teams">
+                    <div class="team">
+                        <div class="team-logo liv">LIV</div>
+                        <div class="team-name">リバプール</div>
+                        <div class="team-status">ホーム</div>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="team">
+                        <div class="team-logo eve">EVE</div>
+                        <div class="team-name">エバートン</div>
+                        <div class="team-status">アウェイ</div>
+                    </div>
+                </div>
+                <div class="match-info">
+                    <div class="info-item">
+                        <span class="info-icon">🏟️</span>
+                        <span>Anfield</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📺</span>
+                        <span>USA/NBC.com</span>
+                    </div>
+                </div>
+                <div class="match-actions">
+                    <a href="match-preview.html?match=liv-eve" class="action-btn">
+                        📊 詳細プレビュー
+                    </a>
+                    <button class="fav-btn" onclick="toggleFavorite(this)">⭐</button>
+                </div>
+            </div>
+
+            <!-- ブライトン vs トッテナム -->
+            <div class="match-card">
+                <div class="match-header">
+                    <div class="match-date">9月20日(土) 10:00</div>
+                    <div class="match-category">予想</div>
+                </div>
+                <div class="match-teams">
+                    <div class="team">
+                        <div class="team-logo bri">BRI</div>
+                        <div class="team-name">ブライトン</div>
+                        <div class="team-status">ホーム</div>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="team">
+                        <div class="team-logo tot">TOT</div>
+                        <div class="team-name">トッテナム</div>
+                        <div class="team-status">アウェイ</div>
+                    </div>
+                </div>
+                <div class="match-info">
+                    <div class="info-item">
+                        <span class="info-icon">🏟️</span>
+                        <span>Amex Stadium</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📺</span>
+                        <span>Peacock</span>
+                    </div>
+                </div>
+                <div class="match-actions">
+                    <a href="match-preview.html?match=bri-tot" class="action-btn">
+                        📊 詳細プレビュー
+                    </a>
+                    <button class="fav-btn" onclick="toggleFavorite(this)">⭐</button>
+                </div>
+            </div>
+
+            <!-- マンチェスター・ユナイテッド vs チェルシー -->
+            <div class="match-card">
+                <div class="match-header">
+                    <div class="match-date">9月20日(土) 12:30</div>
+                    <div class="match-category">ビッグ6対決</div>
+                </div>
+                <div class="match-teams">
+                    <div class="team">
+                        <div class="team-logo mun">MUN</div>
+                        <div class="team-name">マンチェスター・ユナイテッド</div>
+                        <div class="team-status">ホーム</div>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="team">
+                        <div class="team-logo che">CHE</div>
+                        <div class="team-name">チェルシー</div>
+                        <div class="team-status">アウェイ</div>
+                    </div>
+                </div>
+                <div class="match-info">
+                    <div class="info-item">
+                        <span class="info-icon">🏟️</span>
+                        <span>Old Trafford</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📺</span>
+                        <span>USA/NBC.com</span>
+                    </div>
+                </div>
+                <div class="match-actions">
+                    <a href="match-preview.html?match=mun-che" class="action-btn">
+                        📊 詳細プレビュー
+                    </a>
+                    <button class="fav-btn" onclick="toggleFavorite(this)">⭐</button>
+                </div>
+            </div>
+
+            <!-- アーセナル vs マンチェスター・シティ -->
+            <div class="match-card">
+                <div class="match-header">
+                    <div class="match-date">9月21日(日) 11:30</div>
+                    <div class="match-category">タイトル争い</div>
+                </div>
+                <div class="match-teams">
+                    <div class="team">
+                        <div class="team-logo ars">ARS</div>
+                        <div class="team-name">アーセナル</div>
+                        <div class="team-status">ホーム</div>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="team">
+                        <div class="team-logo mci">MCI</div>
+                        <div class="team-name">マンチェスター・シティ</div>
+                        <div class="team-status">アウェイ</div>
+                    </div>
+                </div>
+                <div class="match-info">
+                    <div class="info-item">
+                        <span class="info-icon">🏟️</span>
+                        <span>Emirates Stadium</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📺</span>
+                        <span>Peacock</span>
+                    </div>
+                </div>
+                <div class="match-actions">
+                    <a href="match-preview.html?match=ars-mci" class="action-btn">
+                        📊 詳細プレビュー
+                    </a>
+                    <button class="fav-btn" onclick="toggleFavorite(this)">⭐</button>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="index.html" class="action-btn">🏠 ホームに戻る</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const button = document.querySelector('.theme-toggle');
+            
+            if (body.style.filter === 'invert(1) hue-rotate(180deg)') {
+                body.style.filter = '';
+                button.textContent = '🌙';
+            } else {
+                body.style.filter = 'invert(1) hue-rotate(180deg)';
+                button.textContent = '☀️';
+            }
+        }
+
+        function toggleFavorite(button) {
+            button.classList.toggle('active');
+            if (button.classList.contains('active')) {
+                button.textContent = '❤️';
+            } else {
+                button.textContent = '⭐';
+            }
+        }
+
+        // タッチデバイス最適化
+        if ('ontouchstart' in window) {
+            document.body.classList.add('touch-device');
+        }
+
+        // ビューポート高さ調整
+        function setViewportHeight() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+
+        setViewportHeight();
+        window.addEventListener('resize', setViewportHeight);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(setViewportHeight, 100);
+        });
+    </script>
+</body>
+</html>
