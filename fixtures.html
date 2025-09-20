@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>試合一覧 - BSix.com</title>
+    <meta name="description" content="プレミアリーグ第5節の全試合スケジュールと詳細プレビュー">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .nav-desktop {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.5rem 0;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--white);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+        }
+
+        .nav-icon {
+            font-size: 1.125rem;
+        }
+
+        .main-content {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            width: 100%;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            color: var(--white);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.125rem;
+        }
+
+        .matches-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .match-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .match-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .match-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gray-300);
+            transition: all 0.3s ease;
+        }
+
+        .match-card.big-six-clash::before {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+        }
+
+        .match-card.derby-match::before {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+
+        .match-card.title-race::before {
+            background: var(--secondary-gradient);
+        }
+
+        .match-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .match-date {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .match-day {
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .match-time {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .match-competition {
+            text-align: right;
+        }
+
+        .competition-name {
+            display: block;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin-bottom: 0.25rem;
+        }
+
+        .matchweek {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .match-status {
+            display: inline-block;
+            padding: 0.25rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .status-upcoming {
+            background: var(--accent-gradient);
+            color: var(--white);
+        }
+
+        .status-big-six {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: var(--white);
+        }
+
+        .status-derby {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: var(--white);
+        }
+
+        .status-title-race {
+            background: var(--secondary-gradient);
+            color: var(--white);
+        }
+
+        .match-teams {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            max-width: 120px;
+        }
+
+        .team-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--white);
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .team-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .arsenal { background: linear-gradient(135deg, #EF0107, #9C824A); }
+        .manchester-city { background: linear-gradient(135deg, #6CABDD, #1C2C5B); }
+        .liverpool { background: linear-gradient(135deg, #C8102E, #F6EB61); }
+        .chelsea { background: linear-gradient(135deg, #034694, #6CABDD); }
+        .manchester-united { background: linear-gradient(135deg, #DA020E, #FFF200); }
+        .tottenham { background: linear-gradient(135deg, #132257, #FFFFFF); color: var(--gray-800) !important; }
+        .brighton { background: linear-gradient(135deg, #0057B8, #FFCD00); }
+        .everton { background: linear-gradient(135deg, #003399, #FFFFFF); }
+
+        .team-info {
+            text-align: center;
+        }
+
+        .team-name {
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--gray-800);
+            margin-bottom: 0.25rem;
+        }
+
+        .team-label {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .match-vs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 1.5rem;
+        }
+
+        .vs-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--gray-600);
+            margin-bottom: 0.25rem;
+        }
+
+        .match-significance {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            text-align: center;
+            padding: 0.25rem 0.5rem;
+            background: var(--gray-100);
+            border-radius: 0.375rem;
+        }
+
+        .match-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--gray-50);
+            border-radius: 0.75rem;
+        }
+
+        .match-venue,
+        .match-tv {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .match-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background: var(--secondary-gradient);
+            color: var(--white);
+        }
+
+        .btn-icon {
+            font-size: 1rem;
+        }
+
+        .nav-mobile {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+        }
+
+        .nav-mobile-content {
+            display: flex;
+            justify-content: space-around;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .nav-mobile-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.5rem;
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-mobile-link.active,
+        .nav-mobile-link:hover {
+            color: #667eea;
+        }
+
+        .nav-mobile-icon {
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .nav-mobile-text {
+            font-weight: 500;
+        }
+
+        /* Dark theme */
+        .dark-theme {
+            --primary-gradient: linear-gradient(135deg, #4c51bf 0%, #553c9a 100%);
+            --gray-50: #1f2937;
+            --gray-100: #374151;
+            --gray-200: #4b5563;
+            --gray-300: #6b7280;
+            --gray-400: #9ca3af;
+            --gray-500: #d1d5db;
+            --gray-600: #e5e7eb;
+            --gray-700: #f3f4f6;
+            --gray-800: #f9fafb;
+            --gray-900: #ffffff;
+            --white: #111827;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-desktop {
+                display: none;
+            }
+            
+            .nav-mobile {
+                display: block;
+            }
+            
+            .main-content {
+                padding-bottom: 100px;
+            }
+            
+            .matches-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .match-teams {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .match-vs {
+                margin: 1rem 0;
+            }
+            
+            .match-actions {
+                flex-direction: column;
+            }
+            
+            .match-details {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .header-content {
+                padding: 1rem;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main App Container -->
+    <div id="app" class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">⚽</span>
+                        <span class="logo-text">BSix Preview</span>
+                    </a>
+                </div>
+                <div class="header-right">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="テーマ切り替え">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation (Desktop) -->
+        <nav class="nav-desktop">
+            <div class="nav-content">
+                <a href="index.html" class="nav-link">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">ホーム</span>
+                </a>
+                <a href="fixtures.html" class="nav-link active">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">試合一覧</span>
+                </a>
+                <a href="teams.html" class="nav-link">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">チーム</span>
+                </a>
+                <a href="stats.html" class="nav-link">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">統計</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <section class="page-header">
+                <h1 class="page-title">今週末の注目試合</h1>
+                <p class="page-subtitle">プレミアリーグ第5節 - ビッグ6チームの全試合をカバー</p>
+            </section>
+
+            <!-- Matches Container -->
+            <section class="matches-container">
+                <!-- Liverpool vs Everton -->
+                <div class="match-card derby-match">
+                    <div class="match-card-header">
+                        <div class="match-date">
+                            <span class="match-day">9月20日(土)</span>
+                            <span class="match-time">07:30</span>
+                        </div>
+                        <div class="match-competition">
+                            <span class="competition-name">プレミアリーグ</span>
+                            <span class="matchweek">第5節</span>
+                        </div>
+                    </div>
+                    
+                    <div class="match-status status-derby">ダービー</div>
+                    
+                    <div class="match-teams">
+                        <div class="team">
+                            <div class="team-logo liverpool">
+                                <span class="team-logo-text">LIV</span>
+                            </div>
+                            <div class="team-info">
+                                <h3 class="team-name">リバプール</h3>
+                                <span class="team-label">ホーム</span>
+                            </div>
+                        </div>
+                        
+                        <div class="match-vs">
+                            <span class="vs-text">VS</span>
+                            <div class="match-significance">マージーサイドダービー</div>
+                        </div>
+                        
+                        <div class="team">
+                            <div class="team-logo everton">
+                                <span class="team-logo-text">EVE</span>
+                            </div>
+                            <div class="team-info">
+                                <h3 class="team-name">エバートン</h3>
+                                <span class="team-label">アウェイ</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="match-details">
+                        <div class="match-venue">
+                            <span class="venue-icon">🏟️</span>
+                            <span class="venue-name">Anfield</span>
+                        </div>
+                        <div class="match-tv">
+                            <span class="tv-icon">📺</span>
+                            <span class="tv-coverage">USA/NBC.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="match-actions">
+                        <a href="match-preview.html?match=liv-eve" class="btn btn-primary">
+                            <span class="btn-icon">📊</span>
+                            <span class="btn-text">詳細プレビュー</span>
+                        </a>
+                        <button class="btn btn-secondary match-favorite-btn">
+                            <span class="btn-icon">⭐</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Brighton vs Tottenham -->
+                <div class="match-card">
+                    <div class="match-card-header">
+                        <div class="match-date">
+                            <span class="match-day">9月20日(土)</span>
+                            <span class="match-time">10:00</span>
+                        </div>
+                        <div class="match-competition">
+                            <span class="competition-name">プレミアリーグ</span>
+                            <span class="matchweek">第5節</span>
+                        </div>
+                    </div>
+                    
+                    <div class="match-status status-upcoming">予定</div>
+                    
+                    <div class="match-teams">
+                        <div class="team">
+                            <div class="team-logo brighton">
+                                <span class="team-logo-text">BRI</span>
+                            </div>
+                            <div class="team-info">
+                                <h3 class="team-name">ブライトン</h3>
+                                <span class="team-label">ホーム</span>
+                            </div>
+                        </div>
+                        
+                        <div class="match-vs">
+                            <span class="vs-text">VS</span>
+                        </div>
+                        
+                        <div class="team">
+                            <div class="team-logo tottenham">
+                                <span class="team-logo-text">TOT</span>
+                            </div>
+                            <div class="team-info">
+                                <h3 class="team-name">トッテナム</h3>
+                                <span class="team-label">アウェイ</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="match-details">
+                        <div class="match-venue">
+                            <span class="venue-icon">🏟️</span>
+                            <span class="venue-name">Amex Stadium</span>
+                        </div>
+                        <div class="match-tv">
+                            <span class="tv-icon">📺</span>
+                            <span class="tv-coverage">Peacock</span>
+                        </div>
+                    </div>
+                    
+                    <div class="match-actions">
+                        <a href="match-preview.html?match=bri-tot" class="btn btn-primary">
+                            <span class="btn-icon">📊</span>
+                            <span class="btn-text">詳細プレビュー</span>
+                        </a>
+                        <button class="btn btn-secondary match-favorite-btn">
+                            <span class="btn-icon">⭐</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Manchester United vs Chelsea -->
+                <div class="match-card big-six-clash">
+                    <div class="match-card-header">
+                        <div class="match-date">
+                            <span class="match-day">9月20日(土)</span>
+                            <span class="match-time">12:30</span>
+                        </div>
+                        <div class="match-competition">
+                            <span class="competition-name">プレミアリーグ</span>
+                            <span class="matchweek">第5節</span>
+                        </div>
+                    </div>
+                    
+                    <div class="match-status status-big-six">ビッグ6対決</div>
+                    
+                    <div class="match-teams">
+                        <div class="team">
+                            <div class="team-logo manchester-united">
+                                <span class="team-logo-text">MUN</span>
+                            </div>
+                            <div class="team-info">
+                                <h3 class="team-name">マンチェスター・ユナイテッド</h3>
+                                <span class="team-label">ホーム</span>
+                            </div>
+                        </div>
+                        
+                        <div class="match-vs">
+                            <span class="vs-text">VS</span>
+                            <div class="match-significance">ビッグ6対決</div>
+                        </div>
+                        
+                        <div class="team">
+                            <div class="team-logo chelsea">
+                                <span class="team-logo-text">CHE</span>
+                            </div>
+                            <div class="team-info">
+                                <h3 class="team-name">チェルシー</h3>
+                                <span class="team-label">アウェイ</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="match-details">
+                        <div class="match-venue">
+                            <span class="venue-icon">🏟️</span>
+                            <span class="venue-name">Old Trafford</span>
+                        </div>
+                        <div class="match-tv">
+                            <span class="tv-icon">📺</span>
+                            <span class="tv-coverage">USA/NBC.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="match-actions">
+                        <a href="match-preview.html?match=mun-che" class="btn btn-primary">
+                            <span class="btn-icon">📊</span>
+                            <span class="btn-text">詳細プレビュー</span>
+                        </a>
+                        <button class="btn btn-secondary match-favorite-btn">
+                            <span class="btn-icon">⭐</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Arsenal vs Manchester City -->
+                <div class="match-card title-race">
+                    <div class="match-card-header">
+                        <div class="match-date">
+                            <span class="match-day">9月21日(日)</span>
+                            <span class="match-time">11:30</span>
+                        </div>
+                        <div class="match-competition">
+                            <span class="competition-name">プレミアリーグ</span>
+                            <span class="matchweek">第5節</span>
+                        </div>
+                    </div>
+                    
+                    <div class="match-status status-title-race">タイトル争い</div>
+                    
+                    <div class="match-teams">
+                        <div class="team">
+                            <div class="team-logo arsenal">
+                                <span class="team-logo-text">ARS</span>
+                            </div>
+                            <div class="team-info">
+                                <h3 class="team-name">アーセナル</h3>
+                                <span class="team-label">ホーム</span>
+                            </div>
+                        </div>
+                        
+                        <div class="match-vs">
+                            <span class="vs-text">VS</span>
+                            <div class="match-significance">タイトル争い</div>
+                        </div>
+                        
+                        <div class="team">
+                            <div class="team-logo manchester-city">
+                                <span class="team-logo-text">MCI</span>
+                            </div>
+                            <div class="team-info">
+                                <h3 class="team-name">マンチェスター・シティ</h3>
+                                <span class="team-label">アウェイ</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="match-details">
+                        <div class="match-venue">
+                            <span class="venue-icon">🏟️</span>
+                            <span class="venue-name">Emirates Stadium</span>
+                        </div>
+                        <div class="match-tv">
+                            <span class="tv-icon">📺</span>
+                            <span class="tv-coverage">Peacock</span>
+                        </div>
+                    </div>
+                    
+                    <div class="match-actions">
+                        <a href="match-preview.html?match=ars-mci" class="btn btn-primary">
+                            <span class="btn-icon">📊</span>
+                            <span class="btn-text">詳細プレビュー</span>
+                        </a>
+                        <button class="btn btn-secondary match-favorite-btn">
+                            <span class="btn-icon">⭐</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation (Mobile) -->
+        <nav class="nav-mobile">
+            <div class="nav-mobile-content">
+                <a href="index.html" class="nav-mobile-link">
+                    <span class="nav-mobile-icon">🏠</span>
+                    <span class="nav-mobile-text">ホーム</span>
+                </a>
+                <a href="fixtures.html" class="nav-mobile-link active">
+                    <span class="nav-mobile-icon">📅</span>
+                    <span class="nav-mobile-text">試合</span>
+                </a>
+                <a href="teams.html" class="nav-mobile-link">
+                    <span class="nav-mobile-icon">👥</span>
+                    <span class="nav-mobile-text">チーム</span>
+                </a>
+                <a href="stats.html" class="nav-mobile-link">
+                    <span class="nav-mobile-icon">📊</span>
+                    <span class="nav-mobile-text">統計</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-theme');
+                    const themeIcon = themeToggle.querySelector('.theme-icon');
+                    if (themeIcon) {
+                        themeIcon.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+                    }
+                });
+            }
+            
+            // Favorite button functionality
+            const favoriteButtons = document.querySelectorAll('.match-favorite-btn');
+            favoriteButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const icon = this.querySelector('.btn-icon');
+                    if (icon.textContent === '⭐') {
+                        icon.textContent = '❤️';
+                    } else {
+                        icon.textContent = '⭐';
+                    }
+                    
+                    // Visual feedback
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+            
+            // Device detection
+            const isMobile = window.innerWidth <= 768;
+            document.body.classList.toggle('mobile-layout', isMobile);
+        });
+
+        // Window resize handler
+        window.addEventListener('resize', function() {
+            const isMobile = window.innerWidth <= 768;
+            document.body.classList.toggle('mobile-layout', isMobile);
+        });
+    </script>
+</body>
+</html>

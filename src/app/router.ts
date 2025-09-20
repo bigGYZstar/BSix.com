@@ -14,6 +14,7 @@ const ROUTES: Record<string, Route> = {
 } as const
 
 const ROUTE_TITLES: Record<Route, string> = {
+  home: 'ホーム',
   overview: '概要',
   tactics: '戦術',
   lineup: '布陣',
@@ -298,6 +299,7 @@ export function getTransitionDirection(
  */
 export function updateMetaTags(route: Route): void {
   const descriptions: Record<Route, string> = {
+    home: 'プレミアリーグビッグシックスの試合一覧',
     overview: '試合の概要と基本情報',
     tactics: 'チームの戦術と分析',
     lineup: 'スターティングイレブンとベンチメンバー',

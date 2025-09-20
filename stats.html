@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>統計・順位表 - BSix.com</title>
+    <meta name="description" content="プレミアリーグ2025-26シーズンの順位表、得点ランキング、チーム成績分析">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .nav-desktop {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.5rem 0;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--white);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+        }
+
+        .nav-icon {
+            font-size: 1.125rem;
+        }
+
+        .main-content {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            width: 100%;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            color: var(--white);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.125rem;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .stats-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-icon {
+            font-size: 1.25rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        .stats-table th,
+        .stats-table td {
+            padding: 1rem 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .stats-table th {
+            background: var(--gray-50);
+            font-weight: 600;
+            color: var(--gray-700);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.75rem;
+        }
+
+        .stats-table tbody tr:hover {
+            background: var(--gray-50);
+        }
+
+        .team-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .team-logo-small {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.625rem;
+            font-weight: 700;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .team-logo-small.arsenal { background: linear-gradient(135deg, #EF0107, #9C824A); }
+        .team-logo-small.manchester-city { background: linear-gradient(135deg, #6CABDD, #1C2C5B); }
+        .team-logo-small.liverpool { background: linear-gradient(135deg, #C8102E, #F6EB61); }
+        .team-logo-small.chelsea { background: linear-gradient(135deg, #034694, #6CABDD); }
+        .team-logo-small.manchester-united { background: linear-gradient(135deg, #DA020E, #FFF200); }
+        .team-logo-small.tottenham { background: linear-gradient(135deg, #132257, #FFFFFF); color: var(--gray-800) !important; }
+        .team-logo-small.brighton { background: linear-gradient(135deg, #0057B8, #FFCD00); }
+        .team-logo-small.aston-villa { background: linear-gradient(135deg, #95BFE5, #670E36); }
+        .team-logo-small.newcastle { background: linear-gradient(135deg, #241F20, #FFFFFF); color: var(--gray-800) !important; }
+        .team-logo-small.west-ham { background: linear-gradient(135deg, #7A263A, #1BB1E7); }
+
+        .team-name {
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .position-cell {
+            font-weight: 700;
+            color: var(--gray-700);
+        }
+
+        .position-1 { color: #10b981; }
+        .position-2 { color: #059669; }
+        .position-3 { color: #047857; }
+        .position-4 { color: #065f46; }
+
+        .points-cell {
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .form-cell {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .form-result {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.625rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .form-result.win { background: #10b981; }
+        .form-result.draw { background: #f59e0b; }
+        .form-result.loss { background: #ef4444; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--gray-50);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+
+        .nav-mobile {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+        }
+
+        .nav-mobile-content {
+            display: flex;
+            justify-content: space-around;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .nav-mobile-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.5rem;
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-mobile-link.active,
+        .nav-mobile-link:hover {
+            color: #667eea;
+        }
+
+        .nav-mobile-icon {
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .nav-mobile-text {
+            font-weight: 500;
+        }
+
+        /* Dark theme */
+        .dark-theme {
+            --primary-gradient: linear-gradient(135deg, #4c51bf 0%, #553c9a 100%);
+            --gray-50: #1f2937;
+            --gray-100: #374151;
+            --gray-200: #4b5563;
+            --gray-300: #6b7280;
+            --gray-400: #9ca3af;
+            --gray-500: #d1d5db;
+            --gray-600: #e5e7eb;
+            --gray-700: #f3f4f6;
+            --gray-800: #f9fafb;
+            --gray-900: #ffffff;
+            --white: #111827;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-desktop {
+                display: none;
+            }
+            
+            .nav-mobile {
+                display: block;
+            }
+            
+            .main-content {
+                padding-bottom: 100px;
+            }
+            
+            .stats-table {
+                font-size: 0.75rem;
+            }
+            
+            .stats-table th,
+            .stats-table td {
+                padding: 0.75rem 0.5rem;
+            }
+            
+            .team-cell {
+                gap: 0.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header-content {
+                padding: 1rem;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main App Container -->
+    <div id="app" class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">⚽</span>
+                        <span class="logo-text">BSix Preview</span>
+                    </a>
+                </div>
+                <div class="header-right">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="テーマ切り替え">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation (Desktop) -->
+        <nav class="nav-desktop">
+            <div class="nav-content">
+                <a href="index.html" class="nav-link">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">ホーム</span>
+                </a>
+                <a href="fixtures.html" class="nav-link">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">試合一覧</span>
+                </a>
+                <a href="teams.html" class="nav-link">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">チーム</span>
+                </a>
+                <a href="stats.html" class="nav-link active">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">統計</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <section class="page-header">
+                <h1 class="page-title">統計・順位表</h1>
+                <p class="page-subtitle">プレミアリーグ2025-26シーズン 第4節終了時点</p>
+            </section>
+
+            <!-- Stats Container -->
+            <div class="stats-container">
+                <!-- League Table -->
+                <section class="stats-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🏆</span>
+                        <span>プレミアリーグ順位表</span>
+                    </h2>
+                    
+                    <div class="table-container">
+                        <table class="stats-table">
+                            <thead>
+                                <tr>
+                                    <th>順位</th>
+                                    <th>チーム</th>
+                                    <th>試合</th>
+                                    <th>勝</th>
+                                    <th>分</th>
+                                    <th>負</th>
+                                    <th>得点</th>
+                                    <th>失点</th>
+                                    <th>得失差</th>
+                                    <th>勝点</th>
+                                    <th>直近5試合</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="position-cell position-1">1</td>
+                                    <td class="team-cell">
+                                        <div class="team-logo-small manchester-city">MCI</div>
+                                        <span class="team-name">マンチェスター・シティ</span>
+                                    </td>
+                                    <td>4</td>
+                                    <td>4</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>11</td>
+                                    <td>3</td>
+                                    <td>+8</td>
+                                    <td class="points-cell">12</td>
+                                    <td class="form-cell">
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result draw">D</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="position-cell position-2">2</td>
+                                    <td class="team-cell">
+                                        <div class="team-logo-small arsenal">ARS</div>
+                                        <span class="team-name">アーセナル</span>
+                                    </td>
+                                    <td>4</td>
+                                    <td>3</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>8</td>
+                                    <td>2</td>
+                                    <td>+6</td>
+                                    <td class="points-cell">10</td>
+                                    <td class="form-cell">
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result draw">D</div>
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result draw">D</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="position-cell position-3">3</td>
+                                    <td class="team-cell">
+                                        <div class="team-logo-small liverpool">LIV</div>
+                                        <span class="team-name">リバプール</span>
+                                    </td>
+                                    <td>4</td>
+                                    <td>3</td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>7</td>
+                                    <td>1</td>
+                                    <td>+6</td>
+                                    <td class="points-cell">9</td>
+                                    <td class="form-cell">
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result draw">D</div>
+                                        <div class="form-result loss">L</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="position-cell position-4">4</td>
+                                    <td class="team-cell">
+                                        <div class="team-logo-small aston-villa">AVL</div>
+                                        <span class="team-name">アストン・ヴィラ</span>
+                                    </td>
+                                    <td>4</td>
+                                    <td>3</td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>6</td>
+                                    <td>3</td>
+                                    <td>+3</td>
+                                    <td class="points-cell">9</td>
+                                    <td class="form-cell">
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result loss">L</div>
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result draw">D</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="position-cell">5</td>
+                                    <td class="team-cell">
+                                        <div class="team-logo-small brighton">BRI</div>
+                                        <span class="team-name">ブライトン</span>
+                                    </td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>2</td>
+                                    <td>0</td>
+                                    <td>6</td>
+                                    <td>4</td>
+                                    <td>+2</td>
+                                    <td class="points-cell">8</td>
+                                    <td class="form-cell">
+                                        <div class="form-result draw">D</div>
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result draw">D</div>
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result draw">D</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="position-cell">6</td>
+                                    <td class="team-cell">
+                                        <div class="team-logo-small chelsea">CHE</div>
+                                        <span class="team-name">チェルシー</span>
+                                    </td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>6</td>
+                                    <td>5</td>
+                                    <td>+1</td>
+                                    <td class="points-cell">7</td>
+                                    <td class="form-cell">
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result draw">D</div>
+                                        <div class="form-result loss">L</div>
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result draw">D</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="position-cell">7</td>
+                                    <td class="team-cell">
+                                        <div class="team-logo-small newcastle">NEW</div>
+                                        <span class="team-name">ニューカッスル</span>
+                                    </td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>5</td>
+                                    <td>4</td>
+                                    <td>+1</td>
+                                    <td class="points-cell">7</td>
+                                    <td class="form-cell">
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result draw">D</div>
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result loss">L</div>
+                                        <div class="form-result win">W</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="position-cell">8</td>
+                                    <td class="team-cell">
+                                        <div class="team-logo-small tottenham">TOT</div>
+                                        <span class="team-name">トッテナム</span>
+                                    </td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>8</td>
+                                    <td>7</td>
+                                    <td>+1</td>
+                                    <td class="points-cell">7</td>
+                                    <td class="form-cell">
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result draw">D</div>
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result loss">L</div>
+                                        <div class="form-result draw">D</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="position-cell">11</td>
+                                    <td class="team-cell">
+                                        <div class="team-logo-small manchester-united">MUN</div>
+                                        <span class="team-name">マンチェスター・ユナイテッド</span>
+                                    </td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>0</td>
+                                    <td>2</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                    <td>-1</td>
+                                    <td class="points-cell">6</td>
+                                    <td class="form-cell">
+                                        <div class="form-result win">W</div>
+                                        <div class="form-result loss">L</div>
+                                        <div class="form-result draw">D</div>
+                                        <div class="form-result loss">L</div>
+                                        <div class="form-result win">W</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Season Stats -->
+                <section class="stats-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">📈</span>
+                        <span>シーズン統計</span>
+                    </h2>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-value">4</span>
+                            <span class="stat-label">節終了</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value">40</span>
+                            <span class="stat-label">総試合数</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value">98</span>
+                            <span class="stat-label">総得点</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value">2.45</span>
+                            <span class="stat-label">1試合平均得点</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Big 6 Focus -->
+                <section class="stats-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">⭐</span>
+                        <span>ビッグ6 成績比較</span>
+                    </h2>
+                    
+                    <div class="table-container">
+                        <table class="stats-table">
+                            <thead>
+                                <tr>
+                                    <th>チーム</th>
+                                    <th>順位</th>
+                                    <th>勝点</th>
+                                    <th>得点</th>
+                                    <th>失点</th>
+                                    <th>得失差</th>
+                                    <th>勝率</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="team-cell">
+                                        <div class="team-logo-small manchester-city">MCI</div>
+                                        <span class="team-name">マンチェスター・シティ</span>
+                                    </td>
+                                    <td class="position-cell position-1">1位</td>
+                                    <td class="points-cell">12</td>
+                                    <td>11</td>
+                                    <td>3</td>
+                                    <td>+8</td>
+                                    <td>100%</td>
+                                </tr>
+                                <tr>
+                                    <td class="team-cell">
+                                        <div class="team-logo-small arsenal">ARS</div>
+                                        <span class="team-name">アーセナル</span>
+                                    </td>
+                                    <td class="position-cell position-2">2位</td>
+                                    <td class="points-cell">10</td>
+                                    <td>8</td>
+                                    <td>2</td>
+                                    <td>+6</td>
+                                    <td>75%</td>
+                                </tr>
+                                <tr>
+                                    <td class="team-cell">
+                                        <div class="team-logo-small liverpool">LIV</div>
+                                        <span class="team-name">リバプール</span>
+                                    </td>
+                                    <td class="position-cell position-3">3位</td>
+                                    <td class="points-cell">9</td>
+                                    <td>7</td>
+                                    <td>1</td>
+                                    <td>+6</td>
+                                    <td>75%</td>
+                                </tr>
+                                <tr>
+                                    <td class="team-cell">
+                                        <div class="team-logo-small chelsea">CHE</div>
+                                        <span class="team-name">チェルシー</span>
+                                    </td>
+                                    <td class="position-cell">6位</td>
+                                    <td class="points-cell">7</td>
+                                    <td>6</td>
+                                    <td>5</td>
+                                    <td>+1</td>
+                                    <td>50%</td>
+                                </tr>
+                                <tr>
+                                    <td class="team-cell">
+                                        <div class="team-logo-small tottenham">TOT</div>
+                                        <span class="team-name">トッテナム</span>
+                                    </td>
+                                    <td class="position-cell">8位</td>
+                                    <td class="points-cell">7</td>
+                                    <td>8</td>
+                                    <td>7</td>
+                                    <td>+1</td>
+                                    <td>50%</td>
+                                </tr>
+                                <tr>
+                                    <td class="team-cell">
+                                        <div class="team-logo-small manchester-united">MUN</div>
+                                        <span class="team-name">マンチェスター・ユナイテッド</span>
+                                    </td>
+                                    <td class="position-cell">11位</td>
+                                    <td class="points-cell">6</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                    <td>-1</td>
+                                    <td>50%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation (Mobile) -->
+        <nav class="nav-mobile">
+            <div class="nav-mobile-content">
+                <a href="index.html" class="nav-mobile-link">
+                    <span class="nav-mobile-icon">🏠</span>
+                    <span class="nav-mobile-text">ホーム</span>
+                </a>
+                <a href="fixtures.html" class="nav-mobile-link">
+                    <span class="nav-mobile-icon">📅</span>
+                    <span class="nav-mobile-text">試合</span>
+                </a>
+                <a href="teams.html" class="nav-mobile-link">
+                    <span class="nav-mobile-icon">👥</span>
+                    <span class="nav-mobile-text">チーム</span>
+                </a>
+                <a href="stats.html" class="nav-mobile-link active">
+                    <span class="nav-mobile-icon">📊</span>
+                    <span class="nav-mobile-text">統計</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-theme');
+                    const themeIcon = themeToggle.querySelector('.theme-icon');
+                    if (themeIcon) {
+                        themeIcon.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+                    }
+                });
+            }
+            
+            // Device detection
+            const isMobile = window.innerWidth <= 768;
+            document.body.classList.toggle('mobile-layout', isMobile);
+        });
+
+        // Window resize handler
+        window.addEventListener('resize', function() {
+            const isMobile = window.innerWidth <= 768;
+            document.body.classList.toggle('mobile-layout', isMobile);
+        });
+    </script>
+</body>
+</html>

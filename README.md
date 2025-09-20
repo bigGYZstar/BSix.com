@@ -18,7 +18,11 @@
 ## 🚀 デモ
 
 ### 🌟 Live Demo
+<<<<<<< HEAD
 **[✨ サッカーマッチプレビューサイト（GitHub Pages）](https://bigGYZstar.github.io/BSix.com/)** 
+=======
+**[✨ サッカーマッチプレビューサイト（Live Demo）](https://8080-ig0pvsg3dlmlgb0ftgw1t-6532622b.e2b.dev/BSix.com/)** 
+>>>>>>> branch-2
 
 完全に動作するlive demoをお試しください！
 - ✅ エラーフリー環境 

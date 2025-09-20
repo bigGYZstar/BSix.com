@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSix.com - プレミアリーグ ビッグ6 試合プレビュー</title>
+    <meta name="description" content="プレミアリーグBig 6チームの試合を詳細分析。専門家予想、戦術解説、選手情報まで完全網羅。">
+    <meta name="keywords" content="プレミアリーグ, Big 6, アーセナル, マンチェスター・シティ, リバプール, チェルシー, マンチェスター・ユナイテッド, トッテナム, 試合プレビュー">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="BSix.com - プレミアリーグ ビッグ6 試合プレビュー">
+    <meta property="og:description" content="プレミアリーグBig 6チームの試合を詳細分析。専門家予想、戦術解説、選手情報まで完全網羅。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://biggyzstar.github.io/BSix.com/">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/data/main-data.json" as="fetch" crossorigin>
+    <link rel="preload" href="/assets/styles/main.css" as="style">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/assets/styles/main.css">
+    
+    <style>
+        /* Critical CSS for above-the-fold content */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+        
+        .loading-logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+        
+        .loading-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">⚽</div>
+            <div class="loading-text">Premier League Preview</div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo">
+                        <span class="logo-icon">⚽</span>
+                        <span class="logo-text">BSix Preview</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="テーマ切り替え">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <button class="menu-toggle" id="menu-toggle" aria-label="メニュー">
+                        <span class="menu-icon">☰</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation (Desktop) -->
+        <nav class="nav-desktop">
+            <div class="nav-content">
+                <a href="#" class="nav-link active" data-page="home">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">ホーム</span>
+                </a>
+                <a href="#" class="nav-link" data-page="fixtures">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">試合一覧</span>
+                </a>
+                <a href="#" class="nav-link" data-page="teams">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">チーム</span>
+                </a>
+                <a href="#" class="nav-link" data-page="stats">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">統計</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="hero-title-main">プレミアリーグ第5節</span>
+                        <span class="hero-title-sub">ビッグ6注目試合プレビュー</span>
+                    </h1>
+                    <p class="hero-description">
+                        今週末のビッグ6チームの試合を詳細分析。専門家予想、戦術解説、選手情報まで完全網羅。
+                    </p>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="total-matches">4</span>
+                            <span class="hero-stat-label">注目試合</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="big6-clashes">2</span>
+                            <span class="hero-stat-label">ビッグ6対決</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number">6</span>
+                            <span class="hero-stat-label">チーム参戦</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-background">
+                    <div class="hero-gradient"></div>
+                </div>
+            </section>
+
+            <!-- Featured Matches Section -->
+            <section class="featured-matches">
+                <div class="section-header">
+                    <h2 class="section-title">今週末の注目試合</h2>
+                    <p class="section-subtitle">ビッグ6チームの全試合をカバー</p>
+                </div>
+                
+                <div class="matches-container" id="matches-container">
+                    <!-- Match cards will be dynamically inserted here -->
+                    <div class="matches-loading">
+                        <div class="loading-spinner"></div>
+                        <p>試合データを読み込み中...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Stats Section -->
+            <section class="quick-stats">
+                <div class="section-header">
+                    <h2 class="section-title">今節のハイライト</h2>
+                </div>
+                
+                <div class="stats-grid" id="stats-grid">
+                    <!-- Stats will be dynamically inserted here -->
+                </div>
+            </section>
+
+            <!-- League Table Section -->
+            <section class="league-table-section">
+                <div class="section-header">
+                    <h2 class="section-title">ビッグ6順位表</h2>
+                    <p class="section-subtitle">現在の順位と最新成績</p>
+                </div>
+                
+                <div class="table-container" id="table-container">
+                    <!-- Table will be dynamically inserted here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation (Mobile) -->
+        <nav class="nav-mobile">
+            <a href="#" class="nav-mobile-link active" data-page="home">
+                <span class="nav-mobile-icon">🏠</span>
+                <span class="nav-mobile-text">ホーム</span>
+            </a>
+            <a href="#" class="nav-mobile-link" data-page="fixtures">
+                <span class="nav-mobile-icon">📅</span>
+                <span class="nav-mobile-text">試合</span>
+            </a>
+            <a href="#" class="nav-mobile-link" data-page="favorites">
+                <span class="nav-mobile-icon">⭐</span>
+                <span class="nav-mobile-text">お気に入り</span>
+            </a>
+            <a href="#" class="nav-mobile-link" data-page="settings">
+                <span class="nav-mobile-icon">⚙️</span>
+                <span class="nav-mobile-text">設定</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Match Preview Modal -->
+    <div id="match-preview-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">試合プレビュー</h2>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Preview content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Match Card Template -->
+    <template id="match-card-template">
+        <div class="match-card" data-match-id="">
+            <div class="match-card-header">
+                <div class="match-date">
+                    <span class="match-day"></span>
+                    <span class="match-time"></span>
+                </div>
+                <div class="match-competition">
+                    <span class="competition-name">プレミアリーグ</span>
+                    <span class="matchweek"></span>
+                </div>
+            </div>
+            
+            <div class="match-status"></div>
+            
+            <div class="match-teams">
+                <div class="team home-team">
+                    <div class="team-logo">
+                        <span class="team-logo-text"></span>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name"></h3>
+                        <span class="team-label">ホーム</span>
+                    </div>
+                </div>
+                
+                <div class="match-vs">
+                    <span class="vs-text">VS</span>
+                    <div class="match-significance"></div>
+                </div>
+                
+                <div class="team away-team">
+                    <div class="team-logo">
+                        <span class="team-logo-text"></span>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name"></h3>
+                        <span class="team-label">アウェイ</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="match-details">
+                <div class="match-venue">
+                    <span class="venue-icon">🏟️</span>
+                    <span class="venue-name"></span>
+                </div>
+                <div class="match-tv">
+                    <span class="tv-icon">📺</span>
+                    <span class="tv-coverage"></span>
+                </div>
+            </div>
+            
+            <div class="match-actions">
+                <button class="btn btn-primary match-preview-btn">
+                    <span class="btn-icon">📊</span>
+                    <span class="btn-text">詳細プレビュー</span>
+                </button>
+                <button class="btn btn-secondary match-favorite-btn">
+                    <span class="btn-icon">⭐</span>
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Table Row Template -->
+    <template id="table-row-template">
+        <div class="table-row">
+            <div class="table-cell position"></div>
+            <div class="table-cell team">
+                <div class="team-logo-small">
+                    <span class="team-logo-text"></span>
+                </div>
+                <span class="team-name"></span>
+            </div>
+            <div class="table-cell points"></div>
+            <div class="table-cell played"></div>
+            <div class="table-cell form">
+                <div class="form-indicators"></div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Scripts -->
+    <script>
+        // Inline critical JavaScript for performance
+        (function() {
+            // Device detection
+            const isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            document.body.classList.toggle('mobile-layout', isMobile);
+            
+            // Theme detection
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                document.body.classList.add('dark-theme');
+            }
+            
+            // Performance monitoring
+            window.addEventListener('load', function() {
+                if ('performance' in window) {
+                    const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                    console.log('Page load time:', loadTime + 'ms');
+                }
+            });
+        })();
+    </script>
+    
+    <!-- Main Application Script -->
+    <script src="/assets/scripts/main.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(function(err) {
+                        console.log('ServiceWorker registration failed');
+                    });
+            });
+        }
+    </script>
+    
+    <!-- Analytics (placeholder) -->
+    <script>
+        // Google Analytics or other analytics code would go here
+        console.log('Analytics initialized');
+    </script>
+</body>
+</html>

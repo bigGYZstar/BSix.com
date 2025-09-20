@@ -1,0 +1,148 @@
+{
+  "_meta": {
+    "description": "選手の肌/髪/スタイル色の推測データ（似顔絵生成用）",
+    "lastUpdated": "2025-08-31",
+    "note": "実際の外見とは異なる場合があります"
+  },
+  "David Raya": {
+    "skin": "medium",
+    "hair": "brown",
+    "style": "short"
+  },
+  "William Saliba": {
+    "skin": "dark",
+    "hair": "black",
+    "style": "short"
+  },
+  "Gabriel Magalhaes": {
+    "skin": "tan",
+    "hair": "black",
+    "style": "short"
+  },
+  "Ben White": {
+    "skin": "light",
+    "hair": "brown",
+    "style": "short"
+  },
+  "Oleksandr Zinchenko": {
+    "skin": "light",
+    "hair": "blonde",
+    "style": "short"
+  },
+  "Declan Rice": {
+    "skin": "light",
+    "hair": "brown",
+    "style": "short"
+  },
+  "Martin Odegaard": {
+    "skin": "light",
+    "hair": "blonde",
+    "style": "short"
+  },
+  "Thomas Partey": {
+    "skin": "dark",
+    "hair": "black",
+    "style": "buzz"
+  },
+  "Bukayo Saka": {
+    "skin": "dark",
+    "hair": "black",
+    "style": "short"
+  },
+  "Gabriel Jesus": {
+    "skin": "tan",
+    "hair": "black",
+    "style": "curly"
+  },
+  "Gabriel Martinelli": {
+    "skin": "tan",
+    "hair": "black",
+    "style": "short"
+  },
+  "Kai Havertz": {
+    "skin": "light",
+    "hair": "brown",
+    "style": "short"
+  },
+  "Leandro Trossard": {
+    "skin": "light",
+    "hair": "brown",
+    "style": "short"
+  },
+  "Takehiro Tomiyasu": {
+    "skin": "medium",
+    "hair": "black",
+    "style": "short"
+  },
+
+  "Illan Meslier": {
+    "skin": "light",
+    "hair": "brown",
+    "style": "short"
+  },
+  "Junior Firpo": {
+    "skin": "tan",
+    "hair": "black",
+    "style": "short"
+  },
+  "Pascal Struijk": {
+    "skin": "light",
+    "hair": "brown",
+    "style": "short"
+  },
+  "Joe Rodon": {
+    "skin": "light",
+    "hair": "brown",
+    "style": "short"
+  },
+  "Luke Ayling": {
+    "skin": "light",
+    "hair": "brown",
+    "style": "short"
+  },
+  "Ethan Ampadu": {
+    "skin": "medium",
+    "hair": "black",
+    "style": "short"
+  },
+  "Ilia Gruev": {
+    "skin": "light",
+    "hair": "brown",
+    "style": "short"
+  },
+  "Glen Kamara": {
+    "skin": "dark",
+    "hair": "black",
+    "style": "short"
+  },
+  "Daniel James": {
+    "skin": "light",
+    "hair": "brown",
+    "style": "short"
+  },
+  "Patrick Bamford": {
+    "skin": "light",
+    "hair": "brown",
+    "style": "short"
+  },
+  "Crysencio Summerville": {
+    "skin": "dark",
+    "hair": "black",
+    "style": "short"
+  },
+  "Wilfried Gnonto": {
+    "skin": "medium",
+    "hair": "black",
+    "style": "short"
+  },
+  "Joel Piroe": {
+    "skin": "light",
+    "hair": "brown",
+    "style": "short"
+  },
+  "Georginio Rutter": {
+    "skin": "light",
+    "hair": "brown",
+    "style": "short"
+  }
+}

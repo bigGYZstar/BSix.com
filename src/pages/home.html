@@ -1,0 +1,113 @@
+<!-- 試合一覧ページ（ホーム） -->
+<div id="home-page" class="page">
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="container header-content">
+      <h1 class="logo">⚽ ビッグシックス プレビュー</h1>
+      <button id="theme-toggle" class="theme-toggle" aria-label="テーマ切り替え">
+        🌙
+      </button>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="main-content">
+    <div class="container">
+      <!-- ページタイトル -->
+      <section class="page-header">
+        <h2 class="page-title">今後の注目試合</h2>
+        <p class="page-subtitle">プレミアリーグ ビッグシックス対戦カード</p>
+      </section>
+
+      <!-- ローディング表示 -->
+      <div id="loading" class="loading-container" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p>試合データを読み込み中...</p>
+      </div>
+
+      <!-- エラー表示 -->
+      <div id="error" class="error-container" style="display: none;">
+        <div class="error-icon">⚠️</div>
+        <h3>データの読み込みに失敗しました</h3>
+        <p id="error-message"></p>
+        <button id="retry-button" class="btn btn-primary">再試行</button>
+      </div>
+
+      <!-- 試合一覧 -->
+      <section id="matches-section" class="matches-section" style="display: none;">
+        <div id="matches-list" class="matches-list">
+          <!-- 試合カードがここに動的に挿入される -->
+        </div>
+      </section>
+
+      <!-- 空の状態 -->
+      <div id="empty-state" class="empty-state" style="display: none;">
+        <div class="empty-icon">📅</div>
+        <h3>今後の試合がありません</h3>
+        <p>新しい試合が追加されるまでお待ちください。</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 ビッグシックス プレビュー. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+
+<!-- 試合カードテンプレート -->
+<template id="match-card-template">
+  <article class="match-card" data-match-id="">
+    <div class="match-card-header">
+      <div class="match-date"></div>
+      <div class="match-league"></div>
+    </div>
+    
+    <div class="match-card-body">
+      <div class="teams-container">
+        <div class="team home-team">
+          <div class="team-logo">
+            <div class="team-badge"></div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name"></h3>
+            <p class="team-venue">ホーム</p>
+          </div>
+        </div>
+        
+        <div class="vs-divider">
+          <span>VS</span>
+        </div>
+        
+        <div class="team away-team">
+          <div class="team-logo">
+            <div class="team-badge"></div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name"></h3>
+            <p class="team-venue">アウェイ</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="match-details">
+        <div class="venue-info">
+          <span class="venue-icon">🏟️</span>
+          <span class="venue-name"></span>
+        </div>
+        <div class="round-info">
+          <span class="round-text"></span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="match-card-footer">
+      <button class="btn btn-primary match-preview-btn">
+        試合プレビューを見る
+        <span class="btn-icon">→</span>
+      </button>
+    </div>
+  </article>
+</template>

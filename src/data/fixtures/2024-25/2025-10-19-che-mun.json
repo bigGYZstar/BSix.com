@@ -1,0 +1,593 @@
+{
+  "id": "2025-10-19-che-mun",
+  "date": "2025-10-19T22:00:00+09:00",
+  "league": "プレミアリーグ",
+  "round": "第9節",
+  "venue": "スタンフォード・ブリッジ",
+  "city": "ロンドン",
+  "status": "scheduled",
+  "weather": {
+    "condition": "小雨",
+    "temperature": "12°C",
+    "humidity": "78%",
+    "wind": "南西 12km/h"
+  },
+  "referee": {
+    "name": "アンソニー・テイラー",
+    "nationality": "イングランド",
+    "experience": "プレミアリーグ主審歴12年"
+  },
+  "attendance": {
+    "capacity": 40834,
+    "expected": 40834
+  },
+  "homeTeam": {
+    "teamId": "che",
+    "name": "チェルシー",
+    "key": "CHE",
+    "formation": "4-2-3-1",
+    "lineup": [
+      {
+        "playerId": "sanchez",
+        "jp": "ロベルト・サンチェス",
+        "intl": "Robert Sanchez",
+        "pos": "GK",
+        "num": 1,
+        "stats": {
+          "apps": 7,
+          "goals": 0,
+          "assists": 0,
+          "cleanSheets": 2,
+          "saves": 28
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "james",
+        "jp": "リース・ジェームス",
+        "intl": "Reece James",
+        "pos": "RB",
+        "num": 24,
+        "stats": {
+          "apps": 4,
+          "goals": 1,
+          "assists": 2,
+          "cleanSheets": 1
+        },
+        "avatar": {
+          "skin": "dark",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "silva-t",
+        "jp": "チアゴ・シルバ",
+        "intl": "Thiago Silva",
+        "pos": "CB",
+        "num": 6,
+        "stats": {
+          "apps": 6,
+          "goals": 0,
+          "assists": 0,
+          "cleanSheets": 2
+        },
+        "avatar": {
+          "skin": "tan",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "colwill",
+        "jp": "レヴィ・コルウィル",
+        "intl": "Levi Colwill",
+        "pos": "CB",
+        "num": 26,
+        "stats": {
+          "apps": 7,
+          "goals": 0,
+          "assists": 1,
+          "cleanSheets": 2
+        },
+        "avatar": {
+          "skin": "dark",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "chilwell",
+        "jp": "ベン・チルウェル",
+        "intl": "Ben Chilwell",
+        "pos": "LB",
+        "num": 21,
+        "stats": {
+          "apps": 5,
+          "goals": 0,
+          "assists": 1,
+          "cleanSheets": 1
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "caicedo",
+        "jp": "モイセス・カイセド",
+        "intl": "Moises Caicedo",
+        "pos": "CDM",
+        "num": 25,
+        "stats": {
+          "apps": 7,
+          "goals": 1,
+          "assists": 0,
+          "cleanSheets": 2
+        },
+        "avatar": {
+          "skin": "tan",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "fernandez",
+        "jp": "エンソ・フェルナンデス",
+        "intl": "Enzo Fernandez",
+        "pos": "CDM",
+        "num": 8,
+        "stats": {
+          "apps": 7,
+          "goals": 2,
+          "assists": 2,
+          "cleanSheets": 2
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "palmer",
+        "jp": "コール・パーマー",
+        "intl": "Cole Palmer",
+        "pos": "CAM",
+        "num": 20,
+        "stats": {
+          "apps": 7,
+          "goals": 5,
+          "assists": 3,
+          "cleanSheets": 2
+        },
+        "avatar": {
+          "skin": "dark",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "sterling",
+        "jp": "ラヒーム・スターリング",
+        "intl": "Raheem Sterling",
+        "pos": "RW",
+        "num": 7,
+        "stats": {
+          "apps": 6,
+          "goals": 2,
+          "assists": 1,
+          "cleanSheets": 1
+        },
+        "avatar": {
+          "skin": "dark",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "jackson",
+        "jp": "ニコラス・ジャクソン",
+        "intl": "Nicolas Jackson",
+        "pos": "ST",
+        "num": 15,
+        "stats": {
+          "apps": 7,
+          "goals": 4,
+          "assists": 1,
+          "cleanSheets": 2
+        },
+        "avatar": {
+          "skin": "dark",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "mudryk",
+        "jp": "ミハイロ・ムドリク",
+        "intl": "Mykhailo Mudryk",
+        "pos": "LW",
+        "num": 10,
+        "stats": {
+          "apps": 5,
+          "goals": 1,
+          "assists": 2,
+          "cleanSheets": 1
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      }
+    ],
+    "bench": [
+      "ペトロヴィッチ",
+      "ディサシ",
+      "ククレジャ",
+      "ガラガー",
+      "チュクウエメカ",
+      "マドゥエケ",
+      "ブロヤ"
+    ],
+    "news": [
+      "パーマーが5ゴール3アシストの大活躍",
+      "新加入カイセドが中盤で安定感を発揮",
+      "ジャクソンが得点を重ねて調子上昇"
+    ],
+    "highlights": [
+      "パーマーの創造性",
+      "カイセドの守備力",
+      "ジャクソンの得点力"
+    ],
+    "eval": {
+      "寸評": "若手選手の成長が著しく、特にパーマーが攻撃の中心として機能。守備面でも安定感が増している。",
+      "攻撃力": 85,
+      "守備力": 78,
+      "総合力": 82
+    },
+    "keychips": [
+      "パーマーの創造力",
+      "カイセドの中盤制圧",
+      "ジャクソンの決定力"
+    ]
+  },
+  "awayTeam": {
+    "teamId": "mun",
+    "name": "マンチェスター・ユナイテッド",
+    "key": "MUN",
+    "formation": "4-2-3-1",
+    "lineup": [
+      {
+        "playerId": "onana",
+        "jp": "アンドレ・オナナ",
+        "intl": "Andre Onana",
+        "pos": "GK",
+        "num": 24,
+        "stats": {
+          "apps": 7,
+          "goals": 0,
+          "assists": 0,
+          "cleanSheets": 2,
+          "saves": 31
+        },
+        "avatar": {
+          "skin": "dark",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "dalot",
+        "jp": "ディオゴ・ダロト",
+        "intl": "Diogo Dalot",
+        "pos": "RB",
+        "num": 20,
+        "stats": {
+          "apps": 7,
+          "goals": 0,
+          "assists": 2,
+          "cleanSheets": 2
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "varane",
+        "jp": "ラファエル・ヴァラン",
+        "intl": "Raphael Varane",
+        "pos": "CB",
+        "num": 19,
+        "stats": {
+          "apps": 5,
+          "goals": 0,
+          "assists": 0,
+          "cleanSheets": 2
+        },
+        "avatar": {
+          "skin": "dark",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "martinez",
+        "jp": "リサンドロ・マルティネス",
+        "intl": "Lisandro Martinez",
+        "pos": "CB",
+        "num": 6,
+        "stats": {
+          "apps": 6,
+          "goals": 0,
+          "assists": 1,
+          "cleanSheets": 2
+        },
+        "avatar": {
+          "skin": "tan",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "shaw",
+        "jp": "ルーク・ショー",
+        "intl": "Luke Shaw",
+        "pos": "LB",
+        "num": 23,
+        "stats": {
+          "apps": 4,
+          "goals": 0,
+          "assists": 1,
+          "cleanSheets": 1
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "casemiro",
+        "jp": "カゼミーロ",
+        "intl": "Casemiro",
+        "pos": "CDM",
+        "num": 18,
+        "stats": {
+          "apps": 7,
+          "goals": 1,
+          "assists": 1,
+          "cleanSheets": 2
+        },
+        "avatar": {
+          "skin": "tan",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "mount",
+        "jp": "メイソン・マウント",
+        "intl": "Mason Mount",
+        "pos": "CDM",
+        "num": 7,
+        "stats": {
+          "apps": 5,
+          "goals": 1,
+          "assists": 0,
+          "cleanSheets": 1
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "fernandes",
+        "jp": "ブルーノ・フェルナンデス",
+        "intl": "Bruno Fernandes",
+        "pos": "CAM",
+        "num": 8,
+        "stats": {
+          "apps": 7,
+          "goals": 3,
+          "assists": 4,
+          "cleanSheets": 2
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "antony",
+        "jp": "アントニー",
+        "intl": "Antony",
+        "pos": "RW",
+        "num": 21,
+        "stats": {
+          "apps": 6,
+          "goals": 1,
+          "assists": 1,
+          "cleanSheets": 1
+        },
+        "avatar": {
+          "skin": "tan",
+          "hair": "black",
+          "style": "curly"
+        }
+      },
+      {
+        "playerId": "hojlund",
+        "jp": "ラスムス・ホイルンド",
+        "intl": "Rasmus Hojlund",
+        "pos": "ST",
+        "num": 11,
+        "stats": {
+          "apps": 6,
+          "goals": 3,
+          "assists": 0,
+          "cleanSheets": 1
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "blonde",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "rashford",
+        "jp": "マーカス・ラッシュフォード",
+        "intl": "Marcus Rashford",
+        "pos": "LW",
+        "num": 10,
+        "stats": {
+          "apps": 7,
+          "goals": 2,
+          "assists": 2,
+          "cleanSheets": 2
+        },
+        "avatar": {
+          "skin": "dark",
+          "hair": "black",
+          "style": "short"
+        }
+      }
+    ],
+    "bench": [
+      "ベイインディル",
+      "リンデロフ",
+      "ワン＝ビサカ",
+      "マクトミネイ",
+      "エリクセン",
+      "ガルナチョ",
+      "マルシャル"
+    ],
+    "news": [
+      "ブルーノ・フェルナンデスが3ゴール4アシストの活躍",
+      "ホイルンドが徐々に得点感覚を掴む",
+      "新加入マウントが旧古巣との対戦"
+    ],
+    "highlights": [
+      "ブルーノの司令塔ぶり",
+      "ホイルンドの成長",
+      "マウントの古巣対戦"
+    ],
+    "eval": {
+      "寸評": "ブルーノを中心とした攻撃は機能しているが、守備面での課題が残る。若手の成長に期待。",
+      "攻撃力": 80,
+      "守備力": 72,
+      "総合力": 76
+    },
+    "keychips": [
+      "ブルーノの創造力",
+      "ホイルンドの得点力",
+      "マウントの古巣対戦"
+    ]
+  },
+  "preview": {
+    "title": "ロンドンダービー！チェルシー vs ユナイテッド",
+    "subtitle": "スタンフォード・ブリッジで繰り広げられる伝統の一戦",
+    "description": "両チームとも若手の成長が著しく、パーマー vs ブルーノの創造性対決に注目。",
+    "keyPoints": [
+      "パーマー vs ブルーノ・フェルナンデスの創造性対決",
+      "マウントの古巣チェルシー戦",
+      "両チームの若手選手の成長ぶり"
+    ],
+    "prediction": {
+      "homeWin": 40,
+      "draw": 30,
+      "awayWin": 30
+    },
+    "keyBattles": [
+      {
+        "title": "創造性対決",
+        "description": "パーマー vs ブルーノ",
+        "homePlayer": "パーマー",
+        "awayPlayer": "ブルーノ"
+      },
+      {
+        "title": "ストライカー対決",
+        "description": "ジャクソン vs ホイルンド",
+        "homePlayer": "ジャクソン",
+        "awayPlayer": "ホイルンド"
+      },
+      {
+        "title": "中盤の支配権",
+        "description": "カイセド vs カゼミーロ",
+        "homePlayer": "カイセド",
+        "awayPlayer": "カゼミーロ"
+      }
+    ]
+  },
+  "tactics": {
+    "homeTeam": {
+      "formation": "4-2-3-1",
+      "style": "ポゼッション",
+      "strengths": [
+        "パーマーの創造性",
+        "カイセドの守備力",
+        "サイドからの攻撃"
+      ],
+      "weaknesses": [
+        "守備の連携",
+        "セットプレー対応"
+      ],
+      "keyTactics": [
+        "パーマーを中心とした攻撃構築",
+        "カイセドによる中盤制圧",
+        "両サイドからのクロス攻撃"
+      ]
+    },
+    "awayTeam": {
+      "formation": "4-2-3-1",
+      "style": "カウンター",
+      "strengths": [
+        "ブルーノの司令塔ぶり",
+        "ラッシュフォードのスピード",
+        "セットプレー"
+      ],
+      "weaknesses": [
+        "守備の安定性",
+        "中盤の人数不足"
+      ],
+      "keyTactics": [
+        "ブルーノからの縦パス",
+        "ラッシュフォードのカウンター",
+        "セットプレーからの得点"
+      ]
+    }
+  },
+  "timeline": [
+    {
+      "time": "キックオフ2時間前",
+      "event": "両チーム選手がスタジアム到着",
+      "description": "マウントが古巣ファンから複雑な反応"
+    },
+    {
+      "time": "キックオフ1時間前",
+      "event": "ウォーミングアップ開始",
+      "description": "小雨の中でのピッチ確認"
+    },
+    {
+      "time": "キックオフ30分前",
+      "event": "スターティングイレブン発表",
+      "description": "マウントの先発が話題に"
+    },
+    {
+      "time": "キックオフ",
+      "event": "試合開始",
+      "description": "スタンフォード・ブリッジが熱気に包まれる"
+    }
+  ]
+}

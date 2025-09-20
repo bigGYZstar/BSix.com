@@ -1,0 +1,373 @@
+/* 試合一覧ページ（ホーム）のスタイル */
+
+/* ページレイアウト */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: var(--space-6) 0;
+}
+
+/* ページヘッダー */
+.page-header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.page-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-main);
+  margin-bottom: var(--space-2);
+}
+
+.page-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ローディング */
+.loading-container {
+  text-align: center;
+  padding: var(--space-12) var(--space-4);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top: 3px solid var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto var(--space-4);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* エラー表示 */
+.error-container {
+  text-align: center;
+  padding: var(--space-12) var(--space-4);
+}
+
+.error-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-4);
+}
+
+.error-container h3 {
+  color: var(--color-text-main);
+  margin-bottom: var(--space-2);
+}
+
+.error-container p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-6);
+}
+
+/* 空の状態 */
+.empty-state {
+  text-align: center;
+  padding: var(--space-12) var(--space-4);
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: var(--space-4);
+  opacity: 0.6;
+}
+
+.empty-state h3 {
+  color: var(--color-text-main);
+  margin-bottom: var(--space-2);
+}
+
+.empty-state p {
+  color: var(--color-text-secondary);
+}
+
+/* 試合一覧 */
+.matches-section {
+  margin-bottom: var(--space-8);
+}
+
+.matches-list {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .matches-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .matches-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 試合カード */
+.match-card {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.match-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+
+.match-card:active {
+  transform: translateY(0);
+}
+
+/* カードヘッダー */
+.match-card-header {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+  color: var(--color-text-inverse);
+  padding: var(--space-4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.match-date {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.match-league {
+  font-size: var(--font-size-xs);
+  opacity: 0.9;
+}
+
+/* カードボディ */
+.match-card-body {
+  padding: var(--space-6);
+}
+
+.teams-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.team-logo {
+  margin-bottom: var(--space-3);
+}
+
+.team-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-bg-tertiary), var(--color-border));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-secondary);
+  border: 2px solid var(--color-border);
+}
+
+.team-info {
+  text-align: center;
+  min-width: 0;
+}
+
+.team-name {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-main);
+  margin: 0 0 var(--space-1);
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.team-venue {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.vs-divider {
+  margin: 0 var(--space-4);
+  flex-shrink: 0;
+}
+
+.vs-divider span {
+  display: inline-block;
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+}
+
+/* 試合詳細 */
+.match-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-bg-tertiary);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+}
+
+.venue-info,
+.round-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.venue-icon {
+  font-size: var(--font-size-base);
+}
+
+.venue-name,
+.round-text {
+  font-weight: var(--font-weight-medium);
+}
+
+/* カードフッター */
+.match-card-footer {
+  padding: var(--space-4) var(--space-6) var(--space-6);
+}
+
+.match-preview-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+}
+
+.match-preview-btn:hover {
+  transform: translateX(2px);
+}
+
+.btn-icon {
+  transition: transform var(--transition-fast);
+}
+
+.match-preview-btn:hover .btn-icon {
+  transform: translateX(4px);
+}
+
+/* フッター */
+.footer {
+  background-color: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-6) 0;
+  margin-top: auto;
+}
+
+.footer p {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+/* スマホ対応 */
+@media (max-width: 640px) {
+  .page-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .page-subtitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .match-card-body {
+    padding: var(--space-4);
+  }
+  
+  .teams-container {
+    margin-bottom: var(--space-4);
+  }
+  
+  .team-badge {
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-size-base);
+  }
+  
+  .team-name {
+    font-size: var(--font-size-sm);
+  }
+  
+  .vs-divider {
+    margin: 0 var(--space-2);
+  }
+  
+  .match-details {
+    padding: var(--space-3);
+    margin-bottom: var(--space-3);
+  }
+  
+  .match-card-footer {
+    padding: var(--space-3) var(--space-4) var(--space-4);
+  }
+}
+
+/* 極小画面対応 */
+@media (max-width: 360px) {
+  .teams-container {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  
+  .vs-divider {
+    margin: 0;
+    order: 1;
+  }
+  
+  .home-team {
+    order: 0;
+  }
+  
+  .away-team {
+    order: 2;
+  }
+  
+  .vs-divider span {
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-xs);
+  }
+}

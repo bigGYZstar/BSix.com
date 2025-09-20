@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "player.schema.json",
+  "title": "Player",
+  "description": "選手データのスキーマ定義",
+  "type": "object",
+  "required": ["jp", "intl"],
+  "properties": {
+    "playerId": {
+      "type": "string",
+      "description": "選手ID（teamId-slug-number形式）",
+      "pattern": "^[a-z]{3}-[a-z0-9-]+-[0-9]+$"
+    },
+    "jp": {
+      "type": "string",
+      "description": "日本語表記（「姓 名」または「名・姓」）",
+      "minLength": 1
+    },
+    "intl": {
+      "type": "string",
+      "description": "英語名（国際表記）",
+      "minLength": 1
+    },
+    "pos": {
+      "type": "string",
+      "description": "ポジション",
+      "enum": ["GK", "CB", "LB", "RB", "LWB", "RWB", "DM", "CM", "AM", "LM", "RM", "LW", "RW", "CF", "ST"]
+    },
+    "num": {
+      "type": ["number", "string"],
+      "description": "背番号"
+    },
+    "stats": {
+      "type": "object",
+      "description": "今季統計",
+      "properties": {
+        "apps": {
+          "type": "number",
+          "minimum": 0,
+          "description": "出場数"
+        },
+        "goals": {
+          "type": "number",
+          "minimum": 0,
+          "description": "ゴール数"
+        },
+        "assists": {
+          "type": "number",
+          "minimum": 0,
+          "description": "アシスト数"
+        },
+        "cleanSheets": {
+          "type": "number",
+          "minimum": 0,
+          "description": "クリーンシート数（GK用）"
+        },
+        "saves": {
+          "type": "number",
+          "minimum": 0,
+          "description": "セーブ数（GK用）"
+        }
+      }
+    },
+    "avatar": {
+      "type": "object",
+      "description": "アバター設定（似顔絵用）",
+      "properties": {
+        "skin": {
+          "type": "string",
+          "description": "肌の色",
+          "enum": ["light", "medium", "dark", "tan"]
+        },
+        "hair": {
+          "type": "string",
+          "description": "髪の色",
+          "enum": ["black", "brown", "blonde", "red", "gray", "bald"]
+        },
+        "style": {
+          "type": "string",
+          "description": "髪型",
+          "enum": ["short", "buzz", "curly", "long", "bald"]
+        }
+      }
+    },
+    "photoUrl": {
+      "type": "string",
+      "description": "実際の顔写真URL（将来の実装用）",
+      "format": "uri"
+    }
+  }
+}

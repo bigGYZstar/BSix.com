@@ -39,6 +39,48 @@ export interface Team {
   keychips?: string[]
 }
 
+// 正規化されたチーム情報
+export interface TeamInfo {
+  id: string
+  name: string
+  nameEn: string
+  key: string
+  city: string
+  stadium: string
+  founded: number
+  colors: {
+    primary: string
+    secondary: string
+  }
+  logo: string
+  category: 'big6' | 'other'
+}
+
+// 試合メタデータ
+export interface MatchInfo {
+  id: string
+  date: string
+  homeTeam: string
+  awayTeam: string
+  league: string
+  round: string
+  venue: string
+  status: 'scheduled' | 'live' | 'finished'
+  isBigSix: boolean
+  dataFile: string
+}
+
+// 試合一覧データ
+export interface MatchesData {
+  season: string
+  matches: MatchInfo[]
+}
+
+// チーム一覧データ
+export interface TeamsData {
+  teams: Record<string, TeamInfo>
+}
+
 export interface TimelineEvent {
   time: string
   phase: '開始' | '前半' | '後半' | '延長前半' | '延長後半' | 'PK戦' | '終了'
@@ -87,6 +129,11 @@ export interface AppState {
   modalPlayer: Player | null
   loading: boolean
   error: string | null
+  // 新しい状態
+  matches: MatchInfo[]
+  teams: Record<string, TeamInfo>
+  currentView: 'home' | 'match'
+  selectedMatch: string | null
 }
 
 // ピッチ座標
@@ -127,7 +174,7 @@ export interface Modal {
 }
 
 // ルート定義
-export type Route = 'overview' | 'tactics' | 'lineup' | 'timeline'
+export type Route = 'home' | 'overview' | 'tactics' | 'lineup' | 'timeline'
 
 // テーマ設定
 export type Theme = 'light' | 'dark' | 'auto'

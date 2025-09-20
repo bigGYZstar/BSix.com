@@ -34,8 +34,8 @@
     />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon.svg" />
 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -176,6 +176,8 @@
         }
       }
     </style>
+    <script type="module" crossorigin src="../assets/index-Cnj_b5vU.js"></script>
+    <link rel="stylesheet" crossorigin href="../assets/index-C8-6cAA3.css">
   </head>
   <body>
     <!-- 初期ローディング表示 -->
@@ -206,28 +208,7 @@
       </div>
     </noscript>
 
-    <!-- デモページへの直接リンク -->
-    <div id="demo-link" style="position: fixed; top: 10px; right: 10px; z-index: 10000; background: #3b82f6; color: white; padding: 8px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2);" onclick="showDemo()">
-      📋 デモページ
-    </div>
-    
     <!-- アプリケーション開始 -->
-    <script type="module" src="/src/app/main.ts"></script>
-    
-    <script>
-    function showDemo() {
-      // デモページを表示
-      fetch('/src/pages/demo.html')
-        .then(response => response.text())
-        .then(html => {
-          document.body.innerHTML = html;
-        })
-        .catch(error => {
-          console.error('Error loading demo page:', error);
-          alert('デモページの読み込みに失敗しました');
-        });
-    }
-    </script>
 
     <!-- 読み込み完了時にローディングスピナーを隠す -->
     <script>

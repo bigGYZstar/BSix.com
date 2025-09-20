@@ -2,7 +2,11 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
 export default defineConfig({
+<<<<<<< HEAD
   base: '/BSix.com/',
+=======
+  base: './',
+>>>>>>> branch-2
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),

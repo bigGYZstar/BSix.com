@@ -1,0 +1,77 @@
+{
+  "season": "2024-25",
+  "matches": [
+    {
+      "id": "2025-08-24-ars-lee",
+      "date": "2025-08-24T22:00:00+09:00",
+      "homeTeam": "ars",
+      "awayTeam": "lee",
+      "league": "プレミアリーグ",
+      "round": "第2節",
+      "venue": "エミレーツ・スタジアム",
+      "status": "scheduled",
+      "isBigSix": true,
+      "dataFile": "fixtures/2024-25/2025-08-24-ars-lee.json"
+    },
+    {
+      "id": "2025-09-28-ars-tot",
+      "date": "2025-09-28T16:30:00+09:00",
+      "homeTeam": "ars",
+      "awayTeam": "tot",
+      "league": "プレミアリーグ",
+      "round": "第7節",
+      "venue": "エミレーツ・スタジアム",
+      "status": "scheduled",
+      "isBigSix": true,
+      "dataFile": "fixtures/2024-25/2025-09-28-ars-tot.json"
+    },
+    {
+      "id": "2025-10-05-mci-liv",
+      "date": "2025-10-05T18:30:00+09:00",
+      "homeTeam": "mci",
+      "awayTeam": "liv",
+      "league": "プレミアリーグ",
+      "round": "第8節",
+      "venue": "エティハド・スタジアム",
+      "status": "scheduled",
+      "isBigSix": true,
+      "dataFile": "fixtures/2024-25/2025-10-05-mci-liv.json"
+    },
+    {
+      "id": "2025-10-19-che-mun",
+      "date": "2025-10-19T22:00:00+09:00",
+      "homeTeam": "che",
+      "awayTeam": "mun",
+      "league": "プレミアリーグ",
+      "round": "第9節",
+      "venue": "スタンフォード・ブリッジ",
+      "status": "scheduled",
+      "isBigSix": true,
+      "dataFile": "fixtures/2024-25/2025-10-19-che-mun.json"
+    },
+    {
+      "id": "2025-11-02-tot-che",
+      "date": "2025-11-02T17:00:00+09:00",
+      "homeTeam": "tot",
+      "awayTeam": "che",
+      "league": "プレミアリーグ",
+      "round": "第11節",
+      "venue": "トッテナム・ホットスパー・スタジアム",
+      "status": "scheduled",
+      "isBigSix": true,
+      "dataFile": "fixtures/2024-25/2025-11-02-tot-che.json"
+    },
+    {
+      "id": "2025-11-16-liv-ars",
+      "date": "2025-11-16T19:30:00+09:00",
+      "homeTeam": "liv",
+      "awayTeam": "ars",
+      "league": "プレミアリーグ",
+      "round": "第12節",
+      "venue": "アンフィールド",
+      "status": "scheduled",
+      "isBigSix": true,
+      "dataFile": "fixtures/2024-25/2025-11-16-liv-ars.json"
+    }
+  ]
+}
