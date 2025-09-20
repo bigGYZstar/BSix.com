@@ -5,89 +5,380 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BSix.com - プレミアリーグ ビッグ6 試合プレビュー</title>
     <meta name="description" content="プレミアリーグBig 6チームの試合を詳細分析。専門家予想、戦術解説、選手情報まで完全網羅。">
-    <meta name="keywords" content="プレミアリーグ, Big 6, アーセナル, マンチェスター・シティ, リバプール, チェルシー, マンチェスター・ユナイテッド, トッテナム, 試合プレビュー">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="BSix.com - プレミアリーグ ビッグ6 試合プレビュー">
-    <meta property="og:description" content="プレミアリーグBig 6チームの試合を詳細分析。専門家予想、戦術解説、選手情報まで完全網羅。">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://biggyzstar.github.io/BSix.com/">
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
     
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="/data/main-data.json" as="fetch" crossorigin>
-    <link rel="preload" href="/assets/styles/main.css" as="style">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="/assets/styles/main.css">
-    
     <style>
-        /* Critical CSS for above-the-fold content */
-        .loading-screen {
-            position: fixed;
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease-in-out;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-        
-        .loading-content {
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .nav-desktop {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.5rem 0;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--white);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+        }
+
+        .nav-icon {
+            font-size: 1.125rem;
+        }
+
+        .main-content {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            width: 100%;
+        }
+
+        .hero {
             text-align: center;
-            color: white;
+            margin-bottom: 4rem;
+            position: relative;
+            padding: 4rem 0;
         }
-        
-        .loading-logo {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: bounce 2s infinite;
-        }
-        
-        .loading-text {
-            font-size: 1.25rem;
-            font-weight: 600;
+
+        .hero-title {
+            color: var(--white);
             margin-bottom: 1.5rem;
         }
-        
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid white;
+
+        .hero-title-main {
+            display: block;
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-title-sub {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .hero-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-stat-number {
+            display: block;
+            font-size: 1.875rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-stat-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .quick-link-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .quick-link-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .quick-link-icon {
+            font-size: 1.875rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-gradient);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            flex-shrink: 0;
+        }
+
+        .quick-link-content {
+            flex: 1;
+        }
+
+        .quick-link-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-link-description {
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+
+        .nav-mobile {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+        }
+
+        .nav-mobile-content {
+            display: flex;
+            justify-content: space-around;
+            max-width: 500px;
             margin: 0 auto;
         }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+
+        .nav-mobile-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.5rem;
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: color 0.3s ease;
         }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        .nav-mobile-link.active,
+        .nav-mobile-link:hover {
+            color: #667eea;
+        }
+
+        .nav-mobile-icon {
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .nav-mobile-text {
+            font-weight: 500;
+        }
+
+        /* Dark theme */
+        .dark-theme {
+            --primary-gradient: linear-gradient(135deg, #4c51bf 0%, #553c9a 100%);
+            --gray-50: #1f2937;
+            --gray-100: #374151;
+            --gray-200: #4b5563;
+            --gray-300: #6b7280;
+            --gray-400: #9ca3af;
+            --gray-500: #d1d5db;
+            --gray-600: #e5e7eb;
+            --gray-700: #f3f4f6;
+            --gray-800: #f9fafb;
+            --gray-900: #ffffff;
+            --white: #111827;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-desktop {
+                display: none;
+            }
+            
+            .nav-mobile {
+                display: block;
+            }
+            
+            .main-content {
+                padding-bottom: 100px;
+            }
+            
+            .quick-links {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-stats {
+                gap: 1.5rem;
+            }
+            
+            .header-content {
+                padding: 1rem;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+            
+            .hero {
+                padding: 2rem 0;
+            }
+            
+            .hero-title-main {
+                font-size: 1.875rem;
+            }
+            
+            .hero-title-sub {
+                font-size: 1.25rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-logo">⚽</div>
-            <div class="loading-text">Premier League Preview</div>
-            <div class="loading-spinner"></div>
-        </div>
-    </div>
-
     <!-- Main App Container -->
     <div id="app" class="app-container">
         <!-- Header -->
@@ -103,9 +394,6 @@
                     <button class="theme-toggle" id="theme-toggle" aria-label="テーマ切り替え">
                         <span class="theme-icon">🌙</span>
                     </button>
-                    <button class="menu-toggle" id="menu-toggle" aria-label="メニュー">
-                        <span class="menu-icon">☰</span>
-                    </button>
                 </div>
             </div>
         </header>
@@ -113,19 +401,19 @@
         <!-- Navigation (Desktop) -->
         <nav class="nav-desktop">
             <div class="nav-content">
-                <a href="#" class="nav-link active" data-page="home">
+                <a href="index.html" class="nav-link active">
                     <span class="nav-icon">🏠</span>
                     <span class="nav-text">ホーム</span>
                 </a>
-                <a href="#" class="nav-link" data-page="fixtures">
+                <a href="fixtures.html" class="nav-link">
                     <span class="nav-icon">📅</span>
                     <span class="nav-text">試合一覧</span>
                 </a>
-                <a href="#" class="nav-link" data-page="teams">
+                <a href="teams.html" class="nav-link">
                     <span class="nav-icon">👥</span>
                     <span class="nav-text">チーム</span>
                 </a>
-                <a href="#" class="nav-link" data-page="stats">
+                <a href="stats.html" class="nav-link">
                     <span class="nav-icon">📊</span>
                     <span class="nav-text">統計</span>
                 </a>
@@ -146,11 +434,11 @@
                     </p>
                     <div class="hero-stats">
                         <div class="hero-stat">
-                            <span class="hero-stat-number" id="total-matches">4</span>
+                            <span class="hero-stat-number">4</span>
                             <span class="hero-stat-label">注目試合</span>
                         </div>
                         <div class="hero-stat">
-                            <span class="hero-stat-number" id="big6-clashes">2</span>
+                            <span class="hero-stat-number">2</span>
                             <span class="hero-stat-label">ビッグ6対決</span>
                         </div>
                         <div class="hero-stat">
@@ -159,215 +447,93 @@
                         </div>
                     </div>
                 </div>
-                <div class="hero-background">
-                    <div class="hero-gradient"></div>
-                </div>
             </section>
 
-            <!-- Featured Matches Section -->
-            <section class="featured-matches">
-                <div class="section-header">
-                    <h2 class="section-title">今週末の注目試合</h2>
-                    <p class="section-subtitle">ビッグ6チームの全試合をカバー</p>
-                </div>
-                
-                <div class="matches-container" id="matches-container">
-                    <!-- Match cards will be dynamically inserted here -->
-                    <div class="matches-loading">
-                        <div class="loading-spinner"></div>
-                        <p>試合データを読み込み中...</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Quick Stats Section -->
-            <section class="quick-stats">
-                <div class="section-header">
-                    <h2 class="section-title">今節のハイライト</h2>
-                </div>
-                
-                <div class="stats-grid" id="stats-grid">
-                    <!-- Stats will be dynamically inserted here -->
-                </div>
-            </section>
-
-            <!-- League Table Section -->
-            <section class="league-table-section">
-                <div class="section-header">
-                    <h2 class="section-title">ビッグ6順位表</h2>
-                    <p class="section-subtitle">現在の順位と最新成績</p>
-                </div>
-                
-                <div class="table-container" id="table-container">
-                    <!-- Table will be dynamically inserted here -->
+            <!-- Quick Links Section -->
+            <section class="quick-links-section">
+                <div class="quick-links">
+                    <a href="fixtures.html" class="quick-link-card">
+                        <div class="quick-link-icon">📅</div>
+                        <div class="quick-link-content">
+                            <h3 class="quick-link-title">今週末の試合</h3>
+                            <p class="quick-link-description">プレミアリーグ第5節の全試合スケジュールと詳細プレビュー</p>
+                        </div>
+                    </a>
+                    
+                    <a href="teams.html" class="quick-link-card">
+                        <div class="quick-link-icon">👥</div>
+                        <div class="quick-link-content">
+                            <h3 class="quick-link-title">ビッグ6チーム</h3>
+                            <p class="quick-link-description">アーセナル、チェルシー、リバプール、マンチェスター・シティ、マンチェスター・ユナイテッド、トッテナム</p>
+                        </div>
+                    </a>
+                    
+                    <a href="stats.html" class="quick-link-card">
+                        <div class="quick-link-icon">📊</div>
+                        <div class="quick-link-content">
+                            <h3 class="quick-link-title">統計・順位表</h3>
+                            <p class="quick-link-description">現在の順位表、得点ランキング、チーム成績分析</p>
+                        </div>
+                    </a>
+                    
+                    <a href="match-preview.html?match=ars-mci" class="quick-link-card">
+                        <div class="quick-link-icon">🏆</div>
+                        <div class="quick-link-content">
+                            <h3 class="quick-link-title">注目の一戦</h3>
+                            <p class="quick-link-description">アーセナル vs マンチェスター・シティ - タイトル争いの頂上決戦</p>
+                        </div>
+                    </a>
                 </div>
             </section>
         </main>
 
         <!-- Bottom Navigation (Mobile) -->
         <nav class="nav-mobile">
-            <a href="#" class="nav-mobile-link active" data-page="home">
-                <span class="nav-mobile-icon">🏠</span>
-                <span class="nav-mobile-text">ホーム</span>
-            </a>
-            <a href="#" class="nav-mobile-link" data-page="fixtures">
-                <span class="nav-mobile-icon">📅</span>
-                <span class="nav-mobile-text">試合</span>
-            </a>
-            <a href="#" class="nav-mobile-link" data-page="favorites">
-                <span class="nav-mobile-icon">⭐</span>
-                <span class="nav-mobile-text">お気に入り</span>
-            </a>
-            <a href="#" class="nav-mobile-link" data-page="settings">
-                <span class="nav-mobile-icon">⚙️</span>
-                <span class="nav-mobile-text">設定</span>
-            </a>
+            <div class="nav-mobile-content">
+                <a href="index.html" class="nav-mobile-link active">
+                    <span class="nav-mobile-icon">🏠</span>
+                    <span class="nav-mobile-text">ホーム</span>
+                </a>
+                <a href="fixtures.html" class="nav-mobile-link">
+                    <span class="nav-mobile-icon">📅</span>
+                    <span class="nav-mobile-text">試合</span>
+                </a>
+                <a href="teams.html" class="nav-mobile-link">
+                    <span class="nav-mobile-icon">👥</span>
+                    <span class="nav-mobile-text">チーム</span>
+                </a>
+                <a href="stats.html" class="nav-mobile-link">
+                    <span class="nav-mobile-icon">📊</span>
+                    <span class="nav-mobile-text">統計</span>
+                </a>
+            </div>
         </nav>
     </div>
 
-    <!-- Match Preview Modal -->
-    <div id="match-preview-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">試合プレビュー</h2>
-                <button class="modal-close" id="modal-close">&times;</button>
-            </div>
-            <div class="modal-body" id="modal-body">
-                <!-- Preview content will be loaded here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Match Card Template -->
-    <template id="match-card-template">
-        <div class="match-card" data-match-id="">
-            <div class="match-card-header">
-                <div class="match-date">
-                    <span class="match-day"></span>
-                    <span class="match-time"></span>
-                </div>
-                <div class="match-competition">
-                    <span class="competition-name">プレミアリーグ</span>
-                    <span class="matchweek"></span>
-                </div>
-            </div>
-            
-            <div class="match-status"></div>
-            
-            <div class="match-teams">
-                <div class="team home-team">
-                    <div class="team-logo">
-                        <span class="team-logo-text"></span>
-                    </div>
-                    <div class="team-info">
-                        <h3 class="team-name"></h3>
-                        <span class="team-label">ホーム</span>
-                    </div>
-                </div>
-                
-                <div class="match-vs">
-                    <span class="vs-text">VS</span>
-                    <div class="match-significance"></div>
-                </div>
-                
-                <div class="team away-team">
-                    <div class="team-logo">
-                        <span class="team-logo-text"></span>
-                    </div>
-                    <div class="team-info">
-                        <h3 class="team-name"></h3>
-                        <span class="team-label">アウェイ</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="match-details">
-                <div class="match-venue">
-                    <span class="venue-icon">🏟️</span>
-                    <span class="venue-name"></span>
-                </div>
-                <div class="match-tv">
-                    <span class="tv-icon">📺</span>
-                    <span class="tv-coverage"></span>
-                </div>
-            </div>
-            
-            <div class="match-actions">
-                <button class="btn btn-primary match-preview-btn">
-                    <span class="btn-icon">📊</span>
-                    <span class="btn-text">詳細プレビュー</span>
-                </button>
-                <button class="btn btn-secondary match-favorite-btn">
-                    <span class="btn-icon">⭐</span>
-                </button>
-            </div>
-        </div>
-    </template>
-
-    <!-- Table Row Template -->
-    <template id="table-row-template">
-        <div class="table-row">
-            <div class="table-cell position"></div>
-            <div class="table-cell team">
-                <div class="team-logo-small">
-                    <span class="team-logo-text"></span>
-                </div>
-                <span class="team-name"></span>
-            </div>
-            <div class="table-cell points"></div>
-            <div class="table-cell played"></div>
-            <div class="table-cell form">
-                <div class="form-indicators"></div>
-            </div>
-        </div>
-    </template>
-
-    <!-- Scripts -->
     <script>
-        // Inline critical JavaScript for performance
-        (function() {
-            // Device detection
-            const isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            document.body.classList.toggle('mobile-layout', isMobile);
-            
-            // Theme detection
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (prefersDark) {
-                document.body.classList.add('dark-theme');
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-theme');
+                    const themeIcon = themeToggle.querySelector('.theme-icon');
+                    if (themeIcon) {
+                        themeIcon.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+                    }
+                });
             }
             
-            // Performance monitoring
-            window.addEventListener('load', function() {
-                if ('performance' in window) {
-                    const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-                    console.log('Page load time:', loadTime + 'ms');
-                }
-            });
-        })();
-    </script>
-    
-    <!-- Main Application Script -->
-    <script src="/assets/scripts/main.js"></script>
-    
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(function(registration) {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(function(err) {
-                        console.log('ServiceWorker registration failed');
-                    });
-            });
-        }
-    </script>
-    
-    <!-- Analytics (placeholder) -->
-    <script>
-        // Google Analytics or other analytics code would go here
-        console.log('Analytics initialized');
+            // Device detection
+            const isMobile = window.innerWidth <= 768;
+            document.body.classList.toggle('mobile-layout', isMobile);
+        });
+
+        // Window resize handler
+        window.addEventListener('resize', function() {
+            const isMobile = window.innerWidth <= 768;
+            document.body.classList.toggle('mobile-layout', isMobile);
+        });
     </script>
 </body>
 </html>

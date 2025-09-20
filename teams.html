@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ビッグ6チーム - BSix.com</title>
+    <meta name="description" content="プレミアリーグビッグ6チームの詳細情報、現在の順位、選手情報">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .nav-desktop {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.5rem 0;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--white);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+        }
+
+        .nav-icon {
+            font-size: 1.125rem;
+        }
+
+        .main-content {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            width: 100%;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            color: var(--white);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.125rem;
+        }
+
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .team-card.arsenal::before { background: linear-gradient(135deg, #EF0107, #9C824A); }
+        .team-card.manchester-city::before { background: linear-gradient(135deg, #6CABDD, #1C2C5B); }
+        .team-card.liverpool::before { background: linear-gradient(135deg, #C8102E, #F6EB61); }
+        .team-card.chelsea::before { background: linear-gradient(135deg, #034694, #6CABDD); }
+        .team-card.manchester-united::before { background: linear-gradient(135deg, #DA020E, #FFF200); }
+        .team-card.tottenham::before { background: linear-gradient(135deg, #132257, #FFFFFF); }
+
+        .team-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .team-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--white);
+            font-size: 1.5rem;
+            box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        .team-logo.arsenal { background: linear-gradient(135deg, #EF0107, #9C824A); }
+        .team-logo.manchester-city { background: linear-gradient(135deg, #6CABDD, #1C2C5B); }
+        .team-logo.liverpool { background: linear-gradient(135deg, #C8102E, #F6EB61); }
+        .team-logo.chelsea { background: linear-gradient(135deg, #034694, #6CABDD); }
+        .team-logo.manchester-united { background: linear-gradient(135deg, #DA020E, #FFF200); }
+        .team-logo.tottenham { background: linear-gradient(135deg, #132257, #FFFFFF); color: var(--gray-800) !important; }
+
+        .team-info {
+            flex: 1;
+        }
+
+        .team-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-nickname {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-stadium {
+            color: var(--gray-500);
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .team-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--gray-50);
+            border-radius: 1rem;
+        }
+
+        .team-stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .team-form {
+            margin-bottom: 2rem;
+        }
+
+        .form-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 0.75rem;
+        }
+
+        .form-matches {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .form-match {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .form-match.win { background: #10b981; }
+        .form-match.draw { background: #f59e0b; }
+        .form-match.loss { background: #ef4444; }
+
+        .team-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background: var(--gray-200);
+            color: var(--gray-700);
+        }
+
+        .nav-mobile {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+        }
+
+        .nav-mobile-content {
+            display: flex;
+            justify-content: space-around;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .nav-mobile-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.5rem;
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-mobile-link.active,
+        .nav-mobile-link:hover {
+            color: #667eea;
+        }
+
+        .nav-mobile-icon {
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .nav-mobile-text {
+            font-weight: 500;
+        }
+
+        /* Dark theme */
+        .dark-theme {
+            --primary-gradient: linear-gradient(135deg, #4c51bf 0%, #553c9a 100%);
+            --gray-50: #1f2937;
+            --gray-100: #374151;
+            --gray-200: #4b5563;
+            --gray-300: #6b7280;
+            --gray-400: #9ca3af;
+            --gray-500: #d1d5db;
+            --gray-600: #e5e7eb;
+            --gray-700: #f3f4f6;
+            --gray-800: #f9fafb;
+            --gray-900: #ffffff;
+            --white: #111827;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-desktop {
+                display: none;
+            }
+            
+            .nav-mobile {
+                display: block;
+            }
+            
+            .main-content {
+                padding-bottom: 100px;
+            }
+            
+            .teams-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-actions {
+                flex-direction: column;
+            }
+            
+            .header-content {
+                padding: 1rem;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main App Container -->
+    <div id="app" class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">⚽</span>
+                        <span class="logo-text">BSix Preview</span>
+                    </a>
+                </div>
+                <div class="header-right">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="テーマ切り替え">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation (Desktop) -->
+        <nav class="nav-desktop">
+            <div class="nav-content">
+                <a href="index.html" class="nav-link">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">ホーム</span>
+                </a>
+                <a href="fixtures.html" class="nav-link">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">試合一覧</span>
+                </a>
+                <a href="teams.html" class="nav-link active">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">チーム</span>
+                </a>
+                <a href="stats.html" class="nav-link">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">統計</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <section class="page-header">
+                <h1 class="page-title">プレミアリーグ ビッグ6</h1>
+                <p class="page-subtitle">イングランドサッカー界の名門6クラブ</p>
+            </section>
+
+            <!-- Teams Grid -->
+            <section class="teams-grid">
+                <!-- Arsenal -->
+                <div class="team-card arsenal">
+                    <div class="team-header">
+                        <div class="team-logo arsenal">
+                            <span class="team-logo-text">ARS</span>
+                        </div>
+                        <div class="team-info">
+                            <h2 class="team-name">アーセナル</h2>
+                            <p class="team-nickname">The Gunners</p>
+                            <p class="team-stadium">🏟️ Emirates Stadium</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-stats">
+                        <div class="team-stat">
+                            <span class="stat-value">2</span>
+                            <span class="stat-label">順位</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">10</span>
+                            <span class="stat-label">勝点</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">8</span>
+                            <span class="stat-label">得点</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">2</span>
+                            <span class="stat-label">失点</span>
+                        </div>
+                    </div>
+                    
+                    <div class="team-form">
+                        <h3 class="form-title">直近5試合</h3>
+                        <div class="form-matches">
+                            <div class="form-match win">W</div>
+                            <div class="form-match win">W</div>
+                            <div class="form-match draw">D</div>
+                            <div class="form-match win">W</div>
+                            <div class="form-match draw">D</div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-actions">
+                        <a href="team-detail.html?team=arsenal" class="btn btn-primary">
+                            <span>詳細情報</span>
+                        </a>
+                        <button class="btn btn-secondary team-follow-btn">
+                            <span>フォロー</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Manchester City -->
+                <div class="team-card manchester-city">
+                    <div class="team-header">
+                        <div class="team-logo manchester-city">
+                            <span class="team-logo-text">MCI</span>
+                        </div>
+                        <div class="team-info">
+                            <h2 class="team-name">マンチェスター・シティ</h2>
+                            <p class="team-nickname">The Citizens</p>
+                            <p class="team-stadium">🏟️ Etihad Stadium</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-stats">
+                        <div class="team-stat">
+                            <span class="stat-value">1</span>
+                            <span class="stat-label">順位</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">12</span>
+                            <span class="stat-label">勝点</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">11</span>
+                            <span class="stat-label">得点</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">3</span>
+                            <span class="stat-label">失点</span>
+                        </div>
+                    </div>
+                    
+                    <div class="team-form">
+                        <h3 class="form-title">直近5試合</h3>
+                        <div class="form-matches">
+                            <div class="form-match win">W</div>
+                            <div class="form-match win">W</div>
+                            <div class="form-match win">W</div>
+                            <div class="form-match win">W</div>
+                            <div class="form-match draw">D</div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-actions">
+                        <a href="team-detail.html?team=manchester-city" class="btn btn-primary">
+                            <span>詳細情報</span>
+                        </a>
+                        <button class="btn btn-secondary team-follow-btn">
+                            <span>フォロー</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Liverpool -->
+                <div class="team-card liverpool">
+                    <div class="team-header">
+                        <div class="team-logo liverpool">
+                            <span class="team-logo-text">LIV</span>
+                        </div>
+                        <div class="team-info">
+                            <h2 class="team-name">リバプール</h2>
+                            <p class="team-nickname">The Reds</p>
+                            <p class="team-stadium">🏟️ Anfield</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-stats">
+                        <div class="team-stat">
+                            <span class="stat-value">3</span>
+                            <span class="stat-label">順位</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">9</span>
+                            <span class="stat-label">勝点</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">7</span>
+                            <span class="stat-label">得点</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">1</span>
+                            <span class="stat-label">失点</span>
+                        </div>
+                    </div>
+                    
+                    <div class="team-form">
+                        <h3 class="form-title">直近5試合</h3>
+                        <div class="form-matches">
+                            <div class="form-match win">W</div>
+                            <div class="form-match win">W</div>
+                            <div class="form-match win">W</div>
+                            <div class="form-match draw">D</div>
+                            <div class="form-match loss">L</div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-actions">
+                        <a href="team-detail.html?team=liverpool" class="btn btn-primary">
+                            <span>詳細情報</span>
+                        </a>
+                        <button class="btn btn-secondary team-follow-btn">
+                            <span>フォロー</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chelsea -->
+                <div class="team-card chelsea">
+                    <div class="team-header">
+                        <div class="team-logo chelsea">
+                            <span class="team-logo-text">CHE</span>
+                        </div>
+                        <div class="team-info">
+                            <h2 class="team-name">チェルシー</h2>
+                            <p class="team-nickname">The Blues</p>
+                            <p class="team-stadium">🏟️ Stamford Bridge</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-stats">
+                        <div class="team-stat">
+                            <span class="stat-value">6</span>
+                            <span class="stat-label">順位</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">7</span>
+                            <span class="stat-label">勝点</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">6</span>
+                            <span class="stat-label">得点</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">5</span>
+                            <span class="stat-label">失点</span>
+                        </div>
+                    </div>
+                    
+                    <div class="team-form">
+                        <h3 class="form-title">直近5試合</h3>
+                        <div class="form-matches">
+                            <div class="form-match win">W</div>
+                            <div class="form-match draw">D</div>
+                            <div class="form-match loss">L</div>
+                            <div class="form-match win">W</div>
+                            <div class="form-match draw">D</div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-actions">
+                        <a href="team-detail.html?team=chelsea" class="btn btn-primary">
+                            <span>詳細情報</span>
+                        </a>
+                        <button class="btn btn-secondary team-follow-btn">
+                            <span>フォロー</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Manchester United -->
+                <div class="team-card manchester-united">
+                    <div class="team-header">
+                        <div class="team-logo manchester-united">
+                            <span class="team-logo-text">MUN</span>
+                        </div>
+                        <div class="team-info">
+                            <h2 class="team-name">マンチェスター・ユナイテッド</h2>
+                            <p class="team-nickname">The Red Devils</p>
+                            <p class="team-stadium">🏟️ Old Trafford</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-stats">
+                        <div class="team-stat">
+                            <span class="stat-value">11</span>
+                            <span class="stat-label">順位</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">6</span>
+                            <span class="stat-label">勝点</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">5</span>
+                            <span class="stat-label">得点</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">6</span>
+                            <span class="stat-label">失点</span>
+                        </div>
+                    </div>
+                    
+                    <div class="team-form">
+                        <h3 class="form-title">直近5試合</h3>
+                        <div class="form-matches">
+                            <div class="form-match win">W</div>
+                            <div class="form-match loss">L</div>
+                            <div class="form-match draw">D</div>
+                            <div class="form-match loss">L</div>
+                            <div class="form-match win">W</div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-actions">
+                        <a href="team-detail.html?team=manchester-united" class="btn btn-primary">
+                            <span>詳細情報</span>
+                        </a>
+                        <button class="btn btn-secondary team-follow-btn">
+                            <span>フォロー</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tottenham -->
+                <div class="team-card tottenham">
+                    <div class="team-header">
+                        <div class="team-logo tottenham">
+                            <span class="team-logo-text">TOT</span>
+                        </div>
+                        <div class="team-info">
+                            <h2 class="team-name">トッテナム・ホットスパー</h2>
+                            <p class="team-nickname">Spurs</p>
+                            <p class="team-stadium">🏟️ Tottenham Hotspur Stadium</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-stats">
+                        <div class="team-stat">
+                            <span class="stat-value">8</span>
+                            <span class="stat-label">順位</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">7</span>
+                            <span class="stat-label">勝点</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">8</span>
+                            <span class="stat-label">得点</span>
+                        </div>
+                        <div class="team-stat">
+                            <span class="stat-value">7</span>
+                            <span class="stat-label">失点</span>
+                        </div>
+                    </div>
+                    
+                    <div class="team-form">
+                        <h3 class="form-title">直近5試合</h3>
+                        <div class="form-matches">
+                            <div class="form-match win">W</div>
+                            <div class="form-match draw">D</div>
+                            <div class="form-match win">W</div>
+                            <div class="form-match loss">L</div>
+                            <div class="form-match draw">D</div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-actions">
+                        <a href="team-detail.html?team=tottenham" class="btn btn-primary">
+                            <span>詳細情報</span>
+                        </a>
+                        <button class="btn btn-secondary team-follow-btn">
+                            <span>フォロー</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation (Mobile) -->
+        <nav class="nav-mobile">
+            <div class="nav-mobile-content">
+                <a href="index.html" class="nav-mobile-link">
+                    <span class="nav-mobile-icon">🏠</span>
+                    <span class="nav-mobile-text">ホーム</span>
+                </a>
+                <a href="fixtures.html" class="nav-mobile-link">
+                    <span class="nav-mobile-icon">📅</span>
+                    <span class="nav-mobile-text">試合</span>
+                </a>
+                <a href="teams.html" class="nav-mobile-link active">
+                    <span class="nav-mobile-icon">👥</span>
+                    <span class="nav-mobile-text">チーム</span>
+                </a>
+                <a href="stats.html" class="nav-mobile-link">
+                    <span class="nav-mobile-icon">📊</span>
+                    <span class="nav-mobile-text">統計</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-theme');
+                    const themeIcon = themeToggle.querySelector('.theme-icon');
+                    if (themeIcon) {
+                        themeIcon.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+                    }
+                });
+            }
+            
+            // Follow button functionality
+            const followButtons = document.querySelectorAll('.team-follow-btn');
+            followButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (this.textContent.trim() === 'フォロー') {
+                        this.textContent = 'フォロー中';
+                        this.style.background = 'var(--accent-gradient)';
+                        this.style.color = 'var(--white)';
+                    } else {
+                        this.textContent = 'フォロー';
+                        this.style.background = 'var(--gray-200)';
+                        this.style.color = 'var(--gray-700)';
+                    }
+                    
+                    // Visual feedback
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+            
+            // Device detection
+            const isMobile = window.innerWidth <= 768;
+            document.body.classList.toggle('mobile-layout', isMobile);
+        });
+
+        // Window resize handler
+        window.addEventListener('resize', function() {
+            const isMobile = window.innerWidth <= 768;
+            document.body.classList.toggle('mobile-layout', isMobile);
+        });
+    </script>
+</body>
+</html>
