@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>試合詳細 - BSix.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            padding-bottom: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-right: 20px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .match-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .match-teams {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .team-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .arsenal { background: linear-gradient(135deg, #EF0107, #9C824A); }
+        .manchester-city { background: linear-gradient(135deg, #6CABDD, #1C2C5B); }
+        .liverpool { background: linear-gradient(135deg, #C8102E, #F6EB61); }
+        .chelsea { background: linear-gradient(135deg, #034694, #6CABDD); }
+        .manchester-united { background: linear-gradient(135deg, #DA020E, #FFF200); }
+        .tottenham { background: linear-gradient(135deg, #132257, #FFFFFF); color: #132257 !important; }
+
+        .team-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .team-form {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .vs {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #666;
+            margin: 0 20px;
+        }
+
+        .match-info {
+            text-align: center;
+            color: #666;
+        }
+
+        .match-date {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .match-venue {
+            font-size: 0.9rem;
+        }
+
+        .tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .formation-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .formation {
+            background: #2d5a27;
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            min-height: 500px;
+        }
+
+        .formation h4 {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .pitch {
+            position: relative;
+            height: 450px;
+            background: linear-gradient(to bottom, #2d5a27 0%, #4a7c59 50%, #2d5a27 100%);
+            border: 3px solid white;
+            border-radius: 8px;
+            margin: 0 auto;
+            max-width: 300px;
+        }
+
+        .center-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border: 3px solid white;
+            border-radius: 50%;
+        }
+
+        .penalty-area {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 50px;
+            border: 3px solid white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .penalty-area.top {
+            top: 0;
+        }
+
+        .penalty-area.bottom {
+            bottom: 0;
+        }
+
+        .player {
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            background: #007bff;
+            border: 3px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .player:hover {
+            transform: scale(1.2);
+            background: #0056b3;
+            z-index: 10;
+        }
+
+        .player.away {
+            background: #6f42c1;
+        }
+
+        .player.away:hover {
+            background: #5a2d91;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-card h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .prediction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .prediction-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .prediction-card h4 {
+            margin-bottom: 15px;
+        }
+
+        .timeline {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .timeline-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-around;
+            z-index: 1000;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .bottom-nav-item.active {
+            color: #667eea;
+        }
+
+        .bottom-nav-icon {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+        @media (min-width: 768px) {
+            .formation-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .pitch {
+                max-width: 400px;
+                height: 400px;
+            }
+            
+            .bottom-nav {
+                display: none;
+            }
+            
+            body {
+                padding-bottom: 0;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .match-teams {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .vs {
+                margin: 15px 0;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                min-width: calc(50% - 5px);
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-button" onclick="goBack()">← 戻る</button>
+            <h1>試合詳細プレビュー</h1>
+        </div>
+
+        <div class="match-header">
+            <div class="match-teams">
+                <div class="team">
+                    <div class="team-logo arsenal">ARS</div>
+                    <div class="team-name">アーセナル</div>
+                    <div class="team-form">WWWWW</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team">
+                    <div class="team-logo manchester-city">MCI</div>
+                    <div class="team-name">マンチェスター・シティ</div>
+                    <div class="team-form">WWWWW</div>
+                </div>
+            </div>
+            
+            <div class="match-info">
+                <div class="match-date">2025年9月22日 (日) 16:30 キックオフ</div>
+                <div class="match-venue">🏟️ エミレーツ・スタジアム</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('overview')">概要</div>
+            <div class="tab" onclick="showTab('tactics')">戦術</div>
+            <div class="tab" onclick="showTab('formation')">布陣</div>
+            <div class="tab" onclick="showTab('prediction')">予想</div>
+            <div class="tab" onclick="showTab('timeline')">タイムライン</div>
+        </div>
+
+        <div id="overview" class="tab-content active">
+            <h3>📊 試合概要と統計</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>🏆 リーグ順位</h4>
+                    <p><strong>アーセナル:</strong> 2位 (12ポイント)</p>
+                    <p><strong>マンチェスター・シティ:</strong> 1位 (15ポイント)</p>
+                </div>
+                <div class="stat-card">
+                    <h4>⚽ 得点力</h4>
+                    <p><strong>アーセナル:</strong> 12得点 (2.4/試合)</p>
+                    <p><strong>マンチェスター・シティ:</strong> 15得点 (3.0/試合)</p>
+                </div>
+                <div class="stat-card">
+                    <h4>🛡️ 守備力</h4>
+                    <p><strong>アーセナル:</strong> 3失点 (0.6/試合)</p>
+                    <p><strong>マンチェスター・シティ:</strong> 2失点 (0.4/試合)</p>
+                </div>
+                <div class="stat-card">
+                    <h4>📈 直接対戦成績 (過去5試合)</h4>
+                    <p><strong>アーセナル:</strong> 2勝1分2敗</p>
+                    <p><strong>マンチェスター・シティ:</strong> 2勝1分2敗</p>
+                    <p>最近の対戦は互角の戦い</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tactics" class="tab-content">
+            <h3>⚔️ 戦術分析</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>🔴 アーセナルの戦術</h4>
+                    <p><strong>フォーメーション:</strong> 4-3-3</p>
+                    <p><strong>ボール支配率:</strong> 62%</p>
+                    <p><strong>プレススタイル:</strong> ハイプレス</p>
+                    <p><strong>攻撃の特徴:</strong> サイドからのクロス、ショートパス</p>
+                    <p><strong>監督:</strong> ミケル・アルテタ</p>
+                </div>
+                <div class="stat-card">
+                    <h4>🔵 マンチェスター・シティの戦術</h4>
+                    <p><strong>フォーメーション:</strong> 4-3-3</p>
+                    <p><strong>ボール支配率:</strong> 68%</p>
+                    <p><strong>プレススタイル:</strong> ポジショナルプレー</p>
+                    <p><strong>攻撃の特徴:</strong> 中央突破、ティキタカ</p>
+                    <p><strong>監督:</strong> ペップ・グアルディオラ</p>
+                </div>
+                <div class="stat-card">
+                    <h4>🎯 戦術的見どころ</h4>
+                    <p>• アルテタ vs グアルディオラの師弟対決</p>
+                    <p>• 両チームのハイプレス合戦</p>
+                    <p>• 中盤でのボール争奪戦</p>
+                    <p>• セットプレーでの攻防</p>
+                </div>
+                <div class="stat-card">
+                    <h4>📊 今シーズンの傾向</h4>
+                    <p><strong>アーセナル:</strong> 堅守速攻</p>
+                    <p><strong>シティ:</strong> ポゼッション重視</p>
+                    <p>両チーム共に無敗をキープ中</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="formation" class="tab-content">
+            <h3>⚽ フォーメーション</h3>
+            <div class="formation-container">
+                <div class="formation">
+                    <h4>アーセナル (4-3-3)</h4>
+                    <div class="pitch">
+                        <div class="penalty-area top"></div>
+                        <div class="center-circle"></div>
+                        <div class="penalty-area bottom"></div>
+                        
+                        <!-- アーセナルの選手配置 (縦向きピッチ) -->
+                        <div class="player" style="top: 5%; left: 50%; transform: translateX(-50%);" title="ラヤ (GK) - 年齢: 29歳, 市場価値: €30M">1</div>
+                        
+                        <div class="player" style="top: 20%; left: 20%;" title="ティンバー (RB) - 年齢: 23歳, 市場価値: €40M">12</div>
+                        <div class="player" style="top: 20%; left: 40%;" title="サリバ (CB) - 年齢: 23歳, 市場価値: €80M">2</div>
+                        <div class="player" style="top: 20%; left: 60%;" title="ガブリエル (CB) - 年齢: 26歳, 市場価値: €50M">6</div>
+                        <div class="player" style="top: 20%; left: 80%;" title="ジンチェンコ (LB) - 年齢: 27歳, 市場価値: €25M">35</div>
+                        
+                        <div class="player" style="top: 40%; left: 35%;" title="ライス (CDM) - 年齢: 25歳, 市場価値: €90M">41</div>
+                        <div class="player" style="top: 40%; left: 50%;" title="エデガード (CM) - 年齢: 25歳, 市場価値: €60M">8</div>
+                        <div class="player" style="top: 40%; left: 65%;" title="ハヴァーツ (CM) - 年齢: 25歳, 市場価値: €75M">29</div>
+                        
+                        <div class="player" style="top: 65%; left: 25%;" title="サカ (RW) - 年齢: 23歳, 市場価値: €120M">7</div>
+                        <div class="player" style="top: 65%; left: 50%;" title="ジェズス (CF) - 年齢: 27歳, 市場価値: €45M">9</div>
+                        <div class="player" style="top: 65%; left: 75%;" title="マルティネッリ (LW) - 年齢: 23歳, 市場価値: €70M">11</div>
+                    </div>
+                </div>
+                
+                <div class="formation">
+                    <h4>マンチェスター・シティ (4-3-3)</h4>
+                    <div class="pitch">
+                        <div class="penalty-area top"></div>
+                        <div class="center-circle"></div>
+                        <div class="penalty-area bottom"></div>
+                        
+                        <!-- マンチェスター・シティの選手配置 -->
+                        <div class="player away" style="top: 5%; left: 50%; transform: translateX(-50%);" title="エデルソン (GK) - 年齢: 31歳, 市場価値: €40M">31</div>
+                        
+                        <div class="player away" style="top: 20%; left: 20%;" title="ウォーカー (RB) - 年齢: 34歳, 市場価値: €15M">2</div>
+                        <div class="player away" style="top: 20%; left: 40%;" title="ディアス (CB) - 年齢: 27歳, 市場価値: €75M">3</div>
+                        <div class="player away" style="top: 20%; left: 60%;" title="アカンジ (CB) - 年齢: 29歳, 市場価値: €45M">25</div>
+                        <div class="player away" style="top: 20%; left: 80%;" title="ガルディオル (LB) - 年齢: 22歳, 市場価値: €60M">24</div>
+                        
+                        <div class="player away" style="top: 40%; left: 35%;" title="ロドリ (CDM) - 年齢: 28歳, 市場価値: €120M">16</div>
+                        <div class="player away" style="top: 40%; left: 50%;" title="デ・ブライネ (CM) - 年齢: 33歳, 市場価値: €80M">17</div>
+                        <div class="player away" style="top: 40%; left: 65%;" title="ベルナルド (CM) - 年齢: 30歳, 市場価値: €70M">20</div>
+                        
+                        <div class="player away" style="top: 65%; left: 25%;" title="フォーデン (RW) - 年齢: 24歳, 市場価値: €110M">47</div>
+                        <div class="player away" style="top: 65%; left: 50%;" title="ハーランド (CF) - 年齢: 24歳, 市場価値: €180M">9</div>
+                        <div class="player away" style="top: 65%; left: 75%;" title="グリーリッシュ (LW) - 年齢: 29歳, 市場価値: €65M">10</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="prediction" class="tab-content">
+            <h3>🔮 AI予想と専門家コメント</h3>
+            <div class="prediction-grid">
+                <div class="prediction-card">
+                    <h4>🤖 AI予想</h4>
+                    <p><strong>勝率:</strong></p>
+                    <p>アーセナル勝利: 42%</p>
+                    <p>引き分け: 31%</p>
+                    <p>シティ勝利: 27%</p>
+                    <p><strong>予想スコア:</strong> 2-1</p>
+                </div>
+                <div class="prediction-card">
+                    <h4>👨‍💼 専門家予想</h4>
+                    <p><strong>田中解説者:</strong></p>
+                    <p>"ホームの利を活かしてアーセナル勝利"</p>
+                    <p><strong>山田アナリスト:</strong></p>
+                    <p>"中盤の戦いが勝敗を分ける"</p>
+                </div>
+                <div class="prediction-card">
+                    <h4>📊 ブックメーカーオッズ</h4>
+                    <p>アーセナル勝利: 2.40</p>
+                    <p>引き分け: 3.20</p>
+                    <p>シティ勝利: 2.80</p>
+                    <p>オーバー2.5: 1.75</p>
+                    <p>アンダー2.5: 2.05</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="timeline" class="tab-content">
+            <h3>⏱️ 試合展開予想</h3>
+            <div class="timeline">
+                <h4>予想タイムライン</h4>
+                <div class="timeline-item">
+                    <strong>0-15分:</strong> 両チーム様子見、ボール支配率は拮抗。シティがややペースを握る。
+                </div>
+                <div class="timeline-item">
+                    <strong>15-30分:</strong> アーセナルがホームの利を活かし攻撃的に。サカとマルティネッリのサイド攻撃に注目。
+                </div>
+                <div class="timeline-item">
+                    <strong>30-45分:</strong> 最初のゴールが生まれる可能性が高い。セットプレーからの得点チャンス。
+                </div>
+                <div class="timeline-item">
+                    <strong>45-60分:</strong> ハーフタイム調整後、両監督の戦術変更。ペップの修正力に注目。
+                </div>
+                <div class="timeline-item">
+                    <strong>60-75分:</strong> 決定的な局面。選手交代のタイミングが勝敗を左右する。
+                </div>
+                <div class="timeline-item">
+                    <strong>75-90分:</strong> 勝負の分かれ目。ハーランドの決定力とアーセナルの守備力の対決。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- モバイル用下部ナビゲーション -->
+    <div class="bottom-nav">
+        <a href="index.html" class="bottom-nav-item">
+            <div class="bottom-nav-icon">🏠</div>
+            <div>ホーム</div>
+        </a>
+        <a href="#" class="bottom-nav-item active">
+            <div class="bottom-nav-icon">⚽</div>
+            <div>試合</div>
+        </a>
+        <a href="#" class="bottom-nav-item">
+            <div class="bottom-nav-icon">⭐</div>
+            <div>お気に入り</div>
+        </a>
+        <a href="#" class="bottom-nav-item">
+            <div class="bottom-nav-icon">⚙️</div>
+            <div>設定</div>
+        </a>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // すべてのタブとコンテンツを非アクティブに
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // 選択されたタブとコンテンツをアクティブに
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        // 選手クリック時の詳細表示
+        document.querySelectorAll('.player').forEach(player => {
+            player.addEventListener('click', function() {
+                const playerInfo = this.getAttribute('title');
+                alert(`選手詳細情報:\n\n${playerInfo}\n\n今シーズン成績:\n- 出場試合: 5試合\n- ゴール: 2得点\n- アシスト: 1回\n- 平均評点: 7.2`);
+            });
+        });
+
+        // URLパラメータから試合IDを取得して動的にコンテンツを更新
+        const urlParams = new URLSearchParams(window.location.search);
+        const matchId = urlParams.get('id');
+        
+        if (matchId) {
+            // 試合IDに応じてコンテンツを更新
+            console.log('試合ID:', matchId);
+        }
+    </script>
+</body>
+</html>

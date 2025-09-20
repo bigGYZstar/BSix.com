@@ -1,0 +1,104 @@
+{
+  "season": "2024-25",
+  "current_gameweek": 5,
+  "date_updated": "2025-09-20",
+  "matches": [
+    {
+      "id": "gw5-liv-eve",
+      "gameweek": 5,
+      "date": "2025-09-21",
+      "time": "11:30",
+      "home_team": "Liverpool",
+      "away_team": "Everton",
+      "venue": "Anfield",
+      "status": "upcoming",
+      "is_big_six": true,
+      "derby": "Merseyside Derby"
+    },
+    {
+      "id": "gw5-bri-tot",
+      "gameweek": 5,
+      "date": "2025-09-21",
+      "time": "14:00",
+      "home_team": "Brighton",
+      "away_team": "Tottenham",
+      "venue": "Amex Stadium",
+      "status": "upcoming",
+      "is_big_six": true
+    },
+    {
+      "id": "gw5-bur-nfo",
+      "gameweek": 5,
+      "date": "2025-09-21",
+      "time": "14:00",
+      "home_team": "Burnley",
+      "away_team": "Nottingham Forest",
+      "venue": "Turf Moor",
+      "status": "upcoming",
+      "is_big_six": false
+    },
+    {
+      "id": "gw5-whu-cry",
+      "gameweek": 5,
+      "date": "2025-09-21",
+      "time": "14:00",
+      "home_team": "West Ham",
+      "away_team": "Crystal Palace",
+      "venue": "London Stadium",
+      "status": "upcoming",
+      "is_big_six": false
+    },
+    {
+      "id": "gw5-wol-lee",
+      "gameweek": 5,
+      "date": "2025-09-21",
+      "time": "14:00",
+      "home_team": "Wolves",
+      "away_team": "Leeds",
+      "venue": "Molineux Stadium",
+      "status": "upcoming",
+      "is_big_six": false
+    },
+    {
+      "id": "gw5-mun-che",
+      "gameweek": 5,
+      "date": "2025-09-21",
+      "time": "16:30",
+      "home_team": "Manchester United",
+      "away_team": "Chelsea",
+      "venue": "Old Trafford",
+      "status": "upcoming",
+      "is_big_six": true,
+      "big_six_clash": true
+    }
+  ],
+  "past_matches": [
+    {
+      "id": "gw4-ars-nfo",
+      "gameweek": 4,
+      "date": "2025-09-13",
+      "time": "16:30",
+      "home_team": "Arsenal",
+      "away_team": "Nottingham Forest",
+      "venue": "Emirates Stadium",
+      "status": "finished",
+      "score": "3-0",
+      "is_big_six": true
+    }
+  ],
+  "upcoming_big_six": [
+    {
+      "id": "gw6-ars-mci",
+      "gameweek": 6,
+      "date": "2025-09-22",
+      "time": "16:30",
+      "home_team": "Arsenal",
+      "away_team": "Manchester City",
+      "venue": "Emirates Stadium",
+      "status": "upcoming",
+      "is_big_six": true,
+      "big_six_clash": true,
+      "title_race": true
+    }
+  ]
+}
