@@ -1,0 +1,151 @@
+{
+  "gameweek": 5,
+  "season": "2025-26",
+  "matches": {
+    "arsenal_vs_manchester_city": {
+      "date": "2025-09-21",
+      "time": "15:30",
+      "venue": "Emirates Stadium",
+      "importance": "Title race clash",
+      "expert_analysis": {
+        "source": "Goal.com",
+        "tactical_preview": "Arteta looks settled in the hot seat and has the experience and maturity to go all the way this time. He shaped the squad to his liking this summer and wasn't afraid to double down on defensive reinforcements and quality backups.",
+        "key_storylines": [
+          "Guardiola was lost for words when they lost 5-1 to Arsenal last season",
+          "Arsenal are cruising in the league and the Champions League without key cogs like Bukayo Saka and William Saliba",
+          "Viktor Gyokeres, Martin Zubimendi and Ebrechi Eze all made good starts to life in North London"
+        ]
+      },
+      "predicted_lineups": {
+        "arsenal": {
+          "formation": "4-3-3",
+          "lineup": "Raya; Timber, Saliba, Gabriel, Calafiori; Rice, Zubimendi, Nwaneri; Madueke, Gyokeres, Eze",
+          "key_players": ["Viktor Gyokeres", "Martin Zubimendi", "Ebrechi Eze"],
+          "tactical_notes": "Arsenal expected to attack from the start with Nwaneri potentially starting if Odegaard's shoulder injury persists"
+        },
+        "manchester_city": {
+          "formation": "4-2-3-1",
+          "lineup": "Donnarumma; Khusanov, Dias, Gvardiol, O'Reilly; Rodri; Silva, Reijnders, Foden, Doku; Haaland",
+          "key_players": ["Erling Haaland", "Phil Foden", "Jeremy Doku"],
+          "tactical_notes": "Guardiola confident of turning things around after Manchester Derby performance"
+        }
+      },
+      "injury_news": {
+        "arsenal": [
+          "Martin Odegaard - doubt (shoulder injury relapse)",
+          "Kai Havertz - ruled out",
+          "Gabriel Jesus - ruled out",
+          "Bukayo Saka - ruled out"
+        ],
+        "manchester_city": [
+          "John Stones - out",
+          "Rayan Ait-Nouri - unavailable",
+          "Rayan Cherki - unavailable"
+        ]
+      },
+      "expert_prediction": "Arsenal's squad depth and form might edge the Citizens. The clash might be tough to call as things stand.",
+      "historical_context": "Arsenal have won 100 out of the 213 matches played between the two teams, as opposed to City's record"
+    },
+    "liverpool_vs_everton": {
+      "date": "2025-09-21",
+      "time": "12:30",
+      "venue": "Anfield",
+      "importance": "Merseyside Derby",
+      "expert_analysis": {
+        "source": "BBC Sport, Yahoo Sports",
+        "tactical_preview": "Moyes' most commonly used formation at Anfield has been 4-2-3-1 – which is the same tactical set-up which has been implemented so effectively",
+        "key_storylines": [
+          "Head-to-head numbers favour Liverpool, with 95 wins to Everton's 63 and 75 draws",
+          "The last meeting ended 1-0 to Liverpool thanks to a Diogo Jota goal",
+          "A low-scoring battle looks likely when Liverpool and Everton lock horns"
+        ]
+      },
+      "predicted_lineups": {
+        "liverpool": {
+          "formation": "4-2-3-1",
+          "lineup": "Alisson; Frimpong, Konaté, Van Dijk, Kerkez; Gravenberch, Mac Allister; Salah, Wirtz, Gakpo; Núñez",
+          "key_players": ["Mohamed Salah", "Virgil van Dijk", "Florian Wirtz"],
+          "tactical_notes": "Liverpool have been grinding out narrow wins with their last two Premier League matches"
+        },
+        "everton": {
+          "formation": "4-2-3-1",
+          "lineup": "Pickford; Coleman, Tarkowski, Branthwaite, Mykolenko; Gueye, Onana; Harrison, Doucoure, McNeil; Calvert-Lewin",
+          "key_players": ["Dominic Calvert-Lewin", "Amadou Onana", "Jarrad Branthwaite"],
+          "tactical_notes": "Moyes implementing defensive solidity with quick counter-attacks"
+        }
+      },
+      "expert_prediction": "Liverpool favored but Everton capable of causing upset in derby atmosphere"
+    }
+  },
+  "sources": [
+    "Goal.com - Arsenal vs Manchester City Preview",
+    "BBC Sport - Liverpool vs Everton Key Stats",
+    "Yahoo Sports - Match Previews",
+    "SI.com - Predictions and Lineups"
+  ],
+  "last_updated": "2025-09-20"
+}
+
+    ,
+    "chelsea_vs_brighton": {
+      "date": "2025-09-21",
+      "time": "15:00",
+      "venue": "Stamford Bridge",
+      "importance": "Top 4 race",
+      "expert_analysis": {
+        "source": "RotoWire, The Hard Tackle",
+        "tactical_preview": "Chelsea have experienced a tactical metamorphosis under new manager Enzo Maresca, lining up in a base 4-2-3-1. Brighton are arguably the most tactically flexible side in the Premier League",
+        "key_storylines": [
+          "Brighton's tactical flexibility makes them difficult to pin down",
+          "Chelsea's new 4-2-3-1 formation under Maresca showing promise",
+          "Both teams capable of high-scoring encounters"
+        ]
+      },
+      "predicted_lineups": {
+        "chelsea": {
+          "formation": "4-2-3-1",
+          "lineup": "Sánchez; James, Fofana, Colwill, Cucurella; Caicedo, Fernández; Madueke, Palmer, Sterling; Jackson",
+          "key_players": ["Cole Palmer", "Moisés Caicedo", "Nicolas Jackson"],
+          "tactical_notes": "Maresca's tactical metamorphosis with clear 4-2-3-1 structure"
+        },
+        "brighton": {
+          "formation": "4-2-3-1",
+          "lineup": "Verbruggen; Veltman, Dunk, van Hecke, Estupiñan; Groß, Gilmour; Mitoma, Lallana, March; Welbeck",
+          "key_players": ["Kaoru Mitoma", "Pascal Groß", "Danny Welbeck"],
+          "tactical_notes": "Most tactically flexible side in Premier League, difficult to predict exact setup"
+        }
+      },
+      "expert_prediction": "High-scoring affair expected with both teams' attacking capabilities"
+    },
+    "manchester_united_vs_tottenham": {
+      "date": "2025-09-22",
+      "time": "16:30",
+      "venue": "Old Trafford",
+      "importance": "Big 6 clash",
+      "expert_analysis": {
+        "source": "SI.com, TNT Sports",
+        "tactical_preview": "Tottenham join Liverpool as strong starters this season with three victories from four under Thomas Frank. Manchester United looking to bounce back",
+        "key_storylines": [
+          "Tottenham's strong start to the season with 3 wins from 4",
+          "Manchester United seeking consistency under new management",
+          "Both teams with attacking intent and pace"
+        ]
+      },
+      "predicted_lineups": {
+        "manchester_united": {
+          "formation": "4-2-3-1",
+          "lineup": "Onana; Dalot, Maguire, Martínez, Shaw; Casemiro, Mount; Antony, Fernandes, Rashford; Højlund",
+          "key_players": ["Bruno Fernandes", "Marcus Rashford", "Rasmus Højlund"],
+          "tactical_notes": "Focus on quick transitions and utilizing pace in wide areas"
+        },
+        "tottenham": {
+          "formation": "4-3-3",
+          "lineup": "Vicario; Porro, Romero, van de Ven, Udogie; Bissouma, Maddison, Sarr; Johnson, Son, Richarlison",
+          "key_players": ["James Maddison", "Son Heung-min", "Brennan Johnson"],
+          "tactical_notes": "High-pressing system with quick attacking transitions"
+        }
+      },
+      "expert_prediction": "Open game expected with both teams' attacking philosophies"
+    }
+  }
+}
