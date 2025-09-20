@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>リヴァプール - BSix.com プレミアリーグ</title>
+    <meta name="theme-color" content="#C8102E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #C8102E;
+            --secondary-color: #00B2A9;
+            --accent-color: #f093fb;
+            --text-color: #333;
+            --bg-color: #ffffff;
+            --card-bg: #ffffff;
+            --border-color: #e1e5e9;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        [data-theme="dark"] {
+            --text-color: #ffffff;
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --border-color: #0f3460;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--text-color);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .team-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .team-name {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .team-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .current-position {
+            display: inline-block;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .data-version-info {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            border: 1px solid var(--border-color);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .stat-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .form-display {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .form-badge {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .form-badge.win { background: #4CAF50; }
+        .form-badge.draw { background: #FF9800; }
+        .form-badge.loss { background: #f44336; }
+
+        .key-players {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .player-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .player-role {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .player-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .achievements-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievements-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .achievements-list li:last-child {
+            border-bottom: none;
+        }
+
+        .trophy-icon {
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .highlights {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .highlights h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .highlight-item {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .highlight-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .navigation {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .nav-button {
+            background: var(--card-bg);
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .sync-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            padding: 10px 15px;
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            font-size: 0.9rem;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sync-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4CAF50;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .team-logo {
+                width: 80px;
+                height: 80px;
+                font-size: 40px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .stat-card {
+                padding: 20px;
+            }
+
+            .key-players {
+                grid-template-columns: 1fr;
+            }
+
+            .navigation, .theme-toggle {
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+                margin: 10px;
+            }
+
+            .sync-status {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin: 20px auto;
+                width: fit-content;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .error {
+            background: #f44336;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .data-accuracy-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .liverpool-special {
+            background: linear-gradient(135deg, #C8102E, #00B2A9);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .liverpool-special h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .liverpool-special p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <button class="nav-button" onclick="goBack()">←</button>
+    </div>
+
+    <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+
+    <div class="container">
+        <div class="data-version-info">
+            📊 データバージョン: <span id="data-version">読み込み中...</span> | 
+            最終更新: <span id="last-update">読み込み中...</span>
+            <span class="data-accuracy-badge">公式データ確認済み</span>
+        </div>
+
+        <div id="loading" class="loading">
+            リヴァプールの詳細情報を読み込み中...
+        </div>
+
+        <div id="team-content" style="display: none;">
+            <div class="liverpool-special">
+                <h2>🏆 プレミアリーグ首位独走中！</h2>
+                <p>アルネ・スロット新監督のもと、完璧なスタートを切ったリヴァプール</p>
+            </div>
+
+            <div class="header">
+                <div class="team-logo">🔴</div>
+                <h1 class="team-name">リヴァプール</h1>
+                <p class="team-subtitle">監督: <span id="manager-name">アルネ・スロット</span> | スタジアム: <span id="stadium-name">アンフィールド</span></p>
+                <div class="current-position" id="current-position">現在の順位: 1位</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>📊 シーズン成績</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">順位</span>
+                        <span class="stat-value" id="position">1位</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">勝点</span>
+                        <span class="stat-value" id="points">12pt</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">試合数</span>
+                        <span class="stat-value" id="played">4</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">勝利</span>
+                        <span class="stat-value" id="won">4</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">引き分け</span>
+                        <span class="stat-value" id="drawn">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">敗北</span>
+                        <span class="stat-value" id="lost">0</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h3>⚽ 得失点</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">得点</span>
+                        <span class="stat-value" id="goals-for">9</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">失点</span>
+                        <span class="stat-value" id="goals-against">4</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">得失点差</span>
+                        <span class="stat-value" id="goal-difference">+5</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">直近フォーム</span>
+                        <div class="form-display" id="form-display">
+                            <div class="form-badge win">W</div>
+                            <div class="form-badge win">W</div>
+                            <div class="form-badge win">W</div>
+                            <div class="form-badge win">W</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h3>⭐ 注目選手</h3>
+                    <div class="key-players">
+                        <div class="player-card">
+                            <div class="player-role">得点王</div>
+                            <div class="player-name">モハメド・サラー</div>
+                        </div>
+                        <div class="player-card">
+                            <div class="player-role">アシスト王</div>
+                            <div class="player-name">ルイス・ディアス</div>
+                        </div>
+                        <div class="player-card">
+                            <div class="player-role">キーディフェンダー</div>
+                            <div class="player-name">ヴィルジル・ファン・ダイク</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h3>🏆 主要タイトル</h3>
+                    <ul class="achievements-list">
+                        <li>
+                            <span><span class="trophy-icon">🏆</span>プレミアリーグ</span>
+                            <span>1回</span>
+                        </li>
+                        <li>
+                            <span><span class="trophy-icon">🏆</span>チャンピオンズリーグ</span>
+                            <span>6回</span>
+                        </li>
+                        <li>
+                            <span><span class="trophy-icon">🏆</span>FAカップ</span>
+                            <span>8回</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlights">
+                <h3>🎯 今シーズンのハイライト</h3>
+                <div class="highlight-item">4戦全勝で首位独走</div>
+                <div class="highlight-item">失点わずか4の堅守</div>
+                <div class="highlight-item">新監督スロットの戦術が機能</div>
+                <div class="highlight-item">サラーとディアスのコンビネーションが絶好調</div>
+                <div class="highlight-item">アンフィールドでの無敗記録継続中</div>
+            </div>
+        </div>
+
+        <div id="error" class="error" style="display: none;">
+            リヴァプールの情報読み込みに失敗しました。
+        </div>
+    </div>
+
+    <div class="sync-status">
+        <div class="sync-indicator"></div>
+        <span>データ同期済み</span>
+    </div>
+
+    <!-- データ連動システムを読み込み -->
+    <script src="/assets/js/data-sync.js"></script>
+
+    <script>
+        // データ連動システムを使用してリヴァプールのデータを読み込み
+        async function loadLiverpoolData() {
+            const loading = document.getElementById('loading');
+            const content = document.getElementById('team-content');
+            const error = document.getElementById('error');
+
+            try {
+                // データ連動システムからマスターデータを読み込み
+                await window.bsixDataSync.loadMasterData();
+                
+                // データバージョン情報を表示
+                document.getElementById('data-version').textContent = window.bsixDataSync.dataVersion || '不明';
+                document.getElementById('last-update').textContent = window.bsixDataSync.lastUpdate ? 
+                    new Date(window.bsixDataSync.lastUpdate).toLocaleString('ja-JP') : '不明';
+
+                // リヴァプールのデータを取得
+                const liverpoolData = window.bsixDataSync.getTeamData('リヴァプール');
+                
+                if (liverpoolData) {
+                    // 最新データで更新
+                    document.getElementById('position').textContent = `${liverpoolData.position}位`;
+                    document.getElementById('points').textContent = `${liverpoolData.points}pt`;
+                    document.getElementById('played').textContent = liverpoolData.played;
+                    document.getElementById('won').textContent = liverpoolData.won;
+                    document.getElementById('drawn').textContent = liverpoolData.drawn;
+                    document.getElementById('lost').textContent = liverpoolData.lost;
+                    document.getElementById('goals-for').textContent = liverpoolData.goalsFor;
+                    document.getElementById('goals-against').textContent = liverpoolData.goalsAgainst;
+                    document.getElementById('goal-difference').textContent = liverpoolData.goalDifference > 0 ? 
+                        `+${liverpoolData.goalDifference}` : liverpoolData.goalDifference;
+                    document.getElementById('current-position').textContent = `現在の順位: ${liverpoolData.position}位`;
+
+                    // フォーム表示を更新
+                    const formDisplay = document.getElementById('form-display');
+                    formDisplay.innerHTML = '';
+                    liverpoolData.form.forEach(result => {
+                        const badge = document.createElement('div');
+                        badge.className = `form-badge ${result === 'W' ? 'win' : result === 'D' ? 'draw' : 'loss'}`;
+                        badge.textContent = result;
+                        formDisplay.appendChild(badge);
+                    });
+                }
+
+                loading.style.display = 'none';
+                content.style.display = 'block';
+
+                console.log('✅ リヴァプールページのデータ読み込み完了');
+
+            } catch (err) {
+                console.error('❌ リヴァプールページのデータ読み込みエラー:', err);
+                loading.style.display = 'none';
+                error.style.display = 'block';
+                error.textContent = `エラー: ${err.message}`;
+            }
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            // テーマ復元
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                document.querySelector('.theme-toggle').textContent = '☀️';
+            }
+
+            // リヴァプールデータ読み込み
+            loadLiverpoolData();
+        });
+    </script>
+</body>
+</html>

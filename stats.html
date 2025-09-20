@@ -164,6 +164,25 @@
             font-weight: bold;
         }
 
+        .team-link {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .team-link:hover {
+            color: #667eea;
+            text-decoration: underline;
+        }
+
+        .big-six-team .team-link {
+            color: inherit;
+        }
+
+        .big-six-team .team-link:hover {
+            color: #667eea;
+        }
+
         .points {
             font-weight: bold;
             color: #27ae60;
@@ -495,10 +514,13 @@
                     const className = result === 'W' ? 'win' : result === 'D' ? 'draw' : 'loss';
                     return `<span class="form-result ${className}">${result}</span>`;
                 }).join('');
-
+                
+                // チーム詳細ページへのリンクを生成
+                const teamLink = getTeamDetailLink(team.team, team.teamEn);
+                
                 row.innerHTML = `
                     <td class="position">${team.pos}</td>
-                    <td class="team-name ${team.bigSix ? 'big-six' : ''}">${team.team}</td>
+                    <td class="team-name ${team.bigSix ? 'big-six' : ''}"><a href="${teamLink}" class="team-link">${team.team}</a></td>
                     <td>${team.played}</td>
                     <td>${team.won}</td>
                     <td>${team.drawn}</td>
@@ -513,6 +535,45 @@
             });
         }
 
+        // チーム詳細ページへのリンクを生成する関数
+        function getTeamDetailLink(teamName, teamEn) {
+            // Big 6チームは専用ページ、その他は汎用ページ
+            const teamPageMap = {
+                'リヴァプール': 'liverpool.html',
+                'アーセナル': 'arsenal.html',
+                'マンチェスター・シティ': 'team-detail-synced.html?team=manchester_city',
+                'チェルシー': 'chelsea.html',
+                'トッテナム・ホットスパー': 'team-detail-synced.html?team=tottenham',
+                'マンチェスター・ユナイテッド': 'team-detail-synced.html?team=manchester_united'
+            };
+
+            // Big 6チームの場合は専用ページまたは汎用ページ
+            if (teamPageMap[teamName]) {
+                return teamPageMap[teamName];
+            }
+
+            // その他のチームは汎用ページ（チーム名を英語名に変換）
+            const teamIdMap = {
+                'ボーンマス': 'bournemouth',
+                'エヴァートン': 'everton',
+                'サンダーランド': 'sunderland',
+                'クリスタル・パレス': 'crystal_palace',
+                'ニューカッスル・ユナイテッド': 'newcastle',
+                'フラム': 'fulham',
+                'ブレントフォード': 'brentford',
+                'ブライトン・アンド・ホーヴ・アルビオン': 'brighton',
+                'ノッティンガム・フォレスト': 'nottingham_forest',
+                'リーズ・ユナイテッド': 'leeds',
+                'バーンリー': 'burnley',
+                'ウェストハム・ユナイテッド': 'west_ham',
+                'アストン・ヴィラ': 'aston_villa',
+                'ウルヴァーハンプトン・ワンダラーズ': 'wolves'
+            };
+
+            const teamId = teamIdMap[teamName] || teamEn.toLowerCase().replace(/\s+/g, '_');
+            return `team-detail-synced.html?team=${teamId}`;
+        }
+
         // ビッグ6比較を生成
         function generateBigSixComparison() {
             const bigSixGrid = document.getElementById('bigSixGrid');
@@ -524,9 +585,11 @@
                 const teamDiv = document.createElement('div');
                 teamDiv.className = 'big-six-team';
                 
+                const teamLink = getTeamDetailLink(team.team, team.teamEn);
+                
                 teamDiv.innerHTML = `
                     <div class="team-position">${team.pos}位</div>
-                    <div class="team-name-big">${team.team}</div>
+                    <div class="team-name-big"><a href="${teamLink}" class="team-link">${team.team}</a></div>
                     <div class="team-stats">
                         <div class="stat">
                             <div class="stat-value">${team.points}</div>
