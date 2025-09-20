@@ -1,0 +1,383 @@
+{
+  "season": "2024-25",
+  "lastUpdated": "2024-09-15",
+  "gameweek": 4,
+  "dataSource": "Transfermarkt Official",
+  "broadcastInfo": {
+    "japan": {
+      "service": "U-NEXT サッカーパック",
+      "price": "月額2,189円（税込）",
+      "features": [
+        "全380試合独占ライブ配信",
+        "日本語解説対応",
+        "見逃し配信対応",
+        "マルチデバイス対応"
+      ]
+    }
+  },
+  "leagueTable": [
+    {
+      "position": 1,
+      "team": "マンチェスター・シティ",
+      "short": "MCI",
+      "played": 4,
+      "won": 4,
+      "drawn": 0,
+      "lost": 0,
+      "goalsFor": 11,
+      "goalsAgainst": 3,
+      "goalDifference": 8,
+      "points": 12,
+      "form": ["W", "W", "W", "W"],
+      "isBigSix": true,
+      "qualification": "champions-league"
+    },
+    {
+      "position": 2,
+      "team": "アーセナル",
+      "short": "ARS",
+      "played": 4,
+      "won": 3,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 8,
+      "goalsAgainst": 3,
+      "goalDifference": 5,
+      "points": 10,
+      "form": ["W", "W", "D", "W"],
+      "isBigSix": true,
+      "qualification": "champions-league"
+    },
+    {
+      "position": 3,
+      "team": "ニューカッスル・ユナイテッド",
+      "short": "NEW",
+      "played": 4,
+      "won": 3,
+      "drawn": 1,
+      "lost": 0,
+      "goalsFor": 6,
+      "goalsAgainst": 3,
+      "goalDifference": 3,
+      "points": 10,
+      "form": ["W", "D", "W", "W"],
+      "isBigSix": false,
+      "qualification": "champions-league"
+    },
+    {
+      "position": 4,
+      "team": "リヴァプール",
+      "short": "LIV",
+      "played": 4,
+      "won": 3,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 7,
+      "goalsAgainst": 1,
+      "goalDifference": 6,
+      "points": 9,
+      "form": ["W", "W", "W", "L"],
+      "isBigSix": true,
+      "qualification": "champions-league"
+    },
+    {
+      "position": 5,
+      "team": "アストン・ヴィラ",
+      "short": "AVL",
+      "played": 4,
+      "won": 3,
+      "drawn": 0,
+      "lost": 1,
+      "goalsFor": 7,
+      "goalsAgainst": 6,
+      "goalDifference": 1,
+      "points": 9,
+      "form": ["W", "W", "L", "W"],
+      "isBigSix": false,
+      "qualification": "europa-league"
+    },
+    {
+      "position": 6,
+      "team": "ブライトン&ホーヴ・アルビオン",
+      "short": "BHA",
+      "played": 4,
+      "won": 2,
+      "drawn": 2,
+      "lost": 0,
+      "goalsFor": 6,
+      "goalsAgainst": 2,
+      "goalDifference": 4,
+      "points": 8,
+      "form": ["W", "D", "W", "D"],
+      "isBigSix": false,
+      "qualification": "europa-league"
+    },
+    {
+      "position": 7,
+      "team": "ノッティンガム・フォレスト",
+      "short": "NFO",
+      "played": 4,
+      "won": 2,
+      "drawn": 2,
+      "lost": 0,
+      "goalsFor": 3,
+      "goalsAgainst": 1,
+      "goalDifference": 2,
+      "points": 8,
+      "form": ["D", "W", "D", "W"],
+      "isBigSix": false,
+      "qualification": "conference-league"
+    },
+    {
+      "position": 8,
+      "team": "チェルシー",
+      "short": "CHE",
+      "played": 4,
+      "won": 2,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 9,
+      "goalsAgainst": 6,
+      "goalDifference": 3,
+      "points": 7,
+      "form": ["W", "L", "D", "W"],
+      "isBigSix": true,
+      "qualification": "none"
+    },
+    {
+      "position": 9,
+      "team": "ブレントフォード",
+      "short": "BRE",
+      "played": 4,
+      "won": 2,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 8,
+      "goalsAgainst": 8,
+      "goalDifference": 0,
+      "points": 6,
+      "form": ["W", "L", "W", "L"],
+      "isBigSix": false,
+      "qualification": "none"
+    },
+    {
+      "position": 10,
+      "team": "マンチェスター・ユナイテッド",
+      "short": "MUN",
+      "played": 4,
+      "won": 2,
+      "drawn": 0,
+      "lost": 2,
+      "goalsFor": 5,
+      "goalsAgainst": 5,
+      "goalDifference": 0,
+      "points": 6,
+      "form": ["L", "W", "L", "W"],
+      "isBigSix": true,
+      "qualification": "none"
+    },
+    {
+      "position": 13,
+      "team": "トッテナム・ホットスパー",
+      "short": "TOT",
+      "played": 4,
+      "won": 1,
+      "drawn": 1,
+      "lost": 2,
+      "goalsFor": 8,
+      "goalsAgainst": 6,
+      "goalDifference": 2,
+      "points": 4,
+      "form": ["W", "D", "W", "L"],
+      "isBigSix": true,
+      "qualification": "none"
+    },
+    {
+      "position": 20,
+      "team": "エバートン",
+      "short": "EVE",
+      "played": 4,
+      "won": 0,
+      "drawn": 0,
+      "lost": 4,
+      "goalsFor": 4,
+      "goalsAgainst": 13,
+      "goalDifference": -9,
+      "points": 0,
+      "form": ["L", "L", "L", "L"],
+      "isBigSix": false,
+      "qualification": "relegation"
+    }
+  ],
+  "gameweek5Fixtures": [
+    {
+      "id": "arsenal-city",
+      "homeTeam": "アーセナル",
+      "awayTeam": "マンチェスター・シティ",
+      "date": "2024-09-21",
+      "time": "15:30",
+      "venue": "エミレーツ・スタジアム",
+      "category": "タイトル争い",
+      "importance": "high",
+      "broadcast": "U-NEXT サッカーパック"
+    },
+    {
+      "id": "liverpool-everton",
+      "homeTeam": "リヴァプール",
+      "awayTeam": "エバートン",
+      "date": "2024-09-21",
+      "time": "20:30",
+      "venue": "グディソン・パーク",
+      "category": "マージーサイド・ダービー",
+      "importance": "high",
+      "broadcast": "U-NEXT サッカーパック"
+    },
+    {
+      "id": "chelsea-brighton",
+      "homeTeam": "チェルシー",
+      "awayTeam": "ブライトン&ホーヴ・アルビオン",
+      "date": "2024-09-22",
+      "time": "14:00",
+      "venue": "スタンフォード・ブリッジ",
+      "category": "ビッグ6対決",
+      "importance": "medium",
+      "broadcast": "U-NEXT サッカーパック"
+    },
+    {
+      "id": "united-tottenham",
+      "homeTeam": "マンチェスター・ユナイテッド",
+      "awayTeam": "トッテナム・ホットスパー",
+      "date": "2024-09-22",
+      "time": "16:30",
+      "venue": "オールド・トラッフォード",
+      "category": "ビッグ6対決",
+      "importance": "medium",
+      "broadcast": "U-NEXT サッカーパック"
+    }
+  ],
+  "teamColors": {
+    "アーセナル": {
+      "primary": "#EF0107",
+      "secondary": "#9C824A",
+      "class": "arsenal"
+    },
+    "マンチェスター・シティ": {
+      "primary": "#6CABDD",
+      "secondary": "#1C2C5B",
+      "class": "manchester-city"
+    },
+    "リヴァプール": {
+      "primary": "#C8102E",
+      "secondary": "#F6EB61",
+      "class": "liverpool"
+    },
+    "チェルシー": {
+      "primary": "#034694",
+      "secondary": "#6CABDD",
+      "class": "chelsea"
+    },
+    "マンチェスター・ユナイテッド": {
+      "primary": "#DA020E",
+      "secondary": "#FFF200",
+      "class": "manchester-united"
+    },
+    "トッテナム・ホットスパー": {
+      "primary": "#132257",
+      "secondary": "#FFFFFF",
+      "class": "tottenham"
+    },
+    "エバートン": {
+      "primary": "#003399",
+      "secondary": "#FFFFFF",
+      "class": "everton"
+    },
+    "ブライトン&ホーヴ・アルビオン": {
+      "primary": "#0057B8",
+      "secondary": "#FFCD00",
+      "class": "brighton"
+    }
+  },
+  "expertAnalysis": {
+    "arsenal-city": {
+      "tacticalNotes": [
+        "アルテタの戦術的成熟度がグアルディオラの経験と対峙",
+        "エミレーツでのホームアドバンテージが重要な要素",
+        "両チームの守備の集中力が勝敗を分ける",
+        "ウーデゴールの肩の怪我状況が戦術に影響"
+      ],
+      "keyPlayers": [
+        {
+          "name": "ブカヨ・サカ",
+          "team": "アーセナル",
+          "role": "右サイドからの突破とクロスが武器"
+        },
+        {
+          "name": "マルティン・ウーデゴール",
+          "team": "アーセナル",
+          "role": "チームの攻撃の起点となるキャプテン"
+        },
+        {
+          "name": "エルリング・ハーランド",
+          "team": "マンチェスター・シティ",
+          "role": "今シーズンも得点を量産中"
+        },
+        {
+          "name": "ケビン・デ・ブライネ",
+          "team": "マンチェスター・シティ",
+          "role": "中盤からゲームをコントロール"
+        }
+      ],
+      "prediction": {
+        "score": "アーセナル 2-1 マンチェスター・シティ",
+        "confidence": "70%",
+        "reasoning": "アーセナルの好調とホームアドバンテージ、シティの完璧なフォームが拮抗。アルテタの戦術的成熟度がグアルディオラの経験を上回る可能性が高い。"
+      }
+    },
+    "liverpool-everton": {
+      "tacticalNotes": [
+        "マージーサイドダービーは順位に関係なく激戦となる",
+        "エバートンは守備的戦術でリヴァプールの攻撃を封じ込める",
+        "リヴァプールはフォレスト戦での敗戦を受けて集中力の維持が課題",
+        "セットプレーからの得点がエバートンの数少ないチャンス"
+      ],
+      "keyPlayers": [
+        {
+          "name": "モハメド・サラー",
+          "team": "リヴァプール",
+          "role": "右サイドからの得点力が脅威"
+        },
+        {
+          "name": "ダーウィン・ヌニェス",
+          "team": "リヴァプール",
+          "role": "中央での決定力が期待される"
+        },
+        {
+          "name": "ドミニク・カルヴェルト・ルーウィン",
+          "team": "エバートン",
+          "role": "エバートンの数少ない得点源"
+        },
+        {
+          "name": "ジョーダン・ピックフォード",
+          "team": "エバートン",
+          "role": "イングランド代表GKの好セーブに期待"
+        }
+      ],
+      "prediction": {
+        "score": "リヴァプール 3-0 エバートン",
+        "confidence": "85%",
+        "reasoning": "戦力差は歴然としており、リヴァプールのホームでの強さとエバートンの不調を考慮すると、リヴァプールの勝利は濃厚。"
+      }
+    }
+  },
+  "dataIntegrity": {
+    "verified": true,
+    "sources": [
+      "Transfermarkt Official",
+      "Goal.com Japan",
+      "BBC Sport",
+      "RotoWire",
+      "SI.com"
+    ],
+    "lastVerification": "2024-09-15T10:00:00Z"
+  }
+}

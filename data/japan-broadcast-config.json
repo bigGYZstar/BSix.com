@@ -1,0 +1,34 @@
+{
+  "broadcast_service": {
+    "name": "U-NEXT サッカーパック",
+    "price": "月額2,189円（税込）",
+    "features": [
+      "プレミアリーグ全380試合独占ライブ配信",
+      "日本語解説対応",
+      "見逃し配信対応",
+      "マルチデバイス対応"
+    ],
+    "url": "https://video.unext.jp/",
+    "logo_color": "#FF6B35",
+    "display_name": "U-NEXT サッカーパック"
+  },
+  "alternative_services": [
+    {
+      "name": "SPOOX",
+      "price": "月額980円（税込）",
+      "features": ["一部試合配信", "ハイライト配信"],
+      "note": "限定的な配信"
+    }
+  ],
+  "excluded_services": [
+    "Peacock",
+    "NBC Sports",
+    "Sky Sports",
+    "BT Sport"
+  ],
+  "notes": {
+    "primary_service": "U-NEXTがプレミアリーグの日本独占配信権を持つ",
+    "language": "日本語解説・実況対応",
+    "availability": "日本国内限定サービス"
+  }
+}
