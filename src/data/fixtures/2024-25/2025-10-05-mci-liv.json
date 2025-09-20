@@ -1,0 +1,593 @@
+{
+  "id": "2025-10-05-mci-liv",
+  "date": "2025-10-05T18:30:00+09:00",
+  "league": "プレミアリーグ",
+  "round": "第8節",
+  "venue": "エティハド・スタジアム",
+  "city": "マンチェスター",
+  "status": "scheduled",
+  "weather": {
+    "condition": "曇り",
+    "temperature": "15°C",
+    "humidity": "65%",
+    "wind": "北西 8km/h"
+  },
+  "referee": {
+    "name": "マイケル・オリバー",
+    "nationality": "イングランド",
+    "experience": "プレミアリーグ主審歴15年"
+  },
+  "attendance": {
+    "capacity": 55017,
+    "expected": 54500
+  },
+  "homeTeam": {
+    "teamId": "mci",
+    "name": "マンチェスター・シティ",
+    "key": "MCI",
+    "formation": "4-3-3",
+    "lineup": [
+      {
+        "playerId": "ederson",
+        "jp": "エデルソン",
+        "intl": "Ederson",
+        "pos": "GK",
+        "num": 31,
+        "stats": {
+          "apps": 7,
+          "goals": 0,
+          "assists": 0,
+          "cleanSheets": 4,
+          "saves": 18
+        },
+        "avatar": {
+          "skin": "tan",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "walker",
+        "jp": "カイル・ウォーカー",
+        "intl": "Kyle Walker",
+        "pos": "RB",
+        "num": 2,
+        "stats": {
+          "apps": 6,
+          "goals": 0,
+          "assists": 1,
+          "cleanSheets": 3
+        },
+        "avatar": {
+          "skin": "dark",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "dias",
+        "jp": "ルベン・ディアス",
+        "intl": "Ruben Dias",
+        "pos": "CB",
+        "num": 3,
+        "stats": {
+          "apps": 7,
+          "goals": 1,
+          "assists": 0,
+          "cleanSheets": 4
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "stones",
+        "jp": "ジョン・ストーンズ",
+        "intl": "John Stones",
+        "pos": "CB",
+        "num": 5,
+        "stats": {
+          "apps": 5,
+          "goals": 0,
+          "assists": 1,
+          "cleanSheets": 3
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "blonde",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "gvardiol",
+        "jp": "ヨシュコ・グヴァルディオル",
+        "intl": "Josko Gvardiol",
+        "pos": "LB",
+        "num": 24,
+        "stats": {
+          "apps": 7,
+          "goals": 1,
+          "assists": 2,
+          "cleanSheets": 4
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "rodri",
+        "jp": "ロドリ",
+        "intl": "Rodri",
+        "pos": "CDM",
+        "num": 16,
+        "stats": {
+          "apps": 7,
+          "goals": 2,
+          "assists": 1,
+          "cleanSheets": 4
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "kovacic",
+        "jp": "マテオ・コヴァチッチ",
+        "intl": "Mateo Kovacic",
+        "pos": "CM",
+        "num": 8,
+        "stats": {
+          "apps": 6,
+          "goals": 0,
+          "assists": 2,
+          "cleanSheets": 3
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "silva",
+        "jp": "ベルナルド・シルバ",
+        "intl": "Bernardo Silva",
+        "pos": "CM",
+        "num": 20,
+        "stats": {
+          "apps": 7,
+          "goals": 1,
+          "assists": 3,
+          "cleanSheets": 4
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "foden",
+        "jp": "フィル・フォーデン",
+        "intl": "Phil Foden",
+        "pos": "RW",
+        "num": 47,
+        "stats": {
+          "apps": 6,
+          "goals": 3,
+          "assists": 1,
+          "cleanSheets": 3
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "blonde",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "haaland",
+        "jp": "アーリング・ハーランド",
+        "intl": "Erling Haaland",
+        "pos": "ST",
+        "num": 9,
+        "stats": {
+          "apps": 7,
+          "goals": 9,
+          "assists": 0,
+          "cleanSheets": 4
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "blonde",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "grealish",
+        "jp": "ジャック・グリーリッシュ",
+        "intl": "Jack Grealish",
+        "pos": "LW",
+        "num": 10,
+        "stats": {
+          "apps": 5,
+          "goals": 1,
+          "assists": 2,
+          "cleanSheets": 2
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "long"
+        }
+      }
+    ],
+    "bench": [
+      "オルテガ",
+      "アケ",
+      "ルイス",
+      "ヌネス",
+      "ギュンドアン",
+      "ドク",
+      "アルバレス"
+    ],
+    "news": [
+      "ハーランドが7試合で9ゴールの絶好調",
+      "ロドリが中盤の要として安定したパフォーマンス",
+      "グヴァルディオルが左サイドバックで新境地"
+    ],
+    "highlights": [
+      "ハーランドの得点力",
+      "ロドリの中盤支配",
+      "グヴァルディオルの攻撃参加"
+    ],
+    "eval": {
+      "寸評": "開幕から無敗を続け、攻守にバランスの取れたチーム。ハーランドの得点力とロドリの中盤支配が光る。",
+      "攻撃力": 95,
+      "守備力": 88,
+      "総合力": 92
+    },
+    "keychips": [
+      "ハーランドの決定力",
+      "ロドリの中盤制圧",
+      "グヴァルディオルの攻撃力"
+    ]
+  },
+  "awayTeam": {
+    "teamId": "liv",
+    "name": "リバプール",
+    "key": "LIV",
+    "formation": "4-3-3",
+    "lineup": [
+      {
+        "playerId": "alisson",
+        "jp": "アリソン",
+        "intl": "Alisson",
+        "pos": "GK",
+        "num": 1,
+        "stats": {
+          "apps": 7,
+          "goals": 0,
+          "assists": 0,
+          "cleanSheets": 3,
+          "saves": 22
+        },
+        "avatar": {
+          "skin": "tan",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "alexander-arnold",
+        "jp": "トレント・アレクサンダー＝アーノルド",
+        "intl": "Trent Alexander-Arnold",
+        "pos": "RB",
+        "num": 66,
+        "stats": {
+          "apps": 7,
+          "goals": 0,
+          "assists": 4,
+          "cleanSheets": 3
+        },
+        "avatar": {
+          "skin": "medium",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "konate",
+        "jp": "イブラヒマ・コナテ",
+        "intl": "Ibrahima Konate",
+        "pos": "CB",
+        "num": 5,
+        "stats": {
+          "apps": 6,
+          "goals": 1,
+          "assists": 0,
+          "cleanSheets": 3
+        },
+        "avatar": {
+          "skin": "dark",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "van-dijk",
+        "jp": "ヴィルヒル・ファン・ダイク",
+        "intl": "Virgil van Dijk",
+        "pos": "CB",
+        "num": 4,
+        "stats": {
+          "apps": 7,
+          "goals": 0,
+          "assists": 1,
+          "cleanSheets": 3
+        },
+        "avatar": {
+          "skin": "dark",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "robertson",
+        "jp": "アンディ・ロバートソン",
+        "intl": "Andy Robertson",
+        "pos": "LB",
+        "num": 26,
+        "stats": {
+          "apps": 7,
+          "goals": 0,
+          "assists": 2,
+          "cleanSheets": 3
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "mac-allister",
+        "jp": "アレクシス・マック・アリスター",
+        "intl": "Alexis Mac Allister",
+        "pos": "CDM",
+        "num": 10,
+        "stats": {
+          "apps": 7,
+          "goals": 1,
+          "assists": 2,
+          "cleanSheets": 3
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "gravenberch",
+        "jp": "ライアン・ヘラフェンベルフ",
+        "intl": "Ryan Gravenberch",
+        "pos": "CM",
+        "num": 38,
+        "stats": {
+          "apps": 6,
+          "goals": 0,
+          "assists": 1,
+          "cleanSheets": 2
+        },
+        "avatar": {
+          "skin": "dark",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "szoboszlai",
+        "jp": "ドミニク・ソボスライ",
+        "intl": "Dominik Szoboszlai",
+        "pos": "CM",
+        "num": 8,
+        "stats": {
+          "apps": 7,
+          "goals": 2,
+          "assists": 1,
+          "cleanSheets": 3
+        },
+        "avatar": {
+          "skin": "light",
+          "hair": "brown",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "salah",
+        "jp": "モハメド・サラー",
+        "intl": "Mohamed Salah",
+        "pos": "RW",
+        "num": 11,
+        "stats": {
+          "apps": 7,
+          "goals": 6,
+          "assists": 5,
+          "cleanSheets": 3
+        },
+        "avatar": {
+          "skin": "tan",
+          "hair": "black",
+          "style": "curly"
+        }
+      },
+      {
+        "playerId": "nunez",
+        "jp": "ダルウィン・ヌニェス",
+        "intl": "Darwin Nunez",
+        "pos": "ST",
+        "num": 9,
+        "stats": {
+          "apps": 6,
+          "goals": 4,
+          "assists": 1,
+          "cleanSheets": 2
+        },
+        "avatar": {
+          "skin": "tan",
+          "hair": "black",
+          "style": "short"
+        }
+      },
+      {
+        "playerId": "diaz",
+        "jp": "ルイス・ディアス",
+        "intl": "Luis Diaz",
+        "pos": "LW",
+        "num": 7,
+        "stats": {
+          "apps": 7,
+          "goals": 3,
+          "assists": 2,
+          "cleanSheets": 3
+        },
+        "avatar": {
+          "skin": "tan",
+          "hair": "black",
+          "style": "short"
+        }
+      }
+    ],
+    "bench": [
+      "ケレハー",
+      "ゴメス",
+      "チミカス",
+      "エンド",
+      "ジョーンズ",
+      "ガクポ",
+      "ジョタ"
+    ],
+    "news": [
+      "サラーが6ゴール5アシストの大活躍",
+      "新加入マック・アリスターが中盤で存在感",
+      "ヌニェスが得点力を発揮し始める"
+    ],
+    "highlights": [
+      "サラーの圧倒的な攻撃力",
+      "マック・アリスターの中盤安定",
+      "ヌニェスの得点感覚"
+    ],
+    "eval": {
+      "寸評": "攻撃陣の連携が向上し、特にサラーが絶好調。新戦力も順調に馴染んでいる。",
+      "攻撃力": 90,
+      "守備力": 82,
+      "総合力": 87
+    },
+    "keychips": [
+      "サラーの決定力",
+      "マック・アリスターの安定感",
+      "攻撃陣の連携"
+    ]
+  },
+  "preview": {
+    "title": "頂上決戦！シティ vs リバプール",
+    "subtitle": "エティハドで繰り広げられる攻撃的サッカーの祭典",
+    "description": "プレミアリーグ屈指の攻撃力を誇る両チームが激突。ハーランド vs サラーの得点王争いにも注目。",
+    "keyPoints": [
+      "ハーランド（9ゴール）vs サラー（6ゴール5アシスト）の対決",
+      "ロドリ vs マック・アリスターの中盤戦",
+      "両チームの攻撃的戦術の衝突"
+    ],
+    "prediction": {
+      "homeWin": 45,
+      "draw": 25,
+      "awayWin": 30
+    },
+    "keyBattles": [
+      {
+        "title": "ストライカー対決",
+        "description": "ハーランド vs ヌニェス",
+        "homePlayer": "ハーランド",
+        "awayPlayer": "ヌニェス"
+      },
+      {
+        "title": "右サイド攻撃",
+        "description": "フォーデン vs ディアス",
+        "homePlayer": "フォーデン",
+        "awayPlayer": "ディアス"
+      },
+      {
+        "title": "中盤の支配権",
+        "description": "ロドリ vs マック・アリスター",
+        "homePlayer": "ロドリ",
+        "awayPlayer": "マック・アリスター"
+      }
+    ]
+  },
+  "tactics": {
+    "homeTeam": {
+      "formation": "4-3-3",
+      "style": "ポゼッション",
+      "strengths": [
+        "中盤でのボール支配",
+        "ハーランドの決定力",
+        "サイドからの攻撃"
+      ],
+      "weaknesses": [
+        "カウンター攻撃への対応",
+        "高いラインの裏"
+      ],
+      "keyTactics": [
+        "ロドリを中心とした中盤制圧",
+        "グヴァルディオルの攻撃参加",
+        "ハーランドへの供給"
+      ]
+    },
+    "awayTeam": {
+      "formation": "4-3-3",
+      "style": "ハイプレス",
+      "strengths": [
+        "高い位置からのプレス",
+        "サラーの個人技",
+        "カウンター攻撃"
+      ],
+      "weaknesses": [
+        "守備の安定性",
+        "中盤の人数不足"
+      ],
+      "keyTactics": [
+        "前線からの積極的プレス",
+        "サラーを起点とした攻撃",
+        "アレクサンダー＝アーノルドのクロス"
+      ]
+    }
+  },
+  "timeline": [
+    {
+      "time": "キックオフ2時間前",
+      "event": "両チーム選手がスタジアム到着",
+      "description": "ファンの熱烈な歓迎を受ける"
+    },
+    {
+      "time": "キックオフ1時間前",
+      "event": "ウォーミングアップ開始",
+      "description": "ピッチコンディションを確認"
+    },
+    {
+      "time": "キックオフ30分前",
+      "event": "スターティングイレブン発表",
+      "description": "両監督の戦術が明らかに"
+    },
+    {
+      "time": "キックオフ",
+      "event": "試合開始",
+      "description": "エティハドが熱狂に包まれる"
+    }
+  ]
+}

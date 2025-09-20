@@ -1,6 +1,6 @@
 // アプリケーション状態管理
 
-import type { AppState, Fixture, Player, Route, Theme } from '@/types'
+import type { AppState, Fixture, Player, Route, Theme, MatchInfo, TeamInfo } from '@/types'
 
 /**
  * アプリケーション状態のデフォルト値
@@ -13,6 +13,11 @@ const defaultState: AppState = {
   modalPlayer: null,
   loading: false,
   error: null,
+  // 新しい状態
+  matches: [],
+  teams: {},
+  currentView: 'home',
+  selectedMatch: null,
 }
 
 /**
@@ -235,6 +240,37 @@ class StateManager {
   applyInitialTheme(): void {
     this.applyThemeToDOM(this.state.theme)
   }
+
+  /**
+   * ビューを設定
+   */
+  setCurrentView(view: 'home' | 'match'): void {
+    this.setState({ currentView: view })
+  }
+
+  /**
+   * 選択中の試合を設定
+   */
+  setSelectedMatch(matchId: string | null): void {
+    this.setState({ selectedMatch: matchId })
+    if (matchId) {
+      this.setState({ currentView: 'match' })
+    }
+  }
+
+  /**
+   * 試合一覧を設定
+   */
+  setMatches(matches: MatchInfo[]): void {
+    this.setState({ matches })
+  }
+
+  /**
+   * チーム情報を設定
+   */
+  setTeams(teams: Record<string, TeamInfo>): void {
+    this.setState({ teams })
+  }
 }
 
 // シングルトンインスタンス
@@ -319,4 +355,32 @@ export function getOpponentTeam() {
  */
 export function applyInitialTheme(): void {
   stateManager.applyInitialTheme()
+}
+
+/**
+ * ビューを変更
+ */
+export function setCurrentView(view: 'home' | 'match'): void {
+  stateManager.setCurrentView(view)
+}
+
+/**
+ * 選択中の試合を設定
+ */
+export function setSelectedMatch(matchId: string | null): void {
+  stateManager.setSelectedMatch(matchId)
+}
+
+/**
+ * 試合一覧を設定
+ */
+export function setMatches(matches: MatchInfo[]): void {
+  stateManager.setMatches(matches)
+}
+
+/**
+ * チーム情報を設定
+ */
+export function setTeams(teams: Record<string, TeamInfo>): void {
+  stateManager.setTeams(teams)
 }

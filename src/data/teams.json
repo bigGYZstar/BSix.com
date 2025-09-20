@@ -1,0 +1,109 @@
+{
+  "teams": {
+    "ars": {
+      "id": "ars",
+      "name": "アーセナル",
+      "nameEn": "Arsenal",
+      "key": "ARS",
+      "city": "ロンドン",
+      "stadium": "エミレーツ・スタジアム",
+      "founded": 1886,
+      "colors": {
+        "primary": "#DC143C",
+        "secondary": "#FFFFFF"
+      },
+      "logo": "/logos/arsenal.svg",
+      "category": "big6"
+    },
+    "che": {
+      "id": "che",
+      "name": "チェルシー",
+      "nameEn": "Chelsea",
+      "key": "CHE",
+      "city": "ロンドン",
+      "stadium": "スタンフォード・ブリッジ",
+      "founded": 1905,
+      "colors": {
+        "primary": "#034694",
+        "secondary": "#FFFFFF"
+      },
+      "logo": "/logos/chelsea.svg",
+      "category": "big6"
+    },
+    "liv": {
+      "id": "liv",
+      "name": "リヴァプール",
+      "nameEn": "Liverpool",
+      "key": "LIV",
+      "city": "リヴァプール",
+      "stadium": "アンフィールド",
+      "founded": 1892,
+      "colors": {
+        "primary": "#C8102E",
+        "secondary": "#FFFFFF"
+      },
+      "logo": "/logos/liverpool.svg",
+      "category": "big6"
+    },
+    "mci": {
+      "id": "mci",
+      "name": "マンチェスター・シティ",
+      "nameEn": "Manchester City",
+      "key": "MCI",
+      "city": "マンチェスター",
+      "stadium": "エティハド・スタジアム",
+      "founded": 1880,
+      "colors": {
+        "primary": "#6CABDD",
+        "secondary": "#FFFFFF"
+      },
+      "logo": "/logos/manchester-city.svg",
+      "category": "big6"
+    },
+    "mun": {
+      "id": "mun",
+      "name": "マンチェスター・ユナイテッド",
+      "nameEn": "Manchester United",
+      "key": "MUN",
+      "city": "マンチェスター",
+      "stadium": "オールド・トラッフォード",
+      "founded": 1878,
+      "colors": {
+        "primary": "#DA020E",
+        "secondary": "#FFFFFF"
+      },
+      "logo": "/logos/manchester-united.svg",
+      "category": "big6"
+    },
+    "tot": {
+      "id": "tot",
+      "name": "トッテナム・ホットスパー",
+      "nameEn": "Tottenham Hotspur",
+      "key": "TOT",
+      "city": "ロンドン",
+      "stadium": "トッテナム・ホットスパー・スタジアム",
+      "founded": 1882,
+      "colors": {
+        "primary": "#132257",
+        "secondary": "#FFFFFF"
+      },
+      "logo": "/logos/tottenham.svg",
+      "category": "big6"
+    },
+    "lee": {
+      "id": "lee",
+      "name": "リーズ・ユナイテッド",
+      "nameEn": "Leeds United",
+      "key": "LEE",
+      "city": "リーズ",
+      "stadium": "エランド・ロード",
+      "founded": 1919,
+      "colors": {
+        "primary": "#FFFFFF",
+        "secondary": "#1D428A"
+      },
+      "logo": "/logos/leeds.svg",
+      "category": "other"
+    }
+  }
+}

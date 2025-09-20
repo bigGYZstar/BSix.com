@@ -1,0 +1,276 @@
+{
+  "_meta": {
+    "source": "手動作成",
+    "lastUpdated": "2025-09-20T00:00:00Z",
+    "version": "1.0"
+  },
+  "fixtureId": "2025-09-28-ars-tot",
+  "league": "プレミアリーグ",
+  "round": "第7節",
+  "dateJST": "2025-09-28T16:30",
+  "venue": "エミレーツ・スタジアム",
+  "home": {
+    "teamId": "ars",
+    "name": "アーセナル",
+    "key": "ARS",
+    "formation": "4-3-3",
+    "lineup": [
+      {
+        "jp": "ダビド・ラヤ",
+        "intl": "David Raya",
+        "pos": "GK",
+        "num": 22,
+        "stats": { "apps": 28, "cleanSheets": 14, "saves": 95 },
+        "avatar": { "skin": "medium", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "ベン・ホワイト",
+        "intl": "Ben White",
+        "pos": "RB",
+        "num": 4,
+        "stats": { "apps": 32, "goals": 3, "assists": 4 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "ウィリアム・サリバ",
+        "intl": "William Saliba",
+        "pos": "CB",
+        "num": 2,
+        "stats": { "apps": 34, "goals": 2, "assists": 1 },
+        "avatar": { "skin": "dark", "hair": "black", "style": "short" }
+      },
+      {
+        "jp": "ガブリエウ",
+        "intl": "Gabriel Magalhaes",
+        "pos": "CB",
+        "num": 6,
+        "stats": { "apps": 33, "goals": 4, "assists": 1 },
+        "avatar": { "skin": "tan", "hair": "black", "style": "short" }
+      },
+      {
+        "jp": "ジンチェンコ",
+        "intl": "Oleksandr Zinchenko",
+        "pos": "LB",
+        "num": 35,
+        "stats": { "apps": 24, "goals": 1, "assists": 5 },
+        "avatar": { "skin": "light", "hair": "blonde", "style": "short" }
+      },
+      {
+        "jp": "パーティ",
+        "intl": "Thomas Partey",
+        "pos": "DM",
+        "num": 5,
+        "stats": { "apps": 30, "goals": 3, "assists": 4 },
+        "avatar": { "skin": "dark", "hair": "black", "style": "buzz" }
+      },
+      {
+        "jp": "デクラン・ライス",
+        "intl": "Declan Rice",
+        "pos": "CM",
+        "num": 41,
+        "stats": { "apps": 37, "goals": 6, "assists": 5 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "エーデゴール",
+        "intl": "Martin Odegaard",
+        "pos": "AM",
+        "num": 8,
+        "stats": { "apps": 35, "goals": 10, "assists": 14 },
+        "avatar": { "skin": "light", "hair": "blonde", "style": "short" }
+      },
+      {
+        "jp": "サカ",
+        "intl": "Bukayo Saka",
+        "pos": "RW",
+        "num": 7,
+        "stats": { "apps": 36, "goals": 16, "assists": 11 },
+        "avatar": { "skin": "dark", "hair": "black", "style": "short" }
+      },
+      {
+        "jp": "ハフェルツ",
+        "intl": "Kai Havertz",
+        "pos": "ST",
+        "num": 29,
+        "stats": { "apps": 32, "goals": 14, "assists": 7 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "マルティネッリ",
+        "intl": "Gabriel Martinelli",
+        "pos": "LW",
+        "num": 11,
+        "stats": { "apps": 31, "goals": 9, "assists": 6 },
+        "avatar": { "skin": "tan", "hair": "black", "style": "short" }
+      }
+    ],
+    "bench": [
+      "ラムズデール", "ティンバー", "キヴィオル", "ジョルジーニョ", "ヴィエイラ", "トロサール", "ジーザス", "ネルソン", "ンケティア"
+    ],
+    "news": [
+      "エーデゴールがキャプテンとして絶好調",
+      "サカの右サイドからの突破が鍵",
+      "ハフェルツのゴール量産が続く"
+    ],
+    "highlights": [
+      "ホームでの勝率90%",
+      "直近5試合4勝1分",
+      "ノースロンドンダービーでの強さ"
+    ],
+    "eval": {
+      "寸評": "攻守のバランスが取れた理想的なスタイル。エーデゴールを中心とした攻撃は多彩で、ライス加入により中盤の安定感も向上。ノースロンドンダービーでは特に強さを発揮する。",
+      "攻撃力": 9,
+      "守備力": 8,
+      "総合力": 9
+    },
+    "keychips": [
+      "エーデゴールのクリエイティビティ",
+      "サカの個人技",
+      "ハフェルツの決定力",
+      "ライスの中盤支配"
+    ]
+  },
+  "away": {
+    "teamId": "tot",
+    "name": "トッテナム・ホットスパー",
+    "key": "TOT",
+    "formation": "4-2-3-1",
+    "lineup": [
+      {
+        "jp": "グリエルモ・ヴィカリオ",
+        "intl": "Guglielmo Vicario",
+        "pos": "GK",
+        "num": 13,
+        "stats": { "apps": 25, "cleanSheets": 8, "saves": 78 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "ペドロ・ポロ",
+        "intl": "Pedro Porro",
+        "pos": "RB",
+        "num": 23,
+        "stats": { "apps": 28, "goals": 2, "assists": 6 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "クリスティアン・ロメロ",
+        "intl": "Cristian Romero",
+        "pos": "CB",
+        "num": 17,
+        "stats": { "apps": 26, "goals": 1, "assists": 0 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "ミッキー・ファン・デ・フェン",
+        "intl": "Micky van de Ven",
+        "pos": "CB",
+        "num": 37,
+        "stats": { "apps": 24, "goals": 0, "assists": 1 },
+        "avatar": { "skin": "light", "hair": "blonde", "style": "short" }
+      },
+      {
+        "jp": "デスティニー・ウドギー",
+        "intl": "Destiny Udogie",
+        "pos": "LB",
+        "num": 38,
+        "stats": { "apps": 22, "goals": 1, "assists": 3 },
+        "avatar": { "skin": "dark", "hair": "black", "style": "short" }
+      },
+      {
+        "jp": "ロドリゴ・ベンタンクール",
+        "intl": "Rodrigo Bentancur",
+        "pos": "DM",
+        "num": 30,
+        "stats": { "apps": 27, "goals": 2, "assists": 2 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "イヴ・ビスマ",
+        "intl": "Yves Bissouma",
+        "pos": "CM",
+        "num": 8,
+        "stats": { "apps": 29, "goals": 1, "assists": 3 },
+        "avatar": { "skin": "dark", "hair": "black", "style": "buzz" }
+      },
+      {
+        "jp": "ブレナン・ジョンソン",
+        "intl": "Brennan Johnson",
+        "pos": "RW",
+        "num": 22,
+        "stats": { "apps": 26, "goals": 8, "assists": 4 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "ジェームズ・マディソン",
+        "intl": "James Maddison",
+        "pos": "AM",
+        "num": 10,
+        "stats": { "apps": 24, "goals": 6, "assists": 8 },
+        "avatar": { "skin": "light", "hair": "brown", "style": "short" }
+      },
+      {
+        "jp": "ソン・フンミン",
+        "intl": "Son Heung-min",
+        "pos": "LW",
+        "num": 7,
+        "stats": { "apps": 32, "goals": 12, "assists": 7 },
+        "avatar": { "skin": "medium", "hair": "black", "style": "short" }
+      },
+      {
+        "jp": "ドミニク・ソランケ",
+        "intl": "Dominic Solanke",
+        "pos": "ST",
+        "num": 19,
+        "stats": { "apps": 8, "goals": 3, "assists": 1 },
+        "avatar": { "skin": "dark", "hair": "black", "style": "short" }
+      }
+    ],
+    "bench": [
+      "フォースター", "ドラグシン", "デイヴィス", "サール", "ベルグバル", "クルセフスキ", "リシャルリソン", "ヴェルナー", "ムーア"
+    ],
+    "news": [
+      "ソランケの新加入で攻撃力アップ",
+      "マディソンの創造性が鍵",
+      "ソン・フンミンのベテランの経験"
+    ],
+    "highlights": [
+      "アウェイでの粘り強さ",
+      "カウンター攻撃の脅威",
+      "ダービーでの意地"
+    ],
+    "eval": {
+      "寸評": "攻撃的なサッカーで魅せるスパーズ。ソランケ加入で攻撃オプションが増加。マディソンとソンの連携が鍵となる。守備面での安定感が課題。",
+      "攻撃力": 7,
+      "守備力": 6,
+      "総合力": 7
+    },
+    "keychips": [
+      "ソン・フンミンの経験",
+      "マディソンの創造性",
+      "ソランケの決定力",
+      "ジョンソンのスピード"
+    ]
+  },
+  "timeline": [
+    {
+      "time": "キックオフ",
+      "phase": "開始",
+      "desc": "エミレーツ・スタジアムでノースロンドンダービー開始"
+    }
+  ],
+  "keyPoints": [
+    "ノースロンドンダービーの激突",
+    "エーデゴールとマディソンの中盤対決",
+    "サカ vs ソン・フンミンのウィング対決",
+    "ハフェルツ vs ソランケのストライカー対決",
+    "ホームアドバンテージを活かせるか",
+    "スパーズの意地を見せられるか"
+  ],
+  "weather": {
+    "condition": "晴れ",
+    "temperature": 18
+  },
+  "referee": {
+    "main": "アンソニー・テイラー"
+  }
+}

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier League Big 6 Preview - 次節の注目試合</title>
+    <meta name="description" content="プレミアリーグビッグ6の次節試合プレビュー。詳細分析、専門家予想、戦術解説を提供。">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link rel="stylesheet" href="assets/styles/responsive.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="utils/dataCollector.js" as="script">
+    <link rel="preload" href="utils/deviceDetector.js" as="script">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">⚽</div>
+            <div class="loading-text">Premier League Preview</div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo">
+                        <span class="logo-icon">⚽</span>
+                        <span class="logo-text">Big 6 Preview</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="テーマ切り替え">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <button class="menu-toggle" id="menu-toggle" aria-label="メニュー">
+                        <span class="menu-icon">☰</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation (Desktop) -->
+        <nav class="nav-desktop">
+            <div class="nav-content">
+                <a href="#" class="nav-link active" data-page="home">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">ホーム</span>
+                </a>
+                <a href="#" class="nav-link" data-page="fixtures">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">試合一覧</span>
+                </a>
+                <a href="#" class="nav-link" data-page="teams">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">チーム</span>
+                </a>
+                <a href="#" class="nav-link" data-page="stats">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">統計</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="hero-title-main">プレミアリーグ第5節</span>
+                        <span class="hero-title-sub">ビッグ6注目試合プレビュー</span>
+                    </h1>
+                    <p class="hero-description">
+                        今週末のビッグ6チームの試合を詳細分析。専門家予想、戦術解説、選手情報まで完全網羅。
+                    </p>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="total-matches">4</span>
+                            <span class="hero-stat-label">注目試合</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="big6-clashes">2</span>
+                            <span class="hero-stat-label">ビッグ6対決</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number">6</span>
+                            <span class="hero-stat-label">チーム参戦</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-background">
+                    <div class="hero-gradient"></div>
+                </div>
+            </section>
+
+            <!-- Featured Matches Section -->
+            <section class="featured-matches">
+                <div class="section-header">
+                    <h2 class="section-title">今週末の注目試合</h2>
+                    <p class="section-subtitle">ビッグ6チームの全試合をカバー</p>
+                </div>
+                
+                <div class="matches-container" id="matches-container">
+                    <!-- Match cards will be dynamically inserted here -->
+                    <div class="matches-loading">
+                        <div class="loading-spinner"></div>
+                        <p>試合データを読み込み中...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Stats Section -->
+            <section class="quick-stats">
+                <div class="section-header">
+                    <h2 class="section-title">今節のハイライト</h2>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-content">
+                            <h3 class="stat-title">タイトル争い</h3>
+                            <p class="stat-description">アーセナル vs マンチェスター・シティの頂上決戦</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">⚔️</div>
+                        <div class="stat-content">
+                            <h3 class="stat-title">ビッグ6対決</h3>
+                            <p class="stat-description">マンチェスター・ユナイテッド vs チェルシー</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-content">
+                            <h3 class="stat-title">ダービー</h3>
+                            <p class="stat-description">リバプール vs エバートンのマージーサイドダービー</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-content">
+                            <h3 class="stat-title">アウェイ戦</h3>
+                            <p class="stat-description">トッテナムのブライトン戦</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation (Mobile) -->
+        <nav class="nav-mobile">
+            <a href="#" class="nav-mobile-link active" data-page="home">
+                <span class="nav-mobile-icon">🏠</span>
+                <span class="nav-mobile-text">ホーム</span>
+            </a>
+            <a href="#" class="nav-mobile-link" data-page="fixtures">
+                <span class="nav-mobile-icon">📅</span>
+                <span class="nav-mobile-text">試合</span>
+            </a>
+            <a href="#" class="nav-mobile-link" data-page="favorites">
+                <span class="nav-mobile-icon">⭐</span>
+                <span class="nav-mobile-text">お気に入り</span>
+            </a>
+            <a href="#" class="nav-mobile-link" data-page="settings">
+                <span class="nav-mobile-icon">⚙️</span>
+                <span class="nav-mobile-text">設定</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Match Card Template -->
+    <template id="match-card-template">
+        <div class="match-card" data-match-id="">
+            <div class="match-card-header">
+                <div class="match-date">
+                    <span class="match-day"></span>
+                    <span class="match-time"></span>
+                </div>
+                <div class="match-competition">
+                    <span class="competition-name"></span>
+                    <span class="matchweek"></span>
+                </div>
+            </div>
+            
+            <div class="match-teams">
+                <div class="team home-team">
+                    <div class="team-logo">
+                        <span class="team-logo-text"></span>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name"></h3>
+                        <span class="team-label">ホーム</span>
+                    </div>
+                </div>
+                
+                <div class="match-vs">
+                    <span class="vs-text">VS</span>
+                    <div class="match-significance"></div>
+                </div>
+                
+                <div class="team away-team">
+                    <div class="team-logo">
+                        <span class="team-logo-text"></span>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name"></h3>
+                        <span class="team-label">アウェイ</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="match-details">
+                <div class="match-venue">
+                    <span class="venue-icon">🏟️</span>
+                    <span class="venue-name"></span>
+                </div>
+                <div class="match-tv">
+                    <span class="tv-icon">📺</span>
+                    <span class="tv-coverage"></span>
+                </div>
+            </div>
+            
+            <div class="match-actions">
+                <button class="btn btn-primary match-preview-btn">
+                    <span class="btn-icon">📊</span>
+                    <span class="btn-text">詳細プレビュー</span>
+                </button>
+                <button class="btn btn-secondary match-favorite-btn">
+                    <span class="btn-icon">⭐</span>
+                </button>
+            </div>
+            
+            <div class="match-priority-badge">
+                <span class="priority-text"></span>
+            </div>
+        </div>
+    </template>
+
+    <!-- Scripts -->
+    <script src="utils/deviceDetector.js"></script>
+    <script src="utils/dataCollector.js"></script>
+    <script src="components/matchCard.js"></script>
+    <script src="pages/home.js"></script>
+    <script src="assets/scripts/main.js"></script>
+</body>
+</html>

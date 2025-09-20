@@ -1,0 +1,535 @@
+/* スマホ版UI/UX最適化スタイル */
+
+/* モバイルヘッダー */
+.mobile-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  background-color: var(--color-bg-secondary);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-3) 0;
+}
+
+.mobile-header .header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px; /* iOS推奨のタップターゲットサイズ */
+}
+
+.mobile-header .logo {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-main);
+  text-decoration: none;
+  flex: 1;
+  text-align: center;
+}
+
+/* 戻るボタン */
+.back-button {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-button:hover {
+  background-color: var(--color-bg-tertiary);
+}
+
+.back-button:active {
+  transform: scale(0.95);
+}
+
+/* テーマ切り替えボタン（モバイル最適化） */
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: var(--font-size-lg);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  background-color: var(--color-bg-tertiary);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* モバイルタブナビゲーション */
+.mobile-tab-nav {
+  background-color: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-2) 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.mobile-tab-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-nav-container {
+  display: flex;
+  gap: var(--space-1);
+  padding: 0 var(--space-4);
+  min-width: max-content;
+}
+
+.mobile-tab-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  border: none;
+  background: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-width: 80px;
+  min-height: 60px;
+  color: var(--color-text-secondary);
+}
+
+.mobile-tab-button:hover {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-main);
+}
+
+.mobile-tab-button.active {
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.mobile-tab-button:active {
+  transform: scale(0.95);
+}
+
+.mobile-tab-button .tab-icon {
+  font-size: var(--font-size-lg);
+}
+
+.mobile-tab-button .tab-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+/* 下部タブバー */
+.bottom-tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  z-index: var(--z-sticky);
+  backdrop-filter: blur(8px);
+  padding: var(--space-2) 0 calc(var(--space-2) + env(safe-area-inset-bottom));
+}
+
+.bottom-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-1);
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--color-text-secondary);
+  min-height: 60px;
+}
+
+.bottom-tab:hover {
+  color: var(--color-text-main);
+}
+
+.bottom-tab.active {
+  color: var(--color-primary);
+}
+
+.bottom-tab:active {
+  transform: scale(0.95);
+}
+
+.bottom-tab .tab-icon {
+  font-size: var(--font-size-lg);
+}
+
+.bottom-tab .tab-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+/* メインコンテンツ（下部タブバー分のマージン） */
+.main-content {
+  padding-bottom: calc(80px + env(safe-area-inset-bottom));
+}
+
+/* 試合カード（モバイル最適化） */
+.match-card.mobile-optimized {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+.match-card.mobile-optimized:active {
+  transform: scale(0.98);
+  box-shadow: var(--shadow-sm);
+}
+
+.match-card.mobile-optimized .match-card-header {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+  padding: var(--space-4) var(--space-5);
+}
+
+.match-card.mobile-optimized .match-card-body {
+  padding: var(--space-5);
+}
+
+.match-card.mobile-optimized .teams-container {
+  margin-bottom: var(--space-5);
+}
+
+.match-card.mobile-optimized .team-badge {
+  width: 56px;
+  height: 56px;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  border: 3px solid var(--color-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+.match-card.mobile-optimized .team-name {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.match-card.mobile-optimized .vs-divider span {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  box-shadow: var(--shadow-sm);
+}
+
+/* モバイルタッチ対応ボタン */
+.btn.mobile-touch {
+  min-height: 48px;
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-xl);
+  transition: all var(--transition-fast);
+}
+
+.btn.mobile-touch:active {
+  transform: scale(0.98);
+}
+
+/* ビューの切り替え */
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}
+
+/* モーダル（モバイル最適化） */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  position: relative;
+  background-color: var(--color-bg);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  max-height: 80vh;
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  transform: translateY(100%);
+  transition: transform var(--transition-normal);
+}
+
+.modal.show .modal-content {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modal-header h3 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: var(--font-size-xl);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-main);
+}
+
+.modal-body {
+  padding: var(--space-5);
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* アコーディオンUI */
+.accordion {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+.accordion-header {
+  background: none;
+  border: none;
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-main);
+  background-color: var(--color-bg-secondary);
+  transition: all var(--transition-fast);
+  min-height: 56px;
+}
+
+.accordion-header:hover {
+  background-color: var(--color-bg-tertiary);
+}
+
+.accordion-header:active {
+  transform: scale(0.99);
+}
+
+.accordion-icon {
+  font-size: var(--font-size-lg);
+  transition: transform var(--transition-fast);
+}
+
+.accordion-item.open .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-normal);
+}
+
+.accordion-item.open .accordion-content {
+  max-height: 1000px;
+}
+
+.accordion-body {
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--color-bg);
+}
+
+/* スマホ専用レスポンシブ調整 */
+@media (max-width: 640px) {
+  /* より小さなスペーシング */
+  .container {
+    padding: 0 var(--space-3);
+  }
+  
+  .page-header {
+    margin-bottom: var(--space-6);
+  }
+  
+  .page-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .matches-list {
+    gap: var(--space-4);
+  }
+  
+  .match-card.mobile-optimized .match-card-header {
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  .match-card.mobile-optimized .match-card-body {
+    padding: var(--space-4);
+  }
+  
+  .match-card.mobile-optimized .team-badge {
+    width: 48px;
+    height: 48px;
+    font-size: var(--font-size-lg);
+  }
+  
+  .tab-nav-container {
+    padding: 0 var(--space-3);
+  }
+  
+  .mobile-tab-button {
+    min-width: 70px;
+    min-height: 56px;
+    padding: var(--space-2) var(--space-3);
+  }
+}
+
+/* 極小画面対応 */
+@media (max-width: 360px) {
+  .mobile-header .logo {
+    font-size: var(--font-size-base);
+  }
+  
+  .match-card.mobile-optimized .teams-container {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  
+  .match-card.mobile-optimized .vs-divider {
+    order: 1;
+    margin: 0;
+  }
+  
+  .match-card.mobile-optimized .home-team {
+    order: 0;
+  }
+  
+  .match-card.mobile-optimized .away-team {
+    order: 2;
+  }
+  
+  .mobile-tab-button {
+    min-width: 60px;
+    padding: var(--space-2);
+  }
+  
+  .mobile-tab-button .tab-label {
+    font-size: 10px;
+  }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  .bottom-tab-bar {
+    background-color: rgba(15, 23, 42, 0.9);
+  }
+  
+  .mobile-header {
+    background-color: rgba(15, 23, 42, 0.9);
+  }
+  
+  .mobile-tab-nav {
+    background-color: rgba(15, 23, 42, 0.9);
+  }
+}
+
+/* セーフエリア対応（iPhone X以降） */
+@supports (padding: max(0px)) {
+  .bottom-tab-bar {
+    padding-bottom: max(var(--space-2), env(safe-area-inset-bottom));
+  }
+  
+  .main-content {
+    padding-bottom: calc(80px + max(0px, env(safe-area-inset-bottom)));
+  }
+}
+
+/* 横向き対応 */
+@media (orientation: landscape) and (max-height: 500px) {
+  .bottom-tab-bar {
+    display: none;
+  }
+  
+  .main-content {
+    padding-bottom: var(--space-4);
+  }
+  
+  .mobile-header {
+    padding: var(--space-2) 0;
+  }
+  
+  .mobile-tab-nav {
+    padding: var(--space-1) 0;
+  }
+  
+  .mobile-tab-button {
+    min-height: 48px;
+  }
+}

@@ -1,0 +1,504 @@
+/* Responsive Design for Premier League Big 6 Preview */
+
+/* Mobile First Approach */
+
+/* Extra Small Devices (phones, 320px and up) */
+@media (min-width: 320px) {
+    .hero-title-main {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .hero-title-sub {
+        font-size: var(--font-size-lg);
+    }
+    
+    .hero-stats {
+        gap: var(--space-4);
+    }
+    
+    .matches-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+}
+
+/* Small Devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .header-content {
+        padding: var(--space-4) var(--space-4);
+    }
+    
+    .hero {
+        padding: var(--space-12) var(--space-4) var(--space-8);
+    }
+    
+    .hero-title-main {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .hero-title-sub {
+        font-size: var(--font-size-xl);
+    }
+    
+    .featured-matches,
+    .quick-stats {
+        padding: var(--space-12) var(--space-4);
+    }
+    
+    .match-card {
+        padding: var(--space-5);
+    }
+    
+    .team-logo {
+        width: 50px;
+        height: 50px;
+        font-size: var(--font-size-xl);
+    }
+    
+    .match-teams {
+        margin-bottom: var(--space-4);
+    }
+    
+    .match-vs {
+        margin: 0 var(--space-3);
+    }
+}
+
+/* Medium Devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    /* Show desktop navigation */
+    .nav-desktop {
+        display: block;
+    }
+    
+    /* Hide mobile navigation */
+    .nav-mobile {
+        display: none;
+    }
+    
+    .main-content {
+        padding-bottom: var(--space-8);
+    }
+    
+    .header-content {
+        padding: var(--space-4) var(--space-6);
+    }
+    
+    .hero {
+        padding: var(--space-16) var(--space-6) var(--space-12);
+    }
+    
+    .hero-title-main {
+        font-size: var(--font-size-4xl);
+    }
+    
+    .hero-title-sub {
+        font-size: var(--font-size-xl);
+    }
+    
+    .hero-stats {
+        gap: var(--space-8);
+    }
+    
+    .featured-matches,
+    .quick-stats {
+        padding: var(--space-16) var(--space-6);
+    }
+    
+    .matches-container {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: var(--space-6);
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-6);
+    }
+    
+    .match-card {
+        padding: var(--space-6);
+    }
+    
+    .team-logo {
+        width: 60px;
+        height: 60px;
+        font-size: var(--font-size-2xl);
+    }
+    
+    .match-vs {
+        margin: 0 var(--space-4);
+    }
+    
+    /* Tablet-specific match card layout */
+    .match-teams {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .team {
+        flex-direction: column;
+    }
+}
+
+/* Large Devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .matches-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-8);
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-8);
+    }
+    
+    .match-card {
+        padding: var(--space-8);
+    }
+    
+    .team-logo {
+        width: 70px;
+        height: 70px;
+        font-size: var(--font-size-3xl);
+    }
+    
+    .team-name {
+        font-size: var(--font-size-xl);
+    }
+    
+    .match-details {
+        padding: var(--space-4);
+    }
+    
+    /* Enhanced hover effects for desktop */
+    .match-card:hover {
+        transform: translateY(-6px);
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* Extra Large Devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .matches-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .hero-title-main {
+        font-size: 3rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Ultra Wide Screens (1400px and up) */
+@media (min-width: 1400px) {
+    .header-content,
+    .nav-content,
+    .hero-content,
+    .matches-container,
+    .stats-grid {
+        max-width: 1400px;
+    }
+}
+
+/* Device-specific optimizations */
+
+/* Touch Device Optimizations */
+.touch-device .btn,
+.touch-device .nav-link,
+.touch-device .nav-mobile-link,
+.touch-device .theme-toggle,
+.touch-device .menu-toggle {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+.touch-device .match-card {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.touch-device .match-card:active {
+    transform: scale(0.98);
+}
+
+/* No-touch Device Optimizations */
+.no-touch .match-card:hover .team-logo {
+    transform: scale(1.1);
+}
+
+.no-touch .btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Mobile-specific styles */
+.device-mobile .hero {
+    padding: var(--space-8) var(--space-4) var(--space-6);
+}
+
+.device-mobile .hero-description {
+    font-size: var(--font-size-base);
+}
+
+.device-mobile .match-card {
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-4);
+}
+
+.device-mobile .team {
+    flex-direction: column;
+    align-items: center;
+}
+
+.device-mobile .team-logo {
+    width: 45px;
+    height: 45px;
+    font-size: var(--font-size-lg);
+}
+
+.device-mobile .team-name {
+    font-size: var(--font-size-base);
+    text-align: center;
+}
+
+.device-mobile .match-details {
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.device-mobile .match-venue,
+.device-mobile .match-tv {
+    justify-content: center;
+}
+
+.device-mobile .btn {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-sm);
+}
+
+.device-mobile .stat-card {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-3);
+}
+
+.device-mobile .stat-icon {
+    width: 50px;
+    height: 50px;
+    font-size: var(--font-size-2xl);
+}
+
+/* Tablet-specific styles */
+.device-tablet .matches-container {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.device-tablet .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.device-tablet .team {
+    flex-direction: column;
+}
+
+/* Desktop-specific styles */
+.device-desktop .matches-container {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.device-desktop .team {
+    flex-direction: column;
+}
+
+.device-desktop .match-card:hover .match-priority-badge {
+    transform: scale(1.05);
+}
+
+/* Orientation-specific styles */
+.orientation-landscape.device-mobile .hero-stats {
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.orientation-portrait.device-mobile .hero-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.orientation-landscape.device-mobile .matches-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+}
+
+/* High DPI / Retina Display Optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .team-logo {
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .match-card {
+        border-width: 0.5px;
+    }
+}
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .loading-logo {
+        animation: none;
+    }
+    
+    .loading-spinner {
+        animation: none;
+        border: 3px solid var(--text-inverse);
+    }
+    
+    .match-card:hover,
+    .stat-card:hover,
+    .btn:hover {
+        transform: none;
+    }
+}
+
+/* Dark Mode Responsive Adjustments */
+@media (prefers-color-scheme: dark) {
+    [data-theme="auto"] {
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --bg-tertiary: #334155;
+        --bg-card: rgba(30, 41, 59, 0.95);
+        --text-primary: #f8fafc;
+        --text-secondary: #cbd5e1;
+        --text-muted: #64748b;
+        --border-color: #334155;
+        --border-hover: #475569;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .header,
+    .nav-desktop,
+    .nav-mobile,
+    .hero,
+    .loading-screen {
+        display: none !important;
+    }
+    
+    .main-content {
+        padding: 0;
+    }
+    
+    .match-card,
+    .stat-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .matches-container,
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+}
+
+/* Accessibility Enhancements */
+@media (prefers-contrast: high) {
+    .match-card,
+    .stat-card {
+        border-width: 2px;
+        border-color: var(--text-primary);
+    }
+    
+    .btn-primary {
+        background: var(--text-primary);
+        color: var(--bg-primary);
+    }
+    
+    .team-logo {
+        border: 2px solid var(--text-primary);
+    }
+}
+
+/* Focus Visible Enhancements */
+.btn:focus-visible,
+.nav-link:focus-visible,
+.nav-mobile-link:focus-visible,
+.theme-toggle:focus-visible,
+.menu-toggle:focus-visible,
+.match-card:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 2px;
+}
+
+/* Safe Area Insets for devices with notches */
+@supports (padding: max(0px)) {
+    .header-content {
+        padding-left: max(var(--space-6), env(safe-area-inset-left));
+        padding-right: max(var(--space-6), env(safe-area-inset-right));
+    }
+    
+    .nav-mobile {
+        padding-left: max(var(--space-4), env(safe-area-inset-left));
+        padding-right: max(var(--space-4), env(safe-area-inset-right));
+        padding-bottom: max(var(--space-2), env(safe-area-inset-bottom));
+    }
+    
+    .featured-matches,
+    .quick-stats {
+        padding-left: max(var(--space-6), env(safe-area-inset-left));
+        padding-right: max(var(--space-6), env(safe-area-inset-right));
+    }
+}
+
+/* Container Queries (Future-proofing) */
+@supports (container-type: inline-size) {
+    .matches-container {
+        container-type: inline-size;
+    }
+    
+    @container (max-width: 600px) {
+        .match-card {
+            padding: var(--space-4);
+        }
+        
+        .team-logo {
+            width: 40px;
+            height: 40px;
+            font-size: var(--font-size-lg);
+        }
+    }
+    
+    @container (min-width: 800px) {
+        .match-card {
+            padding: var(--space-8);
+        }
+        
+        .team-logo {
+            width: 80px;
+            height: 80px;
+            font-size: var(--font-size-3xl);
+        }
+    }
+}

@@ -1,0 +1,309 @@
+<!-- デモページ - 試合情報への直接アクセス -->
+<div id="demo-page" class="page">
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="container header-content">
+      <h1 class="logo">⚽ ビッグシックス プレビュー</h1>
+      <button id="theme-toggle" class="theme-toggle" aria-label="テーマ切り替え">
+        🌙
+      </button>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="main-content">
+    <div class="container">
+      <!-- ページタイトル -->
+      <section class="page-header">
+        <h2 class="page-title">試合プレビュー（デモ）</h2>
+        <p class="page-subtitle">利用可能な試合一覧</p>
+      </section>
+
+      <!-- 試合一覧（静的） -->
+      <section class="matches-section">
+        <div class="matches-list">
+          
+          <!-- アーセナル vs リーズ -->
+          <article class="match-card" data-match-id="2025-08-24-ars-lee">
+            <div class="match-card-header">
+              <div class="match-date">2025年8月24日 22:00</div>
+              <div class="match-league">プレミアリーグ 第2節</div>
+            </div>
+            
+            <div class="match-card-body">
+              <div class="teams-container">
+                <div class="team home-team">
+                  <div class="team-logo">
+                    <div class="team-badge" style="background-color: #EF0107; color: white;">ARS</div>
+                  </div>
+                  <div class="team-info">
+                    <h3 class="team-name">アーセナル</h3>
+                    <p class="team-venue">ホーム</p>
+                  </div>
+                </div>
+                
+                <div class="vs-divider">
+                  <span>VS</span>
+                </div>
+                
+                <div class="team away-team">
+                  <div class="team-logo">
+                    <div class="team-badge" style="background-color: #FFCD00; color: #1D428A;">LEE</div>
+                  </div>
+                  <div class="team-info">
+                    <h3 class="team-name">リーズ・ユナイテッド</h3>
+                    <p class="team-venue">アウェイ</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="match-details">
+                <div class="venue-info">
+                  <span class="venue-icon">🏟️</span>
+                  <span class="venue-name">エミレーツ・スタジアム</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="match-card-footer">
+              <button class="btn btn-primary match-preview-btn" onclick="viewMatch('2025-08-24-ars-lee')">
+                試合プレビューを見る
+                <span class="btn-icon">→</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- アーセナル vs トッテナム -->
+          <article class="match-card" data-match-id="2025-09-28-ars-tot">
+            <div class="match-card-header">
+              <div class="match-date">2025年9月28日 16:30</div>
+              <div class="match-league">プレミアリーグ 第7節</div>
+            </div>
+            
+            <div class="match-card-body">
+              <div class="teams-container">
+                <div class="team home-team">
+                  <div class="team-logo">
+                    <div class="team-badge" style="background-color: #EF0107; color: white;">ARS</div>
+                  </div>
+                  <div class="team-info">
+                    <h3 class="team-name">アーセナル</h3>
+                    <p class="team-venue">ホーム</p>
+                  </div>
+                </div>
+                
+                <div class="vs-divider">
+                  <span>VS</span>
+                </div>
+                
+                <div class="team away-team">
+                  <div class="team-logo">
+                    <div class="team-badge" style="background-color: #132257; color: white;">TOT</div>
+                  </div>
+                  <div class="team-info">
+                    <h3 class="team-name">トッテナム</h3>
+                    <p class="team-venue">アウェイ</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="match-details">
+                <div class="venue-info">
+                  <span class="venue-icon">🏟️</span>
+                  <span class="venue-name">エミレーツ・スタジアム</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="match-card-footer">
+              <button class="btn btn-primary match-preview-btn" onclick="viewMatch('2025-09-28-ars-tot')">
+                試合プレビューを見る
+                <span class="btn-icon">→</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- マンチェスター・シティ vs リバプール -->
+          <article class="match-card" data-match-id="2025-10-05-mci-liv">
+            <div class="match-card-header">
+              <div class="match-date">2025年10月5日 18:30</div>
+              <div class="match-league">プレミアリーグ 第8節</div>
+            </div>
+            
+            <div class="match-card-body">
+              <div class="teams-container">
+                <div class="team home-team">
+                  <div class="team-logo">
+                    <div class="team-badge" style="background-color: #6CABDD; color: white;">MCI</div>
+                  </div>
+                  <div class="team-info">
+                    <h3 class="team-name">マンチェスター・シティ</h3>
+                    <p class="team-venue">ホーム</p>
+                  </div>
+                </div>
+                
+                <div class="vs-divider">
+                  <span>VS</span>
+                </div>
+                
+                <div class="team away-team">
+                  <div class="team-logo">
+                    <div class="team-badge" style="background-color: #C8102E; color: white;">LIV</div>
+                  </div>
+                  <div class="team-info">
+                    <h3 class="team-name">リバプール</h3>
+                    <p class="team-venue">アウェイ</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="match-details">
+                <div class="venue-info">
+                  <span class="venue-icon">🏟️</span>
+                  <span class="venue-name">エティハド・スタジアム</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="match-card-footer">
+              <button class="btn btn-primary match-preview-btn" onclick="viewMatch('2025-10-05-mci-liv')">
+                試合プレビューを見る
+                <span class="btn-icon">→</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- チェルシー vs マンチェスター・ユナイテッド -->
+          <article class="match-card" data-match-id="2025-10-19-che-mun">
+            <div class="match-card-header">
+              <div class="match-date">2025年10月19日 22:00</div>
+              <div class="match-league">プレミアリーグ 第9節</div>
+            </div>
+            
+            <div class="match-card-body">
+              <div class="teams-container">
+                <div class="team home-team">
+                  <div class="team-logo">
+                    <div class="team-badge" style="background-color: #034694; color: white;">CHE</div>
+                  </div>
+                  <div class="team-info">
+                    <h3 class="team-name">チェルシー</h3>
+                    <p class="team-venue">ホーム</p>
+                  </div>
+                </div>
+                
+                <div class="vs-divider">
+                  <span>VS</span>
+                </div>
+                
+                <div class="team away-team">
+                  <div class="team-logo">
+                    <div class="team-badge" style="background-color: #DA020E; color: white;">MUN</div>
+                  </div>
+                  <div class="team-info">
+                    <h3 class="team-name">マンチェスター・ユナイテッド</h3>
+                    <p class="team-venue">アウェイ</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="match-details">
+                <div class="venue-info">
+                  <span class="venue-icon">🏟️</span>
+                  <span class="venue-name">スタンフォード・ブリッジ</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="match-card-footer">
+              <button class="btn btn-primary match-preview-btn" onclick="viewMatch('2025-10-19-che-mun')">
+                試合プレビューを見る
+                <span class="btn-icon">→</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- 説明 -->
+      <section class="info-section">
+        <div class="info-card">
+          <h3>🎯 デモページについて</h3>
+          <p>このページでは、作成済みの4つの試合プレビューに直接アクセスできます。各試合カードの「試合プレビューを見る」ボタンをクリックして、詳細な試合分析をご覧ください。</p>
+          
+          <h4>📊 利用可能な試合データ</h4>
+          <ul>
+            <li><strong>アーセナル vs リーズ・ユナイテッド</strong> - 完全なプレビューデータ</li>
+            <li><strong>アーセナル vs トッテナム</strong> - ノースロンドンダービー</li>
+            <li><strong>マンチェスター・シティ vs リバプール</strong> - 頂上決戦</li>
+            <li><strong>チェルシー vs マンチェスター・ユナイテッド</strong> - ビッグシックス対決</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 ビッグシックス プレビュー. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+// 試合プレビューページへの遷移
+function viewMatch(matchId) {
+  console.log('Viewing match:', matchId);
+  
+  // URLを更新してmatchページに遷移
+  window.location.hash = `#match/${matchId}`;
+  
+  // ページを切り替え
+  if (window.app && window.app.router) {
+    window.app.router.navigate(`match/${matchId}`);
+  } else {
+    // フォールバック: 直接ページを切り替え
+    const currentPage = document.querySelector('.page:not([style*="display: none"])');
+    if (currentPage) {
+      currentPage.style.display = 'none';
+    }
+    
+    // match pageを表示
+    const matchPage = document.getElementById('match-page');
+    if (matchPage) {
+      matchPage.style.display = 'block';
+      
+      // match pageの初期化
+      if (window.initMatchPage) {
+        window.initMatchPage(matchId);
+      }
+    }
+  }
+}
+
+// テーマ切り替え
+document.addEventListener('DOMContentLoaded', function() {
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function() {
+      document.body.classList.toggle('dark-theme');
+      
+      // テーマ状態を保存
+      const isDark = document.body.classList.contains('dark-theme');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      
+      // アイコンを更新
+      this.textContent = isDark ? '☀️' : '🌙';
+    });
+    
+    // 保存されたテーマを復元
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-theme');
+      themeToggle.textContent = '☀️';
+    }
+  }
+});
+</script>

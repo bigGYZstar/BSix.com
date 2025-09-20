@@ -1,0 +1,79 @@
+{
+  "gameweek": 5,
+  "season": "2025-26",
+  "date_range": "2025-09-20 to 2025-09-21",
+  "big6_matches": [
+    {
+      "id": "2025-09-20-liv-eve",
+      "date": "2025-09-20",
+      "time": "07:30",
+      "timezone": "ET",
+      "home_team": "liverpool",
+      "away_team": "everton",
+      "venue": "Anfield",
+      "competition": "Premier League",
+      "matchweek": 5,
+      "tv_coverage": "USA/NBC.com",
+      "significance": "Merseyside Derby",
+      "big6_involvement": ["liverpool"],
+      "preview_notes": "Liverpool looking to maintain unbeaten start. Everton hoping to upset their neighbors in the derby."
+    },
+    {
+      "id": "2025-09-20-bha-tot",
+      "date": "2025-09-20",
+      "time": "10:00",
+      "timezone": "ET",
+      "home_team": "brighton",
+      "away_team": "tottenham",
+      "venue": "Amex Stadium",
+      "competition": "Premier League",
+      "matchweek": 5,
+      "tv_coverage": "Peacock",
+      "significance": "Tottenham away test",
+      "big6_involvement": ["tottenham"],
+      "preview_notes": "Tottenham face tricky away fixture against Brighton. Spurs need consistency in their performances."
+    },
+    {
+      "id": "2025-09-20-mun-che",
+      "date": "2025-09-20",
+      "time": "12:30",
+      "timezone": "ET",
+      "home_team": "manchester_united",
+      "away_team": "chelsea",
+      "venue": "Old Trafford",
+      "competition": "Premier League",
+      "matchweek": 5,
+      "tv_coverage": "USA/NBC.com",
+      "significance": "Big 6 Clash",
+      "big6_involvement": ["manchester_united", "chelsea"],
+      "preview_notes": "Pressure mounting on Ruben Amorim. Chelsea coming off tough Champions League draw with Bayern Munich."
+    },
+    {
+      "id": "2025-09-21-ars-mci",
+      "date": "2025-09-21",
+      "time": "11:30",
+      "timezone": "ET",
+      "home_team": "arsenal",
+      "away_team": "manchester_city",
+      "venue": "Emirates Stadium",
+      "competition": "Premier League",
+      "matchweek": 5,
+      "tv_coverage": "Peacock",
+      "significance": "Title Contenders Clash",
+      "big6_involvement": ["arsenal", "manchester_city"],
+      "preview_notes": "Repeat of last year's 5-1 Arsenal victory. City hoping Rodri's presence will make difference. Arsenal's title credentials on test."
+    }
+  ],
+  "total_big6_matches": 4,
+  "big6_vs_big6": 2,
+  "coverage_summary": {
+    "total_big6_teams_playing": 6,
+    "teams_covered": ["arsenal", "chelsea", "liverpool", "manchester_city", "manchester_united", "tottenham"],
+    "key_fixtures": [
+      "Arsenal vs Manchester City - Title contenders clash",
+      "Manchester United vs Chelsea - Big 6 battle at Old Trafford",
+      "Liverpool vs Everton - Merseyside Derby",
+      "Brighton vs Tottenham - Spurs away test"
+    ]
+  }
+}

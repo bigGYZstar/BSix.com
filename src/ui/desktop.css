@@ -1,0 +1,371 @@
+/* PC版UI/UX最適化スタイル */
+
+/* デスクトップ向けレイアウト調整 */
+@media (min-width: 768px) {
+  
+  /* ヘッダー調整 */
+  .mobile-header {
+    padding: var(--space-4) 0;
+  }
+  
+  .mobile-header .header-content {
+    min-height: 60px;
+  }
+  
+  .mobile-header .logo {
+    font-size: var(--font-size-xl);
+    text-align: left;
+    flex: none;
+  }
+  
+  /* 下部タブバーを隠す（PC版では不要） */
+  .bottom-tab-bar {
+    display: none;
+  }
+  
+  /* メインコンテンツのマージン調整 */
+  .main-content {
+    padding-bottom: var(--space-8);
+  }
+  
+  /* 試合一覧のグリッド調整 */
+  .matches-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+  
+  /* 試合カードのホバーエフェクト */
+  .match-card.mobile-optimized:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .match-card.mobile-optimized:active {
+    transform: translateY(-2px);
+  }
+  
+  /* タブナビゲーションの調整 */
+  .mobile-tab-nav {
+    background-color: var(--color-bg);
+    border-bottom: none;
+    padding: var(--space-4) 0;
+  }
+  
+  .tab-nav-container {
+    justify-content: center;
+    gap: var(--space-2);
+  }
+  
+  .mobile-tab-button {
+    min-width: 120px;
+    min-height: 50px;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-xl);
+    flex-direction: row;
+    gap: var(--space-2);
+  }
+  
+  .mobile-tab-button .tab-icon {
+    font-size: var(--font-size-base);
+  }
+  
+  .mobile-tab-button .tab-label {
+    font-size: var(--font-size-sm);
+  }
+  
+  /* ページヘッダーの調整 */
+  .page-header {
+    margin-bottom: var(--space-12);
+  }
+  
+  .page-title {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .page-subtitle {
+    font-size: var(--font-size-xl);
+  }
+}
+
+/* 大画面向けレイアウト */
+@media (min-width: 1024px) {
+  
+  /* 3カラムレイアウト */
+  .matches-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  /* より大きなスペーシング */
+  .container {
+    max-width: 1200px;
+    padding: 0 var(--space-8);
+  }
+  
+  /* 試合カードの調整 */
+  .match-card.mobile-optimized .match-card-body {
+    padding: var(--space-8);
+  }
+  
+  .match-card.mobile-optimized .teams-container {
+    margin-bottom: var(--space-8);
+  }
+  
+  .match-card.mobile-optimized .team-badge {
+    width: 64px;
+    height: 64px;
+    font-size: var(--font-size-2xl);
+  }
+  
+  /* タブナビゲーションの調整 */
+  .mobile-tab-button {
+    min-width: 140px;
+    padding: var(--space-4) var(--space-8);
+  }
+  
+  /* モーダルの調整 */
+  .modal {
+    align-items: center;
+  }
+  
+  .modal-content {
+    border-radius: var(--radius-xl);
+    max-width: 600px;
+    max-height: 80vh;
+    transform: scale(0.9);
+  }
+  
+  .modal.show .modal-content {
+    transform: scale(1);
+  }
+}
+
+/* 超大画面向けレイアウト */
+@media (min-width: 1440px) {
+  
+  /* 4カラムレイアウト */
+  .matches-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  /* より大きなコンテナ */
+  .container {
+    max-width: 1400px;
+  }
+  
+  /* ページヘッダーの調整 */
+  .page-title {
+    font-size: var(--font-size-5xl);
+  }
+}
+
+/* キーボードナビゲーション対応 */
+@media (min-width: 768px) {
+  
+  /* フォーカス表示の改善 */
+  .match-card.mobile-optimized:focus-within {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+  
+  .mobile-tab-button:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+  
+  /* ホバーエフェクトの追加 */
+  .theme-toggle:hover {
+    background-color: var(--color-bg-tertiary);
+    transform: scale(1.05);
+  }
+  
+  .back-button:hover {
+    background-color: var(--color-bg-tertiary);
+    transform: translateX(-2px);
+  }
+  
+  .btn.mobile-touch:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  /* スムーズなトランジション */
+  .match-card.mobile-optimized,
+  .mobile-tab-button,
+  .theme-toggle,
+  .back-button,
+  .btn.mobile-touch {
+    transition: all var(--transition-normal);
+  }
+}
+
+/* マウス操作向けの調整 */
+@media (hover: hover) and (pointer: fine) {
+  
+  /* より詳細なホバーエフェクト */
+  .match-card.mobile-optimized:hover .team-badge {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .match-card.mobile-optimized:hover .vs-divider span {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+    transform: scale(1.1);
+  }
+  
+  .match-card.mobile-optimized:hover .match-preview-btn {
+    background-color: var(--color-primary-hover);
+  }
+  
+  /* タブボタンのホバーエフェクト */
+  .mobile-tab-button:hover:not(.active) {
+    background-color: var(--color-bg-tertiary);
+    transform: translateY(-2px);
+  }
+  
+  .mobile-tab-button:hover .tab-icon {
+    transform: scale(1.1);
+  }
+}
+
+/* 印刷スタイル */
+@media print {
+  
+  /* 不要な要素を隠す */
+  .mobile-header,
+  .mobile-tab-nav,
+  .bottom-tab-bar,
+  .theme-toggle,
+  .back-button,
+  .match-preview-btn {
+    display: none !important;
+  }
+  
+  /* 印刷用レイアウト */
+  .main-content {
+    padding: 0;
+  }
+  
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+  
+  .matches-list {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  
+  .match-card.mobile-optimized {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  
+  .match-card.mobile-optimized .match-card-header {
+    background: #f0f0f0 !important;
+    color: #000 !important;
+  }
+  
+  /* 色の調整 */
+  * {
+    color: #000 !important;
+    background: transparent !important;
+  }
+  
+  .team-badge {
+    border: 1px solid #000 !important;
+    background: #fff !important;
+  }
+}
+
+/* 高コントラストモード対応 */
+@media (prefers-contrast: high) {
+  
+  .match-card.mobile-optimized {
+    border: 2px solid var(--color-text-main);
+  }
+  
+  .match-card.mobile-optimized .match-card-header {
+    background: var(--color-text-main);
+    color: var(--color-bg);
+  }
+  
+  .mobile-tab-button.active {
+    border: 2px solid var(--color-text-main);
+  }
+  
+  .team-badge {
+    border: 2px solid var(--color-text-main);
+  }
+}
+
+/* アニメーション無効化対応 */
+@media (prefers-reduced-motion: reduce) {
+  
+  .match-card.mobile-optimized,
+  .mobile-tab-button,
+  .theme-toggle,
+  .back-button,
+  .btn.mobile-touch,
+  .team-badge,
+  .vs-divider span,
+  .tab-icon {
+    transition: none !important;
+    transform: none !important;
+  }
+  
+  .match-card.mobile-optimized:hover,
+  .mobile-tab-button:hover,
+  .theme-toggle:hover,
+  .back-button:hover,
+  .btn.mobile-touch:hover {
+    transform: none !important;
+  }
+}
+
+/* ダークモード時のPC向け調整 */
+@media (min-width: 768px) {
+  [data-theme="dark"] .match-card.mobile-optimized:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  [data-theme="dark"] .mobile-tab-button:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* 大画面での試合詳細レイアウト */
+@media (min-width: 1024px) {
+  
+  /* 試合詳細のサイドバーレイアウト */
+  .match-content {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-8);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-8);
+  }
+  
+  /* メインコンテンツエリア */
+  .match-main-content {
+    min-width: 0;
+  }
+  
+  /* サイドバー */
+  .match-sidebar {
+    position: sticky;
+    top: var(--space-8);
+    height: fit-content;
+  }
+}
+
+/* 超大画面での調整 */
+@media (min-width: 1440px) {
+  
+  .match-content {
+    grid-template-columns: 1fr 350px;
+    max-width: 1400px;
+  }
+}

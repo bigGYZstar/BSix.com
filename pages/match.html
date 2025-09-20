@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">試合プレビュー - Premier League Big 6</title>
+    <meta name="description" content="詳細な試合分析、専門家予想、戦術解説、選手情報を提供。">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/styles/main.css">
+    <link rel="stylesheet" href="../assets/styles/responsive.css">
+    <link rel="stylesheet" href="../assets/styles/match.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../utils/dataCollector.js" as="script">
+    <link rel="preload" href="../utils/deviceDetector.js" as="script">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">⚽</div>
+            <div class="loading-text">試合データ読み込み中...</div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <button class="back-btn" id="back-btn" aria-label="戻る">
+                        <span class="back-icon">←</span>
+                    </button>
+                    <div class="match-header-info">
+                        <div class="match-header-teams" id="header-teams">
+                            <span class="home-team-name">ホーム</span>
+                            <span class="vs-separator">vs</span>
+                            <span class="away-team-name">アウェイ</span>
+                        </div>
+                        <div class="match-header-date" id="header-date">
+                            試合日時
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="テーマ切り替え">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <button class="share-btn" id="share-btn" aria-label="共有">
+                        <span class="share-icon">📤</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Match Hero Section -->
+        <section class="match-hero">
+            <div class="match-hero-content">
+                <div class="match-teams-display">
+                    <div class="team-display home-team-display">
+                        <div class="team-logo-large" id="home-team-logo">
+                            <span class="team-logo-text">H</span>
+                        </div>
+                        <div class="team-info-large">
+                            <h1 class="team-name-large" id="home-team-name">ホームチーム</h1>
+                            <div class="team-stats" id="home-team-stats">
+                                <span class="league-position">順位: -</span>
+                                <span class="recent-form">調子: -</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="match-info-center">
+                        <div class="match-time-large" id="match-time-large">
+                            <span class="match-date-large">日付</span>
+                            <span class="match-time-text">時間</span>
+                        </div>
+                        <div class="match-venue-large" id="match-venue-large">
+                            <span class="venue-icon">🏟️</span>
+                            <span class="venue-name">スタジアム</span>
+                        </div>
+                        <div class="match-significance-large" id="match-significance-large">
+                            重要度
+                        </div>
+                    </div>
+                    
+                    <div class="team-display away-team-display">
+                        <div class="team-logo-large" id="away-team-logo">
+                            <span class="team-logo-text">A</span>
+                        </div>
+                        <div class="team-info-large">
+                            <h1 class="team-name-large" id="away-team-name">アウェイチーム</h1>
+                            <div class="team-stats" id="away-team-stats">
+                                <span class="league-position">順位: -</span>
+                                <span class="recent-form">調子: -</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="match-hero-background">
+                <div class="hero-gradient"></div>
+            </div>
+        </section>
+
+        <!-- Tab Navigation -->
+        <nav class="tab-navigation">
+            <div class="tab-nav-container">
+                <button class="tab-btn active" data-tab="overview">
+                    <span class="tab-icon">📊</span>
+                    <span class="tab-text">概要</span>
+                </button>
+                <button class="tab-btn" data-tab="tactics">
+                    <span class="tab-icon">🎯</span>
+                    <span class="tab-text">戦術</span>
+                </button>
+                <button class="tab-btn" data-tab="formation">
+                    <span class="tab-icon">⚽</span>
+                    <span class="tab-text">布陣</span>
+                </button>
+                <button class="tab-btn" data-tab="predictions">
+                    <span class="tab-icon">🔮</span>
+                    <span class="tab-text">予想</span>
+                </button>
+                <button class="tab-btn" data-tab="timeline">
+                    <span class="tab-icon">⏱️</span>
+                    <span class="tab-text">タイムライン</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Overview Tab -->
+            <section id="overview-tab" class="tab-content active">
+                <div class="content-container">
+                    <!-- Match Statistics -->
+                    <div class="stats-section">
+                        <h2 class="section-title">試合統計</h2>
+                        <div class="stats-comparison">
+                            <div class="stat-row">
+                                <span class="stat-label">リーグ順位</span>
+                                <span class="stat-home" id="stat-position-home">-</span>
+                                <span class="stat-away" id="stat-position-away">-</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">勝ち点</span>
+                                <span class="stat-home" id="stat-points-home">-</span>
+                                <span class="stat-away" id="stat-points-away">-</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">得点</span>
+                                <span class="stat-home" id="stat-goals-for-home">-</span>
+                                <span class="stat-away" id="stat-goals-for-away">-</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">失点</span>
+                                <span class="stat-home" id="stat-goals-against-home">-</span>
+                                <span class="stat-away" id="stat-goals-against-away">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Head to Head -->
+                    <div class="h2h-section">
+                        <h2 class="section-title">対戦成績</h2>
+                        <div class="h2h-stats" id="h2h-stats">
+                            <div class="h2h-stat">
+                                <span class="h2h-number" id="h2h-home-wins">0</span>
+                                <span class="h2h-label">ホーム勝利</span>
+                            </div>
+                            <div class="h2h-stat">
+                                <span class="h2h-number" id="h2h-draws">0</span>
+                                <span class="h2h-label">引き分け</span>
+                            </div>
+                            <div class="h2h-stat">
+                                <span class="h2h-number" id="h2h-away-wins">0</span>
+                                <span class="h2h-label">アウェイ勝利</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expert Comments -->
+                    <div class="expert-comments-section">
+                        <h2 class="section-title">専門家コメント</h2>
+                        <div class="expert-comments" id="expert-comments">
+                            <!-- Comments will be dynamically loaded -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tactics Tab -->
+            <section id="tactics-tab" class="tab-content">
+                <div class="content-container">
+                    <div class="tactics-analysis">
+                        <h2 class="section-title">戦術分析</h2>
+                        
+                        <div class="team-tactics">
+                            <div class="team-tactic home-tactic">
+                                <h3 class="tactic-title" id="home-tactic-title">ホームチーム戦術</h3>
+                                <div class="formation-display" id="home-formation">4-3-3</div>
+                                <div class="tactic-description" id="home-tactic-description">
+                                    戦術の詳細説明がここに表示されます。
+                                </div>
+                            </div>
+                            
+                            <div class="team-tactic away-tactic">
+                                <h3 class="tactic-title" id="away-tactic-title">アウェイチーム戦術</h3>
+                                <div class="formation-display" id="away-formation">4-2-3-1</div>
+                                <div class="tactic-description" id="away-tactic-description">
+                                    戦術の詳細説明がここに表示されます。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tactical-comparison">
+                            <h3 class="comparison-title">戦術比較</h3>
+                            <div class="comparison-stats">
+                                <div class="comparison-stat">
+                                    <span class="comparison-label">ボール支配率</span>
+                                    <div class="comparison-bar">
+                                        <div class="bar-home" style="width: 60%"></div>
+                                        <div class="bar-away" style="width: 40%"></div>
+                                    </div>
+                                    <div class="comparison-values">
+                                        <span class="value-home">60%</span>
+                                        <span class="value-away">40%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Formation Tab -->
+            <section id="formation-tab" class="tab-content">
+                <div class="content-container">
+                    <div class="formation-analysis">
+                        <h2 class="section-title">予想布陣</h2>
+                        
+                        <!-- Mobile Formation Display -->
+                        <div class="formation-mobile">
+                            <div class="team-formation">
+                                <h3 class="formation-team-title" id="formation-home-title">ホームチーム (4-3-3)</h3>
+                                <div class="pitch-container home-pitch">
+                                    <div class="pitch">
+                                        <div class="formation-lines" id="home-formation-lines">
+                                            <!-- Formation lines will be dynamically generated -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="team-formation">
+                                <h3 class="formation-team-title" id="formation-away-title">アウェイチーム (4-2-3-1)</h3>
+                                <div class="pitch-container away-pitch">
+                                    <div class="pitch">
+                                        <div class="formation-lines" id="away-formation-lines">
+                                            <!-- Formation lines will be dynamically generated -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Desktop Formation Display -->
+                        <div class="formation-desktop">
+                            <div class="full-pitch-container">
+                                <div class="full-pitch">
+                                    <div class="pitch-half home-half">
+                                        <div class="formation-lines" id="desktop-home-formation">
+                                            <!-- Home team formation -->
+                                        </div>
+                                    </div>
+                                    <div class="pitch-center-line"></div>
+                                    <div class="pitch-half away-half">
+                                        <div class="formation-lines" id="desktop-away-formation">
+                                            <!-- Away team formation -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Player Details Modal -->
+                        <div id="player-modal" class="player-modal">
+                            <div class="player-modal-content">
+                                <button class="player-modal-close">&times;</button>
+                                <div class="player-info">
+                                    <h3 id="player-name">選手名</h3>
+                                    <p id="player-position">ポジション</p>
+                                    <div class="player-stats">
+                                        <div class="player-stat">
+                                            <span class="stat-label">年齢</span>
+                                            <span class="stat-value" id="player-age">-</span>
+                                        </div>
+                                        <div class="player-stat">
+                                            <span class="stat-label">出場数</span>
+                                            <span class="stat-value" id="player-appearances">-</span>
+                                        </div>
+                                        <div class="player-stat">
+                                            <span class="stat-label">得点</span>
+                                            <span class="stat-value" id="player-goals">-</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Predictions Tab -->
+            <section id="predictions-tab" class="tab-content">
+                <div class="content-container">
+                    <div class="predictions-analysis">
+                        <h2 class="section-title">試合予想</h2>
+                        
+                        <!-- AI Prediction -->
+                        <div class="ai-prediction">
+                            <h3 class="prediction-title">AI予想</h3>
+                            <div class="prediction-probabilities">
+                                <div class="probability home-win">
+                                    <span class="probability-label">ホーム勝利</span>
+                                    <span class="probability-value" id="ai-home-win">45%</span>
+                                </div>
+                                <div class="probability draw">
+                                    <span class="probability-label">引き分け</span>
+                                    <span class="probability-value" id="ai-draw">30%</span>
+                                </div>
+                                <div class="probability away-win">
+                                    <span class="probability-label">アウェイ勝利</span>
+                                    <span class="probability-value" id="ai-away-win">25%</span>
+                                </div>
+                            </div>
+                            <div class="predicted-score">
+                                <span class="score-label">予想スコア:</span>
+                                <span class="score-value" id="ai-predicted-score">2-1</span>
+                            </div>
+                        </div>
+
+                        <!-- Expert Predictions -->
+                        <div class="expert-predictions">
+                            <h3 class="prediction-title">専門家予想</h3>
+                            <div class="expert-prediction-list" id="expert-predictions-list">
+                                <!-- Expert predictions will be dynamically loaded -->
+                            </div>
+                        </div>
+
+                        <!-- Betting Odds -->
+                        <div class="betting-odds">
+                            <h3 class="prediction-title">オッズ情報</h3>
+                            <div class="odds-display">
+                                <div class="odds-item">
+                                    <span class="odds-label">ホーム勝利</span>
+                                    <span class="odds-value" id="odds-home">2.20</span>
+                                </div>
+                                <div class="odds-item">
+                                    <span class="odds-label">引き分け</span>
+                                    <span class="odds-value" id="odds-draw">3.40</span>
+                                </div>
+                                <div class="odds-item">
+                                    <span class="odds-label">アウェイ勝利</span>
+                                    <span class="odds-value" id="odds-away">3.10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Timeline Tab -->
+            <section id="timeline-tab" class="tab-content">
+                <div class="content-container">
+                    <div class="timeline-analysis">
+                        <h2 class="section-title">試合展開予想</h2>
+                        
+                        <div class="match-timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-time">0-15分</div>
+                                <div class="timeline-content">
+                                    <h4>序盤戦</h4>
+                                    <p>両チームとも慎重な立ち上がりが予想されます。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">15-30分</div>
+                                <div class="timeline-content">
+                                    <h4>ペース上昇</h4>
+                                    <p>試合のペースが上がり、最初のチャンスが生まれる時間帯。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">30-45分</div>
+                                <div class="timeline-content">
+                                    <h4>前半終盤</h4>
+                                    <p>前半の決定的な場面が訪れる可能性が高い。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">45-60分</div>
+                                <div class="timeline-content">
+                                    <h4>後半開始</h4>
+                                    <p>戦術的な調整が行われ、試合の流れが変わる可能性。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">60-75分</div>
+                                <div class="timeline-content">
+                                    <h4>勝負の時間</h4>
+                                    <p>選手交代が活発になり、勝負が決まる重要な時間帯。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">75-90分</div>
+                                <div class="timeline-content">
+                                    <h4>終盤戦</h4>
+                                    <p>最後の攻防。劇的な展開が期待される時間帯。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation (Mobile) -->
+        <nav class="nav-mobile">
+            <a href="../index.html" class="nav-mobile-link">
+                <span class="nav-mobile-icon">🏠</span>
+                <span class="nav-mobile-text">ホーム</span>
+            </a>
+            <a href="#" class="nav-mobile-link active">
+                <span class="nav-mobile-icon">📊</span>
+                <span class="nav-mobile-text">試合</span>
+            </a>
+            <a href="#" class="nav-mobile-link">
+                <span class="nav-mobile-icon">⭐</span>
+                <span class="nav-mobile-text">お気に入り</span>
+            </a>
+            <a href="#" class="nav-mobile-link">
+                <span class="nav-mobile-icon">⚙️</span>
+                <span class="nav-mobile-text">設定</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../utils/deviceDetector.js"></script>
+    <script src="../utils/dataCollector.js"></script>
+    <script src="../components/matchDetails.js"></script>
+    <script src="match.js"></script>
+</body>
+</html>
