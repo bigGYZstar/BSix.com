@@ -1,0 +1,262 @@
+{
+  "broadcast_info": {
+    "japan_services": {
+      "primary": "U-NEXT サッカーパック",
+      "description": "プレミアリーグ全380試合独占ライブ配信",
+      "monthly_fee": "月額2,189円（税込）",
+      "features": [
+        "全試合ライブ配信",
+        "見逃し配信対応",
+        "日本語解説あり",
+        "マルチデバイス対応"
+      ]
+    },
+    "alternative_services": {
+      "spoox": {
+        "name": "SPOOX サッカーLIVE",
+        "description": "スカパー！系列のサッカー専門配信",
+        "note": "一部試合のみ"
+      }
+    }
+  },
+  "premier_league_table_2024_25": {
+    "season": "2024-25",
+    "gameweek": 4,
+    "last_updated": "2024年9月20日",
+    "standings": [
+      {
+        "position": 1,
+        "team": "リヴァプール",
+        "played": 4,
+        "won": 4,
+        "drawn": 0,
+        "lost": 0,
+        "goals_for": 9,
+        "goals_against": 4,
+        "goal_difference": 5,
+        "points": 12,
+        "form": "WWWW"
+      },
+      {
+        "position": 2,
+        "team": "アーセナル",
+        "played": 4,
+        "won": 3,
+        "drawn": 0,
+        "lost": 1,
+        "goals_for": 9,
+        "goals_against": 1,
+        "goal_difference": 8,
+        "points": 9,
+        "form": "WWLW"
+      },
+      {
+        "position": 3,
+        "team": "トッテナム・ホットスパー",
+        "played": 4,
+        "won": 3,
+        "drawn": 0,
+        "lost": 1,
+        "goals_for": 8,
+        "goals_against": 1,
+        "goal_difference": 7,
+        "points": 9,
+        "form": "WWLW"
+      },
+      {
+        "position": 4,
+        "team": "ボーンマス",
+        "played": 4,
+        "won": 3,
+        "drawn": 0,
+        "lost": 1,
+        "goals_for": 6,
+        "goals_against": 5,
+        "goal_difference": 1,
+        "points": 9,
+        "form": "WWLW"
+      },
+      {
+        "position": 5,
+        "team": "チェルシー",
+        "played": 4,
+        "won": 2,
+        "drawn": 2,
+        "lost": 0,
+        "goals_for": 9,
+        "goals_against": 3,
+        "goal_difference": 6,
+        "points": 8,
+        "form": "DWDW"
+      },
+      {
+        "position": 6,
+        "team": "エヴァートン",
+        "played": 4,
+        "won": 2,
+        "drawn": 1,
+        "lost": 1,
+        "goals_for": 5,
+        "goals_against": 3,
+        "goal_difference": 2,
+        "points": 7,
+        "form": "WDLW"
+      },
+      {
+        "position": 7,
+        "team": "サンダーランド",
+        "played": 4,
+        "won": 2,
+        "drawn": 1,
+        "lost": 1,
+        "goals_for": 5,
+        "goals_against": 3,
+        "goal_difference": 2,
+        "points": 7,
+        "form": "WDLW"
+      },
+      {
+        "position": 8,
+        "team": "マンチェスター・シティ",
+        "played": 4,
+        "won": 2,
+        "drawn": 0,
+        "lost": 2,
+        "goals_for": 8,
+        "goals_against": 4,
+        "goal_difference": 4,
+        "points": 6,
+        "form": "WLWL"
+      },
+      {
+        "position": 9,
+        "team": "クリスタル・パレス",
+        "played": 4,
+        "won": 1,
+        "drawn": 3,
+        "lost": 0,
+        "goals_for": 4,
+        "goals_against": 1,
+        "goal_difference": 3,
+        "points": 6,
+        "form": "DDWD"
+      },
+      {
+        "position": 10,
+        "team": "ニューカッスル・ユナイテッド",
+        "played": 4,
+        "won": 1,
+        "drawn": 2,
+        "lost": 1,
+        "goals_for": 3,
+        "goals_against": 3,
+        "goal_difference": 0,
+        "points": 5,
+        "form": "DWDL"
+      },
+      {
+        "position": 11,
+        "team": "フラム",
+        "played": 4,
+        "won": 1,
+        "drawn": 2,
+        "lost": 1,
+        "goals_for": 3,
+        "goals_against": 4,
+        "goal_difference": -1,
+        "points": 5,
+        "form": "DWDL"
+      },
+      {
+        "position": 12,
+        "team": "ブレントフォード",
+        "played": 4,
+        "won": 1,
+        "drawn": 1,
+        "lost": 2,
+        "goals_for": 5,
+        "goals_against": 7,
+        "goal_difference": -2,
+        "points": 4,
+        "form": "WLDL"
+      },
+      {
+        "position": 13,
+        "team": "ブライトン・アンド・ホーヴ・アルビオン",
+        "played": 4,
+        "won": 1,
+        "drawn": 1,
+        "lost": 2,
+        "goals_for": 4,
+        "goals_against": 6,
+        "goal_difference": -2,
+        "points": 4,
+        "form": "WLDL"
+      },
+      {
+        "position": 14,
+        "team": "マンチェスター・ユナイテッド",
+        "played": 4,
+        "won": 1,
+        "drawn": 1,
+        "lost": 2,
+        "goals_for": 4,
+        "goals_against": 7,
+        "goal_difference": -3,
+        "points": 4,
+        "form": "WLDL"
+      },
+      {
+        "position": 15,
+        "team": "ノッティンガム・フォレスト",
+        "played": 4,
+        "won": 1,
+        "drawn": 1,
+        "lost": 2,
+        "goals_for": 4,
+        "goals_against": 8,
+        "goal_difference": -4,
+        "points": 4,
+        "form": "WLDL"
+      }
+    ]
+  },
+  "big_six_current_form": {
+    "liverpool": {
+      "position": 1,
+      "points": 12,
+      "form": "完璧なスタート - 4戦全勝",
+      "recent_results": ["W vs イプスウィッチ 2-0", "W vs ブレントフォード 2-0", "W vs マンチェスター・ユナイテッド 3-0", "W vs ノッティンガム・フォレスト 1-0"]
+    },
+    "arsenal": {
+      "position": 2,
+      "points": 9,
+      "form": "好調 - 3勝1敗",
+      "recent_results": ["W vs ブライトン 1-0", "L vs アストン・ビラ 0-2", "W vs ウルヴス 2-0", "W vs ノッティンガム・フォレスト 2-1"]
+    },
+    "tottenham": {
+      "position": 3,
+      "points": 9,
+      "form": "好調 - 3勝1敗",
+      "recent_results": ["W vs ブレントフォード 3-1", "L vs ニューカッスル 1-2", "W vs エヴァートン 4-0", "W vs レスター 1-1"]
+    },
+    "chelsea": {
+      "position": 5,
+      "points": 8,
+      "form": "安定 - 2勝2分",
+      "recent_results": ["W vs ボーンマス 1-0", "D vs クリスタル・パレス 1-1", "W vs ウルヴス 6-2", "D vs マンチェスター・シティ 1-1"]
+    },
+    "manchester_city": {
+      "position": 8,
+      "points": 6,
+      "form": "不安定 - 2勝2敗",
+      "recent_results": ["L vs ブライトン 1-2", "W vs イプスウィッチ 4-1", "L vs ウェストハム 1-3", "W vs チェルシー 2-0"]
+    },
+    "manchester_united": {
+      "position": 14,
+      "points": 4,
+      "form": "苦戦 - 1勝1分2敗",
+      "recent_results": ["L vs リヴァプール 0-3", "D vs クリスタル・パレス 0-0", "L vs ブライトン 1-2", "W vs フラム 1-0"]
+    }
+  }
+}
