@@ -1,0 +1,92 @@
+{
+  "match_id": "gw5-ars-mci",
+  "date": "2025-09-21",
+  "time": "16:30",
+  "timezone": "BST",
+  "venue": "Emirates Stadium",
+  "competition": "Premier League",
+  "gameweek": 5,
+  "home_team": {
+    "name": "Arsenal",
+    "position": 2,
+    "points": 9,
+    "form": "WWLW",
+    "recent_form": "Strong at home with 5-0 vs Leeds and 3-0 vs Nottingham Forest",
+    "key_players": ["Gabriel Martinelli", "Leandro Trossard", "Noni Madueke"],
+    "injuries": ["Bukayo Saka", "Gabriel Jesus", "Kai Havertz"],
+    "doubts": ["Martin Odegaard (shoulder)"],
+    "predicted_lineup": {
+      "formation": "4-3-3",
+      "goalkeeper": "Raya",
+      "defense": ["Timber", "Saliba", "Gabriel", "Calafiori"],
+      "midfield": ["Merino", "Zubimendi", "Rice"],
+      "attack": ["Madueke", "Gyokeres", "Martinelli"]
+    }
+  },
+  "away_team": {
+    "name": "Manchester City",
+    "position": 8,
+    "points": 6,
+    "form": "WLLW",
+    "recent_form": "Back to form with 3-0 vs Man United and 2-0 vs Napoli",
+    "key_players": ["Erling Haaland", "Phil Foden", "Rodri"],
+    "injuries": ["Rayan Cherki (muscle)", "Omar Marmoush (knee)", "Rayan Ait-Nouri"],
+    "returns": ["John Stones (potentially)"],
+    "predicted_lineup": {
+      "formation": "4-3-3",
+      "goalkeeper": "Donnarumma",
+      "defense": ["Khusanov", "Dias", "Gvardiol", "O'Reilly"],
+      "midfield": ["Rodri", "Silva", "Reijnders"],
+      "attack": ["Foden", "Haaland", "Doku"]
+    }
+  },
+  "match_context": {
+    "significance": "Title race clash",
+    "head_to_head": "Arsenal unbeaten in last 5 meetings",
+    "city_previous_dominance": "8-game winning streak from Oct 2020 to Apr 2023",
+    "current_momentum": "Power shift towards Arsenal",
+    "haaland_record": "Scored in each Premier League meeting with Arsenal last season"
+  },
+  "key_storylines": [
+    {
+      "title": "Title Credentials Test",
+      "description": "Manchester City's title credentials are being tested after inconsistent start"
+    },
+    {
+      "title": "Arsenal's Home Fortress",
+      "description": "Arsenal have been dominant at Emirates with convincing wins over Leeds (5-0) and Nottingham Forest (3-0)"
+    },
+    {
+      "title": "Haaland vs Arsenal Defense",
+      "description": "Norwegian striker looking to continue his scoring streak against the Gunners"
+    },
+    {
+      "title": "Injury Concerns",
+      "description": "Both teams dealing with key player absences - Saka for Arsenal, multiple new signings for City"
+    }
+  ],
+  "tactical_analysis": {
+    "arsenal_approach": "Likely to play with intensity at home, utilizing pace on the wings with Martinelli and Madueke",
+    "city_approach": "Will look to control possession through midfield and utilize Haaland's clinical finishing",
+    "key_battles": [
+      "Arsenal's defense vs Haaland",
+      "Midfield control - Rice/Zubimendi vs Rodri/Silva",
+      "Arsenal's wing play vs City's fullbacks"
+    ]
+  },
+  "prediction": {
+    "result": "Arsenal 2-1 Manchester City",
+    "reasoning": "Arsenal showing little weakness at Emirates this season, City's title credentials being tested",
+    "confidence": "Medium-High",
+    "key_factors": [
+      "Arsenal's excellent home form",
+      "City's inconsistent start to season",
+      "Arsenal's recent dominance in this fixture"
+    ]
+  },
+  "betting_insights": {
+    "favorites": "Arsenal are odds-on favorites",
+    "market_shift": "Arsenal listed at better odds compared to last season's fixture",
+    "recommended_bets": ["Arsenal win", "Both teams to score - No"]
+  }
+}

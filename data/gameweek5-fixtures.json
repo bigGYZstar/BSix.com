@@ -1,0 +1,171 @@
+{
+  "season": "2025-26",
+  "gameweek": 5,
+  "date_updated": "2025-09-20",
+  "matches": [
+    {
+      "id": "gw5-liv-eve",
+      "gameweek": 5,
+      "date": "2025-09-20",
+      "time": "07:30",
+      "timezone": "ET",
+      "home_team": "Liverpool",
+      "away_team": "Everton",
+      "venue": "Anfield",
+      "status": "upcoming",
+      "is_big_six": true,
+      "derby": "Merseyside Derby",
+      "tv_coverage": "USA/NBC.com",
+      "significance": "Derby match between Liverpool and Everton"
+    },
+    {
+      "id": "gw5-bri-tot",
+      "gameweek": 5,
+      "date": "2025-09-20",
+      "time": "10:00",
+      "timezone": "ET",
+      "home_team": "Brighton",
+      "away_team": "Tottenham",
+      "venue": "Amex Stadium",
+      "status": "upcoming",
+      "is_big_six": true,
+      "tv_coverage": "Peacock",
+      "significance": "Tottenham away fixture"
+    },
+    {
+      "id": "gw5-bur-nfo",
+      "gameweek": 5,
+      "date": "2025-09-20",
+      "time": "10:00",
+      "timezone": "ET",
+      "home_team": "Burnley",
+      "away_team": "Nottingham Forest",
+      "venue": "Turf Moor",
+      "status": "upcoming",
+      "is_big_six": false,
+      "tv_coverage": "Peacock"
+    },
+    {
+      "id": "gw5-whu-cry",
+      "gameweek": 5,
+      "date": "2025-09-20",
+      "time": "10:00",
+      "timezone": "ET",
+      "home_team": "West Ham",
+      "away_team": "Crystal Palace",
+      "venue": "London Stadium",
+      "status": "upcoming",
+      "is_big_six": false,
+      "tv_coverage": "USA/NBC.com"
+    },
+    {
+      "id": "gw5-wol-lee",
+      "gameweek": 5,
+      "date": "2025-09-20",
+      "time": "10:00",
+      "timezone": "ET",
+      "home_team": "Wolves",
+      "away_team": "Leeds United",
+      "venue": "Molineux Stadium",
+      "status": "upcoming",
+      "is_big_six": false,
+      "tv_coverage": "Peacock"
+    },
+    {
+      "id": "gw5-mun-che",
+      "gameweek": 5,
+      "date": "2025-09-20",
+      "time": "12:30",
+      "timezone": "ET",
+      "home_team": "Manchester United",
+      "away_team": "Chelsea",
+      "venue": "Old Trafford",
+      "status": "upcoming",
+      "is_big_six": true,
+      "big_six_clash": true,
+      "tv_coverage": "USA/NBC.com",
+      "significance": "Big 6 clash - pressure on Ruben Amorim"
+    },
+    {
+      "id": "gw5-ful-bre",
+      "gameweek": 5,
+      "date": "2025-09-20",
+      "time": "15:00",
+      "timezone": "ET",
+      "home_team": "Fulham",
+      "away_team": "Brentford",
+      "venue": "Craven Cottage",
+      "status": "upcoming",
+      "is_big_six": false,
+      "tv_coverage": "USA/NBC.com"
+    },
+    {
+      "id": "gw5-bou-new",
+      "gameweek": 5,
+      "date": "2025-09-21",
+      "time": "09:00",
+      "timezone": "ET",
+      "home_team": "Bournemouth",
+      "away_team": "Newcastle",
+      "venue": "Vitality Stadium",
+      "status": "upcoming",
+      "is_big_six": false,
+      "tv_coverage": "USA/NBC.com"
+    },
+    {
+      "id": "gw5-sun-avl",
+      "gameweek": 5,
+      "date": "2025-09-21",
+      "time": "09:00",
+      "timezone": "ET",
+      "home_team": "Sunderland",
+      "away_team": "Aston Villa",
+      "venue": "Stadium of Light",
+      "status": "upcoming",
+      "is_big_six": false,
+      "tv_coverage": "Peacock"
+    },
+    {
+      "id": "gw5-ars-mci",
+      "gameweek": 5,
+      "date": "2025-09-21",
+      "time": "11:30",
+      "timezone": "ET",
+      "home_team": "Arsenal",
+      "away_team": "Manchester City",
+      "venue": "Emirates Stadium",
+      "status": "upcoming",
+      "is_big_six": true,
+      "big_six_clash": true,
+      "title_race": true,
+      "tv_coverage": "Peacock",
+      "significance": "Title race clash - Arsenal won 5-1 last season"
+    }
+  ],
+  "big_six_matches": [
+    {
+      "id": "gw5-liv-eve",
+      "match": "Liverpool vs Everton",
+      "type": "Derby",
+      "priority": "high"
+    },
+    {
+      "id": "gw5-bri-tot",
+      "match": "Brighton vs Tottenham",
+      "type": "Away fixture",
+      "priority": "medium"
+    },
+    {
+      "id": "gw5-mun-che",
+      "match": "Manchester United vs Chelsea",
+      "type": "Big 6 clash",
+      "priority": "high"
+    },
+    {
+      "id": "gw5-ars-mci",
+      "match": "Arsenal vs Manchester City",
+      "type": "Title race",
+      "priority": "highest"
+    }
+  ]
+}

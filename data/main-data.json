@@ -1,0 +1,159 @@
+{
+  "site_info": {
+    "name": "BSix.com",
+    "title": "プレミアリーグ ビッグ6 試合プレビュー",
+    "description": "プレミアリーグBig 6チームの試合を詳細分析。専門家予想、戦術解説、選手情報まで完全網羅。",
+    "version": "2.0",
+    "last_updated": "2025-09-20"
+  },
+  "current_season": {
+    "season": "2025-26",
+    "current_gameweek": 5,
+    "next_gameweek": 6,
+    "big_six_teams": ["Arsenal", "Manchester City", "Liverpool", "Chelsea", "Manchester United", "Tottenham"]
+  },
+  "featured_matches": [
+    {
+      "id": "gw5-ars-mci",
+      "priority": "highest",
+      "title": "タイトル争いの頂上決戦",
+      "description": "アーセナル vs マンチェスター・シティ",
+      "date": "2025-09-21",
+      "time": "16:30",
+      "venue": "Emirates Stadium",
+      "significance": "title_race",
+      "preview_available": true
+    },
+    {
+      "id": "gw5-mun-che",
+      "priority": "high",
+      "title": "ビッグ6対決",
+      "description": "マンチェスター・ユナイテッド vs チェルシー",
+      "date": "2025-09-20",
+      "time": "12:30",
+      "venue": "Old Trafford",
+      "significance": "big_six_clash",
+      "preview_available": false
+    },
+    {
+      "id": "gw5-liv-eve",
+      "priority": "high",
+      "title": "マージーサイドダービー",
+      "description": "リバプール vs エバートン",
+      "date": "2025-09-20",
+      "time": "07:30",
+      "venue": "Anfield",
+      "significance": "derby",
+      "preview_available": false
+    },
+    {
+      "id": "gw5-bri-tot",
+      "priority": "medium",
+      "title": "アウェイ戦",
+      "description": "ブライトン vs トッテナム",
+      "date": "2025-09-20",
+      "time": "10:00",
+      "venue": "Amex Stadium",
+      "significance": "away_fixture",
+      "preview_available": false
+    }
+  ],
+  "league_standings": {
+    "big_six_positions": [
+      {
+        "position": 1,
+        "team": "Liverpool",
+        "points": 12,
+        "played": 4,
+        "form": "WWWW",
+        "status": "Perfect start",
+        "next_fixture": "vs Everton (H)"
+      },
+      {
+        "position": 2,
+        "team": "Arsenal",
+        "points": 9,
+        "played": 4,
+        "form": "WWLW",
+        "status": "Strong attack",
+        "next_fixture": "vs Manchester City (H)"
+      },
+      {
+        "position": 3,
+        "team": "Tottenham",
+        "points": 9,
+        "played": 4,
+        "form": "LWWW",
+        "status": "Good away form",
+        "next_fixture": "at Brighton (A)"
+      },
+      {
+        "position": 5,
+        "team": "Chelsea",
+        "points": 8,
+        "played": 4,
+        "form": "DWDW",
+        "status": "Unbeaten",
+        "next_fixture": "at Manchester United (A)"
+      },
+      {
+        "position": 8,
+        "team": "Manchester City",
+        "points": 6,
+        "played": 4,
+        "form": "WLLW",
+        "status": "Inconsistent",
+        "next_fixture": "at Arsenal (A)"
+      },
+      {
+        "position": 14,
+        "team": "Manchester United",
+        "points": 4,
+        "played": 4,
+        "form": "WDLL",
+        "status": "Struggling",
+        "next_fixture": "vs Chelsea (H)"
+      }
+    ]
+  },
+  "quick_stats": [
+    {
+      "icon": "🏆",
+      "title": "タイトル争い",
+      "description": "アーセナル vs マンチェスター・シティの頂上決戦",
+      "highlight": true
+    },
+    {
+      "icon": "⚔️",
+      "title": "ビッグ6対決",
+      "description": "マンチェスター・ユナイテッド vs チェルシー",
+      "highlight": true
+    },
+    {
+      "icon": "🔥",
+      "title": "ダービー",
+      "description": "リバプール vs エバートンのマージーサイドダービー",
+      "highlight": false
+    },
+    {
+      "icon": "🎯",
+      "title": "アウェイ戦",
+      "description": "トッテナムのブライトン戦",
+      "highlight": false
+    }
+  ],
+  "navigation": {
+    "desktop": [
+      {"id": "home", "label": "ホーム", "icon": "🏠", "active": true},
+      {"id": "fixtures", "label": "試合一覧", "icon": "📅", "active": false},
+      {"id": "teams", "label": "チーム", "icon": "👥", "active": false},
+      {"id": "stats", "label": "統計", "icon": "📊", "active": false}
+    ],
+    "mobile": [
+      {"id": "home", "label": "ホーム", "icon": "🏠", "active": true},
+      {"id": "fixtures", "label": "試合", "icon": "📅", "active": false},
+      {"id": "favorites", "label": "お気に入り", "icon": "⭐", "active": false},
+      {"id": "settings", "label": "設定", "icon": "⚙️", "active": false}
+    ]
+  }
+}
