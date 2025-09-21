@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【詳細比較】Big 6チーム完全分析 - 2025/26シーズン | BSix.com</title>
+    <meta name="description" content="プレミアリーグBig 6チームの詳細比較分析。戦術、選手、統計データを徹底比較。リヴァプール、アーセナル、シティ、チェルシー、ユナイテッド、トッテナムの現状を完全網羅。">
+    <link rel="stylesheet" href="assets/styles/arsenal-chan-inspired.css">
+    <link rel="stylesheet" href="assets/styles/home-link.css">
+    <style>
+        /* 比較専用スタイル */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--team-color);
+            transition: transform 0.3s ease;
+        }
+        
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .team-comparison-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .team-name-large {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--team-color);
+        }
+        
+        .current-position {
+            background: var(--team-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .tactical-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .formation {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--team-color);
+            margin-bottom: 8px;
+        }
+        
+        .manager-info {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .tactical-style {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .key-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .key-stat {
+            text-align: center;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .key-stat-value {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--team-color);
+            display: block;
+        }
+        
+        .key-stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        .star-players {
+            margin: 20px 0;
+        }
+        
+        .star-player {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .player-name-pos {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .player-contribution {
+            font-size: 0.9rem;
+            color: var(--team-color);
+            font-weight: 500;
+        }
+        
+        .strengths-weaknesses {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .strength-item, .weakness-item {
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .strength-item {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+        
+        .weakness-item {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .detailed-comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .detailed-comparison-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .detailed-comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .detailed-comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .best-value {
+            background: #d4edda;
+            color: #155724;
+            font-weight: bold;
+            border-radius: 4px;
+            padding: 2px 6px;
+        }
+        
+        .worst-value {
+            background: #f8d7da;
+            color: #721c24;
+            font-weight: bold;
+            border-radius: 4px;
+            padding: 2px 6px;
+        }
+        
+        /* チーム別カラー */
+        .liverpool { --team-color: #C8102E; }
+        .arsenal { --team-color: #EF0107; }
+        .tottenham { --team-color: #132257; }
+        .chelsea { --team-color: #034694; }
+        .manchester-united { --team-color: #DA020E; }
+        .manchester-city { --team-color: #6CABDD; }
+        
+        .prediction-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .prediction-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .prediction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .prediction-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .prediction-category {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        .prediction-team {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="arsenal-chan-layout">
+    <header class="site-header">
+        <a href="index.html" class="site-logo">⚽ BSix.com</a>
+        <p class="site-tagline">プレミアリーグ Big 6 専門サイト - チーム詳細比較分析</p>
+        
+        <nav class="main-navigation">
+            <ul class="nav-menu">
+                <li><a href="fixtures.html">試合日程</a></li>
+                <li><a href="stats.html">順位表</a></li>
+                <li><a href="teams-comparison-detailed.html" class="active">チーム比較</a></li>
+                <li><a href="news.html">ニュース</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content-wrapper">
+        <main class="main-content">
+            <article>
+                <header class="article-header">
+                    <div class="page-header">
+                        <h1 class="article-title">【詳細比較】Big 6チーム完全分析 - 2025/26シーズン</h1>
+                        <a href="index.html" class="home-link">ホーム</a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-category">チーム比較</span>
+                        <span class="article-date">2025年9月21日</span>
+                        <a href="#" class="article-author">BSix.com編集部</a>
+                    </div>
+                </header>
+
+                <div class="article-content">
+                    <div class="highlight-box">
+                        <h2>🏆 2025/26シーズン Big 6 勢力図</h2>
+                        <p>新シーズン開始から5節を終えて、Big 6の序列に大きな変化が。リヴァプールが首位独走、シティが予想外の苦戦、アーセナルが安定した成績を維持している。各チームの戦術、選手、データを徹底比較分析。</p>
+                    </div>
+
+                    <h2>📊 現在の順位状況（第5節終了時点）</h2>
+                    <div class="comparison-grid">
+                        <div class="comparison-card liverpool">
+                            <div class="team-comparison-header">
+                                <div class="team-name-large">リヴァプール</div>
+                                <div class="current-position">1位</div>
+                            </div>
+                            <div class="tactical-info">
+                                <div class="formation">4-3-3</div>
+                                <div class="manager-info">監督: アルネ・スロット</div>
+                                <div class="tactical-style">ポゼッション重視の新戦術。クロップ時代のゲーゲンプレッシングから、よりコントロールされたビルドアップへ転換。</div>
+                            </div>
+                            <div class="key-stats-grid">
+                                <div class="key-stat">
+                                    <span class="key-stat-value">15</span>
+                                    <span class="key-stat-label">勝点</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">+6</span>
+                                    <span class="key-stat-label">得失点差</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">73%</span>
+                                    <span class="key-stat-label">ポゼッション</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">5</span>
+                                    <span class="key-stat-label">連勝</span>
+                                </div>
+                            </div>
+                            <div class="star-players">
+                                <h4>主要選手</h4>
+                                <div class="star-player">
+                                    <span class="player-name-pos">サラー (RW)</span>
+                                    <span class="player-contribution">7G 3A</span>
+                                </div>
+                                <div class="star-player">
+                                    <span class="player-name-pos">ヌニェス (CF)</span>
+                                    <span class="player-contribution">4G 1A</span>
+                                </div>
+                                <div class="star-player">
+                                    <span class="player-name-pos">ファン・ダイク (CB)</span>
+                                    <span class="player-contribution">CS 3回</span>
+                                </div>
+                            </div>
+                            <div class="strengths-weaknesses">
+                                <div>
+                                    <div class="strength-item">✓ 完璧なスタート</div>
+                                    <div class="strength-item">✓ 戦術的進化</div>
+                                    <div class="strength-item">✓ 攻守のバランス</div>
+                                </div>
+                                <div>
+                                    <div class="weakness-item">× 新戦術の定着度</div>
+                                    <div class="weakness-item">× 選手の年齢</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comparison-card tottenham">
+                            <div class="team-comparison-header">
+                                <div class="team-name-large">トッテナム</div>
+                                <div class="current-position">2位</div>
+                            </div>
+                            <div class="tactical-info">
+                                <div class="formation">4-3-3</div>
+                                <div class="manager-info">監督: アンジェ・ポステコグルー</div>
+                                <div class="tactical-style">攻撃的なポゼッションサッカー。高いラインでのプレッシングと、サイドからの積極的な攻撃が特徴。</div>
+                            </div>
+                            <div class="key-stats-grid">
+                                <div class="key-stat">
+                                    <span class="key-stat-value">10</span>
+                                    <span class="key-stat-label">勝点</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">+4</span>
+                                    <span class="key-stat-label">得失点差</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">68%</span>
+                                    <span class="key-stat-label">ポゼッション</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">3</span>
+                                    <span class="key-stat-label">勝利</span>
+                                </div>
+                            </div>
+                            <div class="star-players">
+                                <h4>主要選手</h4>
+                                <div class="star-player">
+                                    <span class="player-name-pos">ソン・フンミン (LW)</span>
+                                    <span class="player-contribution">5G 2A</span>
+                                </div>
+                                <div class="star-player">
+                                    <span class="player-name-pos">マディソン (CAM)</span>
+                                    <span class="player-contribution">2G 4A</span>
+                                </div>
+                                <div class="star-player">
+                                    <span class="player-name-pos">ロメロ (CB)</span>
+                                    <span class="player-contribution">守備安定</span>
+                                </div>
+                            </div>
+                            <div class="strengths-weaknesses">
+                                <div>
+                                    <div class="strength-item">✓ 攻撃力向上</div>
+                                    <div class="strength-item">✓ ポステコグルー戦術</div>
+                                    <div class="strength-item">✓ ソンの復活</div>
+                                </div>
+                                <div>
+                                    <div class="weakness-item">× 守備の不安定さ</div>
+                                    <div class="weakness-item">× 深度不足</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comparison-card arsenal">
+                            <div class="team-comparison-header">
+                                <div class="team-name-large">アーセナル</div>
+                                <div class="current-position">3位</div>
+                            </div>
+                            <div class="tactical-info">
+                                <div class="formation">4-3-3</div>
+                                <div class="manager-info">監督: ミケル・アルテタ</div>
+                                <div class="tactical-style">構造化されたポゼッションサッカー。サイドバックの内側への移動と、ウイングの幅取りが特徴的。</div>
+                            </div>
+                            <div class="key-stats-grid">
+                                <div class="key-stat">
+                                    <span class="key-stat-value">9</span>
+                                    <span class="key-stat-label">勝点</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">+8</span>
+                                    <span class="key-stat-label">得失点差</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">71%</span>
+                                    <span class="key-stat-label">ポゼッション</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">3</span>
+                                    <span class="key-stat-label">勝利</span>
+                                </div>
+                            </div>
+                            <div class="star-players">
+                                <h4>主要選手</h4>
+                                <div class="star-player">
+                                    <span class="player-name-pos">サカ (RW)</span>
+                                    <span class="player-contribution">4G 3A</span>
+                                </div>
+                                <div class="star-player">
+                                    <span class="player-name-pos">エーデゴール (CF)</span>
+                                    <span class="player-contribution">6G 1A</span>
+                                </div>
+                                <div class="star-player">
+                                    <span class="player-name-pos">ライス (CDM)</span>
+                                    <span class="player-contribution">1G 2A</span>
+                                </div>
+                            </div>
+                            <div class="strengths-weaknesses">
+                                <div>
+                                    <div class="strength-item">✓ 戦術的成熟度</div>
+                                    <div class="strength-item">✓ 若手の成長</div>
+                                    <div class="strength-item">✓ 守備安定</div>
+                                </div>
+                                <div>
+                                    <div class="weakness-item">× 決定力不足</div>
+                                    <div class="weakness-item">× 中盤の創造性</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comparison-card chelsea">
+                            <div class="team-comparison-header">
+                                <div class="team-name-large">チェルシー</div>
+                                <div class="current-position">6位</div>
+                            </div>
+                            <div class="tactical-info">
+                                <div class="formation">4-2-3-1</div>
+                                <div class="manager-info">監督: エンツォ・マレスカ</div>
+                                <div class="tactical-style">若手中心の攻撃的サッカー。サイドからのクロスと中央での数的優位を重視。</div>
+                            </div>
+                            <div class="key-stats-grid">
+                                <div class="key-stat">
+                                    <span class="key-stat-value">8</span>
+                                    <span class="key-stat-label">勝点</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">+6</span>
+                                    <span class="key-stat-label">得失点差</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">65%</span>
+                                    <span class="key-stat-label">ポゼッション</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">2</span>
+                                    <span class="key-stat-label">勝利</span>
+                                </div>
+                            </div>
+                            <div class="star-players">
+                                <h4>主要選手</h4>
+                                <div class="star-player">
+                                    <span class="player-name-pos">ジャクソン (CF)</span>
+                                    <span class="player-contribution">4G 1A</span>
+                                </div>
+                                <div class="star-player">
+                                    <span class="player-name-pos">パーマー (CAM)</span>
+                                    <span class="player-contribution">3G 2A</span>
+                                </div>
+                                <div class="star-player">
+                                    <span class="player-name-pos">エンソ (CM)</span>
+                                    <span class="player-contribution">1G 3A</span>
+                                </div>
+                            </div>
+                            <div class="strengths-weaknesses">
+                                <div>
+                                    <div class="strength-item">✓ 若手の才能</div>
+                                    <div class="strength-item">✓ 攻撃の多様性</div>
+                                    <div class="strength-item">✓ 新監督効果</div>
+                                </div>
+                                <div>
+                                    <div class="weakness-item">× 経験不足</div>
+                                    <div class="weakness-item">× 守備の連携</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comparison-card manchester-united">
+                            <div class="team-comparison-header">
+                                <div class="team-name-large">マンチェスター・ユナイテッド</div>
+                                <div class="current-position">10位</div>
+                            </div>
+                            <div class="tactical-info">
+                                <div class="formation">4-2-3-1</div>
+                                <div class="manager-info">監督: エリック・テン・ハーグ</div>
+                                <div class="tactical-style">プレッシング重視の攻撃サッカー。しかし戦術の浸透に時間がかかっている状況。</div>
+                            </div>
+                            <div class="key-stats-grid">
+                                <div class="key-stat">
+                                    <span class="key-stat-value">7</span>
+                                    <span class="key-stat-label">勝点</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">-3</span>
+                                    <span class="key-stat-label">得失点差</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">58%</span>
+                                    <span class="key-stat-label">ポゼッション</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">1</span>
+                                    <span class="key-stat-label">勝利</span>
+                                </div>
+                            </div>
+                            <div class="star-players">
+                                <h4>主要選手</h4>
+                                <div class="star-player">
+                                    <span class="player-name-pos">ラッシュフォード (LW)</span>
+                                    <span class="player-contribution">2G 1A</span>
+                                </div>
+                                <div class="star-player">
+                                    <span class="player-name-pos">ブルーノ (CAM)</span>
+                                    <span class="player-contribution">1G 2A</span>
+                                </div>
+                                <div class="star-player">
+                                    <span class="player-name-pos">カゼミーロ (CDM)</span>
+                                    <span class="player-contribution">0G 1A</span>
+                                </div>
+                            </div>
+                            <div class="strengths-weaknesses">
+                                <div>
+                                    <div class="strength-item">✓ 個人能力</div>
+                                    <div class="strength-item">✓ 攻撃の瞬発力</div>
+                                </div>
+                                <div>
+                                    <div class="weakness-item">× 戦術的統一性</div>
+                                    <div class="weakness-item">× 守備の脆さ</div>
+                                    <div class="weakness-item">× 中盤の連携</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comparison-card manchester-city">
+                            <div class="team-comparison-header">
+                                <div class="team-name-large">マンチェスター・シティ</div>
+                                <div class="current-position">12位</div>
+                            </div>
+                            <div class="tactical-info">
+                                <div class="formation">4-3-3</div>
+                                <div class="manager-info">監督: ペップ・グアルディオラ</div>
+                                <div class="tactical-style">伝統的なポゼッションサッカー。しかし今シーズンは主要選手の怪我で戦術が機能していない。</div>
+                            </div>
+                            <div class="key-stats-grid">
+                                <div class="key-stat">
+                                    <span class="key-stat-value">6</span>
+                                    <span class="key-stat-label">勝点</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">+4</span>
+                                    <span class="key-stat-label">得失点差</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">72%</span>
+                                    <span class="key-stat-label">ポゼッション</span>
+                                </div>
+                                <div class="key-stat">
+                                    <span class="key-stat-value">2</span>
+                                    <span class="key-stat-label">勝利</span>
+                                </div>
+                            </div>
+                            <div class="star-players">
+                                <h4>主要選手</h4>
+                                <div class="star-player">
+                                    <span class="player-name-pos">ハーランド (CF)</span>
+                                    <span class="player-contribution">5G 0A</span>
+                                </div>
+                                <div class="star-player">
+                                    <span class="player-name-pos">デ・ブライネ (CAM)</span>
+                                    <span class="player-contribution">怪我中</span>
+                                </div>
+                                <div class="star-player">
+                                    <span class="player-name-pos">ロドリ (CDM)</span>
+                                    <span class="player-contribution">0G 1A</span>
+                                </div>
+                            </div>
+                            <div class="strengths-weaknesses">
+                                <div>
+                                    <div class="strength-item">✓ ハーランドの得点力</div>
+                                    <div class="strength-item">✓ ペップ戦術</div>
+                                </div>
+                                <div>
+                                    <div class="weakness-item">× 主要選手の怪我</div>
+                                    <div class="weakness-item">× 創造性不足</div>
+                                    <div class="weakness-item">× 予想外の苦戦</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>📈 詳細統計比較</h2>
+                    <table class="detailed-comparison-table">
+                        <thead>
+                            <tr>
+                                <th>チーム</th>
+                                <th>順位</th>
+                                <th>勝点</th>
+                                <th>得点</th>
+                                <th>失点</th>
+                                <th>得失点差</th>
+                                <th>ポゼッション率</th>
+                                <th>パス成功率</th>
+                                <th>シュート数/試合</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>リヴァプール</strong></td>
+                                <td><span class="best-value">1位</span></td>
+                                <td><span class="best-value">15</span></td>
+                                <td>11</td>
+                                <td>5</td>
+                                <td>+6</td>
+                                <td>73%</td>
+                                <td><span class="best-value">89%</span></td>
+                                <td>16.2</td>
+                            </tr>
+                            <tr>
+                                <td><strong>トッテナム</strong></td>
+                                <td>2位</td>
+                                <td>10</td>
+                                <td>12</td>
+                                <td>8</td>
+                                <td>+4</td>
+                                <td>68%</td>
+                                <td>84%</td>
+                                <td><span class="best-value">18.4</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>アーセナル</strong></td>
+                                <td>3位</td>
+                                <td>9</td>
+                                <td><span class="best-value">13</span></td>
+                                <td>5</td>
+                                <td><span class="best-value">+8</span></td>
+                                <td>71%</td>
+                                <td>87%</td>
+                                <td>15.8</td>
+                            </tr>
+                            <tr>
+                                <td><strong>チェルシー</strong></td>
+                                <td>6位</td>
+                                <td>8</td>
+                                <td>10</td>
+                                <td>4</td>
+                                <td>+6</td>
+                                <td>65%</td>
+                                <td>82%</td>
+                                <td>14.6</td>
+                            </tr>
+                            <tr>
+                                <td><strong>マンチェスター・ユナイテッド</strong></td>
+                                <td>10位</td>
+                                <td>7</td>
+                                <td>6</td>
+                                <td>9</td>
+                                <td><span class="worst-value">-3</span></td>
+                                <td><span class="worst-value">58%</span></td>
+                                <td><span class="worst-value">78%</span></td>
+                                <td>12.4</td>
+                            </tr>
+                            <tr>
+                                <td><strong>マンチェスター・シティ</strong></td>
+                                <td><span class="worst-value">12位</span></td>
+                                <td><span class="worst-value">6</span></td>
+                                <td>8</td>
+                                <td>4</td>
+                                <td>+4</td>
+                                <td><span class="best-value">72%</span></td>
+                                <td>86%</td>
+                                <td>13.2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2>⚔️ 直接対戦成績（過去3シーズン）</h2>
+                    <div class="highlight-box">
+                        <h3>注目の対戦カード</h3>
+                        <p><strong>リヴァプール vs マンチェスター・シティ:</strong> 過去6戦でリヴァプール4勝1分1敗<br>
+                        <strong>アーセナル vs チェルシー:</strong> 過去6戦でアーセナル3勝2分1敗<br>
+                        <strong>マンチェスター・ユナイテッド vs トッテナム:</strong> 過去6戦で2勝2分2敗の互角</p>
+                    </div>
+
+                    <h2>🔮 シーズン予想</h2>
+                    <div class="prediction-section">
+                        <h3 class="prediction-title">2025/26シーズン最終予想</h3>
+                        <div class="prediction-grid">
+                            <div class="prediction-item">
+                                <div class="prediction-category">プレミアリーグ優勝</div>
+                                <div class="prediction-team">リヴァプール</div>
+                            </div>
+                            <div class="prediction-item">
+                                <div class="prediction-category">チャンピオンズリーグ出場</div>
+                                <div class="prediction-team">リヴァプール、アーセナル、トッテナム、チェルシー</div>
+                            </div>
+                            <div class="prediction-item">
+                                <div class="prediction-category">最多得点者</div>
+                                <div class="prediction-team">モハメド・サラー</div>
+                            </div>
+                            <div class="prediction-item">
+                                <div class="prediction-category">最優秀監督</div>
+                                <div class="prediction-team">アルネ・スロット</div>
+                            </div>
+                            <div class="prediction-item">
+                                <div class="prediction-category">ダークホース</div>
+                                <div class="prediction-team">トッテナム</div>
+                            </div>
+                            <div class="prediction-item">
+                                <div class="prediction-category">復活が期待される</div>
+                                <div class="prediction-team">マンチェスター・シティ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>📝 各チームの課題と展望</h2>
+                    
+                    <h3>リヴァプール: 新時代の幕開け</h3>
+                    <p>スロット監督の戦術が早くも機能し、クロップ時代とは異なるアプローチで成功を収めている。ポゼッション率の向上と効率的な攻撃が特徴的で、今シーズンの優勝候補筆頭。ただし、新戦術の定着度と主要選手の年齢が今後の課題となる。</p>
+
+                    <h3>アーセナル: 安定した成長路線</h3>
+                    <p>アルテタ監督のもとで戦術的成熟度が高まり、若手選手の成長も著しい。エーデゴールの得点力とサカの創造性が攻撃の核となっている。守備は安定しているが、決定力不足と中盤の創造性向上が課題。</p>
+
+                    <h3>トッテナム: ポステコグルー革命</h3>
+                    <p>ポステコグルー監督の攻撃的サッカーが浸透し、ソン・フンミンが復活。攻撃力は大幅に向上したが、守備の不安定さと選手層の薄さが懸念材料。今シーズンのダークホース的存在。</p>
+
+                    <h3>チェルシー: 若手中心の再建</h3>
+                    <p>マレスカ監督のもとで若手選手が台頭し、攻撃の多様性が向上。パーマーやジャクソンなど将来有望な選手が成長している。経験不足と守備の連携が課題だが、将来性は高い。</p>
+
+                    <h3>マンチェスター・ユナイテッド: 迷走からの脱却</h3>
+                    <p>テン・ハーグ監督3年目だが、戦術的統一性に欠け、守備の脆さが露呈。ラッシュフォードやブルーノなど個人能力は高いが、チームとしての機能に問題。抜本的な改革が必要。</p>
+
+                    <h3>マンチェスター・シティ: 王者の苦悩</h3>
+                    <p>デ・ブライネの怪我など主要選手の離脱が響き、予想外の苦戦。ハーランドの得点力は健在だが、創造性不足が深刻。ペップ・グアルディオラの手腕が試される正念場。</p>
+                </div>
+            </article>
+        </main>
+
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">🔥 関連記事</h3>
+                <ul class="recent-posts">
+                    <li>
+                        <a href="liverpool-detailed.html">【詳細分析】リヴァプール完全ガイド</a>
+                        <div class="post-date">2025年9月21日</div>
+                    </li>
+                    <li>
+                        <a href="#">【戦術解説】スロット vs ペップ - 戦術対決</a>
+                        <div class="post-date">2025年9月20日</div>
+                    </li>
+                    <li>
+                        <a href="#">【移籍情報】1月の移籍市場予想</a>
+                        <div class="post-date">2025年9月19日</div>
+                    </li>
+                    <li>
+                        <a href="#">【データ分析】Big 6の攻撃パターン比較</a>
+                        <div class="post-date">2025年9月18日</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">📊 チーム詳細ページ</h3>
+                <ul class="recent-posts">
+                    <li><a href="liverpool-detailed.html">リヴァプール詳細ガイド</a></li>
+                    <li><a href="arsenal-detailed.html">アーセナル詳細ガイド</a></li>
+                    <li><a href="chelsea-detailed.html">チェルシー詳細ガイド</a></li>
+                    <li><a href="city-detailed.html">マンチェスター・シティ詳細ガイド</a></li>
+                    <li><a href="united-detailed.html">マンチェスター・ユナイテッド詳細ガイド</a></li>
+                    <li><a href="tottenham-detailed.html">トッテナム詳細ガイド</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">📱 BSix.com アプリ</h3>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center;">
+                    <p>最新の比較分析をプッシュ通知で受け取ろう</p>
+                    <button style="background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">ダウンロード</button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="assets/js/cross-linking.js"></script>
+    <script src="assets/js/engagement-features.js"></script>
+</body>
+</html>
