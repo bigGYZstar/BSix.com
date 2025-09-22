@@ -1,8 +1,6 @@
-// テストセットアップファイル
+import { beforeEach, vi } from 'vitest';
 
-import { vi } from 'vitest'
-
-// DOM環境のセットアップ
+// Mock DOM APIs that might not be available in jsdom
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation(query => ({
@@ -15,9 +13,26 @@ Object.defineProperty(window, 'matchMedia', {
     removeEventListener: vi.fn(),
     dispatchEvent: vi.fn(),
   })),
-})
+});
 
-// localStorage のモック
+// Mock IntersectionObserver
+global.IntersectionObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
+
+// Mock ResizeObserver
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
+
+// Mock fetch
+global.fetch = vi.fn();
+
+// Mock localStorage
 const localStorageMock = {
   getItem: vi.fn(),
   setItem: vi.fn(),
@@ -25,49 +40,69 @@ const localStorageMock = {
   clear: vi.fn(),
   length: 0,
   key: vi.fn(),
-}
-
+};
 Object.defineProperty(window, 'localStorage', {
-  value: localStorageMock,
-})
+  value: localStorageMock
+});
 
-// fetch のモック
-global.fetch = vi.fn()
+// Mock sessionStorage
+const sessionStorageMock = {
+  getItem: vi.fn(),
+  setItem: vi.fn(),
+  removeItem: vi.fn(),
+  clear: vi.fn(),
+  length: 0,
+  key: vi.fn(),
+};
+Object.defineProperty(window, 'sessionStorage', {
+  value: sessionStorageMock
+});
 
-// ResizeObserver のモック
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}))
-
-// IntersectionObserver のモック
-global.IntersectionObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}))
-
-// カスタムイベントのポリフィル
+// Custom Event polyfill
 if (!global.CustomEvent) {
   global.CustomEvent = class CustomEvent extends Event {
-    detail: any
+    detail: any;
 
     constructor(event: string, params: CustomEventInit = {}) {
-      super(event, params)
-      this.detail = params.detail
+      super(event, params);
+      this.detail = params.detail;
     }
-  } as any
+  } as any;
 }
 
-// console.error を抑制（テスト時の不要なエラーメッセージ対策）
-const originalError = console.error
+// Suppress console.error for known warnings
+const originalError = console.error;
 console.error = (...args: any[]) => {
   if (
     typeof args[0] === 'string' &&
-    args[0].includes('Warning: ReactDOM.render is deprecated')
+    (args[0].includes('Warning: ReactDOM.render is deprecated') ||
+     args[0].includes('Warning: validateDOMNesting'))
   ) {
-    return
+    return;
   }
-  originalError.call(console, ...args)
-}
+  originalError.call(console, ...args);
+};
+
+// Reset all mocks before each test
+beforeEach(() => {
+  vi.clearAllMocks();
+  localStorageMock.getItem.mockClear();
+  localStorageMock.setItem.mockClear();
+  localStorageMock.removeItem.mockClear();
+  localStorageMock.clear.mockClear();
+  sessionStorageMock.getItem.mockClear();
+  sessionStorageMock.setItem.mockClear();
+  sessionStorageMock.removeItem.mockClear();
+  sessionStorageMock.clear.mockClear();
+});
+
+// Add custom matchers if needed
+expect.extend({
+  toBeInTheDocument(received) {
+    const pass = received && received.nodeType === 1;
+    return {
+      message: () => `expected element ${pass ? 'not ' : ''}to be in the document`,
+      pass,
+    };
+  },
+});

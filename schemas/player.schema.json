@@ -1,0 +1,183 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bsix.com/schemas/player.schema.json",
+  "title": "Player",
+  "description": "Premier League player data schema",
+  "type": "object",
+  "required": ["id", "name", "position"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique player identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Player full name"
+    },
+    "position": {
+      "type": "string",
+      "enum": ["GK", "CB", "LB", "RB", "CDM", "CM", "CAM", "LM", "RM", "LW", "RW", "CF", "ST"],
+      "description": "Primary playing position"
+    },
+    "number": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 99,
+      "description": "Squad number"
+    },
+    "nationality": {
+      "type": "string",
+      "description": "Player nationality"
+    },
+    "age": {
+      "type": "integer",
+      "minimum": 16,
+      "maximum": 50,
+      "description": "Player age"
+    },
+    "height": {
+      "type": "number",
+      "minimum": 1.5,
+      "maximum": 2.2,
+      "description": "Height in meters"
+    },
+    "weight": {
+      "type": "number",
+      "minimum": 50,
+      "maximum": 120,
+      "description": "Weight in kilograms"
+    },
+    "preferredFoot": {
+      "type": "string",
+      "enum": ["left", "right", "both"]
+    },
+    "marketValue": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Market value in millions"
+    },
+    "contractExpiry": {
+      "type": "string",
+      "format": "date",
+      "description": "Contract expiry date"
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "season": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}$"
+        },
+        "appearances": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "starts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "minutesPlayed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "goals": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "assists": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "yellowCards": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "redCards": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cleanSheets": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "For goalkeepers"
+        },
+        "saves": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "For goalkeepers"
+        },
+        "passAccuracy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Pass accuracy percentage"
+        },
+        "shotsOnTarget": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tackles": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "interceptions": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "injury": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["fit", "doubt", "injured", "suspended"]
+        },
+        "description": {
+          "type": "string"
+        },
+        "expectedReturn": {
+          "type": "string",
+          "format": "date"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["minor", "moderate", "major"]
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "properties": {
+        "rating": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Average performance rating"
+        },
+        "form": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10
+          },
+          "maxItems": 5,
+          "description": "Last 5 match ratings"
+        },
+        "keyStrengths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "areasForImprovement": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

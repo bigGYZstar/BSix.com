@@ -441,7 +441,65 @@
         .dark-mode .player-item {
             background: rgba(52, 73, 94, 0.8);
         }
+    
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .home-link:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .home-link::before {
+            content: "🏠";
+            margin-right: 6px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .home-link {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .page-header .home-link {
+                align-self: flex-end;
+            }
+        }
     </style>
+    <link rel="stylesheet" href="assets/styles/design-system-generated.css">
 </head>
 <body>
     <div class="container">
@@ -451,7 +509,7 @@
             <div class="nav-links">
                 <a href="index.html">ホーム</a>
                 <a href="fixtures.html">試合一覧</a>
-                <a href="teams.html">チーム</a>
+                <a href="teams-advanced-stats.html">チーム</a>
                 <a href="stats.html">統計</a>
                 <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
             </div>
@@ -459,7 +517,7 @@
 
         <!-- メインコンテンツ -->
         <div class="main-content">
-            <h1 class="page-title">ビッグ6チーム詳細</h1>
+            <div class="page-header"><h1 class="page-title">ビッグ6チーム詳細</h1><a href="index.html" class="home-link">ホーム</a></div>
             <p class="page-subtitle">プレミアリーグの伝統的なビッグ6クラブの詳細情報と現在の状況</p>
 
             <div class="data-sync-status" id="dataSyncStatus">
@@ -474,7 +532,7 @@
             <!-- 比較テーブル -->
             <div class="comparison-section">
                 <h2 class="section-title">ビッグ6現在の順位比較</h2>
-                <table class="comparison-table" id="comparisonTable">
+                <table class="comparison-table" id="big6ComparisonTable">
                     <thead>
                         <tr>
                             <th>順位</th>
@@ -487,7 +545,7 @@
                             <th>得失点差</th>
                         </tr>
                     </thead>
-                    <tbody id="comparisonTableBody">
+                    <tbody>
                         <!-- 動的に生成される比較データ -->
                     </tbody>
                 </table>
@@ -644,7 +702,43 @@
                 'liverpool': 'リヴァプール',
                 'chelsea': 'チェルシー',
                 'manchester-united': 'マンチェスター・ユナイテッド',
-                'tottenham': 'トッテナム・ホットスパー'
+                'tottenham': 'トッテナム'
+            };
+            
+            // ビッグ6チームのデータを抽出
+            const big6Data = [];
+            table.forEach(team => {
+                const teamKey = Object.keys(big6Teams).find(key => 
+                    big6Teams[key] === team.team || 
+                    team.team.includes(big6Teams[key].split(' ')[0])
+                );
+                
+                if (teamKey) {
+                    big6Data.push({
+                        position: team.position,
+                        name: team.team,
+                        points: team.points,
+                        played: team.played,
+                        wins: team.wins,
+                        draws: team.draws,
+                        losses: team.losses,
+                        goalDifference: team.goalDifference
+                    });
+                }
+            });
+            
+            // テーブルを更新
+            const tableBody = document.querySelector('#big6ComparisonTable tbody');
+            if (tableBody && big6Data.length > 0) {
+                tableBody.innerHTML = createComparisonTable(big6Data);
+            }
+            
+            // チームカード用のデータも更新
+            const big6TeamMapping = {
+                'liverpool': 'リヴァプール',
+                'chelsea': 'チェルシー',
+                'manchester-united': 'マンチェスター・ユナイテッド',
+                'tottenham': 'トッテナム'
             };
 
             teamsData = {};

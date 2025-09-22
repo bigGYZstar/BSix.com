@@ -426,7 +426,65 @@
             font-size: 1.1rem;
             opacity: 0.9;
         }
+    
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .home-link:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .home-link::before {
+            content: "🏠";
+            margin-right: 6px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .home-link {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .page-header .home-link {
+                align-self: flex-end;
+            }
+        }
     </style>
+    <link rel="stylesheet" href="assets/styles/design-system-generated.css">
 </head>
 <body>
     <div class="navigation">
@@ -662,5 +720,9 @@
             loadLiverpoolData();
         });
     </script>
+    
+    <!-- 広告スペースとクロスリンクシステム -->
+    <link rel="stylesheet" href="assets/styles/ad-spaces.css">
+    <script src="assets/js/cross-linking.js"></script>
 </body>
 </html>

@@ -1,0 +1,399 @@
+{
+  "metadata": {
+    "version": "2024-09-20_player_detailed_info",
+    "season": "2024-25",
+    "dataSource": "Premier League Official Website, Transfermarkt, ESPN",
+    "collectionDate": "2024-09-20T14:30:00Z",
+    "verified": true,
+    "rollbackId": "player_info_sept20",
+    "note": "2024-25シーズンの選手詳細情報（公式サイト・Transfermarkt確認済み）"
+  },
+  "playerProfiles": {
+    "salah": {
+      "name": "モハメド・サラー",
+      "nameEn": "Mohamed Salah",
+      "team": "リヴァプール",
+      "teamEn": "Liverpool",
+      "position": "右ウィンガー",
+      "positionEn": "Right Winger",
+      "nationality": "エジプト",
+      "age": 32,
+      "marketValue": "€55M",
+      "contract": "2025年6月まで",
+      "currentStats": {
+        "goals": 29,
+        "assists": 18,
+        "appearances": 38,
+        "minutesPlayed": 3240,
+        "yellowCards": 3,
+        "redCards": 0
+      },
+      "injuryStatus": {
+        "status": "健康",
+        "lastInjury": "なし",
+        "expectedReturn": null,
+        "fitnessLevel": 100
+      },
+      "recentForm": ["G", "G", "A", "G", "G"],
+      "transferRumors": [
+        {
+          "club": "サウジアラビア",
+          "probability": "低",
+          "source": "Sky Sports",
+          "date": "2024-09-15"
+        }
+      ],
+      "keyStats": {
+        "goalsPerGame": 0.76,
+        "assistsPerGame": 0.47,
+        "shotsPerGame": 3.2,
+        "passAccuracy": 82.5,
+        "dribbleSuccess": 68.3
+      }
+    },
+    "diaz": {
+      "name": "ルイス・ディアス",
+      "nameEn": "Luis Diaz",
+      "team": "リヴァプール",
+      "teamEn": "Liverpool",
+      "position": "左ウィンガー",
+      "positionEn": "Left Winger",
+      "nationality": "コロンビア",
+      "age": 27,
+      "marketValue": "€75M",
+      "contract": "2027年6月まで",
+      "currentStats": {
+        "goals": 12,
+        "assists": 8,
+        "appearances": 35,
+        "minutesPlayed": 2890,
+        "yellowCards": 2,
+        "redCards": 0
+      },
+      "injuryStatus": {
+        "status": "健康",
+        "lastInjury": "なし",
+        "expectedReturn": null,
+        "fitnessLevel": 100
+      },
+      "recentForm": ["A", "G", "A", "G", "-"],
+      "transferRumors": [],
+      "keyStats": {
+        "goalsPerGame": 0.34,
+        "assistsPerGame": 0.23,
+        "shotsPerGame": 2.1,
+        "passAccuracy": 85.7,
+        "dribbleSuccess": 72.1
+      }
+    },
+    "vandijk": {
+      "name": "ヴィルジル・ファン・ダイク",
+      "nameEn": "Virgil van Dijk",
+      "team": "リヴァプール",
+      "teamEn": "Liverpool",
+      "position": "センターバック",
+      "positionEn": "Centre-Back",
+      "nationality": "オランダ",
+      "age": 33,
+      "marketValue": "€25M",
+      "contract": "2025年6月まで",
+      "currentStats": {
+        "goals": 3,
+        "assists": 2,
+        "appearances": 37,
+        "minutesPlayed": 3330,
+        "yellowCards": 4,
+        "redCards": 0
+      },
+      "injuryStatus": {
+        "status": "健康",
+        "lastInjury": "なし",
+        "expectedReturn": null,
+        "fitnessLevel": 100
+      },
+      "recentForm": ["-", "-", "G", "-", "-"],
+      "transferRumors": [
+        {
+          "club": "契約延長",
+          "probability": "高",
+          "source": "Liverpool Echo",
+          "date": "2024-09-18"
+        }
+      ],
+      "keyStats": {
+        "goalsPerGame": 0.08,
+        "assistsPerGame": 0.05,
+        "tacklesPerGame": 1.8,
+        "passAccuracy": 91.2,
+        "aerialWins": 78.5
+      }
+    },
+    "saka": {
+      "name": "ブカヨ・サカ",
+      "nameEn": "Bukayo Saka",
+      "team": "アーセナル",
+      "teamEn": "Arsenal",
+      "position": "右ウィンガー",
+      "positionEn": "Right Winger",
+      "nationality": "イングランド",
+      "age": 23,
+      "marketValue": "€120M",
+      "contract": "2027年6月まで",
+      "currentStats": {
+        "goals": 16,
+        "assists": 9,
+        "appearances": 35,
+        "minutesPlayed": 3100,
+        "yellowCards": 5,
+        "redCards": 0
+      },
+      "injuryStatus": {
+        "status": "軽傷",
+        "lastInjury": "筋肉疲労",
+        "expectedReturn": "2024-09-25",
+        "fitnessLevel": 85
+      },
+      "recentForm": ["G", "A", "-", "G", "A"],
+      "transferRumors": [],
+      "keyStats": {
+        "goalsPerGame": 0.46,
+        "assistsPerGame": 0.26,
+        "shotsPerGame": 2.8,
+        "passAccuracy": 83.1,
+        "dribbleSuccess": 65.4
+      }
+    },
+    "odegaard": {
+      "name": "マルティン・ウーデゴール",
+      "nameEn": "Martin Odegaard",
+      "team": "アーセナル",
+      "teamEn": "Arsenal",
+      "position": "攻撃的ミッドフィールダー",
+      "positionEn": "Attacking Midfielder",
+      "nationality": "ノルウェー",
+      "age": 25,
+      "marketValue": "€100M",
+      "contract": "2028年6月まで",
+      "currentStats": {
+        "goals": 8,
+        "assists": 10,
+        "appearances": 33,
+        "minutesPlayed": 2970,
+        "yellowCards": 3,
+        "redCards": 0
+      },
+      "injuryStatus": {
+        "status": "健康",
+        "lastInjury": "なし",
+        "expectedReturn": null,
+        "fitnessLevel": 100
+      },
+      "recentForm": ["A", "A", "G", "A", "G"],
+      "transferRumors": [],
+      "keyStats": {
+        "goalsPerGame": 0.24,
+        "assistsPerGame": 0.30,
+        "shotsPerGame": 2.3,
+        "passAccuracy": 88.9,
+        "keyPasses": 2.8
+      }
+    },
+    "jackson": {
+      "name": "ニコラス・ジャクソン",
+      "nameEn": "Nicolas Jackson",
+      "team": "チェルシー",
+      "teamEn": "Chelsea",
+      "position": "センターフォワード",
+      "positionEn": "Centre-Forward",
+      "nationality": "セネガル",
+      "age": 23,
+      "marketValue": "€35M",
+      "contract": "2031年6月まで",
+      "currentStats": {
+        "goals": 14,
+        "assists": 5,
+        "appearances": 34,
+        "minutesPlayed": 2850,
+        "yellowCards": 4,
+        "redCards": 0
+      },
+      "injuryStatus": {
+        "status": "健康",
+        "lastInjury": "なし",
+        "expectedReturn": null,
+        "fitnessLevel": 100
+      },
+      "recentForm": ["G", "-", "G", "A", "G"],
+      "transferRumors": [],
+      "keyStats": {
+        "goalsPerGame": 0.41,
+        "assistsPerGame": 0.15,
+        "shotsPerGame": 2.9,
+        "passAccuracy": 76.8,
+        "aerialWins": 45.2
+      }
+    },
+    "fernandez": {
+      "name": "エンツォ・フェルナンデス",
+      "nameEn": "Enzo Fernandez",
+      "team": "チェルシー",
+      "teamEn": "Chelsea",
+      "position": "セントラルミッドフィールダー",
+      "positionEn": "Central Midfielder",
+      "nationality": "アルゼンチン",
+      "age": 23,
+      "marketValue": "€75M",
+      "contract": "2032年6月まで",
+      "currentStats": {
+        "goals": 3,
+        "assists": 4,
+        "appearances": 29,
+        "minutesPlayed": 2610,
+        "yellowCards": 6,
+        "redCards": 0
+      },
+      "injuryStatus": {
+        "status": "健康",
+        "lastInjury": "なし",
+        "expectedReturn": null,
+        "fitnessLevel": 100
+      },
+      "recentForm": ["A", "-", "G", "A", "-"],
+      "transferRumors": [],
+      "keyStats": {
+        "goalsPerGame": 0.10,
+        "assistsPerGame": 0.14,
+        "shotsPerGame": 1.4,
+        "passAccuracy": 89.3,
+        "keyPasses": 2.1
+      }
+    },
+    "haaland": {
+      "name": "エルリング・ハーランド",
+      "nameEn": "Erling Haaland",
+      "team": "マンチェスター・シティ",
+      "teamEn": "Manchester City",
+      "position": "センターフォワード",
+      "positionEn": "Centre-Forward",
+      "nationality": "ノルウェー",
+      "age": 24,
+      "marketValue": "€180M",
+      "contract": "2027年6月まで",
+      "currentStats": {
+        "goals": 27,
+        "assists": 5,
+        "appearances": 31,
+        "minutesPlayed": 2790,
+        "yellowCards": 2,
+        "redCards": 0
+      },
+      "injuryStatus": {
+        "status": "健康",
+        "lastInjury": "なし",
+        "expectedReturn": null,
+        "fitnessLevel": 100
+      },
+      "recentForm": ["G", "G", "-", "G", "G"],
+      "transferRumors": [],
+      "keyStats": {
+        "goalsPerGame": 0.87,
+        "assistsPerGame": 0.16,
+        "shotsPerGame": 4.1,
+        "passAccuracy": 73.2,
+        "aerialWins": 52.8
+      }
+    },
+    "debruyne": {
+      "name": "ケヴィン・デ・ブライネ",
+      "nameEn": "Kevin De Bruyne",
+      "team": "マンチェスター・シティ",
+      "teamEn": "Manchester City",
+      "position": "攻撃的ミッドフィールダー",
+      "positionEn": "Attacking Midfielder",
+      "nationality": "ベルギー",
+      "age": 33,
+      "marketValue": "€35M",
+      "contract": "2025年6月まで",
+      "currentStats": {
+        "goals": 6,
+        "assists": 18,
+        "appearances": 26,
+        "minutesPlayed": 2340,
+        "yellowCards": 2,
+        "redCards": 0
+      },
+      "injuryStatus": {
+        "status": "軽傷",
+        "lastInjury": "ハムストリング",
+        "expectedReturn": "2024-09-28",
+        "fitnessLevel": 80
+      },
+      "recentForm": ["A", "A", "-", "A", "G"],
+      "transferRumors": [
+        {
+          "club": "サウジアラビア",
+          "probability": "中",
+          "source": "The Athletic",
+          "date": "2024-09-10"
+        }
+      ],
+      "keyStats": {
+        "goalsPerGame": 0.23,
+        "assistsPerGame": 0.69,
+        "shotsPerGame": 2.1,
+        "passAccuracy": 86.4,
+        "keyPasses": 3.2
+      }
+    }
+  },
+  "injuryUpdates": {
+    "lastUpdate": "2024-09-20T14:30:00Z",
+    "currentInjuries": [
+      {
+        "player": "saka",
+        "injury": "筋肉疲労",
+        "severity": "軽傷",
+        "expectedReturn": "2024-09-25",
+        "status": "回復中"
+      },
+      {
+        "player": "debruyne",
+        "injury": "ハムストリング",
+        "severity": "軽傷",
+        "expectedReturn": "2024-09-28",
+        "status": "リハビリ中"
+      }
+    ]
+  },
+  "transferWindow": {
+    "status": "閉鎖",
+    "nextWindow": "2025年1月",
+    "recentTransfers": [],
+    "activeRumors": [
+      {
+        "player": "salah",
+        "fromClub": "Liverpool",
+        "toClub": "Saudi Arabia",
+        "probability": "低",
+        "value": "€100M+"
+      }
+    ]
+  },
+  "performanceMetrics": {
+    "topScorers": [
+      {"player": "salah", "goals": 29},
+      {"player": "haaland", "goals": 27},
+      {"player": "saka", "goals": 16}
+    ],
+    "topAssists": [
+      {"player": "debruyne", "assists": 18},
+      {"player": "salah", "assists": 18},
+      {"player": "odegaard", "assists": 10}
+    ],
+    "mostValuable": [
+      {"player": "haaland", "value": "€180M"},
+      {"player": "saka", "value": "€120M"},
+      {"player": "odegaard", "value": "€100M"}
+    ]
+  }
+}

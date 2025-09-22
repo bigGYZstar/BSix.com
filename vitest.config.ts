@@ -1,5 +1,5 @@
-import { defineConfig } from 'vitest/config'
-import { resolve } from 'path'
+import { defineConfig } from 'vitest/config';
+import { resolve } from 'path';
 
 export default defineConfig({
   test: {
@@ -13,19 +13,32 @@ export default defineConfig({
         'node_modules/',
         'tests/',
         'dist/',
+        'examples/',
         '**/*.d.ts',
         '**/*.config.*',
-        '**/coverage/**',
+        'coverage/**'
       ],
+      thresholds: {
+        global: {
+          branches: 80,
+          functions: 80,
+          lines: 80,
+          statements: 80
+        }
+      }
     },
+    include: ['tests/unit/**/*.{test,spec}.{js,ts}'],
+    exclude: ['node_modules', 'dist', 'examples']
   },
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
-      '@/app': resolve(__dirname, 'src/app'),
-      '@/ui': resolve(__dirname, 'src/ui'),
+      '@/components': resolve(__dirname, 'src/components'),
       '@/features': resolve(__dirname, 'src/features'),
-      '@/data': resolve(__dirname, 'src/data'),
-    },
-  },
-})
+      '@/utils': resolve(__dirname, 'src/utils'),
+      '@/datasource': resolve(__dirname, 'src/datasource'),
+      '@/types': resolve(__dirname, 'src/types'),
+      '@/schemas': resolve(__dirname, 'schemas')
+    }
+  }
+});

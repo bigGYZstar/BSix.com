@@ -1,0 +1,144 @@
+{
+  "site_info": {
+    "name": "BSix.com",
+    "version": "2.0.0",
+    "last_updated": "2025-09-21T11:00:00Z",
+    "description": "プレミアリーグ Big 6 試合プレビューサイト"
+  },
+  "page_versions": {
+    "current": {
+      "home": "index.html",
+      "fixtures": "fixtures.html",
+      "teams": "teams-advanced-stats.html",
+      "stats": "stats.html",
+      "news": "news.html",
+      "match_preview": "match-preview.html",
+      "team_detail_liverpool": "liverpool-detailed.html",
+      "team_detail_arsenal": "arsenal.html",
+      "team_detail_chelsea": "chelsea.html",
+      "team_detail_generic": "team-detail-synced.html",
+      "player_detail": "player-detail.html"
+    },
+    "previous": {
+      "teams": "teams.html",
+      "team_detail_liverpool": "liverpool-enhanced.html",
+      "team_comparison": "teams-comparison-detailed.html"
+    },
+    "experimental": {
+      "character_test": "character-test-simple.html",
+      "fan_friendly_article": "sample-fan-friendly-article.html"
+    }
+  },
+  "navigation_structure": {
+    "main_nav": [
+      {
+        "label": "ホーム",
+        "page": "home",
+        "icon": "🏠"
+      },
+      {
+        "label": "試合一覧",
+        "page": "fixtures",
+        "icon": "📅"
+      },
+      {
+        "label": "チーム",
+        "page": "teams",
+        "icon": "👥"
+      },
+      {
+        "label": "統計",
+        "page": "stats",
+        "icon": "📊"
+      }
+    ],
+    "quick_access": [
+      {
+        "label": "今週の試合",
+        "page": "fixtures"
+      },
+      {
+        "label": "チーム比較",
+        "page": "teams"
+      },
+      {
+        "label": "順位表",
+        "page": "stats"
+      },
+      {
+        "label": "詳細分析",
+        "page": "news"
+      }
+    ],
+    "main_cards": [
+      {
+        "title": "試合一覧",
+        "description": "今週末の注目試合とスケジュール",
+        "page": "fixtures",
+        "icon": "📅",
+        "color": "green"
+      },
+      {
+        "title": "ビッグ6チーム",
+        "description": "チーム詳細情報と最新成績",
+        "page": "teams",
+        "icon": "👥",
+        "color": "blue"
+      },
+      {
+        "title": "統計・順位表",
+        "description": "リーグ順位表と詳細統計",
+        "page": "stats",
+        "icon": "📊",
+        "color": "orange"
+      },
+      {
+        "title": "注目の一戦",
+        "description": "アーセナル vs マンチェスター・シティ",
+        "page": "match_preview",
+        "icon": "🔥",
+        "color": "purple"
+      }
+    ]
+  },
+  "link_mapping": {
+    "teams.html": "teams-advanced-stats.html",
+    "team-detail.html": "team-detail-synced.html",
+    "liverpool.html": "liverpool-detailed.html"
+  },
+  "rollback_points": [
+    {
+      "version": "1.0.0",
+      "date": "2025-09-20T00:00:00Z",
+      "description": "初期バージョン - 基本的な順位表とチーム情報",
+      "pages": {
+        "teams": "teams.html",
+        "team_detail_liverpool": "liverpool.html"
+      }
+    },
+    {
+      "version": "1.5.0",
+      "date": "2025-09-20T12:00:00Z",
+      "description": "データ連動システム統合版",
+      "pages": {
+        "teams": "teams-synced.html",
+        "team_detail_liverpool": "liverpool-enhanced.html"
+      }
+    },
+    {
+      "version": "2.0.0",
+      "date": "2025-09-21T11:00:00Z",
+      "description": "Wide Research統合・詳細統計版",
+      "pages": {
+        "teams": "teams-advanced-stats.html",
+        "team_detail_liverpool": "liverpool-detailed.html"
+      }
+    }
+  ],
+  "deployment_settings": {
+    "current_environment": "development",
+    "test_url": "https://8084-igxauf5w85hwp6tfwhn60-7147fe51.manusvm.computer/",
+    "production_ready": true,
+    "last_deployment": "2025-09-21T11:00:00Z"
+  }
+}

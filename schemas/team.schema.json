@@ -1,0 +1,172 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bsix.com/schemas/team.schema.json",
+  "title": "Team",
+  "description": "Premier League team data schema",
+  "type": "object",
+  "required": ["id", "name", "shortName", "founded"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique team identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Full team name"
+    },
+    "shortName": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Three-letter team abbreviation"
+    },
+    "founded": {
+      "type": "integer",
+      "minimum": 1800,
+      "description": "Year the club was founded"
+    },
+    "logo": {
+      "type": "string",
+      "format": "uri",
+      "description": "Team logo URL"
+    },
+    "colors": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "secondary": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "accent": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        }
+      }
+    },
+    "venue": {
+      "type": "object",
+      "required": ["name", "capacity"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "capacity": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "city": {
+          "type": "string"
+        },
+        "opened": {
+          "type": "integer",
+          "minimum": 1800
+        }
+      }
+    },
+    "manager": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "nationality": {
+          "type": "string"
+        },
+        "appointed": {
+          "type": "string",
+          "format": "date"
+        },
+        "previousClubs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "squad": {
+      "type": "array",
+      "items": {
+        "$ref": "player.schema.json"
+      }
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "position": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "points": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "played": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "won": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "drawn": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "lost": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "goalsFor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "goalsAgainst": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "goalDifference": {
+          "type": "integer"
+        },
+        "form": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["W", "D", "L"]
+          },
+          "maxItems": 5
+        }
+      }
+    },
+    "tactics": {
+      "type": "object",
+      "properties": {
+        "preferredFormation": {
+          "type": "string",
+          "pattern": "^\\d-\\d-\\d(-\\d)?$"
+        },
+        "playingStyle": {
+          "type": "string",
+          "enum": ["possession", "counter-attack", "high-press", "defensive", "direct"]
+        },
+        "strengths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "weaknesses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

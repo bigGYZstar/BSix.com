@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>プレミアリーグ最新ニュース - BSix.com</title>
+    <meta name="theme-color" content="#4CAF50">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>">
+    <link rel="stylesheet" href="assets/styles/ad-spaces.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* メインレイアウト - 広告対応 */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .main-content {
+            min-width: 0;
+        }
+
+        .sidebar-ads {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* ヘッダー */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .page-header h1 {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+
+        /* ニュースカテゴリー */
+        .news-categories {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ニュース記事グリッド */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .news-article {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .news-article:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article-category {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .article-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .article-excerpt {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .read-time {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* 特集記事 */
+        .featured-article {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin-bottom: 20px;
+        }
+
+        .featured-article .article-image {
+            height: 300px;
+        }
+
+        .featured-article .article-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-article .article-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .featured-article .article-excerpt {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        /* 戻るボタン */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* テーマ切り替え */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* モバイル対応 */
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .sidebar-ads {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-layout {
+                padding: 15px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-article .article-image {
+                height: 200px;
+            }
+
+            .featured-article .article-title {
+                font-size: 1.5rem;
+            }
+
+            .back-button, .theme-toggle {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* ダークモード */
+        .dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ecf0f1;
+        }
+
+        .dark-mode .news-article {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ecf0f1;
+        }
+
+        .dark-mode .article-title {
+            color: #ecf0f1;
+        }
+
+        .dark-mode .category-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ecf0f1;
+        }
+    
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .home-link:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .home-link::before {
+            content: "🏠";
+            margin-right: 6px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .home-link {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .page-header .home-link {
+                align-self: flex-end;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="assets/styles/design-system-generated.css">
+</head>
+<body>
+    <button class="back-button" onclick="history.back()">←</button>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+    <div class="main-layout">
+        <div class="main-content">
+            <!-- ヘッダー広告 -->
+            <div class="ad-container ad-header">
+                <div class="ad-label">広告</div>
+                <div class="ad-placeholder">ヘッダー広告スペース (728x90)</div>
+            </div>
+
+            <!-- ページヘッダー -->
+            <div class="page-header">
+                <h1>📰 プレミアリーグ最新ニュース</h1>
+                <p>Big 6チームの最新情報と詳細分析をお届け</p>
+            </div>
+
+            <!-- ニュースカテゴリー -->
+            <div class="news-categories">
+                <button class="category-btn active" onclick="filterNews('all')">すべて</button>
+                <button class="category-btn" onclick="filterNews('transfer')">移籍情報</button>
+                <button class="category-btn" onclick="filterNews('match')">試合分析</button>
+                <button class="category-btn" onclick="filterNews('injury')">怪我情報</button>
+                <button class="category-btn" onclick="filterNews('tactics')">戦術解説</button>
+            </div>
+
+            <!-- ニュース記事グリッド -->
+            <div class="news-grid" id="newsGrid">
+                <!-- 特集記事 -->
+                <article class="news-article featured-article" data-category="match" onclick="openArticle('liverpool-title-race')">
+                    <div class="article-image">🏆</div>
+                    <div class="article-content">
+                        <span class="article-category">特集記事</span>
+                        <h2 class="article-title">リヴァプール、プレミアリーグ制覇への道筋</h2>
+                        <p class="article-excerpt">アルネ・スロット新監督のもと、完璧なスタートを切ったリヴァプール。4戦全勝の背景にある戦術的変化と、タイトル奪還への現実的な可能性を詳細に分析します。</p>
+                        <div class="article-meta">
+                            <span class="article-date">📅 2024年9月20日</span>
+                            <span class="read-time">📖 8分</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 通常記事 -->
+                <article class="news-article" data-category="transfer" onclick="openArticle('salah-contract')">
+                    <div class="article-image">💰</div>
+                    <div class="article-content">
+                        <span class="article-category">移籍情報</span>
+                        <h3 class="article-title">サラー、リヴァプール残留の可能性高まる</h3>
+                        <p class="article-excerpt">サウジアラビアからの巨額オファーを断り、リヴァプールでのキャリア継続を示唆するモハメド・サラー。契約延長交渉の最新状況をレポート。</p>
+                        <div class="article-meta">
+                            <span class="article-date">📅 2024年9月19日</span>
+                            <span class="read-time">📖 5分</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-article" data-category="injury" onclick="openArticle('saka-injury-update')">
+                    <div class="article-image">🏥</div>
+                    <div class="article-content">
+                        <span class="article-category">怪我情報</span>
+                        <h3 class="article-title">サカの軽傷、週末の試合には間に合う見込み</h3>
+                        <p class="article-excerpt">アーセナルのブカヨ・サカが筋肉疲労で離脱していたが、回復は順調。アルテタ監督は「週末には戻ってくる」と楽観的な見通しを示した。</p>
+                        <div class="article-meta">
+                            <span class="article-date">📅 2024年9月18日</span>
+                            <span class="read-time">📖 3分</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-article" data-category="tactics" onclick="openArticle('slot-tactics-analysis')">
+                    <div class="article-image">📋</div>
+                    <div class="article-content">
+                        <span class="article-category">戦術解説</span>
+                        <h3 class="article-title">スロット監督の戦術革命：リヴァプールの新しいスタイル</h3>
+                        <p class="article-excerpt">クロップ時代とは異なるアプローチを見せるスロット監督。ポゼッション重視の戦術がもたらす変化と、選手たちの適応状況を分析。</p>
+                        <div class="article-meta">
+                            <span class="article-date">📅 2024年9月17日</span>
+                            <span class="read-time">📖 7分</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-article" data-category="match" onclick="openArticle('arsenal-city-preview')">
+                    <div class="article-image">⚽</div>
+                    <div class="article-content">
+                        <span class="article-category">試合分析</span>
+                        <h3 class="article-title">アーセナル vs マンチェスター・シティ：タイトル争いの行方を占う一戦</h3>
+                        <p class="article-excerpt">今シーズンのタイトル争いを占う重要な一戦。両チームの現状分析と、勝敗を分けるポイントを詳しく解説します。</p>
+                        <div class="article-meta">
+                            <span class="article-date">📅 2024年9月16日</span>
+                            <span class="read-time">📖 6分</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-article" data-category="transfer" onclick="openArticle('chelsea-january-targets')">
+                    <div class="article-image">🔄</div>
+                    <div class="article-content">
+                        <span class="article-category">移籍情報</span>
+                        <h3 class="article-title">チェルシー、1月の移籍市場で狙う3つのポジション</h3>
+                        <p class="article-excerpt">マレスカ監督の要請により、チェルシーが1月の移籍市場で補強を検討している3つのポジション。候補選手の名前も浮上。</p>
+                        <div class="article-meta">
+                            <span class="article-date">📅 2024年9月15日</span>
+                            <span class="read-time">📖 4分</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-article" data-category="injury" onclick="openArticle('debruyne-return')">
+                    <div class="article-image">⚡</div>
+                    <div class="article-content">
+                        <span class="article-category">怪我情報</span>
+                        <h3 class="article-title">デ・ブライネ、来週にも復帰か</h3>
+                        <p class="article-excerpt">ハムストリングの怪我で離脱していたケヴィン・デ・ブライネが、来週にもチーム練習に復帰する見込み。シティの攻撃力向上に期待。</p>
+                        <div class="article-meta">
+                            <span class="article-date">📅 2024年9月14日</span>
+                            <span class="read-time">📖 3分</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- 記事内広告 -->
+            <div class="ad-container ad-inline">
+                <div class="ad-label">広告</div>
+                <div class="ad-placeholder">記事内広告スペース (336x280)</div>
+            </div>
+
+            <!-- 関連コンテンツ -->
+            <div id="related-content"></div>
+
+            <!-- フッター広告 -->
+            <div class="ad-container ad-footer">
+                <div class="ad-label">広告</div>
+                <div class="ad-placeholder">フッター広告スペース (728x90)</div>
+            </div>
+        </div>
+
+        <!-- サイドバー広告 -->
+        <div class="sidebar-ads">
+            <div class="ad-container ad-sidebar">
+                <div class="ad-label">広告</div>
+                <div class="ad-placeholder">サイドバー広告 (300x250)</div>
+            </div>
+            
+            <div class="ad-container ad-sidebar">
+                <div class="ad-label">広告</div>
+                <div class="ad-placeholder">サイドバー広告 (300x250)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- モバイル広告 -->
+    <div class="ad-container ad-mobile">
+        <div class="ad-label">広告</div>
+        <div class="ad-placeholder">モバイル広告 (320x50)</div>
+    </div>
+
+    <script src="assets/js/data-sync.js"></script>
+    <script src="assets/js/cross-linking.js"></script>
+    <script src="assets/js/engagement-features.js"></script>
+    <script>
+        // ニュースフィルタリング機能
+        function filterNews(category) {
+            const articles = document.querySelectorAll('.news-article');
+            const buttons = document.querySelectorAll('.category-btn');
+            
+            // ボタンのアクティブ状態を更新
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // 記事をフィルタリング
+            articles.forEach(article => {
+                if (category === 'all' || article.dataset.category === category) {
+                    article.style.display = 'block';
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        }
+
+        // 記事を開く
+        function openArticle(articleId) {
+            // 実際の実装では記事詳細ページに遷移
+            window.location.href = `article.html?id=${articleId}`;
+        }
+
+        // テーマ切り替え
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const themeButton = document.querySelector('.theme-toggle');
+            themeButton.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+            
+            // ローカルストレージに保存
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            // データ同期システムを初期化
+            if (window.initializeDataSync) {
+                window.initializeDataSync();
+            }
+
+            // テーマ設定を復元
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-toggle').textContent = '☀️';
+            }
+
+            // 関連コンテンツを表示
+            if (window.showRelatedContent) {
+                window.showRelatedContent('related-content', 'news');
+            }
+        });
+    </script>
+</body>
+</html>

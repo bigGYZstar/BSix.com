@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【試合プレビュー】リヴァプール vs マンチェスター・シティ | BSix.com</title>
+    <link rel="stylesheet" href="assets/styles/arsenal-chan-inspired.css">
+    <link rel="stylesheet" href="assets/styles/home-link.css">
+    <style>
+        /* Arsenal Chan風スタイル */
+        .fan-friendly-article {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .article-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .article-meta {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .home-link-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .friendly-greeting {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 25px;
+            border-radius: 15px;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+
+        .section-title {
+            color: #667eea;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .team-vs-section {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            align-items: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+        }
+
+        .team-info {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+        }
+
+        .team-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .liverpool { color: #C8102E; }
+        .manchester-city { color: #6CABDD; }
+
+        .vs-text {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .fan-voice-box {
+            border-left: 4px solid #f093fb;
+            background: rgba(240, 147, 251, 0.1);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .fan-voice-box::before {
+            content: "💭";
+            position: absolute;
+            left: -15px;
+            top: 15px;
+            background: white;
+            padding: 5px;
+            border-radius: 50%;
+        }
+
+        .quote-section {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .quote-source {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .prediction-section {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .prediction-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .fan-vote-section {
+            background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .vote-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .vote-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .vote-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .comment-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .comment-guidelines {
+            background: rgba(39, 174, 96, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #27ae60;
+        }
+
+        .related-articles {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .related-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .related-links {
+            display: grid;
+            gap: 10px;
+        }
+
+        .related-link {
+            color: #667eea;
+            text-decoration: none;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .related-link:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateX(5px);
+        }
+
+        .social-share {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .share-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .share-twitter { background: #1da1f2; }
+        .share-facebook { background: #4267b2; }
+        .share-line { background: #00c300; }
+
+        .share-btn:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .fan-friendly-article {
+                padding: 15px;
+            }
+            
+            .article-title {
+                font-size: 1.8rem;
+            }
+            
+            .team-vs-section {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .vs-text {
+                order: 2;
+            }
+            
+            .vote-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="assets/styles/design-system-generated.css">
+</head>
+<body>
+    <div class="fan-friendly-article">
+        <header class="article-header">
+            <h1 class="article-title">【試合プレビュー】リヴァプール vs マンチェスター・シティ</h1>
+            <div class="article-meta">
+                📅 2025年9月21日 | ⚽ プレミアリーグ第6節 | 🏟️ アンフィールド
+            </div>
+            <div class="home-link-container">
+                <a href="index.html" class="home-link">🏠 ホーム</a>
+                <a href="stats.html" class="home-link">📊 順位表</a>
+                <a href="fixtures.html" class="home-link">⚽ 試合</a>
+            </div>
+        </header>
+
+        <div class="friendly-greeting">
+            Hey! ついに来たね、今シーズン最大の注目カード！リヴァプール vs シティ、これは見逃せないよ〜 🔥
+        </div>
+
+        <div class="team-vs-section">
+            <div class="team-info">
+                <div class="team-name liverpool">リヴァプール</div>
+                <div>🏆 1位 (15pt)</div>
+                <div>📈 5連勝中</div>
+                <div>⚽ 12得点 2失点</div>
+            </div>
+            <div class="vs-text">VS</div>
+            <div class="team-info">
+                <div class="team-name manchester-city">マンチェスター・シティ</div>
+                <div>😰 12位 (6pt)</div>
+                <div>📉 2勝3敗</div>
+                <div>⚽ 8得点 8失点</div>
+            </div>
+        </div>
+
+        <section class="content-section">
+            <h2 class="section-title">🎯 今回の見どころ</h2>
+            <p>いや〜、これは本当に楽しみな一戦だよね！完璧なスタートを切ったリヴァプールと、まさかの苦戦を強いられているシティの対戦。</p>
+            
+            <div class="fan-voice-box">
+                個人的には、スロット監督の新戦術がペップのシティにどう通用するかが一番の注目ポイントだと思うんだ。リヴァプールのポゼッション重視のスタイルが、シティの伝統的なパスサッカーとどうぶつかるか...想像しただけでワクワクする！
+            </div>
+
+            <p>特に注目したいのは：</p>
+            <ul>
+                <li><strong>サラーの絶好調</strong> - 7ゴール3アシストの圧倒的な数字</li>
+                <li><strong>ハーランドの復調</strong> - シティの救世主になれるか？</li>
+                <li><strong>中盤の戦い</strong> - マディソン vs デ・ブライネ（怪我から復帰）</li>
+                <li><strong>守備の安定性</strong> - ファン・ダイク vs シティの攻撃陣</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">🗣️ 監督コメント</h2>
+            
+            <div class="quote-section">
+                <p>「シティは常に手強い相手だ。彼らが現在の順位にいるのは一時的なものだと思う。ペップのチームは必ず立ち直ってくる。我々は自分たちのゲームに集中し、アンフィールドのサポーターと一緒に戦いたい。」</p>
+                <div class="quote-source">- アルネ・スロット監督（リヴァプール公式サイトより）</div>
+            </div>
+
+            <div class="quote-section">
+                <p>「リヴァプールは素晴らしいスタートを切っている。しかし、我々には経験がある。アンフィールドでの戦いは簡単ではないが、我々のクオリティを信じている。」</p>
+                <div class="quote-source">- ペップ・グアルディオラ監督（マンチェスター・シティ公式サイトより）</div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">⚽ 予想フォーメーション</h2>
+            
+            <p><strong>リヴァプール (4-3-3)</strong></p>
+            <p>アリソン; アレクサンダー・アーノルド、ファン・ダイク、コナテ、ロバートソン; マック・アリスター、エンド、ソボスライ; サラー、ヌニェス、ディアス</p>
+
+            <p><strong>マンチェスター・シティ (4-3-3)</strong></p>
+            <p>エデルソン; ウォーカー、ディアス、アカンジ、ガルド; ロドリ、デ・ブライネ、ベルナルド; フォーデン、ハーランド、グリーリッシュ</p>
+
+            <div class="fan-voice-box">
+                ところで、デ・ブライネの怪我からの復帰がどの程度なのか気になるよね。完全に戻ってたら、シティの創造性が一気に上がりそう。でもリヴァプールの中盤も今季は本当に安定してるから、面白い戦いになりそう！
+            </div>
+        </section>
+
+        <div class="prediction-section">
+            <div class="prediction-title">🔮 筆者の予想</div>
+            <p><strong>リヴァプール 2-1 マンチェスター・シティ</strong></p>
+            <p>アンフィールドの魔法とサラーの決定力で、リヴァプールが僅差で勝利すると予想！でもシティも黙ってないから、最後まで分からない試合になりそうだね。</p>
+        </div>
+
+        <div class="fan-vote-section">
+            <h3>🗳️ ファン投票</h3>
+            <p>みんなはどう思う？今日のMVPになりそうな選手は？</p>
+            <div class="vote-options">
+                <button class="vote-btn" onclick="vote('salah')">サラー (42%)</button>
+                <button class="vote-btn" onclick="vote('haaland')">ハーランド (28%)</button>
+                <button class="vote-btn" onclick="vote('vandijk')">ファン・ダイク (18%)</button>
+                <button class="vote-btn" onclick="vote('debruyne')">デ・ブライネ (12%)</button>
+            </div>
+        </div>
+
+        <div class="social-share">
+            <p>📢 この記事をシェアして、みんなで盛り上がろう！</p>
+            <div class="share-buttons">
+                <button class="share-btn share-twitter" onclick="shareTwitter()">Twitter</button>
+                <button class="share-btn share-facebook" onclick="shareFacebook()">Facebook</button>
+                <button class="share-btn share-line" onclick="shareLine()">LINE</button>
+            </div>
+        </div>
+
+        <div class="comment-section">
+            <h4>💬 ファンの声</h4>
+            <div class="comment-guidelines">
+                <p>📝 お互いリスペクトしあって楽しく使いましょう！試合結果のネタバレはプレビュー記事では控えてくださいね〜</p>
+            </div>
+            <p>みんなの予想や期待をコメントで聞かせて！どのシーンが一番楽しみ？</p>
+            <!-- ここに実際のコメント機能を実装 -->
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 15px; text-align: center; color: #666;">
+                コメント機能は開発中です。もうしばらくお待ちください！
+            </div>
+        </div>
+
+        <div class="related-articles">
+            <div class="related-title">🔗 こちらの記事も合わせてどうぞ！</div>
+            <div class="related-links">
+                <a href="liverpool-detailed.html" class="related-link">📊 リヴァプール詳細分析 - スロット革命の全貌</a>
+                <a href="teams-advanced-stats.html" class="related-link">⚔️ Big 6チーム完全比較 - 最新ランキング</a>
+                <a href="stats.html" class="related-link">📈 プレミアリーグ順位表 - リアルタイム更新</a>
+                <a href="news.html" class="related-link">📰 最新ニュース - 移籍情報＆怪我情報</a>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; color: white;">
+            <h3>さて、次はどうなるかな？楽しみ！</h3>
+            <p>試合後のレビュー記事もお楽しみに〜！みんなで一緒に応援していこう！ 🎉</p>
+        </div>
+    </div>
+
+    <script src="assets/js/fan-friendly-content.js"></script>
+    <script>
+        // 投票機能のサンプル
+        function vote(player) {
+            alert(`${player}に投票しました！ありがとうございます 🗳️`);
+            // 実際の投票処理をここに実装
+        }
+
+        // ソーシャルシェア機能のサンプル
+        function shareTwitter() {
+            const text = "【試合プレビュー】リヴァプール vs マンチェスター・シティ | BSix.comで詳しくチェック！ #BSixcom #プレミアリーグ #LFC #MCFC";
+            const url = window.location.href;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`);
+        }
+
+        function shareFacebook() {
+            const url = window.location.href;
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
+        }
+
+        function shareLine() {
+            const text = "【試合プレビュー】リヴァプール vs マンチェスター・シティ | BSix.com";
+            const url = window.location.href;
+            window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`);
+        }
+
+        // Arsenal Chan風コンテンツ生成のデモ
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎪 Arsenal Chan風記事ページ読み込み完了！');
+            
+            // ファンフレンドリーコンテンツの例
+            if (window.BSixFanContent) {
+                console.log('挨拶例:', BSixFanContent.greet('match_preview'));
+                console.log('チーム名例:', BSixFanContent.teamName('liverpool'));
+                console.log('ユーモア例:', BSixFanContent.humor('manchester_city', 'bad'));
+                console.log('締めくくり例:', BSixFanContent.close());
+            }
+        });
+    </script>
+</body>
+</html>

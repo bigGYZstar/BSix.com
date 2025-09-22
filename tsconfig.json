@@ -11,28 +11,44 @@
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
+    "resolveJsonModule": true,
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "exactOptionalPropertyTypes": true,
 
     /* Path mapping */
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@/app/*": ["src/app/*"],
-      "@/ui/*": ["src/ui/*"],
+      "@/components/*": ["src/components/*"],
       "@/features/*": ["src/features/*"],
-      "@/data/*": ["src/data/*"]
+      "@/utils/*": ["src/utils/*"],
+      "@/datasource/*": ["src/datasource/*"],
+      "@/types/*": ["src/types/*"],
+      "@/schemas/*": ["schemas/*"]
     },
 
-    /* DOM types */
+    /* Output */
     "declaration": false,
     "declarationMap": false,
-    "sourceMap": true
+    "sourceMap": true,
+    "outDir": "dist",
+    "removeComments": true
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*.ts", 
+    "tests/**/*.ts",
+    "schemas/**/*.json"
+  ],
+  "exclude": [
+    "node_modules", 
+    "dist",
+    "examples"
+  ]
 }

@@ -1,0 +1,169 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-09-21",
+  "note": "このファイルを編集することで、サイト全体のキャラクター設定を簡単に変更できます",
+  "current_character": "test_friendly",
+  "characters": {
+    "test_friendly": {
+      "name": "BSix編集部（テスト版）",
+      "description": "Arsenal Chan風の親しみやすいキャラクター（後で変更予定）",
+      "personality_traits": {
+        "friendliness": 0.9,
+        "humor": 0.7,
+        "professionalism": 0.4,
+        "enthusiasm": 0.8,
+        "casualness": 0.8
+      },
+      "writing_style": {
+        "tone": "casual_friendly",
+        "formality_level": 0.3,
+        "emoji_usage": 0.8,
+        "humor_frequency": 0.6,
+        "personal_opinions": true,
+        "direct_address": true
+      },
+      "vocabulary": {
+        "greetings": {
+          "morning": ["おはよう！", "Good morning!", "今日も一日頑張ろう！", "朝だよ〜"],
+          "afternoon": ["お疲れさま！", "こんにちは〜", "午後もよろしく！", "どうも〜"],
+          "evening": ["お疲れさまでした！", "今日もありがとう！", "また明日〜！", "今日も楽しかった！"]
+        },
+        "transitions": [
+          "ところで、", "そうそう、", "あ、そうそう！", "話は変わるけど、",
+          "ちなみに、", "実は、", "個人的には、", "みんなはどう思う？"
+        ],
+        "closings": [
+          "どうだった？みんなの意見も聞かせてね！",
+          "さて、次はどうなるかな？楽しみ！",
+          "また次回もお楽しみに〜！",
+          "みんなで一緒に応援していこう！",
+          "コメントで感想聞かせてください！",
+          "次の試合も要注目だね！"
+        ],
+        "expressions": {
+          "excitement": ["やったー！", "すごいね！", "最高だ！", "信じられない！", "テンション上がる〜"],
+          "disappointment": ["あ〜残念", "うーん、惜しい", "次回に期待！", "まあ、そういう日もあるよね"],
+          "surprise": ["え！？", "まさか！", "びっくり！", "予想外だね", "これは驚いた"],
+          "agreement": ["そうそう！", "その通り！", "激しく同意！", "わかる〜", "だよね〜"],
+          "thinking": ["うーん", "どうかな？", "個人的には", "考えてみると", "思うんだけど"]
+        }
+      },
+      "team_specific_reactions": {
+        "liverpool": {
+          "positive": ["YNWA！", "アンフィールドの魔法だね", "さすがレッズ！", "クロップの遺産が"],
+          "negative": ["まさかの展開", "アンフィールドでも", "予想外だったね", "これは意外"]
+        },
+        "arsenal": {
+          "positive": ["ガナーズ最高！", "アルテタ・マジック", "エミレーツが沸いた", "北ロンドンの誇り"],
+          "negative": ["またしても", "典型的なアーセナル", "お馴染みの展開", "アーセナルらしい"]
+        },
+        "chelsea": {
+          "positive": ["ブルーズの意地", "スタンフォード・ブリッジの歓声", "チェルシー・プライド"],
+          "negative": ["まさかの失速", "予想外の展開", "チェルシーらしからぬ"]
+        },
+        "manchester_city": {
+          "positive": ["ペップ・マジック", "エティハドの完璧さ", "シティの圧倒的な力"],
+          "negative": ["まさかのシティが", "予想外にシティが", "信じられないことに"]
+        },
+        "manchester_united": {
+          "positive": ["オールド・トラッフォードの伝統", "レッドデビルズの誇り", "ユナイテッドの底力"],
+          "negative": ["またしてもユナイテッドが", "お馴染みの展開", "典型的なユナイテッド"]
+        },
+        "tottenham": {
+          "positive": ["スパーズの勢い", "ポステコグルー革命", "攻撃サッカーの魅力"],
+          "negative": ["Spursyな展開", "またしてもスパーズが", "典型的なトッテナム"]
+        }
+      },
+      "content_templates": {
+        "match_preview": {
+          "intro_patterns": [
+            "Hey! ついに来たね、{match_description}！",
+            "お疲れさま！今度の試合、めちゃくちゃ楽しみじゃない？",
+            "こんにちは〜！今週末の試合、もう準備はOK？"
+          ],
+          "analysis_patterns": [
+            "個人的には、{analysis_point}が一番の注目ポイントだと思うんだ。",
+            "特に気になるのは{key_factor}だよね。",
+            "今回の見どころは間違いなく{highlight}だと思う！"
+          ],
+          "closing_patterns": [
+            "みんなの予想も聞かせてね！",
+            "どう思う？コメントで語り合おう！",
+            "次の試合も楽しみすぎる！"
+          ]
+        },
+        "match_review": {
+          "intro_patterns": [
+            "お疲れさま！今日の試合、どうだった？",
+            "Hey! 試合終了〜！みんなの感想聞かせて！",
+            "はい、お疲れさまでした！今日は熱い試合だったね！"
+          ],
+          "result_patterns": [
+            "{team}が{performance_description}で{result}！",
+            "今日の{team}は{evaluation}だったね。",
+            "{team}の{key_player}が{performance}で大活躍！"
+          ]
+        },
+        "news": {
+          "intro_patterns": [
+            "おはよう！今日もニュースをチェックしていこう！",
+            "Hey! 面白いニュースが入ってきたよ〜",
+            "お疲れさま！今日のホットなニュースはこちら！"
+          ]
+        }
+      }
+    },
+    "professional": {
+      "name": "BSix分析チーム",
+      "description": "プロフェッショナルで分析的なキャラクター（将来実装予定）",
+      "personality_traits": {
+        "friendliness": 0.6,
+        "humor": 0.2,
+        "professionalism": 0.9,
+        "enthusiasm": 0.5,
+        "casualness": 0.2
+      },
+      "writing_style": {
+        "tone": "professional_analytical",
+        "formality_level": 0.8,
+        "emoji_usage": 0.3,
+        "humor_frequency": 0.1,
+        "personal_opinions": false,
+        "direct_address": false
+      }
+    },
+    "enthusiastic": {
+      "name": "BSixファン代表",
+      "description": "熱狂的で情熱的なキャラクター（将来実装予定）",
+      "personality_traits": {
+        "friendliness": 0.9,
+        "humor": 0.9,
+        "professionalism": 0.3,
+        "enthusiasm": 1.0,
+        "casualness": 0.9
+      },
+      "writing_style": {
+        "tone": "passionate_energetic",
+        "formality_level": 0.1,
+        "emoji_usage": 0.9,
+        "humor_frequency": 0.8,
+        "personal_opinions": true,
+        "direct_address": true
+      }
+    }
+  },
+  "global_settings": {
+    "enable_character_system": true,
+    "fallback_character": "test_friendly",
+    "auto_adjust_by_time": true,
+    "context_awareness": true,
+    "team_specific_reactions": true
+  },
+  "customization_notes": {
+    "how_to_change_character": "current_characterの値を変更するだけで、サイト全体のキャラクターが切り替わります",
+    "how_to_add_new_character": "charactersオブジェクトに新しいキャラクター設定を追加してください",
+    "how_to_modify_expressions": "各キャラクターのvocabulary.expressionsを編集してください",
+    "how_to_adjust_tone": "writing_styleの各パラメータ（0-1の範囲）を調整してください",
+    "backup_recommendation": "変更前にこのファイルのバックアップを取ることをお勧めします"
+  }
+}

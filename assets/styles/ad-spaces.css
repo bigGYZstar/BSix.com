@@ -1,0 +1,241 @@
+/* 広告スペース対応CSS */
+
+/* 広告コンテナの基本スタイル */
+.ad-container {
+    margin: 20px 0;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.ad-container:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.ad-placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* ヘッダー広告 */
+.ad-header {
+    width: 100%;
+    max-width: 728px;
+    height: 90px;
+    margin: 0 auto 20px;
+}
+
+/* サイドバー広告 */
+.ad-sidebar {
+    width: 100%;
+    max-width: 300px;
+    height: 250px;
+    margin: 20px 0;
+    position: sticky;
+    top: 20px;
+}
+
+/* 記事内広告 */
+.ad-inline {
+    width: 100%;
+    max-width: 336px;
+    height: 280px;
+    margin: 30px auto;
+    clear: both;
+}
+
+/* フッター広告 */
+.ad-footer {
+    width: 100%;
+    max-width: 728px;
+    height: 90px;
+    margin: 30px auto 20px;
+}
+
+/* モバイル広告 */
+.ad-mobile {
+    width: 100%;
+    max-width: 320px;
+    height: 50px;
+    margin: 15px auto;
+    display: none;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .ad-header,
+    .ad-footer {
+        max-width: 320px;
+        height: 50px;
+    }
+    
+    .ad-sidebar {
+        max-width: 300px;
+        height: 250px;
+        position: static;
+        margin: 20px auto;
+    }
+    
+    .ad-inline {
+        max-width: 300px;
+        height: 250px;
+    }
+    
+    .ad-mobile {
+        display: block;
+    }
+}
+
+/* 広告とコンテンツの分離 */
+.content-section {
+    margin: 40px 0;
+}
+
+.content-section + .ad-container {
+    margin-top: 30px;
+}
+
+.ad-container + .content-section {
+    margin-top: 30px;
+}
+
+/* 広告ラベル */
+.ad-label {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 広告スペースのアニメーション */
+.ad-container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.ad-container:hover::before {
+    opacity: 1;
+}
+
+/* サイドバーレイアウト */
+.main-content-with-ads {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-content {
+    min-width: 0;
+}
+
+.sidebar-ads {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (max-width: 1024px) {
+    .main-content-with-ads {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .sidebar-ads {
+        order: -1;
+    }
+}
+
+/* 広告とコンテンツの視覚的分離 */
+.ad-separator {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    margin: 20px 0;
+}
+
+/* 広告収益最適化のための配置 */
+.ad-above-fold {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.ad-mid-content {
+    margin: 40px 0;
+}
+
+.ad-below-fold {
+    margin-top: 50px;
+}
+
+/* ダークモード対応 */
+.dark-mode .ad-container {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .ad-container:hover {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .ad-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* 広告ブロッカー対応 */
+.ad-fallback {
+    display: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.ad-fallback h4 {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.ad-fallback p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+/* 広告の読み込み状態 */
+.ad-loading {
+    background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
+    background-size: 200% 100%;
+    animation: loading 2s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}

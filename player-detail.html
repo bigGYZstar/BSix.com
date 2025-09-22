@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>選手詳細 - BSix.com プレミアリーグ</title>
+    <meta name="theme-color" content="#4CAF50">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👤</text></svg>">
+    <link rel="stylesheet" href="assets/styles/ad-spaces.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* メインレイアウト - 広告対応 */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .main-content {
+            min-width: 0;
+        }
+
+        .sidebar-ads {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* データバージョン表示 */
+        .data-version {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+            font-size: 0.9rem;
+        }
+
+        /* 選手ヘッダー */
+        .player-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .player-header h1 {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .player-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .player-info {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .player-team {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 10px 25px;
+            display: inline-block;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* 怪我・コンディション情報 */
+        .injury-status {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .injury-status.healthy {
+            border-left: 5px solid #27ae60;
+        }
+
+        .injury-status.injured {
+            border-left: 5px solid #e74c3c;
+        }
+
+        .injury-status.recovering {
+            border-left: 5px solid #f39c12;
+        }
+
+        .injury-status h3 {
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .fitness-bar {
+            background: #ecf0f1;
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .fitness-level {
+            height: 100%;
+            background: linear-gradient(90deg, #e74c3c, #f39c12, #27ae60);
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+
+        /* 統計カード */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .stat-value {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* 最近のフォーム */
+        .recent-form {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .form-result {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .form-result.goal { background: #27ae60; }
+        .form-result.assist { background: #3498db; }
+        .form-result.neutral { background: #95a5a6; }
+
+        /* 移籍情報 */
+        .transfer-rumors {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .transfer-rumors h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .rumor-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .rumor-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .rumor-probability {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        /* 戻るボタン */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* テーマ切り替え */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* データ同期済みインジケーター */
+        .sync-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(76, 175, 80, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* モバイル対応 */
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .sidebar-ads {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-layout {
+                padding: 15px;
+            }
+
+            .player-header h1 {
+                font-size: 2rem;
+            }
+
+            .player-avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 3rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .back-button, .theme-toggle {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* ダークモード */
+        .dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ecf0f1;
+        }
+
+        .dark-mode .stat-card,
+        .dark-mode .injury-status,
+        .dark-mode .transfer-rumors {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ecf0f1;
+        }
+
+        .dark-mode .stat-card h3,
+        .dark-mode .injury-status h3,
+        .dark-mode .transfer-rumors h3 {
+            color: #764ba2;
+        }
+
+        /* ローディング */
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid white;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .home-link:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .home-link::before {
+            content: "🏠";
+            margin-right: 6px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .home-link {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .page-header .home-link {
+                align-self: flex-end;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="assets/styles/design-system-generated.css">
+</head>
+<body>
+    <button class="back-button" onclick="history.back()">←</button>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+    <div class="main-layout">
+        <div class="main-content">
+            <!-- ヘッダー広告 -->
+            <div class="ad-container ad-header">
+                <div class="ad-label">広告</div>
+                <div class="ad-placeholder">ヘッダー広告スペース (728x90)</div>
+            </div>
+
+            <!-- データバージョン表示 -->
+            <div class="data-version" id="dataVersion">
+                📊 データバージョン: <span id="versionInfo">読み込み中...</span> | 最終更新: <span id="lastUpdate">-</span> | <span style="color: #90EE90;">データ同期済み</span>
+            </div>
+
+            <!-- ローディング -->
+            <div id="loading" class="loading">
+                <div class="loading-spinner"></div>
+                選手情報を読み込み中...
+            </div>
+
+            <!-- 選手コンテンツ -->
+            <div id="player-content" style="display: none;">
+                <!-- 選手ヘッダー -->
+                <div class="player-header">
+                    <div class="player-avatar">👤</div>
+                    <h1 id="playerName">選手名</h1>
+                    <div class="player-info" id="playerInfo">ポジション | 国籍 | 年齢</div>
+                    <div class="player-team" id="playerTeam">チーム名</div>
+                </div>
+
+                <!-- 怪我・コンディション情報 -->
+                <div class="injury-status" id="injuryStatus">
+                    <h3>🏥 コンディション情報</h3>
+                    <div id="injuryDetails">
+                        <p><strong>状態:</strong> <span id="healthStatus">健康</span></p>
+                        <p><strong>フィットネスレベル:</strong></p>
+                        <div class="fitness-bar">
+                            <div class="fitness-level" id="fitnessLevel" style="width: 100%"></div>
+                        </div>
+                        <p id="injuryInfo" style="display: none;"><strong>怪我情報:</strong> <span id="injuryType">-</span></p>
+                        <p id="returnDate" style="display: none;"><strong>復帰予定:</strong> <span id="expectedReturn">-</span></p>
+                    </div>
+                </div>
+
+                <!-- 記事内広告 -->
+                <div class="ad-container ad-inline">
+                    <div class="ad-label">広告</div>
+                    <div class="ad-placeholder">記事内広告スペース (336x280)</div>
+                </div>
+
+                <!-- 統計情報 -->
+                <div class="stats-grid">
+                    <!-- 今シーズン成績 -->
+                    <div class="stat-card">
+                        <h3>📊 今シーズン成績</h3>
+                        <div class="stat-item">
+                            <span class="stat-label">ゴール</span>
+                            <span class="stat-value" id="goals">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">アシスト</span>
+                            <span class="stat-value" id="assists">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">出場試合</span>
+                            <span class="stat-value" id="appearances">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">出場時間</span>
+                            <span class="stat-value" id="minutes">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">イエローカード</span>
+                            <span class="stat-value" id="yellowCards">-</span>
+                        </div>
+                    </div>
+
+                    <!-- パフォーマンス指標 -->
+                    <div class="stat-card">
+                        <h3>⚡ パフォーマンス指標</h3>
+                        <div class="stat-item">
+                            <span class="stat-label">試合あたりゴール</span>
+                            <span class="stat-value" id="goalsPerGame">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">試合あたりアシスト</span>
+                            <span class="stat-value" id="assistsPerGame">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">パス成功率</span>
+                            <span class="stat-value" id="passAccuracy">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">試合あたりシュート</span>
+                            <span class="stat-value" id="shotsPerGame">-</span>
+                        </div>
+                    </div>
+
+                    <!-- 最近のフォーム -->
+                    <div class="stat-card">
+                        <h3>📈 最近のフォーム</h3>
+                        <div class="recent-form" id="recentForm">
+                            <!-- 動的に生成 -->
+                        </div>
+                        <p style="text-align: center; margin-top: 10px; color: #666; font-size: 0.9rem;">
+                            直近5試合 (G: ゴール, A: アシスト, -: 無得点)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 記事内広告2 -->
+                <div class="ad-container ad-inline">
+                    <div class="ad-label">広告</div>
+                    <div class="ad-placeholder">記事内広告スペース (336x280)</div>
+                </div>
+
+                <!-- 移籍情報 -->
+                <div class="transfer-rumors" id="transferRumors">
+                    <h3>🔄 移籍情報・噂</h3>
+                    <div id="rumorsList">
+                        <!-- 動的に生成 -->
+                    </div>
+                </div>
+
+                <!-- 関連コンテンツ -->
+                <div id="related-content"></div>
+
+                <!-- フッター広告 -->
+                <div class="ad-container ad-footer">
+                    <div class="ad-label">広告</div>
+                    <div class="ad-placeholder">フッター広告スペース (728x90)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- サイドバー広告 -->
+        <div class="sidebar-ads">
+            <div class="ad-container ad-sidebar">
+                <div class="ad-label">広告</div>
+                <div class="ad-placeholder">サイドバー広告 (300x250)</div>
+            </div>
+            
+            <div class="ad-container ad-sidebar">
+                <div class="ad-label">広告</div>
+                <div class="ad-placeholder">サイドバー広告 (300x250)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- モバイル広告 -->
+    <div class="ad-container ad-mobile">
+        <div class="ad-label">広告</div>
+        <div class="ad-placeholder">モバイル広告 (320x50)</div>
+    </div>
+
+    <!-- データ同期済みインジケーター -->
+    <div class="sync-indicator">
+        <span>●</span> データ同期済み
+    </div>
+
+    <script src="assets/js/data-sync.js"></script>
+    <script src="assets/js/cross-linking.js"></script>
+    <script>
+        // URLパラメータから選手IDを取得
+        const urlParams = new URLSearchParams(window.location.search);
+        const playerId = urlParams.get('player');
+
+        // 選手データを読み込み
+        async function loadPlayerData() {
+            try {
+                const response = await fetch('data/versions/2024-09-20_player_detailed_info.json');
+                const data = await response.json();
+                
+                if (playerId && data.playerProfiles[playerId]) {
+                    displayPlayerData(data.playerProfiles[playerId]);
+                } else {
+                    showError('選手が見つかりません');
+                }
+                
+                // バージョン情報を更新
+                document.getElementById('versionInfo').textContent = data.metadata.version;
+                document.getElementById('lastUpdate').textContent = 
+                    new Date(data.metadata.collectionDate).toLocaleString('ja-JP');
+                
+            } catch (error) {
+                console.error('データ読み込みエラー:', error);
+                showError('データの読み込みに失敗しました');
+            }
+        }
+
+        function displayPlayerData(player) {
+            // ローディングを非表示、コンテンツを表示
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('player-content').style.display = 'block';
+
+            // 基本情報
+            document.getElementById('playerName').textContent = player.name;
+            document.getElementById('playerInfo').textContent = 
+                `${player.position} | ${player.nationality} | ${player.age}歳`;
+            document.getElementById('playerTeam').textContent = player.team;
+            document.title = `${player.name} - BSix.com プレミアリーグ`;
+
+            // 怪我・コンディション情報
+            const injuryStatus = document.getElementById('injuryStatus');
+            const healthStatus = document.getElementById('healthStatus');
+            const fitnessLevel = document.getElementById('fitnessLevel');
+            
+            healthStatus.textContent = player.injuryStatus.status;
+            fitnessLevel.style.width = `${player.injuryStatus.fitnessLevel}%`;
+            
+            if (player.injuryStatus.status === '健康') {
+                injuryStatus.className = 'injury-status healthy';
+            } else if (player.injuryStatus.status === '軽傷') {
+                injuryStatus.className = 'injury-status recovering';
+                document.getElementById('injuryInfo').style.display = 'block';
+                document.getElementById('injuryType').textContent = player.injuryStatus.lastInjury;
+                document.getElementById('returnDate').style.display = 'block';
+                document.getElementById('expectedReturn').textContent = 
+                    new Date(player.injuryStatus.expectedReturn).toLocaleDateString('ja-JP');
+            } else {
+                injuryStatus.className = 'injury-status injured';
+            }
+
+            // 統計情報
+            document.getElementById('goals').textContent = player.currentStats.goals;
+            document.getElementById('assists').textContent = player.currentStats.assists;
+            document.getElementById('appearances').textContent = player.currentStats.appearances;
+            document.getElementById('minutes').textContent = player.currentStats.minutesPlayed + '分';
+            document.getElementById('yellowCards').textContent = player.currentStats.yellowCards;
+
+            // パフォーマンス指標
+            document.getElementById('goalsPerGame').textContent = player.keyStats.goalsPerGame;
+            document.getElementById('assistsPerGame').textContent = player.keyStats.assistsPerGame;
+            document.getElementById('passAccuracy').textContent = player.keyStats.passAccuracy + '%';
+            document.getElementById('shotsPerGame').textContent = player.keyStats.shotsPerGame;
+
+            // 最近のフォーム
+            const recentForm = document.getElementById('recentForm');
+            recentForm.innerHTML = '';
+            player.recentForm.forEach(result => {
+                const span = document.createElement('span');
+                span.className = 'form-result ' + 
+                    (result === 'G' ? 'goal' : result === 'A' ? 'assist' : 'neutral');
+                span.textContent = result;
+                recentForm.appendChild(span);
+            });
+
+            // 移籍情報
+            const rumorsList = document.getElementById('rumorsList');
+            if (player.transferRumors && player.transferRumors.length > 0) {
+                rumorsList.innerHTML = '';
+                player.transferRumors.forEach(rumor => {
+                    const div = document.createElement('div');
+                    div.className = 'rumor-item';
+                    div.innerHTML = `
+                        ${rumor.club}への移籍の噂
+                        <span class="rumor-probability">${rumor.probability}</span>
+                        <br><small>${rumor.source} - ${rumor.date}</small>
+                    `;
+                    rumorsList.appendChild(div);
+                });
+            } else {
+                rumorsList.innerHTML = '<p style="text-align: center; color: #666;">現在、移籍の噂はありません</p>';
+            }
+        }
+
+        function showError(message) {
+            document.getElementById('loading').innerHTML = `
+                <div style="color: #e74c3c;">
+                    <h3>エラー</h3>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+
+        // テーマ切り替え
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const themeButton = document.querySelector('.theme-toggle');
+            themeButton.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+            
+            // ローカルストレージに保存
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            // データ同期システムを初期化
+            if (window.initializeDataSync) {
+                window.initializeDataSync();
+            }
+
+            // 選手データを読み込み
+            loadPlayerData();
+
+            // テーマ設定を復元
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-toggle').textContent = '☀️';
+            }
+
+            // 関連コンテンツを表示
+            if (window.showRelatedContent) {
+                window.showRelatedContent('related-content');
+            }
+        });
+    </script>
+</body>
+</html>

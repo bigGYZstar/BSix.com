@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ビッグ6チーム詳細 - BSix.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px 30px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .data-sync-status {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .comparison-section {
+            margin-top: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9ff;
+        }
+
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .home-link:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .home-link::before {
+            content: "🏠";
+            margin-right: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 10px 8px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="assets/styles/design-system-generated.css">
+</head>
+<body>
+    <div class="container">
+        <!-- ナビゲーション -->
+        <nav class="nav">
+            <a href="index.html" class="nav-brand">⚽ BSix.com</a>
+            <div class="nav-links">
+                <a href="index.html">ホーム</a>
+                <a href="fixtures.html">試合一覧</a>
+                <a href="teams-advanced-stats.html">チーム</a>
+                <a href="stats.html">統計</a>
+            </div>
+        </nav>
+
+        <!-- メインコンテンツ -->
+        <div class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">ビッグ6チーム詳細</h1>
+                <a href="index.html" class="home-link">ホーム</a>
+            </div>
+            <p class="page-subtitle">プレミアリーグの伝統的なビッグ6クラブの詳細情報と現在の状況</p>
+
+            <div class="data-sync-status">
+                ✅ データ同期完了: 2025-09-20_current_premier_league_table (最終更新: 2025/9/20 0:00:00)
+            </div>
+
+            <!-- 比較テーブル -->
+            <div class="comparison-section">
+                <h2 class="section-title">ビッグ6現在の順位比較</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>順位</th>
+                            <th>チーム</th>
+                            <th>勝点</th>
+                            <th>試合数</th>
+                            <th>勝</th>
+                            <th>分</th>
+                            <th>負</th>
+                            <th>得失点差</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1</strong></td>
+                            <td><strong>リヴァプール</strong></td>
+                            <td><strong>15</strong></td>
+                            <td>5</td>
+                            <td>5</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>+6</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td><strong>トッテナム</strong></td>
+                            <td><strong>10</strong></td>
+                            <td>5</td>
+                            <td>3</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>+4</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td><strong>アーセナル</strong></td>
+                            <td><strong>9</strong></td>
+                            <td>5</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>+8</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6</strong></td>
+                            <td><strong>チェルシー</strong></td>
+                            <td><strong>8</strong></td>
+                            <td>5</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>+6</td>
+                        </tr>
+                        <tr>
+                            <td><strong>10</strong></td>
+                            <td><strong>マンチェスター・ユナイテッド</strong></td>
+                            <td><strong>7</strong></td>
+                            <td>5</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>-3</td>
+                        </tr>
+                        <tr>
+                            <td><strong>12</strong></td>
+                            <td><strong>マンチェスター・シティ</strong></td>
+                            <td><strong>6</strong></td>
+                            <td>5</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>3</td>
+                            <td>+4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -47,6 +47,31 @@
             text-decoration: none;
         }
 
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .home-link:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .home-link::before {
+            content: "🏠";
+            margin-right: 6px;
+        }
+
         .nav-links {
             display: flex;
             gap: 25px;
@@ -389,6 +414,7 @@
             color: #ecf0f1;
         }
     </style>
+    <link rel="stylesheet" href="assets/styles/design-system-generated.css">
 </head>
 <body>
     <div class="container">
@@ -398,7 +424,7 @@
             <div class="nav-links">
                 <a href="index.html">ホーム</a>
                 <a href="fixtures.html">試合一覧</a>
-                <a href="teams.html">チーム</a>
+                <a href="teams-advanced-stats.html">チーム</a>
                 <a href="stats.html" class="active">統計</a>
                 <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
             </div>
@@ -406,12 +432,13 @@
 
         <!-- メインコンテンツ -->
         <div class="main-content">
-            <h1 class="page-title">プレミアリーグ統計・順位表</h1>
-            
-            <div class="data-version">
-                📊 最新データ: 2024年9月20日 第4節終了時点（プレミアリーグ公式サイト確認済み）
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h1 class="page-title">プレミアリーグ統計・順位表</h1>
+                <a href="index.html" class="home-link">ホーム</a>
             </div>
-
+            <div class="data-source">
+                📊 最新データ: 2025年9月20日 第5節終了時点（プレミアリーグ公式サイト確認済み）
+            </div>
             <!-- 順位表 -->
             <div class="table-container">
                 <table class="league-table">
@@ -450,27 +477,27 @@
                 <div class="stats-grid">
                     <div class="stat-item">
                         <div class="stat-item-title">得点王</div>
-                        <div class="stat-item-value">アーリング・ハーランド (マンチェスター・シティ)<br>5ゴール</div>
+                        <div class="stat-item-value">モハメド・サラー (リヴァプール)<br>7ゴール</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-item-title">アシスト王</div>
-                        <div class="stat-item-value">ビクトル・ギェケレシュ (アーセナル)<br>3アシスト</div>
+                        <div class="stat-item-value">ソン・フンミン (トッテナム)<br>4アシスト</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-item-title">クリーンシート</div>
-                        <div class="stat-item-value">アーセナル<br>3試合</div>
+                        <div class="stat-item-value">リヴァプール<br>3試合</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-item-title">サプライズチーム</div>
-                        <div class="stat-item-value">ボーンマス<br>4位</div>
+                        <div class="stat-item-value">クリスタル・パレス<br>4位</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-item-title">完璧なスタート</div>
-                        <div class="stat-item-value">リヴァプール<br>4戦全勝</div>
+                        <div class="stat-item-value">リヴァプール<br>5戦全勝</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-item-title">苦戦中</div>
-                        <div class="stat-item-value">マンチェスター・ユナイテッド<br>14位</div>
+                        <div class="stat-item-value">マンチェスター・シティ<br>12位</div>
                     </div>
                 </div>
             </div>
@@ -478,28 +505,28 @@
     </div>
 
     <script>
-        // 正確な順位表データ（2024年9月20日時点）
+        // 正確な順位表データ（2025年9月20日時点 - 第5節終了後）
         const leagueData = [
-            { pos: 1, team: "リヴァプール", teamEn: "Liverpool", played: 4, won: 4, drawn: 0, lost: 0, gf: 9, ga: 4, gd: 5, points: 12, form: ["W", "W", "W", "W"], bigSix: true },
-            { pos: 2, team: "アーセナル", teamEn: "Arsenal", played: 4, won: 3, drawn: 0, lost: 1, gf: 9, ga: 1, gd: 8, points: 9, form: ["W", "W", "W", "L"], bigSix: true },
-            { pos: 3, team: "トッテナム・ホットスパー", teamEn: "Tottenham", played: 4, won: 3, drawn: 0, lost: 1, gf: 8, ga: 1, gd: 7, points: 9, form: ["W", "W", "W", "L"], bigSix: true },
-            { pos: 4, team: "ボーンマス", teamEn: "Bournemouth", played: 4, won: 3, drawn: 0, lost: 1, gf: 6, ga: 5, gd: 1, points: 9, form: ["W", "W", "W", "L"], bigSix: false },
-            { pos: 5, team: "チェルシー", teamEn: "Chelsea", played: 4, won: 2, drawn: 2, lost: 0, gf: 9, ga: 3, gd: 6, points: 8, form: ["W", "W", "D", "D"], bigSix: true },
-            { pos: 6, team: "エヴァートン", teamEn: "Everton", played: 4, won: 2, drawn: 1, lost: 1, gf: 5, ga: 3, gd: 2, points: 7, form: ["W", "W", "D", "L"], bigSix: false },
-            { pos: 7, team: "サンダーランド", teamEn: "Sunderland", played: 4, won: 2, drawn: 1, lost: 1, gf: 5, ga: 3, gd: 2, points: 7, form: ["W", "W", "D", "L"], bigSix: false },
-            { pos: 8, team: "マンチェスター・シティ", teamEn: "Manchester City", played: 4, won: 2, drawn: 0, lost: 2, gf: 8, ga: 4, gd: 4, points: 6, form: ["W", "W", "L", "L"], bigSix: true },
-            { pos: 9, team: "クリスタル・パレス", teamEn: "Crystal Palace", played: 4, won: 1, drawn: 3, lost: 0, gf: 4, ga: 1, gd: 3, points: 6, form: ["D", "D", "D", "W"], bigSix: false },
-            { pos: 10, team: "ニューカッスル・ユナイテッド", teamEn: "Newcastle", played: 4, won: 1, drawn: 2, lost: 1, gf: 3, ga: 3, gd: 0, points: 5, form: ["W", "D", "D", "L"], bigSix: false },
-            { pos: 11, team: "フラム", teamEn: "Fulham", played: 4, won: 1, drawn: 2, lost: 1, gf: 3, ga: 4, gd: -1, points: 5, form: ["W", "D", "D", "L"], bigSix: false },
-            { pos: 12, team: "ブレントフォード", teamEn: "Brentford", played: 4, won: 1, drawn: 1, lost: 2, gf: 5, ga: 7, gd: -2, points: 4, form: ["W", "D", "L", "L"], bigSix: false },
-            { pos: 13, team: "ブライトン・アンド・ホーヴ・アルビオン", teamEn: "Brighton", played: 4, won: 1, drawn: 1, lost: 2, gf: 4, ga: 6, gd: -2, points: 4, form: ["W", "D", "L", "L"], bigSix: false },
-            { pos: 14, team: "マンチェスター・ユナイテッド", teamEn: "Manchester United", played: 4, won: 1, drawn: 1, lost: 2, gf: 4, ga: 7, gd: -3, points: 4, form: ["W", "D", "L", "L"], bigSix: true },
-            { pos: 15, team: "ノッティンガム・フォレスト", teamEn: "Nottingham Forest", played: 4, won: 1, drawn: 1, lost: 2, gf: 4, ga: 8, gd: -4, points: 4, form: ["W", "D", "L", "L"], bigSix: false },
-            { pos: 16, team: "リーズ・ユナイテッド", teamEn: "Leeds", played: 4, won: 1, drawn: 1, lost: 2, gf: 1, ga: 6, gd: -5, points: 4, form: ["W", "D", "L", "L"], bigSix: false },
-            { pos: 17, team: "バーンリー", teamEn: "Burnley", played: 4, won: 1, drawn: 0, lost: 3, gf: 4, ga: 7, gd: -3, points: 3, form: ["W", "L", "L", "L"], bigSix: false },
-            { pos: 18, team: "ウェストハム・ユナイテッド", teamEn: "West Ham", played: 4, won: 1, drawn: 0, lost: 3, gf: 4, ga: 11, gd: -7, points: 3, form: ["W", "L", "L", "L"], bigSix: false },
+            { pos: 1, team: "リヴァプール", teamEn: "Liverpool", played: 5, won: 5, drawn: 0, lost: 0, gf: 11, ga: 5, gd: 6, points: 15, form: ["W", "W", "W", "W", "W"], bigSix: true },
+            { pos: 2, team: "トッテナム・ホットスパー", teamEn: "Tottenham", played: 5, won: 3, drawn: 1, lost: 1, gf: 10, ga: 3, gd: 7, points: 10, form: ["D", "W", "L", "W", "W"], bigSix: true },
+            { pos: 3, team: "アーセナル", teamEn: "Arsenal", played: 4, won: 3, drawn: 0, lost: 1, gf: 9, ga: 1, gd: 8, points: 9, form: ["W", "L", "W", "W"], bigSix: true },
+            { pos: 4, team: "クリスタル・パレス", teamEn: "Crystal Palace", played: 5, won: 2, drawn: 3, lost: 0, gf: 6, ga: 2, gd: 4, points: 9, form: ["D", "D", "W", "D", "D"], bigSix: false },
+            { pos: 5, team: "ボーンマス", teamEn: "Bournemouth", played: 4, won: 3, drawn: 0, lost: 1, gf: 6, ga: 5, gd: 1, points: 9, form: ["W", "W", "W", "L"], bigSix: false },
+            { pos: 6, team: "チェルシー", teamEn: "Chelsea", played: 5, won: 2, drawn: 2, lost: 1, gf: 10, ga: 5, gd: 5, points: 8, form: ["L", "D", "W", "W", "D"], bigSix: true },
+            { pos: 7, team: "フラム", teamEn: "Fulham", played: 5, won: 2, drawn: 2, lost: 1, gf: 6, ga: 5, gd: 1, points: 8, form: ["W", "W", "L", "D", "D"], bigSix: false },
+            { pos: 8, team: "サンダーランド", teamEn: "Sunderland", played: 4, won: 2, drawn: 1, lost: 1, gf: 5, ga: 3, gd: 2, points: 7, form: ["D", "W", "L", "W"], bigSix: false },
+            { pos: 9, team: "エヴァートン", teamEn: "Everton", played: 5, won: 2, drawn: 1, lost: 2, gf: 6, ga: 5, gd: 1, points: 7, form: ["W", "D", "L", "L", "L"], bigSix: false },
+            { pos: 10, team: "マンチェスター・ユナイテッド", teamEn: "Manchester United", played: 5, won: 2, drawn: 1, lost: 2, gf: 6, ga: 8, gd: -2, points: 7, form: ["W", "D", "L", "D", "W"], bigSix: true },
+            { pos: 11, team: "リーズ・ユナイテッド", teamEn: "Leeds", played: 5, won: 2, drawn: 1, lost: 2, gf: 4, ga: 7, gd: -3, points: 7, form: ["W", "W", "L", "D", "W"], bigSix: false },
+            { pos: 12, team: "マンチェスター・シティ", teamEn: "Manchester City", played: 4, won: 2, drawn: 0, lost: 2, gf: 8, ga: 4, gd: 4, points: 6, form: ["W", "W", "L", "L"], bigSix: true },
+            { pos: 13, team: "ニューカッスル・ユナイテッド", teamEn: "Newcastle", played: 4, won: 1, drawn: 2, lost: 1, gf: 3, ga: 3, gd: 0, points: 5, form: ["W", "D", "D", "L"], bigSix: false },
+            { pos: 14, team: "ブライトン・アンド・ホーヴ・アルビオン", teamEn: "Brighton", played: 5, won: 1, drawn: 2, lost: 2, gf: 6, ga: 8, gd: -2, points: 5, form: ["W", "D", "L", "L", "D"], bigSix: false },
+            { pos: 15, team: "ノッティンガム・フォレスト", teamEn: "Nottingham Forest", played: 5, won: 1, drawn: 2, lost: 2, gf: 5, ga: 9, gd: -4, points: 5, form: ["W", "D", "L", "L", "D"], bigSix: false },
+            { pos: 16, team: "バーンリー", teamEn: "Burnley", played: 5, won: 1, drawn: 1, lost: 3, gf: 5, ga: 8, gd: -3, points: 4, form: ["L", "W", "L", "L", "D"], bigSix: false },
+            { pos: 17, team: "ブレントフォード", teamEn: "Brentford", played: 5, won: 1, drawn: 1, lost: 3, gf: 6, ga: 10, gd: -4, points: 4, form: ["W", "D", "L", "L", "L"], bigSix: false },
+            { pos: 18, team: "ウェストハム・ユナイテッド", teamEn: "West Ham", played: 5, won: 1, drawn: 0, lost: 4, gf: 5, ga: 13, gd: -8, points: 3, form: ["W", "L", "L", "L", "L"], bigSix: false },
             { pos: 19, team: "アストン・ヴィラ", teamEn: "Aston Villa", played: 4, won: 0, drawn: 2, lost: 2, gf: 0, ga: 4, gd: -4, points: 2, form: ["D", "D", "L", "L"], bigSix: false },
-            { pos: 20, team: "ウルヴァーハンプトン・ワンダラーズ", teamEn: "Wolves", played: 4, won: 0, drawn: 0, lost: 4, gf: 2, ga: 9, gd: -7, points: 0, form: ["L", "L", "L", "L"], bigSix: false }
+            { pos: 20, team: "ウルヴァーハンプトン・ワンダラーズ", teamEn: "Wolves", played: 5, won: 0, drawn: 0, lost: 5, gf: 3, ga: 12, gd: -9, points: 0, form: ["L", "L", "L", "L", "L"], bigSix: false }
         ];
 
         // 順位表を生成
@@ -587,6 +614,11 @@
                 
                 const teamLink = getTeamDetailLink(team.team, team.teamEn);
                 
+                const formHtml = team.form.map(result => {
+                    const className = result === 'W' ? 'win' : result === 'D' ? 'draw' : 'loss';
+                    return `<span class="form-result ${className}">${result}</span>`;
+                }).join('');
+                
                 teamDiv.innerHTML = `
                     <div class="team-position">${team.pos}位</div>
                     <div class="team-name-big"><a href="${teamLink}" class="team-link">${team.team}</a></div>
@@ -604,10 +636,7 @@
                             <div class="stat-label">得失点差</div>
                         </div>
                     </div>
-                    <div class="form">${team.form.map(result => {
-                        const className = result === 'W' ? 'win' : result === 'D' ? 'draw' : 'loss';
-                        return `<span class="form-result ${className}">${result}</span>`;
-                    }).join('')}</div>
+                    <div class="form">${formHtml}</div>
                 `;
                 
                 bigSixGrid.appendChild(teamDiv);

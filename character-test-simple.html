@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キャラクターシステム テストページ | BSix.com</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .test-section {
+            background: rgba(240, 147, 251, 0.1);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 5px solid #f093fb;
+        }
+
+        .character-switch {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .demo-output {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        select {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin: 5px;
+        }
+
+        .home-links {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .home-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .home-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .status.success {
+            background: rgba(39, 174, 96, 0.1);
+            color: #27ae60;
+            border-left: 4px solid #27ae60;
+        }
+
+        .status.error {
+            background: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .liverpool { color: #C8102E; }
+        .arsenal { color: #EF0107; }
+        .chelsea { color: #034694; }
+        .manchester-city { color: #6CABDD; }
+    </style>
+    <link rel="stylesheet" href="assets/styles/design-system-generated.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎭 BSix.com キャラクターシステム</h1>
+            <p>テストページ - 後で簡単に変更できるモジュラー設計</p>
+        </div>
+
+        <div class="home-links">
+            <a href="index.html" class="home-link">🏠 ホーム</a>
+            <a href="stats.html" class="home-link">📊 順位表</a>
+            <a href="sample-fan-friendly-article.html" class="home-link">📰 サンプル記事</a>
+        </div>
+
+        <div class="status" id="systemStatus">
+            システム読み込み中...
+        </div>
+
+        <div class="character-switch">
+            <h3>キャラクター切り替えテスト</h3>
+            <p>現在のキャラクター: <strong id="currentCharacter">読み込み中...</strong></p>
+            <select id="characterSelect">
+                <option value="test_friendly">テスト版（Arsenal Chan風）</option>
+                <option value="professional">プロフェッショナル版</option>
+                <option value="enthusiastic">熱狂ファン版</option>
+            </select>
+            <button onclick="switchCharacter()">キャラクター変更</button>
+        </div>
+
+        <div class="test-section">
+            <h3>🗣️ 挨拶テスト</h3>
+            <div class="demo-output" id="greetingOutput">
+                読み込み中...
+            </div>
+            <button onclick="generateGreeting()">新しい挨拶を生成</button>
+        </div>
+
+        <div class="test-section">
+            <h3>⚽ チーム反応テスト</h3>
+            <div class="demo-output">
+                <strong class="liverpool">リヴァプール勝利:</strong> <span id="liverpoolGood">読み込み中...</span>
+            </div>
+            <div class="demo-output">
+                <strong class="arsenal">アーセナル敗北:</strong> <span id="arsenalBad">読み込み中...</span>
+            </div>
+            <div class="demo-output">
+                <strong class="chelsea">チェルシー勝利:</strong> <span id="chelseaGood">読み込み中...</span>
+            </div>
+            <div class="demo-output">
+                <strong class="manchester-city">シティ敗北:</strong> <span id="cityBad">読み込み中...</span>
+            </div>
+            <button onclick="generateTeamReactions()">チーム反応を再生成</button>
+        </div>
+
+        <div class="test-section">
+            <h3>😊 感情表現テスト</h3>
+            <div class="demo-output">
+                <strong>興奮:</strong> <span id="excitementOutput">読み込み中...</span>
+            </div>
+            <div class="demo-output">
+                <strong>失望:</strong> <span id="disappointmentOutput">読み込み中...</span>
+            </div>
+            <div class="demo-output">
+                <strong>驚き:</strong> <span id="surpriseOutput">読み込み中...</span>
+            </div>
+            <div class="demo-output">
+                <strong>同意:</strong> <span id="agreementOutput">読み込み中...</span>
+            </div>
+            <button onclick="generateEmotions()">感情表現を再生成</button>
+        </div>
+
+        <div class="test-section">
+            <h3>📝 文章処理テスト</h3>
+            <p><strong>元の文章:</strong> "リヴァプールは素晴らしい試合をしました。ファンは大変喜んでいます。"</p>
+            <div class="demo-output" id="processedText">
+                読み込み中...
+            </div>
+            <button onclick="processTestText()">文章を処理</button>
+        </div>
+
+        <div class="test-section">
+            <h3>🔧 システム情報</h3>
+            <div class="demo-output" id="systemInfo">
+                読み込み中...
+            </div>
+            <button onclick="showSystemInfo()">システム情報を表示</button>
+            <button onclick="exportSettings()">設定をエクスポート</button>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; color: white;">
+            <h3>🎉 キャラクターシステム完成！</h3>
+            <p>設定ファイルを編集するだけで、全サイトのトーンが変更できます</p>
+        </div>
+    </div>
+
+    <script>
+        // シンプルなキャラクターシステム（インライン実装）
+        class SimpleCharacterSystem {
+            constructor() {
+                this.currentCharacter = 'test_friendly';
+                this.characters = {
+                    test_friendly: {
+                        name: 'テスト版（Arsenal Chan風）',
+                        greetings: ['Hey! 今日も楽しくいこう！', 'お疲れさま〜', 'こんにちは！元気？'],
+                        expressions: {
+                            excitement: ['やったー！', 'すごいね！', '最高だ！'],
+                            disappointment: ['あ〜残念', 'うーん、惜しい', '次回に期待！'],
+                            surprise: ['え！？', 'まさか！', 'びっくり！'],
+                            agreement: ['そうそう！', 'その通り！', 'わかる〜']
+                        },
+                        teamReactions: {
+                            liverpool: { good: 'YNWA！さすがレッズ！', bad: 'まさかの展開だね' },
+                            arsenal: { good: 'ガナーズ最高！', bad: 'またしても...' },
+                            chelsea: { good: 'ブルーズの意地！', bad: 'まさかの失速' },
+                            manchester_city: { good: 'ペップ・マジック！', bad: 'まさかのシティが...' }
+                        }
+                    },
+                    professional: {
+                        name: 'プロフェッショナル版',
+                        greetings: ['おはようございます', 'お疲れさまです', '本日もよろしくお願いします'],
+                        expressions: {
+                            excitement: ['素晴らしい結果です', '期待以上の成果', '優秀な成績'],
+                            disappointment: ['残念な結果', '期待を下回る', '改善が必要'],
+                            surprise: ['予想外の展開', '想定外の結果', '驚くべき変化'],
+                            agreement: ['その通りです', '同感です', '正しい分析']
+                        },
+                        teamReactions: {
+                            liverpool: { good: '優秀な戦術的勝利', bad: '戦術的な課題が露呈' },
+                            arsenal: { good: '計画的な勝利', bad: '戦略の見直しが必要' },
+                            chelsea: { good: '組織的な勝利', bad: '構造的な問題' },
+                            manchester_city: { good: '完璧な戦術実行', bad: '予想外の戦術的失敗' }
+                        }
+                    },
+                    enthusiastic: {
+                        name: '熱狂ファン版',
+                        greetings: ['おはよう！今日も熱く行こう！', '最高の一日だ！', 'テンション上がってる！'],
+                        expressions: {
+                            excitement: ['うおおおお！', '神試合だ！', '鳥肌立った！'],
+                            disappointment: ['くそー！', 'マジかよ...', '信じられない...'],
+                            surprise: ['うそだろ！？', 'ありえない！', '夢かよ！'],
+                            agreement: ['激しく同意！', '100%その通り！', '完全に正しい！']
+                        },
+                        teamReactions: {
+                            liverpool: { good: 'YNWA！！！最高すぎる！', bad: 'なんでだよ〜！' },
+                            arsenal: { good: 'ガナーズ愛してる！', bad: 'もう見てられない...' },
+                            chelsea: { good: 'ブルーズ最強！', bad: 'どうしてこうなった...' },
+                            manchester_city: { good: 'シティ神すぎる！', bad: 'ペップ何してんの！？' }
+                        }
+                    }
+                };
+            }
+
+            switchCharacter(key) {
+                if (this.characters[key]) {
+                    this.currentCharacter = key;
+                    return true;
+                }
+                return false;
+            }
+
+            getRandomElement(array) {
+                return array[Math.floor(Math.random() * array.length)];
+            }
+
+            generateGreeting() {
+                const character = this.characters[this.currentCharacter];
+                return this.getRandomElement(character.greetings);
+            }
+
+            generateExpression(emotion) {
+                const character = this.characters[this.currentCharacter];
+                return this.getRandomElement(character.expressions[emotion]);
+            }
+
+            generateTeamReaction(team, situation) {
+                const character = this.characters[this.currentCharacter];
+                return character.teamReactions[team][situation];
+            }
+
+            processText(text) {
+                const character = this.characters[this.currentCharacter];
+                
+                if (this.currentCharacter === 'test_friendly') {
+                    return text
+                        .replace(/です。/g, 'だよ。')
+                        .replace(/ます。/g, 'るよ。')
+                        .replace(/でした。/g, 'だったね。') + ' 😊';
+                } else if (this.currentCharacter === 'enthusiastic') {
+                    return text.toUpperCase() + '！！！ 🔥';
+                }
+                
+                return text;
+            }
+
+            getCurrentProfile() {
+                return {
+                    character: this.currentCharacter,
+                    name: this.characters[this.currentCharacter].name
+                };
+            }
+        }
+
+        // システムの初期化
+        const characterSystem = new SimpleCharacterSystem();
+
+        // ページ読み込み時の初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSystemStatus('success', 'キャラクターシステム読み込み完了！');
+            updateCurrentCharacter();
+            generateAllContent();
+        });
+
+        function updateSystemStatus(type, message) {
+            const statusEl = document.getElementById('systemStatus');
+            statusEl.className = `status ${type}`;
+            statusEl.textContent = message;
+        }
+
+        function updateCurrentCharacter() {
+            const profile = characterSystem.getCurrentProfile();
+            document.getElementById('currentCharacter').textContent = profile.name;
+            document.getElementById('characterSelect').value = profile.character;
+        }
+
+        function switchCharacter() {
+            const select = document.getElementById('characterSelect');
+            const newCharacter = select.value;
+            
+            if (characterSystem.switchCharacter(newCharacter)) {
+                updateCurrentCharacter();
+                generateAllContent();
+                updateSystemStatus('success', `キャラクターを「${characterSystem.characters[newCharacter].name}」に変更しました！`);
+            } else {
+                updateSystemStatus('error', 'キャラクターの変更に失敗しました。');
+            }
+        }
+
+        function generateGreeting() {
+            const greeting = characterSystem.generateGreeting();
+            document.getElementById('greetingOutput').textContent = greeting;
+        }
+
+        function generateTeamReactions() {
+            document.getElementById('liverpoolGood').textContent = characterSystem.generateTeamReaction('liverpool', 'good');
+            document.getElementById('arsenalBad').textContent = characterSystem.generateTeamReaction('arsenal', 'bad');
+            document.getElementById('chelseaGood').textContent = characterSystem.generateTeamReaction('chelsea', 'good');
+            document.getElementById('cityBad').textContent = characterSystem.generateTeamReaction('manchester_city', 'bad');
+        }
+
+        function generateEmotions() {
+            document.getElementById('excitementOutput').textContent = characterSystem.generateExpression('excitement');
+            document.getElementById('disappointmentOutput').textContent = characterSystem.generateExpression('disappointment');
+            document.getElementById('surpriseOutput').textContent = characterSystem.generateExpression('surprise');
+            document.getElementById('agreementOutput').textContent = characterSystem.generateExpression('agreement');
+        }
+
+        function processTestText() {
+            const originalText = "リヴァプールは素晴らしい試合をしました。ファンは大変喜んでいます。";
+            const processedText = characterSystem.processText(originalText);
+            document.getElementById('processedText').textContent = processedText;
+        }
+
+        function showSystemInfo() {
+            const profile = characterSystem.getCurrentProfile();
+            const info = `
+                現在のキャラクター: ${profile.name}
+                利用可能なキャラクター: ${Object.keys(characterSystem.characters).length}個
+                システム状態: 正常動作中
+                最終更新: 2025年9月21日
+            `;
+            document.getElementById('systemInfo').textContent = info;
+        }
+
+        function exportSettings() {
+            const settings = {
+                currentCharacter: characterSystem.currentCharacter,
+                characters: characterSystem.characters,
+                exportDate: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(settings, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'bsix-character-settings.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            updateSystemStatus('success', '設定をエクスポートしました！');
+        }
+
+        function generateAllContent() {
+            generateGreeting();
+            generateTeamReactions();
+            generateEmotions();
+            processTestText();
+        }
+
+        // コンソール用のテスト関数
+        window.testCharacter = {
+            switch: switchCharacter,
+            greeting: generateGreeting,
+            teams: generateTeamReactions,
+            emotions: generateEmotions,
+            process: processTestText,
+            info: showSystemInfo,
+            export: exportSettings
+        };
+
+        console.log('🎭 キャラクターシステム テストページ読み込み完了！');
+        console.log('テスト用関数: testCharacter.switch(), testCharacter.greeting() など');
+    </script>
+</body>
+</html>

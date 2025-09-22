@@ -18,7 +18,7 @@ class BSixDataSync {
     async loadMasterData() {
         try {
             // 正確な順位表データを読み込み
-            const response = await fetch('/data/versions/2024-09-20_gw4_accurate_premier_league_table.json');
+            const response = await fetch('/data/versions/2025-09-20_current_premier_league_table.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }

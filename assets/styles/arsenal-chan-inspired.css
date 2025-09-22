@@ -1,0 +1,362 @@
+/* Arsenal-chan.com風デザインシステム */
+
+/* チーム別カラーパレット */
+:root {
+    /* アーセナル */
+    --arsenal-primary: #DC143C;
+    --arsenal-secondary: #FFD700;
+    --arsenal-accent: #FFFFFF;
+    
+    /* リヴァプール */
+    --liverpool-primary: #C8102E;
+    --liverpool-secondary: #00B2A9;
+    --liverpool-accent: #FFFFFF;
+    
+    /* チェルシー */
+    --chelsea-primary: #034694;
+    --chelsea-secondary: #FFFFFF;
+    --chelsea-accent: #FFD700;
+    
+    /* マンチェスター・シティ */
+    --city-primary: #6CABDD;
+    --city-secondary: #1C2C5B;
+    --city-accent: #FFFFFF;
+    
+    /* マンチェスター・ユナイテッド */
+    --united-primary: #DA020E;
+    --united-secondary: #FFE500;
+    --united-accent: #FFFFFF;
+    
+    /* トッテナム */
+    --tottenham-primary: #132257;
+    --tottenham-secondary: #FFFFFF;
+    --tottenham-accent: #FFD700;
+    
+    /* 共通カラー */
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --background-light: #FFFFFF;
+    --background-gray: #F8F9FA;
+    --border-light: #E9ECEF;
+}
+
+/* ベースレイアウト */
+.arsenal-chan-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--background-light);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    line-height: 1.7;
+    color: var(--text-primary);
+}
+
+/* ヘッダーデザイン */
+.site-header {
+    background: var(--background-light);
+    border-bottom: 3px solid var(--team-primary, #DC143C);
+    padding: 20px 0;
+    text-align: center;
+}
+
+.site-logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--team-primary, #DC143C);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.site-tagline {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* ナビゲーションバー */
+.main-navigation {
+    background: linear-gradient(135deg, var(--team-primary, #DC143C) 0%, var(--team-secondary, #FFD700) 100%);
+    padding: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    margin: 0;
+}
+
+.nav-menu a {
+    display: block;
+    padding: 15px 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* メインコンテンツエリア */
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 40px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-content {
+    background: var(--background-light);
+}
+
+/* 記事スタイル */
+.article-header {
+    margin-bottom: 30px;
+}
+
+.article-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin-bottom: 15px;
+    border-left: 5px solid var(--team-primary, #DC143C);
+    padding-left: 20px;
+}
+
+.article-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.article-category {
+    background: var(--team-primary, #DC143C);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.article-date {
+    color: var(--text-secondary);
+}
+
+.article-author {
+    color: var(--team-primary, #DC143C);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* 記事本文 */
+.article-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.article-content h2 {
+    font-size: 1.5rem;
+    color: var(--team-primary, #DC143C);
+    margin: 40px 0 20px 0;
+    border-bottom: 2px solid var(--team-primary, #DC143C);
+    padding-bottom: 10px;
+}
+
+.article-content h3 {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin: 30px 0 15px 0;
+    position: relative;
+}
+
+.article-content h3::before {
+    content: "■";
+    color: var(--team-primary, #DC143C);
+    margin-right: 8px;
+}
+
+.article-content p {
+    margin-bottom: 20px;
+}
+
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+/* サイドバー */
+.sidebar {
+    background: var(--background-gray);
+    padding: 30px 20px;
+    border-radius: 10px;
+    height: fit-content;
+}
+
+.sidebar-section {
+    margin-bottom: 40px;
+}
+
+.sidebar-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--team-primary, #DC143C);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--team-primary, #DC143C);
+    padding-bottom: 8px;
+}
+
+.recent-posts {
+    list-style: none;
+    padding: 0;
+}
+
+.recent-posts li {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.recent-posts li:last-child {
+    border-bottom: none;
+}
+
+.recent-posts a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    display: block;
+}
+
+.recent-posts a:hover {
+    color: var(--team-primary, #DC143C);
+}
+
+.recent-posts .post-date {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+/* チーム別テーマクラス */
+.theme-arsenal {
+    --team-primary: var(--arsenal-primary);
+    --team-secondary: var(--arsenal-secondary);
+    --team-accent: var(--arsenal-accent);
+}
+
+.theme-liverpool {
+    --team-primary: var(--liverpool-primary);
+    --team-secondary: var(--liverpool-secondary);
+    --team-accent: var(--liverpool-accent);
+}
+
+.theme-chelsea {
+    --team-primary: var(--chelsea-primary);
+    --team-secondary: var(--chelsea-secondary);
+    --team-accent: var(--chelsea-accent);
+}
+
+.theme-city {
+    --team-primary: var(--city-primary);
+    --team-secondary: var(--city-secondary);
+    --team-accent: var(--city-accent);
+}
+
+.theme-united {
+    --team-primary: var(--united-primary);
+    --team-secondary: var(--united-secondary);
+    --team-accent: var(--united-accent);
+}
+
+.theme-tottenham {
+    --team-primary: var(--tottenham-primary);
+    --team-secondary: var(--tottenham-secondary);
+    --team-accent: var(--tottenham-accent);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 20px 15px;
+    }
+    
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-menu a {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .article-title {
+        font-size: 1.5rem;
+    }
+    
+    .site-logo {
+        font-size: 2rem;
+    }
+}
+
+/* 特殊要素 */
+.highlight-box {
+    background: linear-gradient(135deg, var(--team-primary, #DC143C), var(--team-secondary, #FFD700));
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 30px 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.stat-item {
+    background: var(--background-gray);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border-top: 3px solid var(--team-primary, #DC143C);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--team-primary, #DC143C);
+    display: block;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 5px;
+}

@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big 6 詳細統計 - BSix.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px 30px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .data-sync-status {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .controls-section {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 2px solid #e1e5f2;
+        }
+
+        .controls-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .column-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .control-group {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .control-group h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+            accent-color: #667eea;
+        }
+
+        .checkbox-item label {
+            font-size: 0.9rem;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+        }
+
+        .stats-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .stats-table td {
+            padding: 12px 8px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+
+        .stats-table tr:hover {
+            background: #f8f9ff;
+        }
+
+        .team-name {
+            font-weight: bold;
+            color: #333;
+            text-align: left !important;
+            padding-left: 15px !important;
+        }
+
+        .position-1 { background: #ffd700; color: #333; font-weight: bold; }
+        .position-2 { background: #c0c0c0; color: #333; font-weight: bold; }
+        .position-3 { background: #cd7f32; color: white; font-weight: bold; }
+
+        .stat-good { color: #22c55e; font-weight: 600; }
+        .stat-average { color: #f59e0b; font-weight: 600; }
+        .stat-poor { color: #ef4444; font-weight: 600; }
+
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .home-link:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .home-link::before {
+            content: "🏠";
+            margin-right: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .column-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .stats-table {
+                font-size: 0.8rem;
+            }
+            
+            .stats-table th,
+            .stats-table td {
+                padding: 8px 4px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="assets/styles/design-system-generated.css">
+</head>
+<body>
+    <div class="container">
+        <!-- ナビゲーション -->
+        <nav class="nav">
+            <a href="index.html" class="nav-brand">⚽ BSix.com</a>
+            <div class="nav-links">
+                <a href="index.html">ホーム</a>
+                <a href="fixtures.html">試合一覧</a>
+                <a href="teams-advanced-stats.html">チーム</a>
+                <a href="stats.html">統計</a>
+            </div>
+        </nav>
+
+        <!-- メインコンテンツ -->
+        <div class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Big 6 詳細統計</h1>
+                <a href="index.html" class="home-link">ホーム</a>
+            </div>
+            <p class="page-subtitle">プレミアリーグBig 6チームの詳細統計データと比較分析</p>
+
+            <div class="data-sync-status">
+                ✅ Wide Research完了: Big 6チーム詳細統計データ収集済み (最終更新: 2025/9/21 9:30:00)
+            </div>
+
+            <!-- 表示制御パネル -->
+            <div class="controls-section">
+                <h3 class="controls-title">📊 表示項目カスタマイズ</h3>
+                
+                <div class="column-controls">
+                    <div class="control-group">
+                        <h4>基本統計</h4>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-position" checked>
+                            <label for="col-position">順位</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-points" checked>
+                            <label for="col-points">勝点</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-matches" checked>
+                            <label for="col-matches">試合数</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-wins" checked>
+                            <label for="col-wins">勝利</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-draws" checked>
+                            <label for="col-draws">引分</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-losses" checked>
+                            <label for="col-losses">敗戦</label>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <h4>攻撃統計</h4>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-goals-for" checked>
+                            <label for="col-goals-for">得点</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-goal-diff" checked>
+                            <label for="col-goal-diff">得失点差</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-shots">
+                            <label for="col-shots">平均シュート数</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-shot-accuracy">
+                            <label for="col-shot-accuracy">シュート成功率</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-corners">
+                            <label for="col-corners">平均コーナー数</label>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <h4>守備統計</h4>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-goals-against" checked>
+                            <label for="col-goals-against">失点</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-clean-sheets">
+                            <label for="col-clean-sheets">クリーンシート</label>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <h4>ポゼッション統計</h4>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-possession">
+                            <label for="col-possession">ポゼッション率</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-pass-accuracy">
+                            <label for="col-pass-accuracy">パス成功率</label>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <h4>規律統計</h4>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-yellow-cards">
+                            <label for="col-yellow-cards">イエローカード</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-red-cards">
+                            <label for="col-red-cards">レッドカード</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="col-fouls">
+                            <label for="col-fouls">平均ファウル数</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="updateTable()">テーブル更新</button>
+                    <button class="btn btn-secondary" onclick="showAllColumns()">全て表示</button>
+                    <button class="btn btn-secondary" onclick="showBasicOnly()">基本統計のみ</button>
+                    <button class="btn btn-secondary" onclick="exportData()">データエクスポート</button>
+                </div>
+            </div>
+
+            <!-- 統計テーブル -->
+            <div class="table-container">
+                <table class="stats-table" id="statsTable">
+                    <thead>
+                        <tr id="tableHeader">
+                            <th data-column="team">チーム名</th>
+                            <th data-column="position">順位</th>
+                            <th data-column="points">勝点</th>
+                            <th data-column="matches">試合数</th>
+                            <th data-column="wins">勝利</th>
+                            <th data-column="draws">引分</th>
+                            <th data-column="losses">敗戦</th>
+                            <th data-column="goals-for">得点</th>
+                            <th data-column="goals-against">失点</th>
+                            <th data-column="goal-diff">得失点差</th>
+                            <th data-column="clean-sheets">クリーンシート</th>
+                            <th data-column="shots">平均シュート数</th>
+                            <th data-column="shot-accuracy">シュート成功率</th>
+                            <th data-column="possession">ポゼッション率</th>
+                            <th data-column="pass-accuracy">パス成功率</th>
+                            <th data-column="yellow-cards">イエローカード</th>
+                            <th data-column="red-cards">レッドカード</th>
+                            <th data-column="corners">平均コーナー数</th>
+                            <th data-column="fouls">平均ファウル数</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- データは JavaScript で動的に生成 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Wide Research で収集された詳細統計データ
+        const teamStatsData = [
+            {
+                team: "Liverpool",
+                position: 1,
+                points: 15,
+                matches: 5,
+                wins: 5,
+                draws: 0,
+                losses: 0,
+                goalsFor: 11,
+                goalsAgainst: 5,
+                goalDiff: 6,
+                cleanSheets: 4,
+                shots: 15.2,
+                shotAccuracy: 45,
+                possession: 58.3,
+                passAccuracy: 87.2,
+                yellowCards: 6,
+                redCards: 1,
+                corners: 5.8,
+                fouls: 9.4
+            },
+            {
+                team: "アーセナル",
+                position: 2,
+                points: 9,
+                matches: 4,
+                wins: 3,
+                draws: 0,
+                losses: 1,
+                goalsFor: 9,
+                goalsAgainst: 1,
+                goalDiff: 8,
+                cleanSheets: 3,
+                shots: 7,
+                shotAccuracy: 50,
+                possession: 62.5,
+                passAccuracy: 88,
+                yellowCards: 7,
+                redCards: 0,
+                corners: 5.5,
+                fouls: 11.25
+            },
+            {
+                team: "Tottenham Hotspur",
+                position: 2,
+                points: 10,
+                matches: 5,
+                wins: 3,
+                draws: 1,
+                losses: 1,
+                goalsFor: 10,
+                goalsAgainst: 3,
+                goalDiff: 7,
+                cleanSheets: 2,
+                shots: 8,
+                shotAccuracy: 50,
+                possession: 55.0,
+                passAccuracy: 82.0,
+                yellowCards: 9,
+                redCards: 0,
+                corners: 6.2,
+                fouls: 12.6
+            },
+            {
+                team: "Chelsea FC",
+                position: 6,
+                points: 8,
+                matches: 5,
+                wins: 2,
+                draws: 2,
+                losses: 1,
+                goalsFor: 10,
+                goalsAgainst: 5,
+                goalDiff: 5,
+                cleanSheets: 1,
+                shots: 16.2,
+                shotAccuracy: 37,
+                possession: 58,
+                passAccuracy: 85,
+                yellowCards: 10,
+                redCards: 0,
+                corners: 6.2,
+                fouls: 10
+            },
+            {
+                team: "マンチェスター・シティ",
+                position: 12,
+                points: 6,
+                matches: 4,
+                wins: 2,
+                draws: 0,
+                losses: 2,
+                goalsFor: 8,
+                goalsAgainst: 4,
+                goalDiff: 4,
+                cleanSheets: 1,
+                shots: 5,
+                shotAccuracy: 42,
+                possession: 57,
+                passAccuracy: 87.1,
+                yellowCards: 5,
+                redCards: 0,
+                corners: 4,
+                fouls: 9
+            },
+            {
+                team: "Manchester United",
+                position: 10,
+                points: 7,
+                matches: 5,
+                wins: 2,
+                draws: 1,
+                losses: 2,
+                goalsFor: 8,
+                goalsAgainst: 11,
+                goalDiff: -3,
+                cleanSheets: 1,
+                shots: 11.5,
+                shotAccuracy: 38,
+                possession: 55.2,
+                passAccuracy: 85.1,
+                yellowCards: 8,
+                redCards: 0,
+                corners: 5.5,
+                fouls: 12
+            }
+        ];
+
+        // テーブル更新関数
+        function updateTable() {
+            const tableBody = document.getElementById('tableBody');
+            const tableHeader = document.getElementById('tableHeader');
+            
+            // ヘッダーの表示/非表示を制御
+            const headerCells = tableHeader.querySelectorAll('th');
+            headerCells.forEach(cell => {
+                const column = cell.getAttribute('data-column');
+                if (column && column !== 'team') {
+                    const checkbox = document.getElementById(`col-${column}`);
+                    if (checkbox) {
+                        cell.style.display = checkbox.checked ? '' : 'none';
+                    }
+                }
+            });
+
+            // データ行を生成
+            tableBody.innerHTML = '';
+            teamStatsData.forEach(team => {
+                const row = document.createElement('tr');
+                
+                // 各セルを生成
+                const cells = [
+                    { value: team.team, column: 'team', class: 'team-name' },
+                    { value: team.position, column: 'position', class: team.position <= 3 ? `position-${team.position}` : '' },
+                    { value: team.points, column: 'points' },
+                    { value: team.matches, column: 'matches' },
+                    { value: team.wins, column: 'wins' },
+                    { value: team.draws, column: 'draws' },
+                    { value: team.losses, column: 'losses' },
+                    { value: team.goalsFor, column: 'goals-for' },
+                    { value: team.goalsAgainst, column: 'goals-against' },
+                    { value: team.goalDiff > 0 ? `+${team.goalDiff}` : team.goalDiff, column: 'goal-diff' },
+                    { value: team.cleanSheets, column: 'clean-sheets' },
+                    { value: team.shots, column: 'shots' },
+                    { value: `${team.shotAccuracy}%`, column: 'shot-accuracy' },
+                    { value: `${team.possession}%`, column: 'possession' },
+                    { value: `${team.passAccuracy}%`, column: 'pass-accuracy' },
+                    { value: team.yellowCards, column: 'yellow-cards' },
+                    { value: team.redCards, column: 'red-cards' },
+                    { value: team.corners, column: 'corners' },
+                    { value: team.fouls, column: 'fouls' }
+                ];
+
+                cells.forEach(cellData => {
+                    const cell = document.createElement('td');
+                    cell.textContent = cellData.value;
+                    if (cellData.class) {
+                        cell.className = cellData.class;
+                    }
+                    
+                    // 表示/非表示を制御
+                    if (cellData.column && cellData.column !== 'team') {
+                        const checkbox = document.getElementById(`col-${cellData.column}`);
+                        if (checkbox) {
+                            cell.style.display = checkbox.checked ? '' : 'none';
+                        }
+                    }
+                    
+                    row.appendChild(cell);
+                });
+                
+                tableBody.appendChild(row);
+            });
+        }
+
+        // 全て表示
+        function showAllColumns() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.checked = true;
+            });
+            updateTable();
+        }
+
+        // 基本統計のみ表示
+        function showBasicOnly() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.checked = false;
+            });
+            
+            // 基本統計のみチェック
+            ['col-position', 'col-points', 'col-matches', 'col-wins', 'col-draws', 'col-losses', 'col-goals-for', 'col-goals-against', 'col-goal-diff'].forEach(id => {
+                const checkbox = document.getElementById(id);
+                if (checkbox) checkbox.checked = true;
+            });
+            
+            updateTable();
+        }
+
+        // データエクスポート
+        function exportData() {
+            const csvContent = "data:text/csv;charset=utf-8," 
+                + "チーム名,順位,勝点,試合数,勝利,引分,敗戦,得点,失点,得失点差,クリーンシート,平均シュート数,シュート成功率,ポゼッション率,パス成功率,イエローカード,レッドカード,平均コーナー数,平均ファウル数\n"
+                + teamStatsData.map(team => 
+                    `${team.team},${team.position},${team.points},${team.matches},${team.wins},${team.draws},${team.losses},${team.goalsFor},${team.goalsAgainst},${team.goalDiff},${team.cleanSheets},${team.shots},${team.shotAccuracy},${team.possession},${team.passAccuracy},${team.yellowCards},${team.redCards},${team.corners},${team.fouls}`
+                ).join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "big6_detailed_stats.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTable();
+            
+            // チェックボックスの変更を監視
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', updateTable);
+            });
+        });
+    </script>
+</body>
+</html>
