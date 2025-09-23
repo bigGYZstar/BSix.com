@@ -20,7 +20,7 @@ describe('Teams Manager', () => {
     const team = {
       id: 'test-team',
       name: 'Test Team',
-      shortName: 'TST',
+      shortName: 'TEST',
       colors: { primary: '#FF0000', secondary: '#0000FF' },
       stats: {
         position: 1,
@@ -32,7 +32,7 @@ describe('Teams Manager', () => {
         goalsFor: 25,
         goalsAgainst: 5,
         goalDifference: 20,
-        form: ['W', 'W', 'W', 'W', 'W'] as const
+        form: ['W', 'W', 'W', 'W', 'W'] as ("W" | "D" | "L")[]
       }
     };
 
@@ -51,7 +51,7 @@ describe('Teams Manager', () => {
       colors: { primary: '#C8102E', secondary: '#00B2A9' },
       stats: {
         position: 1, points: 15, played: 5, won: 5, drawn: 0, lost: 0,
-        goalsFor: 12, goalsAgainst: 2, goalDifference: 10, form: ['W', 'W', 'W', 'W', 'W'] as const
+        goalsFor: 12, goalsAgainst: 2, goalDifference: 10, form: ["W", "W", "W", "W", "W"] as ("W" | "D" | "L")[]
       }
     };
 
@@ -66,14 +66,14 @@ describe('Teams Manager', () => {
       id: 'team1', name: 'Team 1', shortName: 'T1',
       colors: { primary: '#FF0000', secondary: '#0000FF' },
       stats: { position: 1, points: 30, played: 10, won: 10, drawn: 0, lost: 0,
-        goalsFor: 25, goalsAgainst: 5, goalDifference: 20, form: ['W'] as const }
+        goalsFor: 25, goalsAgainst: 5, goalDifference: 20, form: ['W'] as ("W" | "D" | "L")[] }
     };
 
     const team2 = {
       id: 'team2', name: 'Team 2', shortName: 'T2',
       colors: { primary: '#00FF00', secondary: '#FF00FF' },
       stats: { position: 2, points: 25, played: 10, won: 8, drawn: 1, lost: 1,
-        goalsFor: 20, goalsAgainst: 8, goalDifference: 12, form: ['W'] as const }
+        goalsFor: 20, goalsAgainst: 8, goalDifference: 12, form: ['W'] as ("W" | "D" | "L")[] }
     };
 
     teamsManager.addTeam(team1);

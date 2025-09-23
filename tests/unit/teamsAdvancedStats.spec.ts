@@ -17,35 +17,37 @@ describe('TeamsAdvancedStatsManager', () => {
         id: 'liverpool',
         name: 'Liverpool',
         shortName: 'LIV',
-        position: 1,
-        points: 15,
-        played: 5,
-        won: 5,
-        drawn: 0,
-        lost: 0,
-        goalsFor: 12,
-        goalsAgainst: 2,
-        goalDifference: 10,
-        form: ['W', 'W', 'W', 'W', 'W'],
-        logo: '',
-        colors: { primary: '#C8102E', secondary: '#00B2A9' }
+        colors: { primary: '#C8102E', secondary: '#00B2A9' },
+        stats: {
+          position: 1,
+          points: 15,
+          played: 5,
+          won: 5,
+          drawn: 0,
+          lost: 0,
+          goalsFor: 12,
+          goalsAgainst: 2,
+          goalDifference: 10,
+          form: ['W', 'W', 'W', 'W', 'W']
+        }
       },
       {
         id: 'arsenal',
         name: 'Arsenal',
         shortName: 'ARS',
-        position: 2,
-        points: 9,
-        played: 4,
-        won: 3,
-        drawn: 0,
-        lost: 1,
-        goalsFor: 8,
-        goalsAgainst: 3,
-        goalDifference: 5,
-        form: ['W', 'W', 'W', 'L'],
-        logo: '',
-        colors: { primary: '#EF0107', secondary: '#023474' }
+        colors: { primary: '#EF0107', secondary: '#023474' },
+        stats: {
+          position: 2,
+          points: 9,
+          played: 4,
+          won: 3,
+          drawn: 0,
+          lost: 1,
+          goalsFor: 8,
+          goalsAgainst: 3,
+          goalDifference: 5,
+          form: ['W', 'W', 'W', 'L']
+        }
       }
     ];
 
@@ -120,14 +122,14 @@ describe('TeamsAdvancedStatsManager', () => {
   describe('sortTeams', () => {
     it('should sort teams by numeric field ascending', () => {
       const sorted = manager.sortTeams(mockTeams, 'points', 'asc');
-      expect(sorted[0].points).toBe(9);
-      expect(sorted[1].points).toBe(15);
+      expect(sorted[0].stats.points).toBe(9);
+      expect(sorted[1].stats.points).toBe(15);
     });
 
     it('should sort teams by numeric field descending', () => {
       const sorted = manager.sortTeams(mockTeams, 'points', 'desc');
-      expect(sorted[0].points).toBe(15);
-      expect(sorted[1].points).toBe(9);
+      expect(sorted[0].stats.points).toBe(15);
+      expect(sorted[1].stats.points).toBe(9);
     });
 
     it('should sort teams by string field', () => {

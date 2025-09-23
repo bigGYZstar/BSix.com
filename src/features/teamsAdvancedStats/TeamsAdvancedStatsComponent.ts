@@ -119,7 +119,14 @@ export class TeamsAdvancedStatsComponent {
   }
 
   private formatCellValue(team: Team, column: string): string {
-    const value = (team as any)[column];
+    let value: any;
+    
+    // Handle nested stats properties
+    if (['position', 'points', 'played', 'won', 'drawn', 'lost', 'goalsFor', 'goalsAgainst', 'goalDifference', 'form'].includes(column)) {
+      value = (team.stats as any)[column];
+    } else {
+      value = (team as any)[column];
+    }
     
     switch (column) {
       case 'position':

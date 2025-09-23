@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics - BSix.com</title>
+    <meta name="description" content="プレミアリーグの詳細統計情報">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--bg-white);
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--bg-white);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .league-table {
+            background: var(--bg-white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 40px;
+        }
+
+        .league-table h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--bg-light);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        tr:hover {
+            background: var(--bg-light);
+        }
+
+        .position {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .team-name {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .top-scorers {
+            background: var(--bg-white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .top-scorers h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .scorer-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: var(--bg-light);
+            border-radius: 10px;
+        }
+
+        .scorer-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .scorer-rank {
+            background: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .goals {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📈 Premier League Statistics</h1>
+            <p>2025-26シーズンの詳細統計情報</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>🏆 リーグ概要</h3>
+                <div class="stat-item">
+                    <span>シーズン</span>
+                    <span class="stat-value">2025-26</span>
+                </div>
+                <div class="stat-item">
+                    <span>試合週</span>
+                    <span class="stat-value">第5節</span>
+                </div>
+                <div class="stat-item">
+                    <span>総試合数</span>
+                    <span class="stat-value">50試合</span>
+                </div>
+                <div class="stat-item">
+                    <span>総得点数</span>
+                    <span class="stat-value">142得点</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <h3>⚽ 得点統計</h3>
+                <div class="stat-item">
+                    <span>1試合平均得点</span>
+                    <span class="stat-value">2.84得点</span>
+                </div>
+                <div class="stat-item">
+                    <span>最多得点チーム</span>
+                    <span class="stat-value">Manchester City (14)</span>
+                </div>
+                <div class="stat-item">
+                    <span>最少失点チーム</span>
+                    <span class="stat-value">Liverpool (2)</span>
+                </div>
+                <div class="stat-item">
+                    <span>クリーンシート最多</span>
+                    <span class="stat-value">Liverpool (4)</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <h3>🎯 フォーム分析</h3>
+                <div class="stat-item">
+                    <span>最高フォーム</span>
+                    <span class="stat-value">Liverpool (5連勝)</span>
+                </div>
+                <div class="stat-item">
+                    <span>無敗記録</span>
+                    <span class="stat-value">Arsenal (5試合)</span>
+                </div>
+                <div class="stat-item">
+                    <span>ホーム勝率</span>
+                    <span class="stat-value">68%</span>
+                </div>
+                <div class="stat-item">
+                    <span>アウェイ勝率</span>
+                    <span class="stat-value">42%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="league-table">
+            <h2>📊 プレミアリーグ順位表（Big 6）</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>順位</th>
+                        <th>チーム</th>
+                        <th>試合</th>
+                        <th>勝点</th>
+                        <th>得失点差</th>
+                        <th>得点</th>
+                        <th>失点</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="position">1</td>
+                        <td class="team-name">Liverpool</td>
+                        <td>5</td>
+                        <td><strong>15</strong></td>
+                        <td>+10</td>
+                        <td>12</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td class="position">2</td>
+                        <td class="team-name">Arsenal</td>
+                        <td>5</td>
+                        <td><strong>13</strong></td>
+                        <td>+8</td>
+                        <td>11</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td class="position">3</td>
+                        <td class="team-name">Manchester City</td>
+                        <td>5</td>
+                        <td><strong>12</strong></td>
+                        <td>+8</td>
+                        <td>14</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td class="position">4</td>
+                        <td class="team-name">Chelsea</td>
+                        <td>5</td>
+                        <td><strong>10</strong></td>
+                        <td>+3</td>
+                        <td>10</td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <td class="position">5</td>
+                        <td class="team-name">Tottenham</td>
+                        <td>5</td>
+                        <td><strong>8</strong></td>
+                        <td>+2</td>
+                        <td>8</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td class="position">6</td>
+                        <td class="team-name">Manchester United</td>
+                        <td>5</td>
+                        <td><strong>7</strong></td>
+                        <td>-2</td>
+                        <td>6</td>
+                        <td>8</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="top-scorers">
+            <h2>🥅 得点王ランキング</h2>
+            <div class="scorer-item">
+                <div class="scorer-info">
+                    <div class="scorer-rank">1</div>
+                    <div>
+                        <div><strong>Erling Haaland</strong></div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Manchester City</div>
+                    </div>
+                </div>
+                <div class="goals">7得点</div>
+            </div>
+            <div class="scorer-item">
+                <div class="scorer-info">
+                    <div class="scorer-rank">2</div>
+                    <div>
+                        <div><strong>Mohamed Salah</strong></div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Liverpool</div>
+                    </div>
+                </div>
+                <div class="goals">5得点</div>
+            </div>
+            <div class="scorer-item">
+                <div class="scorer-info">
+                    <div class="scorer-rank">3</div>
+                    <div>
+                        <div><strong>Bukayo Saka</strong></div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Arsenal</div>
+                    </div>
+                </div>
+                <div class="goals">4得点</div>
+            </div>
+            <div class="scorer-item">
+                <div class="scorer-info">
+                    <div class="scorer-rank">4</div>
+                    <div>
+                        <div><strong>Cole Palmer</strong></div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Chelsea</div>
+                    </div>
+                </div>
+                <div class="goals">4得点</div>
+            </div>
+            <div class="scorer-item">
+                <div class="scorer-info">
+                    <div class="scorer-rank">5</div>
+                    <div>
+                        <div><strong>Son Heung-min</strong></div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Tottenham</div>
+                    </div>
+                </div>
+                <div class="goals">3得点</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

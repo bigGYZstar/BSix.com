@@ -1,0 +1,75 @@
+{
+  "match_id": "liverpool-bournemouth",
+  "date": "2025年8月15日（金）20:00",
+  "competition": "Premier League",
+  "matchweek": 1,
+  "venue": "Anfield",
+  "attendance": "60,315",
+  "referee": "Anthony Taylor",
+  "result": {
+    "homeTeam": "Liverpool",
+    "awayTeam": "AFC Bournemouth",
+    "homeScore": 4,
+    "awayScore": 2,
+    "status": "finished"
+  },
+  "goalscorers": {
+    "liverpool": [
+      {
+        "player": "Hugo Ekitike",
+        "minute": "37'",
+        "type": "goal"
+      },
+      {
+        "player": "Cody Gakpo",
+        "minute": "49'",
+        "type": "goal"
+      },
+      {
+        "player": "Federico Chiesa",
+        "minute": "85'",
+        "type": "goal"
+      },
+      {
+        "player": "Mohamed Salah",
+        "minute": "90'",
+        "type": "goal"
+      }
+    ],
+    "bournemouth": [
+      {
+        "player": "David Brooks",
+        "minute": "14'",
+        "type": "goal"
+      },
+      {
+        "player": "Antoine Semenyo",
+        "minute": "64'",
+        "type": "goal"
+      }
+    ]
+  },
+  "substitutions": {
+    "liverpool": [
+      {
+        "player_out": "Kerkez",
+        "player_in": "Chiesa",
+        "minute": "76'"
+      },
+      {
+        "player_out": "Evanilson",
+        "player_in": "Salah",
+        "minute": "81'"
+      }
+    ]
+  },
+  "match_summary": "Liverpool opened their 2025-26 Premier League campaign with an entertaining 4-2 victory over Bournemouth at Anfield. Despite falling behind early through David Brooks, Liverpool responded with goals from Hugo Ekitike and Cody Gakpo to take control. Bournemouth equalized through Antoine Semenyo, but late goals from Federico Chiesa and Mohamed Salah secured all three points for the Reds.",
+  "key_moments": [
+    "14' - David Brooks opens scoring for Bournemouth",
+    "37' - Hugo Ekitike equalizes for Liverpool",
+    "49' - Cody Gakpo puts Liverpool ahead",
+    "64' - Antoine Semenyo levels for Bournemouth",
+    "85' - Federico Chiesa restores Liverpool's lead",
+    "90' - Mohamed Salah seals the victory"
+  ]
+}

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BSix.com - プレミアリーグ ビッグ6 試合プレビュー</title>
+    <meta name="description" content="プレミアリーグBig 6チームの試合を詳細分析。専門家予想、戦術解説、選手情報まで完全網羅。">
+    
+    <!-- PWA対応 -->
+    <meta name="theme-color" content="#1a365d">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="BSix.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    
+    <!-- デザインシステムの読み込み -->
+    <link rel="stylesheet" href="assets/css/design-system.css">
+    
+    <style>
+        /* ホームページ固有のスタイル */
+        body {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #2c5282 100%);
+            color: white;
+        }
+        
+        .hero-section {
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+            padding-top: var(--space-xl);
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: var(--space-md);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            font-family: var(--font-heading);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .nav-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            text-align: center;
+            transition: all var(--transition-normal);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+        
+        .nav-card:hover::before,
+        .nav-card:active::before {
+            opacity: 1;
+        }
+        
+        .nav-card:hover,
+        .nav-card:active {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .nav-card a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .nav-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-md);
+            display: block;
+        }
+        
+        .nav-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: var(--space-sm);
+            font-family: var(--font-heading);
+        }
+        
+        .nav-desc {
+            opacity: 0.85;
+            line-height: 1.4;
+        }
+        
+        .features {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .features h2 {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            font-size: 2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            font-family: var(--font-heading);
+        }
+        
+        .feature-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+        }
+        
+        .feature-icon {
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .feature-text {
+            flex-grow: 1;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: var(--space-xs);
+            font-family: var(--font-heading);
+        }
+        
+        .feature-desc {
+            opacity: 0.85;
+            font-size: 0.95rem;
+        }
+        
+        .latest-section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-2xl);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .latest-section h2 {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            font-size: 2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            font-family: var(--font-heading);
+        }
+        
+        .latest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        .latest-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+        
+        .latest-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .latest-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        
+        .latest-content {
+            padding: var(--space-md);
+        }
+        
+        .latest-title {
+            font-weight: bold;
+            margin-bottom: var(--space-xs);
+            font-family: var(--font-heading);
+        }
+        
+        .latest-date {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .latest-excerpt {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: var(--space-xl) 0;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .nav-grid {
+                gap: var(--space-md);
+            }
+            
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .nav-card {
+                padding: var(--space-lg);
+            }
+            
+            .features,
+            .latest-section {
+                padding: var(--space-lg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero-section">
+            <div class="logo">BSix.com</div>
+            <p class="subtitle">プレミアリーグ ビッグ6 試合プレビュー</p>
+        </header>
+
+        <div class="nav-grid">
+            <div class="nav-card fade-in">
+                <a href="fixtures-improved.html">
+                    <span class="nav-icon">📅</span>
+                    <h2 class="nav-title">試合日程</h2>
+                    <p class="nav-desc">プレミアリーグの最新試合日程と結果をチェック</p>
+                </a>
+            </div>
+            
+            <div class="nav-card fade-in">
+                <a href="liverpool-detail.html">
+                    <span class="nav-icon">🔍</span>
+                    <h2 class="nav-title">チーム分析</h2>
+                    <p class="nav-desc">ビッグ6の詳細な戦術分析と選手評価</p>
+                </a>
+            </div>
+            
+            <div class="nav-card fade-in">
+                <a href="teams-advanced-stats.html">
+                    <span class="nav-icon">📊</span>
+                    <h2 class="nav-title">統計データ</h2>
+                    <p class="nav-desc">詳細な試合統計と選手パフォーマンス指標</p>
+                </a>
+            </div>
+            
+            <div class="nav-card fade-in">
+                <a href="arne-slot-special.html">
+                    <span class="nav-icon">👔</span>
+                    <h2 class="nav-title">特集記事</h2>
+                    <p class="nav-desc">監督や選手に関する深掘り特集</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="features slide-up">
+            <h2>BSix.comの特徴</h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <div class="feature-icon">📈</div>
+                    <div class="feature-text">
+                        <h3 class="feature-title">高度な統計分析</h3>
+                        <p class="feature-desc">xG、PPDA、プレスレジスタンスなど最新の分析指標を活用</p>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-text">
+                        <h3 class="feature-title">精度の高い予測</h3>
+                        <p class="feature-desc">過去のデータと最新情報に基づく試合予測</p>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">👁️</div>
+                    <div class="feature-text">
+                        <h3 class="feature-title">専門家の視点</h3>
+                        <p class="feature-desc">元選手や戦術アナリストによる独自の分析</p>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-text">
+                        <h3 class="feature-title">リアルタイム更新</h3>
+                        <p class="feature-desc">試合中の状況や最新ニュースをすぐに反映</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="latest-section slide-up">
+            <h2>最新コンテンツ</h2>
+            <div class="latest-grid">
+                <div class="latest-card">
+                    <div class="latest-content">
+                        <h3 class="latest-title">アーセナル vs マンチェスター・シティ プレビュー</h3>
+                        <p class="latest-date">2025年9月21日</p>
+                        <p class="latest-excerpt">今シーズン最初のビッグマッチ。両チームの戦術分析と予想スターティングラインナップ。</p>
+                    </div>
+                </div>
+                
+                <div class="latest-card">
+                    <div class="latest-content">
+                        <h3 class="latest-title">アルネ・スロット監督の戦術哲学</h3>
+                        <p class="latest-date">2025年9月18日</p>
+                        <p class="latest-excerpt">リバプールの新監督が導入する新システムと選手の適応状況を詳細に分析。</p>
+                    </div>
+                </div>
+                
+                <div class="latest-card">
+                    <div class="latest-content">
+                        <h3 class="latest-title">マンチェスター・ユナイテッド 戦術分析</h3>
+                        <p class="latest-date">2025年9月15日</p>
+                        <p class="latest-excerpt">新シーズン開幕後のユナイテッドの戦術変化とキープレイヤーの役割。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2025 BSix.com - プレミアリーグ ビッグ6 試合プレビュー</p>
+        </footer>
+    </div>
+</body>
+</html>

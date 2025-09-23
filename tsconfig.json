@@ -34,6 +34,8 @@
       "@/schemas/*": ["schemas/*"]
     },
 
+    "types": ["vite/client", "vitest/globals"],
+
     /* Output */
     "declaration": false,
     "declarationMap": false,
@@ -43,8 +45,7 @@
   },
   "include": [
     "src/**/*.ts", 
-    "tests/**/*.ts",
-    "schemas/**/*.json"
+    "tests/**/*.ts"
   ],
   "exclude": [
     "node_modules", 
@@ -52,3 +53,4 @@
     "examples"
   ]
 }
+

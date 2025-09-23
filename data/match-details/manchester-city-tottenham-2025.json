@@ -1,0 +1,64 @@
+{
+  "match_id": "manchester-city-tottenham",
+  "date": "2025年8月23日（土）15:00",
+  "competition": "Premier League",
+  "matchweek": 2,
+  "venue": "Etihad Stadium",
+  "attendance": "55,097",
+  "referee": "Michael Oliver",
+  "result": {
+    "homeTeam": "Manchester City",
+    "awayTeam": "Tottenham Hotspur",
+    "homeScore": 0,
+    "awayScore": 2,
+    "status": "finished"
+  },
+  "goalscorers": {
+    "tottenham": [
+      {
+        "player": "Joao Palhinha",
+        "minute": "23'",
+        "type": "goal"
+      },
+      {
+        "player": "Mohammed Kudus",
+        "minute": "67'",
+        "type": "goal"
+      }
+    ]
+  },
+  "key_stats": {
+    "possession": {
+      "manchester_city": "60.9%",
+      "tottenham": "39.1%"
+    },
+    "shots": {
+      "manchester_city": 10,
+      "tottenham": 8
+    },
+    "shots_on_target": {
+      "manchester_city": 4,
+      "tottenham": 5
+    }
+  },
+  "match_summary": "Tottenham produced a stunning upset at the Etihad Stadium, defeating Manchester City 2-0 in a masterclass of counter-attacking football. Despite City dominating possession, Spurs were clinical in their finishing and resolute in defense.",
+  "key_moments": [
+    "23' - Joao Palhinha opens scoring with a powerful header from a corner",
+    "45' - Guglielmo Vicario makes crucial save to deny Erling Haaland",
+    "67' - Mohammed Kudus doubles the lead with a brilliant solo effort",
+    "78' - City's best chance falls to Kevin De Bruyne but shot goes wide",
+    "90' - Tottenham hold on for famous victory"
+  ],
+  "player_ratings": {
+    "tottenham": {
+      "Guglielmo Vicario": 8,
+      "Joao Palhinha": 9,
+      "Mohammed Kudus": 8
+    },
+    "manchester_city": {
+      "Erling Haaland": 6,
+      "Kevin De Bruyne": 7,
+      "Rodri": 6
+    }
+  }
+}

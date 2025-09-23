@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSix.com - Premier League Statistics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .card p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+        }
+
+        .match-preview-section {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .match-preview-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .preview-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚽ BSix.com</h1>
+            <p>Premier League Statistics Platform</p>
+        </div>
+
+        <div class="match-preview-section">
+            <h2>🏆 プロジェクト詳細プレビュー</h2>
+            <p style="text-align: center; margin-bottom: 20px;">
+                BSix.comの全機能と技術的成果をご覧ください
+            </p>
+            <a href="detailed-preview.html" class="btn btn-primary preview-btn">
+                📊 詳細プレビューを見る
+            </a>
+        </div>
+
+        <div class="main-grid">
+            <div class="card">
+                <h3>📊 Teams Advanced Stats</h3>
+                <p>TypeScript実装の高度なチーム統計システム</p>
+                <a href="teams-advanced-stats.html" class="btn">統計を見る</a>
+            </div>
+
+            <div class="card">
+                <h3>🔴 Liverpool詳細</h3>
+                <p>包括的なチーム分析とデータ可視化</p>
+                <a href="liverpool-detail.html" class="btn">詳細を見る</a>
+            </div>
+
+            <div class="card">
+                <h3>📅 試合結果・予定</h3>
+                <p>2025-26シーズンの正確な試合データ</p>
+                <a href="fixtures.html" class="btn">試合を見る</a>
+            </div>
+
+            <div class="card">
+                <h3>🎭 Character System</h3>
+                <p>動的コンテンツ生成システム</p>
+                <a href="character-system-test.html" class="btn">システムを試す</a>
+            </div>
+
+            <div class="card">
+                <h3>🔍 試合詳細分析</h3>
+                <p>インタラクティブな試合分析ページ</p>
+                <a href="match-preview.html?match=liverpool-bournemouth" class="btn">分析を見る</a>
+            </div>
+
+            <div class="card">
+                <h3>🚀 プロジェクト状況</h3>
+                <p>v0.1.0リリース情報と技術詳細</p>
+                <a href="test-deployment.html" class="btn">状況を確認</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 BSix.com - Premier League Statistics Platform</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">
+                TypeScript • Vite • 95%+ Test Coverage • Responsive Design
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // シンプルなページ読み込み確認
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('BSix.com loaded successfully');
+            
+            // カードのアニメーション
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

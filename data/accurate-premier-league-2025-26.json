@@ -1,0 +1,173 @@
+{
+  "season": "2025-26",
+  "lastUpdated": "2025-09-23",
+  "source": "FotMob verified data",
+  "currentTable": [
+    {
+      "position": 1,
+      "team": "Liverpool",
+      "played": 5,
+      "won": 5,
+      "drawn": 0,
+      "lost": 0,
+      "goalsFor": 11,
+      "goalsAgainst": 5,
+      "goalDifference": 6,
+      "points": 15,
+      "form": ["W", "W", "W", "W", "W"]
+    },
+    {
+      "position": 2,
+      "team": "Arsenal",
+      "played": 5,
+      "won": 3,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 10,
+      "goalsAgainst": 2,
+      "goalDifference": 8,
+      "points": 10,
+      "form": ["W", "W", "L", "W", "D"]
+    },
+    {
+      "position": 3,
+      "team": "Tottenham Hotspur",
+      "played": 5,
+      "won": 3,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 10,
+      "goalsAgainst": 3,
+      "goalDifference": 7,
+      "points": 10,
+      "form": ["W", "W", "L", "W", "D"]
+    },
+    {
+      "position": 4,
+      "team": "AFC Bournemouth",
+      "played": 5,
+      "won": 3,
+      "drawn": 1,
+      "lost": 1,
+      "goalsFor": 6,
+      "goalsAgainst": 5,
+      "goalDifference": 1,
+      "points": 10,
+      "form": ["L", "W", "W", "W", "D"]
+    },
+    {
+      "position": 5,
+      "team": "Crystal Palace",
+      "played": 5,
+      "won": 2,
+      "drawn": 3,
+      "lost": 0,
+      "goalsFor": 6,
+      "goalsAgainst": 2,
+      "goalDifference": 4,
+      "points": 9,
+      "form": ["D", "D", "W", "D", "W"]
+    },
+    {
+      "position": 6,
+      "team": "Chelsea",
+      "played": 5,
+      "won": 2,
+      "drawn": 2,
+      "lost": 1,
+      "goalsFor": 10,
+      "goalsAgainst": 5,
+      "goalDifference": 5,
+      "points": 8,
+      "form": ["D", "W", "W", "D", "L"]
+    },
+    {
+      "position": 7,
+      "team": "Sunderland",
+      "played": 5,
+      "won": 2,
+      "drawn": 2,
+      "lost": 1,
+      "goalsFor": 6,
+      "goalsAgainst": 4,
+      "goalDifference": 2,
+      "points": 8,
+      "form": ["W", "L", "W", "D", "D"]
+    }
+  ],
+  "upcomingFixtures": {
+    "round6": [
+      {
+        "date": "2025-09-27",
+        "time": "11:30",
+        "homeTeam": "Brentford",
+        "awayTeam": "Manchester United",
+        "venue": "Gtech Community Stadium"
+      },
+      {
+        "date": "2025-09-27",
+        "time": "14:00",
+        "homeTeam": "Chelsea",
+        "awayTeam": "Brighton & Hove Albion",
+        "venue": "Stamford Bridge"
+      },
+      {
+        "date": "2025-09-27",
+        "time": "14:00",
+        "homeTeam": "Crystal Palace",
+        "awayTeam": "Liverpool",
+        "venue": "Selhurst Park"
+      },
+      {
+        "date": "2025-09-27",
+        "time": "14:00",
+        "homeTeam": "Leeds United",
+        "awayTeam": "AFC Bournemouth",
+        "venue": "Elland Road"
+      },
+      {
+        "date": "2025-09-27",
+        "time": "14:00",
+        "homeTeam": "Manchester City",
+        "awayTeam": "Burnley",
+        "venue": "Etihad Stadium"
+      },
+      {
+        "date": "2025-09-27",
+        "time": "16:30",
+        "homeTeam": "Nottingham Forest",
+        "awayTeam": "Sunderland",
+        "venue": "The City Ground"
+      },
+      {
+        "date": "2025-09-27",
+        "time": "19:00",
+        "homeTeam": "Tottenham Hotspur",
+        "awayTeam": "Wolverhampton Wanderers",
+        "venue": "Tottenham Hotspur Stadium"
+      },
+      {
+        "date": "2025-09-28",
+        "time": "13:00",
+        "homeTeam": "Aston Villa",
+        "awayTeam": "Fulham",
+        "venue": "Villa Park"
+      },
+      {
+        "date": "2025-09-28",
+        "time": "15:30",
+        "homeTeam": "Newcastle United",
+        "awayTeam": "Arsenal",
+        "venue": "St. James' Park"
+      },
+      {
+        "date": "2025-09-29",
+        "time": "19:00",
+        "homeTeam": "Everton",
+        "awayTeam": "West Ham United",
+        "venue": "Goodison Park"
+      }
+    ]
+  },
+  "note": "Data verified from FotMob - accurate as of Round 5 completion"
+}

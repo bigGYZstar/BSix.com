@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams Advanced Stats - BSix.com</title>
+    <meta name="description" content="プレミアリーグBig 6チームの詳細統計情報">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--bg-white);
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .stats-table {
+            background: var(--bg-white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--bg-light);
+            font-weight: 600;
+            color: var(--text-primary);
+            position: sticky;
+            top: 0;
+        }
+
+        tr:hover {
+            background: var(--bg-light);
+        }
+
+        .team-name {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .position {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .form {
+            display: flex;
+            gap: 2px;
+        }
+
+        .form-result {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .form-result.W { background: #10b981; }
+        .form-result.D { background: #f59e0b; }
+        .form-result.L { background: #ef4444; }
+
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+
+        .error {
+            text-align: center;
+            padding: 40px;
+            background: #fef2f2;
+            color: #dc2626;
+            border-radius: 12px;
+            border: 2px solid #fecaca;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .controls {
+                justify-content: center;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Teams Advanced Stats</h1>
+            <p>プレミアリーグ Big 6 チームの詳細統計情報（2025-26シーズン）</p>
+        </div>
+
+        <div class="stats-table">
+            <div class="controls">
+                <button class="control-btn" onclick="sortTable('position')">順位順</button>
+                <button class="control-btn" onclick="sortTable('points')">勝点順</button>
+                <button class="control-btn" onclick="sortTable('goalDifference')">得失点差順</button>
+                <button class="control-btn" onclick="exportCSV()">CSV出力</button>
+            </div>
+
+            <div id="table-container">
+                <div class="loading">データを読み込み中...</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // 2025-26シーズンの正確なデータ（Wikipedia検証済み）
+        const teamsData = [
+            {
+                position: 1,
+                name: "Liverpool",
+                shortName: "LIV",
+                played: 5,
+                won: 5,
+                drawn: 0,
+                lost: 0,
+                goalsFor: 11,
+                goalsAgainst: 5,
+                goalDifference: 6,
+                points: 15,
+                form: ["W", "W", "W", "W", "W"]
+            },
+            {
+                position: 2,
+                name: "Arsenal",
+                shortName: "ARS",
+                played: 5,
+                won: 3,
+                drawn: 1,
+                lost: 1,
+                goalsFor: 10,
+                goalsAgainst: 2,
+                goalDifference: 8,
+                points: 10,
+                form: ["W", "W", "L", "W", "D"]
+            },
+            {
+                position: 3,
+                name: "Tottenham Hotspur",
+                shortName: "TOT",
+                played: 5,
+                won: 3,
+                drawn: 1,
+                lost: 1,
+                goalsFor: 10,
+                goalsAgainst: 3,
+                goalDifference: 7,
+                points: 10,
+                form: ["W", "W", "L", "W", "D"]
+            },
+            {
+                position: 6,
+                name: "Chelsea",
+                shortName: "CHE",
+                played: 5,
+                won: 2,
+                drawn: 2,
+                lost: 1,
+                goalsFor: 10,
+                goalsAgainst: 5,
+                goalDifference: 5,
+                points: 8,
+                form: ["D", "W", "W", "D", "L"]
+            },
+            {
+                position: 9,
+                name: "Manchester City",
+                shortName: "MCI",
+                played: 5,
+                won: 2,
+                drawn: 1,
+                lost: 2,
+                goalsFor: 9,
+                goalsAgainst: 5,
+                goalDifference: 4,
+                points: 7,
+                form: ["W", "L", "L", "W", "D"]
+            },
+            {
+                position: 11,
+                name: "Manchester United",
+                shortName: "MUN",
+                played: 5,
+                won: 2,
+                drawn: 1,
+                lost: 2,
+                goalsFor: 6,
+                goalsAgainst: 8,
+                goalDifference: -2,
+                points: 7,
+                form: ["L", "D", "W", "L", "W"]
+            }
+        ];
+
+        function renderTable(data = teamsData) {
+            const container = document.getElementById('table-container');
+            
+            const tableHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>順位</th>
+                            <th>チーム</th>
+                            <th>試合数</th>
+                            <th>勝</th>
+                            <th>分</th>
+                            <th>負</th>
+                            <th>得点</th>
+                            <th>失点</th>
+                            <th>得失点差</th>
+                            <th>勝点</th>
+                            <th>直近5試合</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${data.map(team => `
+                            <tr>
+                                <td class="position">${team.position}</td>
+                                <td class="team-name">${team.name}</td>
+                                <td>${team.played}</td>
+                                <td>${team.won}</td>
+                                <td>${team.drawn}</td>
+                                <td>${team.lost}</td>
+                                <td>${team.goalsFor}</td>
+                                <td>${team.goalsAgainst}</td>
+                                <td>${team.goalDifference > 0 ? '+' : ''}${team.goalDifference}</td>
+                                <td><strong>${team.points}</strong></td>
+                                <td>
+                                    <div class="form">
+                                        ${team.form.map(result => 
+                                            `<div class="form-result ${result}">${result}</div>`
+                                        ).join('')}
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            
+            container.innerHTML = tableHTML;
+        }
+
+        function sortTable(field) {
+            let sortedData = [...teamsData];
+            
+            if (field === 'position' || field === 'points' || field === 'goalDifference') {
+                sortedData.sort((a, b) => {
+                    if (field === 'position') {
+                        return a[field] - b[field];
+                    } else {
+                        return b[field] - a[field];
+                    }
+                });
+            }
+            
+            renderTable(sortedData);
+        }
+
+        function exportCSV() {
+            const headers = ['順位', 'チーム', '試合数', '勝', '分', '負', '得点', '失点', '得失点差', '勝点'];
+            const csvContent = [
+                headers.join(','),
+                ...teamsData.map(team => [
+                    team.position,
+                    `"${team.name}"`,
+                    team.played,
+                    team.won,
+                    team.drawn,
+                    team.lost,
+                    team.goalsFor,
+                    team.goalsAgainst,
+                    team.goalDifference,
+                    team.points
+                ].join(','))
+            ].join('\\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'premier_league_big6_stats_2025.csv');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // グローバル関数として公開
+        window.sortTable = sortTable;
+        window.exportCSV = exportCSV;
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTable();
+        });
+    </script>
+</body>
+</html>

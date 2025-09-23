@@ -1,0 +1,63 @@
+{
+  "match_id": "arsenal-manchester-united",
+  "date": "2025年8月17日（日）16:30",
+  "competition": "Premier League",
+  "matchweek": 1,
+  "venue": "Old Trafford",
+  "attendance": "74,310",
+  "referee": "Paul Tierney",
+  "result": {
+    "homeTeam": "Manchester United",
+    "awayTeam": "Arsenal",
+    "homeScore": 0,
+    "awayScore": 1,
+    "status": "finished"
+  },
+  "goalscorers": {
+    "arsenal": [
+      {
+        "player": "Gabriel Martinelli",
+        "minute": "78'",
+        "type": "goal",
+        "assist": "Martin Ødegaard"
+      }
+    ]
+  },
+  "key_stats": {
+    "possession": {
+      "manchester_united": "62%",
+      "arsenal": "38%"
+    },
+    "shots": {
+      "manchester_united": 14,
+      "arsenal": 9
+    },
+    "shots_on_target": {
+      "manchester_united": 5,
+      "arsenal": 4
+    }
+  },
+  "match_summary": "Arsenal secured a crucial away victory at Old Trafford despite being dominated in possession. Gabriel Martinelli's late goal proved decisive as the Gunners showed their clinical finishing and defensive resilience.",
+  "key_moments": [
+    "12' - Marcus Rashford's shot saved brilliantly by David Raya",
+    "34' - Bruno Fernandes hits the crossbar from 25 yards",
+    "56' - Arsenal's best chance falls to Kai Havertz but shot blocked",
+    "78' - Gabriel Martinelli breaks the deadlock with a composed finish",
+    "85' - United pile on pressure but Arsenal defense holds firm"
+  ],
+  "player_ratings": {
+    "arsenal": {
+      "David Raya": 8,
+      "Gabriel Martinelli": 8,
+      "Martin Ødegaard": 7,
+      "William Saliba": 8
+    },
+    "manchester_united": {
+      "Marcus Rashford": 7,
+      "Bruno Fernandes": 7,
+      "Casemiro": 6,
+      "André Onana": 6
+    }
+  },
+  "tactical_analysis": "Manchester United dominated possession but struggled to break down Arsenal's well-organized defense. Arsenal's counter-attacking approach proved effective, with Martinelli's pace causing problems throughout."
+}

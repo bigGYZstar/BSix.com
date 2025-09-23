@@ -1,0 +1,249 @@
+{
+  "season": "2025-26",
+  "source": "NBC Sports - Verified",
+  "last_updated": "2025-09-23",
+  "big_six_results": {
+    "matchweek_1": {
+      "date": "August 15-18, 2025",
+      "matches": [
+        {
+          "date": "Friday 15 August",
+          "homeTeam": "Liverpool",
+          "awayTeam": "AFC Bournemouth",
+          "homeScore": 4,
+          "awayScore": 2,
+          "status": "finished"
+        },
+        {
+          "date": "Saturday 16 August",
+          "homeTeam": "Tottenham Hotspur",
+          "awayTeam": "Burnley",
+          "homeScore": 3,
+          "awayScore": 0,
+          "status": "finished"
+        },
+        {
+          "date": "Sunday 17 August",
+          "homeTeam": "Chelsea",
+          "awayTeam": "Crystal Palace",
+          "homeScore": 0,
+          "awayScore": 0,
+          "status": "finished"
+        },
+        {
+          "date": "Sunday 17 August",
+          "homeTeam": "Manchester United",
+          "awayTeam": "Arsenal",
+          "homeScore": 0,
+          "awayScore": 1,
+          "status": "finished"
+        }
+      ]
+    },
+    "matchweek_2": {
+      "date": "August 22-25, 2025",
+      "matches": [
+        {
+          "date": "Friday 22 August",
+          "homeTeam": "West Ham United",
+          "awayTeam": "Chelsea",
+          "homeScore": 1,
+          "awayScore": 5,
+          "status": "finished"
+        },
+        {
+          "date": "Saturday 23 August",
+          "homeTeam": "Manchester City",
+          "awayTeam": "Tottenham Hotspur",
+          "homeScore": 0,
+          "awayScore": 2,
+          "status": "finished"
+        },
+        {
+          "date": "Saturday 23 August",
+          "homeTeam": "Arsenal",
+          "awayTeam": "Leeds United",
+          "homeScore": 5,
+          "awayScore": 0,
+          "status": "finished"
+        },
+        {
+          "date": "Monday 25 August",
+          "homeTeam": "Newcastle United",
+          "awayTeam": "Liverpool",
+          "homeScore": 2,
+          "awayScore": 3,
+          "status": "finished"
+        }
+      ]
+    },
+    "matchweek_3": {
+      "date": "August 30-31, 2025",
+      "matches": [
+        {
+          "date": "Saturday 30 August",
+          "homeTeam": "Chelsea",
+          "awayTeam": "Fulham",
+          "homeScore": 2,
+          "awayScore": 0,
+          "status": "finished"
+        },
+        {
+          "date": "Saturday 30 August",
+          "homeTeam": "Tottenham Hotspur",
+          "awayTeam": "AFC Bournemouth",
+          "homeScore": 0,
+          "awayScore": 1,
+          "status": "finished"
+        },
+        {
+          "date": "Saturday 30 August",
+          "homeTeam": "Manchester United",
+          "awayTeam": "Burnley",
+          "homeScore": 3,
+          "awayScore": 2,
+          "status": "finished"
+        },
+        {
+          "date": "Sunday 31 August",
+          "homeTeam": "Brighton & Hove Albion",
+          "awayTeam": "Manchester City",
+          "homeScore": 2,
+          "awayScore": 1,
+          "status": "finished"
+        },
+        {
+          "date": "Sunday 31 August",
+          "homeTeam": "Liverpool",
+          "awayTeam": "Arsenal",
+          "homeScore": 1,
+          "awayScore": 0,
+          "status": "finished"
+        }
+      ]
+    },
+    "matchweek_4": {
+      "date": "September 13-14, 2025",
+      "matches": [
+        {
+          "date": "Saturday 13 September",
+          "homeTeam": "Arsenal",
+          "awayTeam": "Nottingham Forest",
+          "homeScore": 3,
+          "awayScore": 0,
+          "status": "finished"
+        },
+        {
+          "date": "Saturday 13 September",
+          "homeTeam": "West Ham United",
+          "awayTeam": "Tottenham Hotspur",
+          "homeScore": 0,
+          "awayScore": 3,
+          "status": "finished"
+        },
+        {
+          "date": "Saturday 13 September",
+          "homeTeam": "Brentford",
+          "awayTeam": "Chelsea",
+          "homeScore": 2,
+          "awayScore": 2,
+          "status": "finished"
+        },
+        {
+          "date": "Sunday 14 September",
+          "homeTeam": "Burnley",
+          "awayTeam": "Liverpool",
+          "homeScore": 0,
+          "awayScore": 1,
+          "status": "finished"
+        },
+        {
+          "date": "Sunday 14 September",
+          "homeTeam": "Manchester City",
+          "awayTeam": "Manchester United",
+          "homeScore": 3,
+          "awayScore": 0,
+          "status": "finished"
+        }
+      ]
+    },
+    "matchweek_5": {
+      "date": "September 20-21, 2025",
+      "matches": [
+        {
+          "date": "Saturday 20 September",
+          "homeTeam": "Liverpool",
+          "awayTeam": "Everton",
+          "homeScore": 2,
+          "awayScore": 1,
+          "status": "finished"
+        },
+        {
+          "date": "Saturday 20 September",
+          "homeTeam": "Brighton & Hove Albion",
+          "awayTeam": "Tottenham Hotspur",
+          "homeScore": 2,
+          "awayScore": 2,
+          "status": "finished"
+        },
+        {
+          "date": "Saturday 20 September",
+          "homeTeam": "Manchester United",
+          "awayTeam": "Chelsea",
+          "homeScore": 2,
+          "awayScore": 1,
+          "status": "finished"
+        },
+        {
+          "date": "Sunday 21 September",
+          "homeTeam": "Arsenal",
+          "awayTeam": "Manchester City",
+          "homeScore": 1,
+          "awayScore": 1,
+          "status": "finished"
+        }
+      ]
+    },
+    "matchweek_6": {
+      "date": "September 27-29, 2025",
+      "matches": [
+        {
+          "date": "Saturday 27 September",
+          "homeTeam": "Brentford",
+          "awayTeam": "Manchester United",
+          "status": "scheduled"
+        },
+        {
+          "date": "Saturday 27 September",
+          "homeTeam": "Chelsea",
+          "awayTeam": "Brighton & Hove Albion",
+          "status": "scheduled"
+        },
+        {
+          "date": "Saturday 27 September",
+          "homeTeam": "Crystal Palace",
+          "awayTeam": "Liverpool",
+          "status": "scheduled"
+        },
+        {
+          "date": "Saturday 27 September",
+          "homeTeam": "Manchester City",
+          "awayTeam": "Burnley",
+          "status": "scheduled"
+        },
+        {
+          "date": "Saturday 27 September",
+          "homeTeam": "Tottenham Hotspur",
+          "awayTeam": "Wolverhampton Wanderers",
+          "status": "scheduled"
+        },
+        {
+          "date": "Sunday 28 September",
+          "homeTeam": "Newcastle United",
+          "awayTeam": "Arsenal",
+          "status": "scheduled"
+        }
+      ]
+    }
+  }
+}

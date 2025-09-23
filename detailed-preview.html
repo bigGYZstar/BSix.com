@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>詳細プレビュー - BSix.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .preview-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .preview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .preview-card h3 {
+            color: #4a5568;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .preview-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-completed {
+            background: #48bb78;
+            color: white;
+        }
+
+        .status-progress {
+            background: #ed8936;
+            color: white;
+        }
+
+        .status-planned {
+            background: #4299e1;
+            color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .stats-overview {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4a5568;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .preview-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏆 BSix.com 詳細プレビュー</h1>
+            <p>Premier League Statistics Platform - 完全機能概要</p>
+        </div>
+
+        <div class="stats-overview">
+            <h2 style="text-align: center; margin-bottom: 20px; color: #4a5568;">📊 プロジェクト統計</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <div class="stat-label">TypeScript移行</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%+</span>
+                    <div class="stat-label">テストカバレッジ</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <div class="stat-label">実装ページ</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2025-26</span>
+                    <div class="stat-label">最新シーズン</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview-grid">
+            <div class="preview-card">
+                <h3>⚽ Teams Advanced Stats</h3>
+                <p>TypeScriptで完全実装された高度なチーム統計システム。リアルタイムデータと詳細分析を提供します。</p>
+                <ul class="feature-list">
+                    <li>✅ インタラクティブな順位表</li>
+                    <li>✅ 詳細統計データ</li>
+                    <li>✅ CSV出力機能</li>
+                    <li>✅ レスポンシブデザイン</li>
+                </ul>
+                <span class="status-badge status-completed">実装完了</span>
+                <br><br>
+                <a href="teams-advanced-stats.html" class="btn">統計を見る</a>
+            </div>
+
+            <div class="preview-card">
+                <h3>🔴 Liverpool詳細ページ</h3>
+                <p>リヴァプールの包括的な分析ページ。選手情報、戦術分析、最新ニュースを統合表示。</p>
+                <ul class="feature-list">
+                    <li>✅ チーム情報と順位</li>
+                    <li>✅ 選手プロファイル</li>
+                    <li>✅ 戦術分析</li>
+                    <li>✅ 今後の試合予定</li>
+                </ul>
+                <span class="status-badge status-completed">実装完了</span>
+                <br><br>
+                <a href="liverpool-detail.html" class="btn">詳細を見る</a>
+            </div>
+
+            <div class="preview-card">
+                <h3>🎭 Character System</h3>
+                <p>動的コンテンツ生成システム。キャラクターの個性に基づいたパーソナライズされた体験を提供。</p>
+                <ul class="feature-list">
+                    <li>✅ 複数キャラクタープロファイル</li>
+                    <li>✅ コンテキスト対応生成</li>
+                    <li>✅ 時間帯別調整</li>
+                    <li>✅ 設定可能な特性</li>
+                </ul>
+                <span class="status-badge status-completed">実装完了</span>
+                <br><br>
+                <a href="character-system-test.html" class="btn">システムを試す</a>
+            </div>
+
+            <div class="preview-card">
+                <h3>📅 試合結果・予定</h3>
+                <p>2025-26シーズンの正確な試合データ。複数サイト検証済みの信頼性の高い情報を提供。</p>
+                <ul class="feature-list">
+                    <li>✅ 第1節からの全結果</li>
+                    <li>✅ 今後の試合予定</li>
+                    <li>✅ 詳細な試合分析</li>
+                    <li>✅ クリック可能な試合カード</li>
+                </ul>
+                <span class="status-badge status-completed">実装完了</span>
+                <br><br>
+                <a href="fixtures.html" class="btn">試合を見る</a>
+            </div>
+
+            <div class="preview-card">
+                <h3>🔍 試合詳細分析</h3>
+                <p>各試合の詳細な分析ページ。得点者、統計、戦術分析、選手評価を包括的に提供。</p>
+                <ul class="feature-list">
+                    <li>✅ 詳細な試合統計</li>
+                    <li>✅ 得点者・アシスト情報</li>
+                    <li>✅ 戦術分析</li>
+                    <li>✅ 選手評価</li>
+                </ul>
+                <span class="status-badge status-completed">実装完了</span>
+                <br><br>
+                <a href="match-preview.html?match=liverpool-bournemouth" class="btn">試合分析を見る</a>
+            </div>
+
+            <div class="preview-card">
+                <h3>🔄 Data Sync System</h3>
+                <p>リアルタイムデータ同期システム。一元的なデータ管理と自動更新機能を提供。</p>
+                <ul class="feature-list">
+                    <li>✅ 自動データ同期</li>
+                    <li>✅ 整合性チェック</li>
+                    <li>✅ エラー追跡</li>
+                    <li>✅ バックアップ機能</li>
+                </ul>
+                <span class="status-badge status-completed">実装完了</span>
+                <br><br>
+                <a href="#" class="btn">システム監視</a>
+            </div>
+        </div>
+
+        <div class="stats-overview">
+            <h2 style="text-align: center; margin-bottom: 20px; color: #4a5568;">🚀 技術的成果</h2>
+            <div class="preview-grid">
+                <div class="preview-card">
+                    <h3>💻 開発インフラ</h3>
+                    <ul class="feature-list">
+                        <li>✅ Vite + TypeScript</li>
+                        <li>✅ Vitest (ユニットテスト)</li>
+                        <li>✅ Playwright (E2Eテスト)</li>
+                        <li>✅ ESLint + Prettier</li>
+                    </ul>
+                </div>
+                <div class="preview-card">
+                    <h3>🎨 デザインシステム</h3>
+                    <ul class="feature-list">
+                        <li>✅ 統一コンポーネント</li>
+                        <li>✅ レスポンシブデザイン</li>
+                        <li>✅ アクセシビリティ対応</li>
+                        <li>✅ モバイルファースト</li>
+                    </ul>
+                </div>
+                <div class="preview-card">
+                    <h3>📊 データ管理</h3>
+                    <ul class="feature-list">
+                        <li>✅ JSONスキーマ検証</li>
+                        <li>✅ 型安全なデータ処理</li>
+                        <li>✅ バージョン管理</li>
+                        <li>✅ ロールバック対応</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <h2 style="color: white; margin-bottom: 20px;">🔗 主要ページナビゲーション</h2>
+            <div class="nav-links">
+                <a href="/" class="nav-link">🏠 ホーム</a>
+                <a href="teams-advanced-stats.html" class="nav-link">📊 チーム統計</a>
+                <a href="liverpool-detail.html" class="nav-link">🔴 Liverpool</a>
+                <a href="fixtures.html" class="nav-link">📅 試合結果</a>
+                <a href="character-system-test.html" class="nav-link">🎭 Character System</a>
+                <a href="arsenal.html" class="nav-link">🔴 Arsenal</a>
+                <a href="chelsea.html" class="nav-link">🔵 Chelsea</a>
+                <a href="test-deployment.html" class="nav-link">🚀 プロジェクト状況</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ページ読み込み時のアニメーション
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.preview-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // 統計カウンターアニメーション
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            function updateCounter() {
+                start += increment;
+                if (start < target) {
+                    element.textContent = Math.floor(start) + (target === 100 ? '%' : target === 95 ? '%+' : '');
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target + (target === 100 ? '%' : target === 95 ? '%+' : '');
+                }
+            }
+            
+            updateCounter();
+        }
+
+        // Intersection Observerで統計アニメーションを実行
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const text = stat.textContent;
+                        if (text.includes('%')) {
+                            const num = parseInt(text);
+                            animateCounter(stat, num);
+                        }
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsOverview = document.querySelector('.stats-overview');
+        if (statsOverview) {
+            observer.observe(statsOverview);
+        }
+    </script>
+</body>
+</html>

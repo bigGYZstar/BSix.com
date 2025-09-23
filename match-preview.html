@@ -450,7 +450,7 @@
             <!-- 試合ヘッダー -->
             <div class="match-header" id="matchHeader">
                 <h1 class="match-title" id="matchTitle">試合プレビュー</h1>
-                <div class="match-date" id="matchDate">2024年9月22日（日）17:30</div>
+                <div class="match-date" id="matchDate">2025年9月22日（日）17:30</div>
                 <div class="match-importance" id="matchImportance">タイトル争い</div>
             </div>
 
@@ -522,7 +522,7 @@
         const matchData = {
             'arsenal-city': {
                 title: 'アーセナル vs マンチェスター・シティ',
-                date: '2024年9月22日（日）17:30',
+                date: '2025年9月21日（土）15:00',
                 importance: 'タイトル争い',
                 homeTeam: 'アーセナル',
                 awayTeam: 'マンチェスター・シティ',
@@ -548,11 +548,12 @@
             },
             'liverpool-everton': {
                 title: 'リヴァプール vs エヴァートン',
-                date: '2024年9月21日（土）12:30',
+                date: '2025年9月21日（土）12:30',
                 importance: 'マージーサイド・ダービー',
                 homeTeam: 'リヴァプール',
                 awayTeam: 'エヴァートン',
-                venue: 'グディソン・パーク',
+                venue: 'アンフィールド',
+                result: 'リヴァプール 2-1 エヴァートン',
                 analysis: [
                     {
                         title: '🔥 ダービーの熱気',
@@ -563,8 +564,8 @@
                         content: '4戦全勝で首位を走るリヴァプール。この勢いをダービーでも継続できるか。'
                     },
                     {
-                        title: '🏟️ グディソンでの戦い',
-                        content: 'エヴァートンのホームでの戦い。ファンの後押しを受けて番狂わせを起こせるか。'
+                        title: '🏟️ アンフィールドでの戦い',
+                        content: 'リヴァプールのホームでの戦い。アンフィールドの熱狂的なサポートが勝利を後押し。'
                     },
                     {
                         title: '⚽ 攻撃力の差',
@@ -574,7 +575,7 @@
             },
             'chelsea-brighton': {
                 title: 'チェルシー vs ブライトン',
-                date: '2024年9月21日（土）15:00',
+                date: '2025年9月27日（土）14:00',
                 importance: 'ビッグ6対決',
                 homeTeam: 'チェルシー',
                 awayTeam: 'ブライトン・アンド・ホーヴ・アルビオン',
@@ -598,9 +599,127 @@
                     }
                 ]
             },
+            'liverpool-arsenal': {
+                title: 'リヴァプール vs アーセナル',
+                date: '2025年8月30日（土）12:30',
+                importance: 'ビッグ6対決',
+                homeTeam: 'リヴァプール',
+                awayTeam: 'アーセナル',
+                venue: 'アンフィールド',
+                result: 'リヴァプール 1-0 アーセナル',
+                analysis: [
+                    {
+                        title: '🏆 タイトル争いの早期対決',
+                        content: '第3節での早期ビッグマッチ。両チームともタイトル争いの有力候補として注目される一戦。'
+                    },
+                    {
+                        title: '🔥 アンフィールドの魔力',
+                        content: 'リヴァプールのホームでの戦い。アンフィールドの熱狂的なサポートが勝利の鍵となった。'
+                    },
+                    {
+                        title: '⚡ 完璧なスタート vs 堅実な戦い',
+                        content: 'リヴァプールの完璧なスタート（2戦2勝）に対し、アーセナルも堅実な戦いを見せていた。'
+                    },
+                    {
+                        title: '🛡️ 守備の質の差',
+                        content: 'リヴァプールの組織的な守備がアーセナルの攻撃を封じ込め、1-0の勝利を収めた。'
+                    }
+                ]
+            },
+            'liverpool-bournemouth': {
+                title: 'リヴァプール vs ボーンマス',
+                date: '2025年8月15日（金）20:00',
+                importance: 'シーズン開幕戦',
+                homeTeam: 'リヴァプール',
+                awayTeam: 'AFC ボーンマス',
+                venue: 'アンフィールド',
+                result: 'リヴァプール 4-2 AFC ボーンマス',
+                goalscorers: {
+                    liverpool: ['Hugo Ekitike 37\'', 'Cody Gakpo 49\'', 'Federico Chiesa 85\'', 'Mohamed Salah 90\''],
+                    bournemouth: ['David Brooks 14\'', 'Antoine Semenyo 64\'']
+                },
+                analysis: [
+                    {
+                        title: '🚀 完璧なシーズンスタート',
+                        content: 'アルネ・スロット新監督の下、リヴァプールが理想的なシーズン開幕を飾った。4-2の勝利で新体制への期待が高まる。'
+                    },
+                    {
+                        title: '⚡ 攻撃陣の多彩な得点',
+                        content: 'エキティケ、ガクポ、キエーザ、サラーと4人の異なる選手が得点。攻撃の多様性を示した。'
+                    },
+                    {
+                        title: '🎭 エンターテイニングな試合展開',
+                        content: '両チーム合わせて6得点の激戦。ボーンマスも2度追いつくなど、最後まで目が離せない展開。'
+                    },
+                    {
+                        title: '🏟️ アンフィールドの歓声',
+                        content: '60,315人の観衆がアンフィールドを埋め尽くし、新シーズンの開幕を祝った。'
+                    }
+                ]
+            },
+            'manchester-city-tottenham': {
+                title: 'マンチェスター・シティ vs トッテナム',
+                date: '2025年8月23日（土）15:00',
+                importance: 'ビッグ6対決',
+                homeTeam: 'マンチェスター・シティ',
+                awayTeam: 'トッテナム・ホットスパー',
+                venue: 'エティハド・スタジアム',
+                result: 'マンチェスター・シティ 0-2 トッテナム・ホットスパー',
+                goalscorers: {
+                    tottenham: ['Joao Palhinha 23\'', 'Mohammed Kudus 67\'']
+                },
+                analysis: [
+                    {
+                        title: '🎯 完璧なカウンター戦術',
+                        content: 'トッテナムがエティハドで見事な戦術的勝利。パリーニャとクドゥスの得点でシティを撃破。'
+                    },
+                    {
+                        title: '🛡️ 守備の組織力',
+                        content: 'ヴィカリオの好セーブとディフェンス陣の結束でシティの攻撃を完封。'
+                    },
+                    {
+                        title: '📊 ポゼッション vs 効率性',
+                        content: 'シティが60.9%のポゼッションを握るも、トッテナムの効率的な攻撃が勝敗を分けた。'
+                    },
+                    {
+                        title: '⚡ 衝撃の番狂わせ',
+                        content: 'プレミアリーグ王者シティをホームで破る歴史的勝利。トッテナムの新時代到来を告げる。'
+                    }
+                ]
+            },
+            'arsenal-manchester-united': {
+                title: 'マンチェスター・ユナイテッド vs アーセナル',
+                date: '2025年8月17日（日）16:30',
+                importance: 'ビッグ6対決',
+                homeTeam: 'マンチェスター・ユナイテッド',
+                awayTeam: 'アーセナル',
+                venue: 'オールド・トラッフォード',
+                result: 'マンチェスター・ユナイテッド 0-1 アーセナル',
+                goalscorers: {
+                    arsenal: ['Gabriel Martinelli 78\'']
+                },
+                analysis: [
+                    {
+                        title: '🎯 マルティネッリの決定力',
+                        content: 'ガブリエル・マルティネッリが78分の決勝ゴールでアーセナルに勝利をもたらした。'
+                    },
+                    {
+                        title: '🛡️ 堅守速攻の勝利',
+                        content: 'ポゼッション38%ながら、組織的な守備とカウンターでユナイテッドを上回った。'
+                    },
+                    {
+                        title: '🥅 ラヤの好セーブ',
+                        content: 'ダビド・ラヤがラッシュフォードの決定機を阻止するなど、ゴールを死守。'
+                    },
+                    {
+                        title: '📈 アウェイでの価値ある勝利',
+                        content: 'オールド・トラッフォードでの勝利は、アーセナルのタイトル争いへの本気度を示した。'
+                    }
+                ]
+            },
             'united-tottenham': {
                 title: 'マンチェスター・ユナイテッド vs トッテナム',
-                date: '2024年9月22日（日）14:00',
+                date: '2025年9月22日（日）14:00',
                 importance: 'ビッグ6対決',
                 homeTeam: 'マンチェスター・ユナイテッド',
                 awayTeam: 'トッテナム・ホットスパー',
