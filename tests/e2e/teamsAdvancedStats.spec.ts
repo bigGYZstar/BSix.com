@@ -22,7 +22,7 @@ test.describe('Teams Advanced Stats Page', () => {
     
     // Check for team data
     const teamRows = page.locator('.teams-table tbody tr');
-    await expect(teamRows).toHaveCountGreaterThan(0);
+    await expect(teamRows.count()).toBeGreaterThan(0);
     
     // Check for team links
     const teamLinks = page.locator('.team-link');
@@ -121,7 +121,7 @@ test.describe('Teams Advanced Stats Page', () => {
     const firstTeamLink = page.locator('.team-link').first();
     await expect(firstTeamLink).toBeVisible();
     
-    const teamName = await firstTeamLink.textContent();
+    // const teamName = await firstTeamLink.textContent();
     await firstTeamLink.click();
     
     // Should navigate to team detail page
@@ -148,7 +148,7 @@ test.describe('Teams Advanced Stats Page', () => {
     await page.waitForSelector('.teams-table', { timeout: 10000 });
     
     // Run accessibility checks
-    await checkA11y(page, null, {
+    await checkA11y(page, undefined, {
       detailedReport: true,
       detailedReportOptions: { html: true }
     });

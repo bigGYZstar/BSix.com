@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { LiverpoolDetailManager } from '@/features/liverpoolDetail/LiverpoolDetailManager';
 import { LiverpoolDetailComponent } from '@/features/liverpoolDetail/LiverpoolDetailComponent';
 import { StaticDataAdapter } from '@/datasource/static';
-import { Team } from '@/types';
+import type { Team } from '@/types/generated/team.schema';
 
 // Mock the data adapter
 vi.mock('@/datasource/static');
@@ -28,8 +28,10 @@ describe('LiverpoolDetailManager', () => {
         goalsFor: 12,
         goalsAgainst: 2,
         goalDifference: 10,
-        form: ['W', 'W', 'W', 'W', 'W'] as ("W" | "D" | "L")[]
-      }
+        form: ['W', 'W', 'W', 'W', 'W']
+      },
+      keyStrengths: [],
+      areasForImprovement: []
     };
 
     mockAdapter = new StaticDataAdapter();
@@ -91,7 +93,7 @@ describe('LiverpoolDetailManager', () => {
     it('should filter squad by position', () => {
       const strikers = manager.getSquadByPosition('striker');
       expect(strikers.every(player => 
-        player.position.toLowerCase().includes('striker')
+        player.position?.toLowerCase().includes("striker")
       )).toBe(true);
     });
 

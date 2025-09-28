@@ -1,12 +1,13 @@
 // 似顔絵SVGジェネレーター
 
-import type { Player } from '@/types'
+import type { Player } from '@/types/generated/player.schema'
 
 export interface AvatarConfig {
-  skin?: 'light' | 'medium' | 'dark' | 'tan'
-  hair?: 'black' | 'brown' | 'blonde' | 'red' | 'gray' | 'bald'
-  style?: 'short' | 'buzz' | 'curly' | 'long' | 'bald'
-  size?: number
+  skin?: 'light' | 'medium' | 'dark' | 'tan';
+  hair?: 'black' | 'brown' | 'blonde' | 'red' | 'gray' | 'bald';
+  style?: 'short' | 'buzz' | 'curly' | 'long' | 'bald';
+
+  size?: number;
 }
 
 /**
@@ -35,10 +36,11 @@ const HAIR_COLORS = {
  * 選手からアバター設定を取得（デフォルト値付き）
  */
 export function getAvatarConfig(player: Player): AvatarConfig {
+  const deterministicAvatar = generateDeterministicAvatar(player.name);
   return {
-    skin: player.avatar?.skin || 'medium',
-    hair: player.avatar?.hair || 'brown',
-    style: player.avatar?.style || 'short',
+    skin: deterministicAvatar.skin,
+    hair: deterministicAvatar.hair,
+    style: deterministicAvatar.style,
     size: 80,
   }
 }
@@ -335,7 +337,7 @@ export function svgToDataUrl(svgString: string): string {
  */
 export function getPlayerAvatar(player: Player, size: number = 80): string {
   // 実画像がある場合はそれを使用
-  if (player.photoUrl) {
+  if (player.photoUrl && typeof player.photoUrl === 'string') {
     return player.photoUrl
   }
 

@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { TeamsAdvancedStatsManager } from '@/features/teamsAdvancedStats';
 import { StaticDataAdapter } from '@/datasource/static';
-import type { Team } from '@/types';
+import type { Team } from '@/types/generated/team.schema';
 
 // Mock the StaticDataAdapter
 vi.mock('@/datasource/static');
@@ -29,7 +29,9 @@ describe('TeamsAdvancedStatsManager', () => {
           goalsAgainst: 2,
           goalDifference: 10,
           form: ['W', 'W', 'W', 'W', 'W']
-        }
+        },
+        keyStrengths: [],
+        areasForImprovement: []
       },
       {
         id: 'arsenal',
@@ -47,7 +49,9 @@ describe('TeamsAdvancedStatsManager', () => {
           goalsAgainst: 3,
           goalDifference: 5,
           form: ['W', 'W', 'W', 'L']
-        }
+        },
+        keyStrengths: [],
+        areasForImprovement: []
       }
     ];
 

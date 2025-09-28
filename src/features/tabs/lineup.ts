@@ -1,6 +1,7 @@
 // 布陣タブ - ピッチ表示とベンチメンバー
 
 import type { Fixture } from '@/types'
+import type { PlayerProfile } from '@/features/liverpoolDetail/types'
 import { renderPitch } from '@/features/pitch/renderPitch'
 import { normalizeBench } from '@/features/players/bench'
 import { getDisplayName } from '@/features/players/displayName'
@@ -29,12 +30,17 @@ export async function renderLineup(
   container.appendChild(teamHeader)
 
   // ピッチ表示
-  const pitchContainer = renderPitch(
+  const pitchElement = document.createElement("div")
+  pitchElement.className = "pitch-display"
+  container.appendChild(pitchElement)
+
+  renderPitch(
+    pitchElement,
+    currentTeam.lines as PlayerProfile[],
     currentTeam.formation,
-    currentTeam.lineup,
     currentTeam.teamId
   )
-  container.appendChild(pitchContainer)
+
 
   // ベンチメンバー
   const benchSection = await createBenchSection(currentTeam)
@@ -197,7 +203,7 @@ function createBenchPlayerCard(player: any, teamId: string): HTMLElement {
   // ポジション表示
   const posBox = document.createElement('div')
   posBox.className = 'text-xs text-muted mt-1'
-  posBox.textContent = player.pos || 'SUB'
+  posBox.textContent = player.position || 'SUB'
 
   // 背番号表示（ある場合）
   if (player.num) {
@@ -262,7 +268,7 @@ export function createFormationDetails(team: any): HTMLElement {
               </div>
               <div>
                 <div class="font-medium">${getDisplayName(player)}</div>
-                <div class="text-xs text-muted">${player.pos}</div>
+                <div class="text-xs text-muted">${player.position}</div>
               </div>
             </div>
           `

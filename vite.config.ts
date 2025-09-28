@@ -11,13 +11,15 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         teams: resolve(__dirname, 'teams-advanced-stats.html'),
-        liverpool: resolve(__dirname, 'liverpool-detailed.html'),
+        liverpool: resolve(__dirname, 'liverpool-detail.html'),
         arsenal: resolve(__dirname, 'arsenal.html'),
         chelsea: resolve(__dirname, 'chelsea.html'),
         stats: resolve(__dirname, 'stats.html'),
         fixtures: resolve(__dirname, 'fixtures.html'),
-        news: resolve(__dirname, 'news.html'),
-        player: resolve(__dirname, 'player-detail.html')
+        // news: resolve(__dirname, 'news.html'), // 未実装
+        // player: resolve(__dirname, 'player-detail.html'), // 未実装
+        characterSystemTest: resolve(__dirname, 'character-system-test.html'),
+        arneSlotSpecial: resolve(__dirname, 'arne-slot-special.html')
       },
       output: {
         entryFileNames: 'assets/[name]-[hash].js',

@@ -18,7 +18,7 @@ export interface TacticalComparison {
 }
 
 export class TacticsAnalyzer {
-  analyzeTacticalSetup(teamId: string): TacticalSetup {
+  analyzeTacticalSetup(_teamId: string): TacticalSetup {
     // This would typically fetch from data source
     // For now, return a default setup
     return {

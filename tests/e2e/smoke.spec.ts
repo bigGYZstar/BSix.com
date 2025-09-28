@@ -37,7 +37,7 @@ test.describe('BSix.com Smoke Tests', () => {
     if (await showAllButton.isVisible()) {
       await showAllButton.click();
       // Verify more columns are shown
-      await expect(table.locator('th')).toHaveCount({ min: 10 });
+      await expect(await table.locator("th").count()).toBeGreaterThanOrEqual(10); // PlaywrightのtoHaveCountは数値またはmin/maxオプションを直接サポート。ここでは最小値として10を設定。
     }
   });
 

@@ -1,6 +1,8 @@
 // フォーメーション解析 - "4-3-3" → 行分割/ポジション並び替え/座標計算
 
-import type { Player, Position, FormationData } from '@/types'
+import type { Position, FormationData } from '@/types'
+
+import type { PlayerProfile } from '@/features/liverpoolDetail/types'
 
 /**
  * フォーメーション文字列を解析して行ごとの選手数を取得
@@ -18,11 +20,11 @@ export function parseFormation(formation: string): number[] {
  * GKは常に最後尾、フィールドプレーヤーを前から配置
  */
 export function distributePlayersToLines(
-  players: Player[],
+  players: PlayerProfile[],
   formation: string
-): Player[][] {
+): PlayerProfile[][] {
   const formationNumbers = parseFormation(formation)
-  const lines: Player[][] = []
+  const lines: PlayerProfile[][] = []
 
   // GK を分離
   const gk = players.find(p => p.pos === 'GK')
@@ -43,7 +45,7 @@ export function distributePlayersToLines(
   // フィールドプレーヤーをフォーメーションに配置
   let playerIndex = 0
   for (const lineSize of formationNumbers) {
-    const line: Player[] = []
+    const line: PlayerProfile[] = []
     for (let i = 0; i < lineSize; i++) {
       if (playerIndex < fieldPlayers.length) {
         line.push(fieldPlayers[playerIndex])
@@ -62,7 +64,7 @@ export function distributePlayersToLines(
 /**
  * 各行の選手をポジションに基づいて並び替え
  */
-export function sortPlayersInLine(players: Player[]): Player[] {
+export function sortPlayersInLine(players: PlayerProfile[]): PlayerProfile[] {
   // ポジションの優先順位定義
   const positionOrder: { [key: string]: number } = {
     // DF ライン
@@ -96,12 +98,12 @@ export function sortPlayersInLine(players: Player[]): Player[] {
   }
 
   return [...players].sort((a, b) => {
-    const orderA = positionOrder[a.pos || ''] || 999
-    const orderB = positionOrder[b.pos || ''] || 999
+    const orderA = positionOrder[a.position as string || ''] || 999
+    const orderB = positionOrder[b.position as string || ""] || 999
 
     if (orderA === orderB) {
       // ポジションが同じまたは不明な場合、名前でソート
-      return (a.jp || a.intl).localeCompare(b.jp || b.intl)
+      return (a.jp || a.intl || "").localeCompare(b.jp || b.intl || "")
     }
 
     return orderA - orderB
@@ -111,7 +113,7 @@ export function sortPlayersInLine(players: Player[]): Player[] {
 /**
  * ピッチ座標を計算（viewBox: 100x140）
  */
-export function calculatePositions(lines: Player[][]): Position[] {
+export function calculatePositions(lines: PlayerProfile[][]): Position[] {
   const positions: Position[] = []
 
   // ピッチ設定（トークンから）
@@ -154,7 +156,7 @@ export function calculatePositions(lines: Player[][]): Position[] {
  * フォーメーション全体を解析してデータを返す
  */
 export function analyzeFormation(
-  players: Player[],
+  players: PlayerProfile[],
   formation: string
 ): FormationData {
   // 選手を行に分割
@@ -167,7 +169,7 @@ export function analyzeFormation(
   const positions = calculatePositions(sortedLines)
 
   // フラット化して位置と対応させる
-  const flatPlayers: Player[] = []
+  const flatPlayers: PlayerProfile[] = []
   sortedLines.forEach(line => {
     flatPlayers.push(...line)
   })
@@ -183,17 +185,17 @@ export function analyzeFormation(
  * 特定の選手の座標を取得
  */
 export function getPlayerPosition(
-  player: Player,
+  player: PlayerProfile,
   formationData: FormationData
 ): Position | null {
   // フラット化された選手リストから該当選手を検索
-  const flatPlayers: Player[] = []
+  const flatPlayers: PlayerProfile[] = []
   formationData.lines.forEach(line => {
     flatPlayers.push(...line)
   })
 
   const playerIndex = flatPlayers.findIndex(
-    p => p.jp === player.jp && p.intl === player.intl
+    p => p.id === player.id
   )
 
   if (playerIndex === -1) {
@@ -207,7 +209,7 @@ export function getPlayerPosition(
  * フォーメーションの妥当性をチェック
  */
 export function validateFormation(
-  players: Player[],
+  players: PlayerProfile[],
   formation: string
 ): { valid: boolean; error?: string } {
   try {
@@ -221,8 +223,8 @@ export function validateFormation(
       (sum, num) => sum + num,
       0
     )
-    const gkCount = players.filter(p => p.pos === 'GK').length
-    const fieldPlayerCount = players.filter(p => p.pos !== 'GK').length
+    const gkCount = players.filter(p => p.position === 'GK').length
+    const fieldPlayerCount = players.filter(p => p.position !== 'GK').length
 
     if (gkCount !== 1) {
       return { valid: false, error: `Need exactly 1 GK, found ${gkCount}` }

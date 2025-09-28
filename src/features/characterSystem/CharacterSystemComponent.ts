@@ -1,9 +1,6 @@
 import { CharacterSystemManager } from './CharacterSystemManager';
-import { CharacterProfile, ContentContext, GeneratedContent } from './types';
+import type { ContentContext, GeneratedContent } from './types';
 
-/**
- * UI Component for Character System management and content generation
- */
 export class CharacterSystemComponent {
   private manager: CharacterSystemManager;
   private container: HTMLElement;
@@ -13,9 +10,6 @@ export class CharacterSystemComponent {
     this.container = container;
   }
 
-  /**
-   * Render the character system interface
-   */
   async render(): Promise<void> {
     try {
       await this.manager.initialize();
@@ -37,9 +31,6 @@ export class CharacterSystemComponent {
     }
   }
 
-  /**
-   * Render character selector
-   */
   private renderCharacterSelector(): string {
     const availableCharacters = this.manager.getAvailableCharacters();
     const currentCharacter = this.manager.getCharacterConfig()?.current_character;
@@ -65,9 +56,6 @@ export class CharacterSystemComponent {
     `;
   }
 
-  /**
-   * Render current character information
-   */
   private renderCurrentCharacter(): string {
     const profile = this.manager.getCurrentProfile();
     if (!profile) {
@@ -105,9 +93,6 @@ export class CharacterSystemComponent {
     `;
   }
 
-  /**
-   * Render content generator interface
-   */
   private renderContentGenerator(): string {
     return `
       <section class="content-generator">
@@ -167,9 +152,6 @@ export class CharacterSystemComponent {
     `;
   }
 
-  /**
-   * Render generated content display
-   */
   private renderGeneratedContent(): string {
     return `
       <section class="generated-content">
@@ -186,9 +168,6 @@ export class CharacterSystemComponent {
     `;
   }
 
-  /**
-   * Render control buttons
-   */
   private renderControls(): string {
     return `
       <section class="controls">
@@ -203,9 +182,6 @@ export class CharacterSystemComponent {
     `;
   }
 
-  /**
-   * Render personality traits for character preview
-   */
   private renderPersonalityTraits(characterId: string): string {
     const config = this.manager.getCharacterConfig();
     if (!config) return '';
@@ -223,25 +199,16 @@ export class CharacterSystemComponent {
     ).join('');
   }
 
-  /**
-   * Get character name by ID
-   */
   private getCharacterName(characterId: string): string {
     const config = this.manager.getCharacterConfig();
     return config?.characters[characterId]?.name || characterId;
   }
 
-  /**
-   * Get character description by ID
-   */
   private getCharacterDescription(characterId: string): string {
     const config = this.manager.getCharacterConfig();
     return config?.characters[characterId]?.description || 'No description available';
   }
 
-  /**
-   * Attach event listeners
-   */
   private attachEventListeners(): void {
     // Character selection
     const characterOptions = this.container.querySelectorAll('.character-option');
@@ -305,9 +272,6 @@ export class CharacterSystemComponent {
     });
   }
 
-  /**
-   * Generate content based on form inputs
-   */
   private generateContent(): void {
     try {
       const contentType = (this.container.querySelector('#content-type') as HTMLSelectElement).value;
@@ -343,9 +307,6 @@ export class CharacterSystemComponent {
     }
   }
 
-  /**
-   * Display generated content
-   */
   private displayGeneratedContent(generated: GeneratedContent): void {
     const outputDiv = this.container.querySelector('#content-output');
     if (!outputDiv) return;
@@ -368,9 +329,6 @@ export class CharacterSystemComponent {
     });
   }
 
-  /**
-   * Copy content to clipboard
-   */
   private async copyContent(): Promise<void> {
     const contentText = this.container.querySelector('.content-text')?.textContent;
     if (!contentText) return;
@@ -384,9 +342,6 @@ export class CharacterSystemComponent {
     }
   }
 
-  /**
-   * Clear generated content
-   */
   private clearContent(): void {
     const outputDiv = this.container.querySelector('#content-output');
     if (!outputDiv) return;
@@ -400,9 +355,6 @@ export class CharacterSystemComponent {
     });
   }
 
-  /**
-   * Export character configuration
-   */
   private exportConfig(): void {
     const config = this.manager.getCharacterConfig();
     if (!config) {
@@ -423,32 +375,20 @@ export class CharacterSystemComponent {
     this.showSuccess('Configuration exported');
   }
 
-  /**
-   * Toggle debug mode
-   */
   private toggleDebug(): void {
     this.manager.updateConfig({ debug: !this.manager['config'].debug });
     const isDebug = this.manager['config'].debug;
     this.showSuccess(`Debug mode ${isDebug ? 'enabled' : 'disabled'}`);
   }
 
-  /**
-   * Show success message
-   */
   private showSuccess(message: string): void {
     this.showMessage(message, 'success');
   }
 
-  /**
-   * Show error message
-   */
   private showError(message: string): void {
     this.showMessage(message, 'error');
   }
 
-  /**
-   * Show message to user
-   */
   private showMessage(message: string, type: 'success' | 'error'): void {
     // Create message element
     const messageEl = document.createElement('div');
@@ -466,9 +406,6 @@ export class CharacterSystemComponent {
     }, 3000);
   }
 
-  /**
-   * Render error message
-   */
   private renderError(message: string): void {
     this.container.innerHTML = `
       <div class="error-message">
@@ -479,3 +416,5 @@ export class CharacterSystemComponent {
     `;
   }
 }
+
+

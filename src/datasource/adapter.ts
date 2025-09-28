@@ -1,4 +1,6 @@
-import type { Match, Team, Player } from '@/types';
+import type { Match } from '@/types/generated/match.schema';
+import type { Team } from '@/types/generated/team.schema';
+import type { Player } from '@/types/generated/player.schema';
 
 export interface DataAdapter {
   // Team operations
@@ -52,3 +54,4 @@ export abstract class BaseDataAdapter implements DataAdapter {
   abstract getMatchesByTeam(teamId: string): Promise<Match[]>;
   abstract validateData(): Promise<ValidationResult>;
 }
+

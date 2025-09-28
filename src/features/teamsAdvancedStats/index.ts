@@ -1,4 +1,4 @@
-import type { Team } from '@/types';
+import type { Team } from '@/types/generated/team.schema';
 import { StaticDataAdapter } from '@/datasource/static';
 
 export interface TeamsAdvancedStatsConfig {

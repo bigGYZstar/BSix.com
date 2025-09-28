@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>チェルシー - BSix.com プレミアリーグ</title>
+    <meta name="theme-color" content="#034694">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #034694 0%, #6CABDD 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* データバージョン表示 */
+        .data-version {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+            font-size: 0.9rem;
+        }
+
+        /* ヘッダー */
+        .team-header {
+            background: linear-gradient(135deg, #034694 0%, #6CABDD 100%);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(3, 70, 148, 0.3);
+        }
+
+        .team-header h1 {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .team-logo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #034694, #6CABDD);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .team-info {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .current-position {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 10px 25px;
+            display: inline-block;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* 統計カード */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            color: #034694;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .stat-value {
+            color: #034694;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* フォーム表示 */
+        .form-display {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+        }
+
+        .form-result {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .form-result.win { background: #27ae60; }
+        .form-result.draw { background: #f39c12; }
+        .form-result.loss { background: #e74c3c; }
+
+        /* 注目選手 */
+        .key-players {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .player-card {
+            background: linear-gradient(135deg, #034694 0%, #6CABDD 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(3, 70, 148, 0.3);
+        }
+
+        .player-role {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .player-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* 主要タイトル */
+        .achievements {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .achievements h3 {
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .achievement-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* ハイライト */
+        .highlights {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlights h3 {
+            color: #034694;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .highlight-item {
+            background: linear-gradient(135deg, #034694 0%, #6CABDD 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .highlight-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 戻るボタン */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* テーマ切り替え */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #034694, #6CABDD);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* データ同期済みインジケーター */
+        .sync-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(76, 175, 80, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* モバイル対応 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .team-header h1 {
+                font-size: 2rem;
+            }
+
+            .team-logo {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .key-players {
+                grid-template-columns: 1fr;
+            }
+
+            .back-button, .theme-toggle {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* ダークモード */
+        .dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ecf0f1;
+        }
+
+        .dark-mode .stat-card,
+        .dark-mode .highlights {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ecf0f1;
+        }
+
+        .dark-mode .stat-card h3,
+        .dark-mode .highlights h3 {
+            color: #6CABDD;
+        }
+    
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .home-link:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .home-link::before {
+            content: "🏠";
+            margin-right: 6px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .home-link {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .page-header .home-link {
+                align-self: flex-end;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="assets/styles/design-system-generated.css">
+</head>
+<body>
+    <button class="back-button" onclick="history.back()">←</button>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+    <div class="container">
+        <!-- データバージョン表示 -->
+        <div class="data-version" id="dataVersion">
+            📊 データバージョン: <span id="versionInfo">読み込み中...</span> | 最終更新: <span id="lastUpdate">-</span> | <span style="color: #90EE90;">データ同期済み</span>
+        </div>
+
+        <!-- チームヘッダー -->
+        <div class="team-header">
+            <div class="team-logo">⚽</div>
+            <h1>チェルシー</h1>
+            <div class="team-info">監督: エンツォ・マレスカ | スタジアム: スタンフォード・ブリッジ</div>
+            <div class="current-position" id="currentPosition">現在の順位: 5位</div>
+        </div>
+
+        <!-- 統計情報 -->
+        <div class="stats-grid">
+            <!-- シーズン成績 -->
+            <div class="stat-card">
+                <h3>📊 シーズン成績</h3>
+                <div class="stat-item">
+                    <span class="stat-label">順位</span>
+                    <span class="stat-value" id="position">5位</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">勝点</span>
+                    <span class="stat-value" id="points">8pt</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">試合数</span>
+                    <span class="stat-value" id="played">4</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">勝利</span>
+                    <span class="stat-value" id="won">2</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">引き分け</span>
+                    <span class="stat-value" id="drawn">2</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">敗北</span>
+                    <span class="stat-value" id="lost">0</span>
+                </div>
+            </div>
+
+            <!-- 得失点 -->
+            <div class="stat-card">
+                <h3>⚽ 得失点</h3>
+                <div class="stat-item">
+                    <span class="stat-label">得点</span>
+                    <span class="stat-value" id="goalsFor">9</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">失点</span>
+                    <span class="stat-value" id="goalsAgainst">3</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">得失点差</span>
+                    <span class="stat-value" id="goalDifference">+6</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">直近フォーム</span>
+                    <div class="form-display" id="formDisplay">
+                        <span class="form-result win">W</span>
+                        <span class="form-result win">W</span>
+                        <span class="form-result draw">D</span>
+                        <span class="form-result draw">D</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 注目選手 -->
+            <div class="stat-card">
+                <h3>⭐ 注目選手</h3>
+                <div class="key-players">
+                    <div class="player-card">
+                        <div class="player-role">得点王</div>
+                        <div class="player-name">ニコラス・ジャクソン</div>
+                    </div>
+                    <div class="player-card">
+                        <div class="player-role">アシスト王</div>
+                        <div class="player-name">エンツォ・フェルナンデス</div>
+                    </div>
+                    <div class="player-card">
+                        <div class="player-role">キーディフェンダー</div>
+                        <div class="player-name">ウェスリー・フォファナ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主要タイトル -->
+        <div class="achievements">
+            <h3>🏆 主要タイトル</h3>
+            <div class="achievement-item">
+                <span>🏆 プレミアリーグ</span>
+                <span>6回</span>
+            </div>
+            <div class="achievement-item">
+                <span>🏆 チャンピオンズリーグ</span>
+                <span>2回</span>
+            </div>
+            <div class="achievement-item">
+                <span>🏆 FAカップ</span>
+                <span>8回</span>
+            </div>
+        </div>
+
+        <!-- 今シーズンのハイライト -->
+        <div class="highlights">
+            <h3>🎯 今シーズンのハイライト</h3>
+            <div class="highlight-item">新監督マレスカの戦術が徐々に浸透</div>
+            <div class="highlight-item">若手選手の台頭が目立つ</div>
+            <div class="highlight-item">安定した守備でクリーンシート多数</div>
+            <div class="highlight-item">攻撃陣の連携が向上中</div>
+            <div class="highlight-item">スタンフォード・ブリッジでの無敗継続</div>
+        </div>
+    </div>
+
+    <!-- データ同期済みインジケーター -->
+    <div class="sync-indicator">
+        <span>●</span> データ同期済み
+    </div>
+
+    <script src="assets/js/data-sync.js"></script>
+    <script>
+        // チーム固有のデータを設定
+        const teamData = {
+            name: "チェルシー",
+            nameEn: "Chelsea",
+            id: "chelsea"
+        };
+
+        // データ連動システムと統合
+        document.addEventListener('DOMContentLoaded', function() {
+            // データ同期システムを初期化
+            if (window.initializeDataSync) {
+                window.initializeDataSync();
+            }
+
+            // チーム固有データを更新
+            updateTeamData();
+
+            // テーマ設定を復元
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-toggle').textContent = '☀️';
+            }
+        });
+
+        // チームデータ更新関数
+        function updateTeamData() {
+            // データ連動システムから最新データを取得
+            if (window.getLatestTableData) {
+                const tableData = window.getLatestTableData();
+                const teamInfo = tableData.find(team => 
+                    team.teamEn === 'Chelsea' || team.team === 'チェルシー'
+                );
+
+                if (teamInfo) {
+                    // 順位表データを反映
+                    document.getElementById('position').textContent = teamInfo.pos + '位';
+                    document.getElementById('points').textContent = teamInfo.points + 'pt';
+                    document.getElementById('played').textContent = teamInfo.played;
+                    document.getElementById('won').textContent = teamInfo.won;
+                    document.getElementById('drawn').textContent = teamInfo.drawn;
+                    document.getElementById('lost').textContent = teamInfo.lost;
+                    document.getElementById('goalsFor').textContent = teamInfo.gf;
+                    document.getElementById('goalsAgainst').textContent = teamInfo.ga;
+                    document.getElementById('goalDifference').textContent = 
+                        (teamInfo.gd > 0 ? '+' : '') + teamInfo.gd;
+                    document.getElementById('currentPosition').textContent = 
+                        '現在の順位: ' + teamInfo.pos + '位';
+
+                    // フォーム表示を更新
+                    const formDisplay = document.getElementById('formDisplay');
+                    formDisplay.innerHTML = '';
+                    teamInfo.form.forEach(result => {
+                        const span = document.createElement('span');
+                        span.className = 'form-result ' + 
+                            (result === 'W' ? 'win' : result === 'D' ? 'draw' : 'loss');
+                        span.textContent = result;
+                        formDisplay.appendChild(span);
+                    });
+                }
+            }
+
+            // バージョン情報を更新
+            if (window.getCurrentVersion) {
+                const versionInfo = window.getCurrentVersion();
+                document.getElementById('versionInfo').textContent = versionInfo.version;
+                document.getElementById('lastUpdate').textContent = 
+                    new Date(versionInfo.lastUpdate).toLocaleString('ja-JP');
+            }
+        }
+
+        // テーマ切り替え
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const themeButton = document.querySelector('.theme-toggle');
+            themeButton.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+            
+            // ローカルストレージに保存
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+    </script>
+</body>
+</html>

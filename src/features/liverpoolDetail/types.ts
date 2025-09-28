@@ -1,4 +1,5 @@
-import { Team, Player } from '@/types';
+import type { Player } from '@/types/generated/player.schema';
+import type { Team } from '@/types/generated/team.schema';
 
 /**
  * Configuration for Liverpool detail page display
@@ -15,23 +16,34 @@ export interface LiverpoolDetailConfig {
 /**
  * Extended player profile for Liverpool players
  */
+
+
+export interface PlayerStats {
+  appearances?: number;
+  goals?: number;
+  assists?: number;
+  passAccuracy?: number;
+  tackles?: number;
+  cleanSheets?: number;
+}
+
 export interface PlayerProfile extends Player {
+  jp?: string;
+  intl?: string;
   /** Player's market value in millions */
   marketValue?: number;
   /** Contract expiry date */
   contractExpiry?: string;
-  /** Goals scored this season */
-  goalsThisSeason?: number;
-  /** Assists this season */
-  assistsThisSeason?: number;
-  /** Minutes played this season */
-  minutesPlayed?: number;
   /** Player's preferred foot */
   preferredFoot?: 'left' | 'right' | 'both';
   /** Previous clubs */
   previousClubs?: string[];
   /** Injury status */
   injuryStatus?: 'fit' | 'injured' | 'doubtful';
+  /** Player's season stats */
+  stats?: PlayerStats;
+
+
 }
 
 /**
@@ -160,3 +172,4 @@ export interface LiverpoolTeamData extends Team {
     tacticalPhilosophy: string;
   };
 }
+

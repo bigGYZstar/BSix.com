@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSix.com - プレミアリーグ ビッグ6 完全ガイド | NOTHING Experience</title>
+    <meta name="description" content="プレミアリーグ ビッグ6の最新情報、統計、分析を提供する次世代スポーツメディア">
+    
+    <!-- NOTHING Style Core CSS -->
+    <link rel="stylesheet" href="../assets/css/nothing-style-core.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Page-specific NOTHING styles */
+        .nothing-hero-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .nothing-stats-grid {
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            display: flex;
+            flex-direction: column;
+            gap: var(--nothing-space-md);
+        }
+        
+        .nothing-team-cards {
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            display: flex;
+            gap: var(--nothing-space-md);
+        }
+        
+        .nothing-floating-nav {
+            position: absolute;
+            top: 20%;
+            left: 2%;
+            display: flex;
+            flex-direction: column;
+            gap: var(--nothing-space-sm);
+        }
+        
+        .nothing-live-data {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid var(--nothing-cyan);
+            border-radius: 12px;
+            padding: var(--nothing-space-md);
+            backdrop-filter: blur(var(--nothing-blur-md));
+            animation: nothing-glow-pulse 2s ease-in-out infinite;
+        }
+        
+        .nothing-theme-toggle {
+            position: fixed;
+            top: var(--nothing-space-lg);
+            right: var(--nothing-space-lg);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: var(--nothing-space-sm) var(--nothing-space-md);
+            color: var(--nothing-white);
+            cursor: pointer;
+            transition: all var(--nothing-transition-normal);
+            z-index: 1000;
+            font-size: 0.875rem;
+            font-weight: var(--nothing-font-weight-medium);
+        }
+        
+        .nothing-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+            box-shadow: var(--nothing-glow-sm) rgba(255, 255, 255, 0.3);
+        }
+        
+        .nothing-background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 0, 110, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 102, 0, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -2;
+        }
+    </style>
+</head>
+<body class="nothing-theme">
+    <!-- Background Pattern -->
+    <div class="nothing-background-pattern"></div>
+    
+    <!-- Theme Toggle -->
+    <button class="nothing-theme-toggle" onclick="window.nothingController?.toggleTheme()">
+        🎨 BBC Style
+    </button>
+    
+    <!-- Main Container -->
+    <div class="nothing-container">
+        <!-- Floating Navigation -->
+        <nav class="nothing-floating-nav">
+            <a href="#" class="nothing-nav-item">Home</a>
+            <a href="#" class="nothing-nav-item">Teams</a>
+            <a href="#" class="nothing-nav-item">Stats</a>
+            <a href="#" class="nothing-nav-item">News</a>
+            <a href="#" class="nothing-nav-item">Analysis</a>
+        </nav>
+        
+        <!-- Live Data Widget -->
+        <div class="nothing-live-data">
+            <div style="font-size: 0.75rem; opacity: 0.8; margin-bottom: 4px;">LIVE</div>
+            <div style="font-weight: 700; color: var(--nothing-cyan);">24/7</div>
+            <div style="font-size: 0.875rem;">データ更新</div>
+        </div>
+        
+        <!-- Hero Section -->
+        <div class="nothing-hero">
+            <div class="nothing-hero-content">
+                <h1 class="nothing-hero-title">
+                    プレミアリーグ<br>
+                    ビッグ6完全ガイド
+                </h1>
+                <p class="nothing-hero-subtitle">
+                    次世代のスポーツメディアエクスペリエンス。戦術分析、選手データ、専門家予想まで、すべてを一つのプラットフォームで。
+                </p>
+                
+                <!-- Hero Action Cards -->
+                <div style="display: flex; gap: var(--nothing-space-md); justify-content: center; margin-top: var(--nothing-space-xl);">
+                    <div class="nothing-card nothing-card--liverpool" style="padding: var(--nothing-space-md); min-width: 120px; text-align: center;">
+                        <div style="font-size: 0.75rem; opacity: 0.8;">Liverpool</div>
+                        <div style="font-size: 1.25rem; font-weight: 700; color: var(--liverpool-red);">詳細</div>
+                    </div>
+                    
+                    <div class="nothing-card nothing-card--pink" style="padding: var(--nothing-space-md); min-width: 120px; text-align: center;">
+                        <div style="font-size: 0.75rem; opacity: 0.8;">Slot Special</div>
+                        <div style="font-size: 1.25rem; font-weight: 700; color: var(--nothing-pink);">監督特集</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Stats Grid -->
+        <div class="nothing-stats-grid">
+            <div class="nothing-floating-stats nothing-card--cyan">
+                <div style="font-size: 0.75rem; opacity: 0.8; margin-bottom: 4px;">Big 6</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: var(--nothing-cyan);">6</div>
+                <div style="font-size: 0.875rem;">ビッグチーム</div>
+            </div>
+            
+            <div class="nothing-floating-stats nothing-card--orange">
+                <div style="font-size: 0.75rem; opacity: 0.8; margin-bottom: 4px;">Analysis</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: var(--nothing-orange);">∞</div>
+                <div style="font-size: 0.875rem;">詳細分析</div>
+            </div>
+            
+            <div class="nothing-floating-stats nothing-card--green">
+                <div style="font-size: 0.75rem; opacity: 0.8; margin-bottom: 4px;">Updates</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: var(--nothing-green);">24/7</div>
+                <div style="font-size: 0.875rem;">リアルタイム</div>
+            </div>
+        </div>
+        
+        <!-- Team Cards -->
+        <div class="nothing-team-cards">
+            <div class="nothing-card nothing-card--arsenal" style="padding: var(--nothing-space-md); min-width: 100px; text-align: center;">
+                <div style="font-size: 0.875rem; font-weight: 700; color: var(--arsenal-red);">Arsenal</div>
+                <div style="font-size: 0.75rem; opacity: 0.8;">ガナーズ</div>
+            </div>
+            
+            <div class="nothing-card nothing-card--chelsea" style="padding: var(--nothing-space-md); min-width: 100px; text-align: center;">
+                <div style="font-size: 0.875rem; font-weight: 700; color: var(--chelsea-blue);">Chelsea</div>
+                <div style="font-size: 0.75rem; opacity: 0.8;">ブルーズ</div>
+            </div>
+        </div>
+        
+        <!-- Additional Floating Elements -->
+        <div style="position: absolute; top: 60%; right: 15%; transform: rotate(15deg);">
+            <div class="nothing-card nothing-card--blue" style="padding: var(--nothing-space-sm); font-size: 0.75rem; text-align: center;">
+                <div style="color: var(--nothing-blue); font-weight: 700;">Premier League</div>
+                <div style="opacity: 0.8;">2025/26</div>
+            </div>
+        </div>
+        
+        <div style="position: absolute; bottom: 30%; right: 8%; transform: rotate(-10deg);">
+            <div class="nothing-card nothing-card--purple" style="padding: var(--nothing-space-sm); font-size: 0.75rem; text-align: center;">
+                <div style="color: var(--nothing-purple); font-weight: 700;">Champions</div>
+                <div style="opacity: 0.8;">League</div>
+            </div>
+        </div>
+        
+        <div style="position: absolute; top: 40%; left: 8%; transform: rotate(8deg);">
+            <div class="nothing-card nothing-card--pink" style="padding: var(--nothing-space-sm); font-size: 0.75rem; text-align: center;">
+                <div style="color: var(--nothing-pink); font-weight: 700;">Transfer</div>
+                <div style="opacity: 0.8;">News</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- NOTHING Style Controller -->
+    <script src="../assets/js/nothing-style-controller.js"></script>
+    
+    <script>
+        // Page-specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update theme toggle text based on current theme
+            const themeToggle = document.querySelector('.nothing-theme-toggle');
+            
+            document.addEventListener('themeChanged', function(e) {
+                if (e.detail.theme === 'nothing') {
+                    themeToggle.textContent = '🎨 BBC Style';
+                } else {
+                    themeToggle.textContent = '🌟 NOTHING Style';
+                }
+            });
+            
+            // Add click handlers for navigation
+            document.querySelectorAll('.nothing-nav-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Navigate to:', this.textContent);
+                });
+            });
+            
+            // Add click handlers for team cards
+            document.querySelectorAll('.nothing-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const teamName = this.textContent.trim();
+                    console.log('Team selected:', teamName);
+                });
+            });
+            
+            // Initialize random floating animation delays
+            const floatingStats = document.querySelectorAll('.nothing-floating-stats');
+            floatingStats.forEach((stat, index) => {
+                stat.style.animationDelay = `${index * 0.3}s`;
+                stat.classList.add('nothing-animate-float');
+            });
+        });
+    </script>
+</body>
+</html>

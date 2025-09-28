@@ -1,5 +1,6 @@
 import { LiverpoolDetailManager } from './LiverpoolDetailManager';
-import { LiverpoolDetailConfig, PlayerProfile, MatchPreview, TransferNews } from './types';
+import { MatchPreview } from './types';
+import type { PlayerProfile } from './types';
 
 /**
  * UI Component for Liverpool team detail page
@@ -36,7 +37,7 @@ export class LiverpoolDetailComponent {
           ${config.showPlayerStats ? this.renderSquadSection(liverpoolData.squad) : ''}
           ${config.showRecentForm ? this.renderFormAnalysis() : ''}
           ${config.showUpcomingFixtures ? this.renderUpcomingFixtures(liverpoolData.upcomingFixtures) : ''}
-          ${config.showTransferNews ? this.renderTransferNews(liverpoolData.transferNews) : ''}
+          ${config.showTransferNews ? this.renderTransferNews() : ''}
           ${this.renderControls()}
         </div>
       `;
@@ -287,7 +288,7 @@ export class LiverpoolDetailComponent {
   /**
    * Render transfer news
    */
-  private renderTransferNews(transferNews: TransferNews[]): string {
+  private renderTransferNews(): string {
     const latestNews = this.manager.getLatestTransferNews(3);
     
     return `

@@ -1,26 +1,25 @@
-import { DataAdapter } from '@/datasource';
-import { 
-  CharacterConfig, 
-  CharacterProfile, 
-  ContentContext, 
+// import { DataAdapter } from "@/datasource/adapter"; // 将来の機能拡張用に保留
+import {
+  CharacterConfig,
+  ContentContext,
   GeneratedContent,
   CharacterSystemConfig,
-  PersonalityTraits,
-  WritingStyle
 } from './types';
+import type { CharacterProfile } from './types';
 
 /**
  * Manages character system functionality and content generation
  */
 export class CharacterSystemManager {
+  // private dataAdapter?: DataAdapter; // 将来の機能拡張用に保留
   private config: CharacterSystemConfig;
   private characterConfig: CharacterConfig | null = null;
   private currentProfile: CharacterProfile | null = null;
   private contentCache: Map<string, GeneratedContent> = new Map();
-  private dataAdapter: DataAdapter;
 
-  constructor(dataAdapter: DataAdapter) {
-    this.dataAdapter = dataAdapter;
+
+  constructor() {
+    // dataAdapterは将来の機能拡張用に保留
     this.config = {
       debug: false,
       cache_content: true,
@@ -413,7 +412,7 @@ export class CharacterSystemManager {
     // Remove oldest entries if cache is full
     if (this.contentCache.size >= this.config.max_cache_size) {
       const firstKey = this.contentCache.keys().next().value;
-      this.contentCache.delete(firstKey);
+      if (firstKey) { this.contentCache.delete(firstKey); }
     }
     
     this.contentCache.set(key, content);

@@ -1,19 +1,17 @@
 // ピッチ描画 - viewBox=100×140に同期した描画（SVG+絶対配置）
 
-import type { Player, Position, FormationData } from '@/types'
+import type { Position, FormationData } from '@/types'
+
+import type { PlayerProfile } from '@/features/liverpoolDetail/types'
 import { analyzeFormation } from './formation'
 import { getDisplayName } from '../players/displayName'
-import { addPlayerModalTrigger } from '../players/modal'
+import { addPlayerModalTrigger } from '@/features/players/modal'
 import { getTeamColors } from '@/ui/emblems'
 
 /**
  * ピッチ全体を描画
  */
-export function renderPitch(
-  formation: string,
-  players: Player[],
-  teamId: string = ''
-): HTMLElement {
+export function renderPitch(container: HTMLElement, players: PlayerProfile[], formation: string, teamId: string = ''): void {
   // フォーメーション解析
   let formationData: FormationData
 
@@ -25,9 +23,8 @@ export function renderPitch(
     formationData = createFallbackFormation(players)
   }
 
-  // ピッチコンテナ作成
-  const container = document.createElement('div')
-  container.className = 'pitch-container'
+  // ピッチコンテナのクラスを設定
+  container.classList.add("pitch-container")
 
   // ピッチボックス作成
   const pitchBox = document.createElement('div')
@@ -43,7 +40,6 @@ export function renderPitch(
 
   container.appendChild(pitchBox)
 
-  return container
 }
 
 /**
@@ -166,7 +162,7 @@ function createPlayerNodes(
   const teamColors = getTeamColors(teamId)
 
   // フラット化された選手リストを作成
-  const flatPlayers: Player[] = []
+  const flatPlayers: PlayerProfile[] = []
   formationData.lines.forEach(line => {
     flatPlayers.push(...line)
   })
@@ -188,7 +184,7 @@ function createPlayerNodes(
  * 個別選手ノード作成
  */
 function createPlayerNode(
-  player: Player,
+  player: PlayerProfile,
   position: Position,
   teamClass: string
 ): HTMLElement {
@@ -212,15 +208,16 @@ function createPlayerNode(
   node.appendChild(nameBox)
 
   // ポジション表示（オプション）
-  if (player.pos) {
+  if (player.pos !== undefined) {
     const posBox = document.createElement('div')
     posBox.className = 'pos'
-    posBox.textContent = player.pos
+    posBox.textContent = player.pos as string
     node.appendChild(posBox)
   }
 
   // モーダルトリガー追加
-  addPlayerModalTrigger(node, player)
+  addPlayerModalTrigger(node, player as PlayerProfile)
+
 
   return node
 }
@@ -228,12 +225,12 @@ function createPlayerNode(
 /**
  * フォールバック配置（エラー時）
  */
-function createFallbackFormation(players: Player[]): FormationData {
+function createFallbackFormation(players: PlayerProfile[]): FormationData {
   // 簡単な4-4-2配置にフォールバック
   const gk = players.find(p => p.pos === 'GK') || players[0]
   const fieldPlayers = players.filter(p => p !== gk).slice(0, 10)
 
-  const lines: Player[][] = [
+  const lines: PlayerProfile[][] = [
     fieldPlayers.slice(0, 4), // DF
     fieldPlayers.slice(4, 8), // MF
     fieldPlayers.slice(8, 10), // FW
@@ -324,7 +321,7 @@ export function animatePlayerPositions(
   const nodes = container.querySelectorAll('.pnode') as NodeListOf<HTMLElement>
 
   // フラット化された選手リスト
-  const flatPlayers: Player[] = []
+  const flatPlayers: PlayerProfile[] = []
   newFormationData.lines.forEach(line => {
     flatPlayers.push(...line)
   })
@@ -348,3 +345,5 @@ export function animatePlayerPositions(
     }, duration)
   })
 }
+
+

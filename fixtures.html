@@ -3,694 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fixtures - BSix.com</title>
-    <meta name="description" content="プレミアリーグの試合日程と結果">
+    <title>試合日程 - BBC Sport</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #10b981;
-            --accent-color: #f59e0b;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --bg-light: #f9fafb;
-            --bg-white: #ffffff;
-            --border-color: #e5e7eb;
-            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --bbc-red: #BB1919;
+            --bbc-orange: #FF7F00;
+            --bbc-blue: #1E3F66;
+            --bbc-dark-grey: #222222;
+            --bbc-medium-grey: #666666;
+            --bbc-light-grey: #F0F0F0;
+            --bbc-white: #FFFFFF;
+            --bbc-black: #000000;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--bg-light);
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background-color: var(--bbc-light-grey);
+            color: var(--bbc-dark-grey);
         }
 
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Global BBC Header */
+        .global-header {
+            background-color: var(--bbc-black);
+            color: var(--bbc-white);
+            padding: 5px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8em;
+        }
+
+        .global-header .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--bbc-white);
+        }
+
+        .global-header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .global-header nav li {
+            margin-left: 15px;
+        }
+
+        .global-header nav a {
+            color: var(--bbc-white);
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .global-header nav a:hover {
+            color: var(--bbc-red);
+        }
+
+        /* Sport Header */
+        .sport-header {
+            background-color: var(--bbc-red);
+            color: var(--bbc-white);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sport-header .sport-logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--bbc-white);
+        }
+
+        .sport-header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .sport-header nav li {
+            margin-left: 20px;
+        }
+
+        .sport-header nav a {
+            color: var(--bbc-white);
+            font-weight: 700;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .sport-header nav a:hover,
+        .sport-header nav a.active {
+            border-bottom-color: var(--bbc-white);
+        }
+
+        /* Football Navigation */
+        .football-nav {
+            background-color: var(--bbc-dark-grey);
+            color: var(--bbc-white);
+            padding: 10px 20px;
+            border-bottom: 3px solid var(--bbc-orange);
+        }
+
+        .football-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .football-nav li {
+            margin: 0 15px;
+        }
+
+        .football-nav a {
+            color: var(--bbc-white);
+            font-weight: 700;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .football-nav a:hover,
+        .football-nav a.active {
+            border-bottom-color: var(--bbc-orange);
+        }
+
+        /* Main Content */
         .container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 30px;
-            background: var(--bg-white);
-            border-radius: 15px;
-            box-shadow: var(--shadow-md);
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        .gameweek-nav {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .gameweek-btn {
-            padding: 10px 20px;
-            background: var(--bg-white);
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .gameweek-btn:hover,
-        .gameweek-btn.active {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        .fixtures-section {
-            background: var(--bg-white);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: var(--shadow-md);
-            margin-bottom: 30px;
-        }
-
-        .section-title {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            text-align: center;
-        }
-
-        .match-card {
-            background: var(--bg-light);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .match-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .match-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .match-date {
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-
-        .match-status {
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .status-upcoming {
-            background: #dbeafe;
-            color: #1d4ed8;
-        }
-
-        .status-live {
-            background: #dcfce7;
-            color: #16a34a;
-        }
-
-        .status-finished {
-            background: #f3f4f6;
-            color: #6b7280;
-        }
-
-        .match-teams {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .team {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 1;
-        }
-
-        .team.away {
-            justify-content: flex-end;
-            text-align: right;
-        }
-
-        .team-name {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .score-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 0 20px;
-        }
-
-        .score {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .vs {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .match-info {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .venue {
-            font-weight: 500;
-        }
-
-        .competition {
-            background: var(--accent-color);
-            color: white;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-        }
-
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .container {
-                padding: 15px;
+                grid-template-columns: 2fr 1fr; /* Example: main content and sidebar */
+            }
+        }
+
+        .main-content {
+            background-color: var(--bbc-white);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar {
+            background-color: var(--bbc-white);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: var(--bbc-red);
+            border-bottom: 2px solid var(--bbc-light-grey);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .fixture-card {
+            background-color: var(--bbc-white);
+            border: 1px solid var(--bbc-light-grey);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .fixture-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .fixture-card h3 {
+            color: var(--bbc-blue);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .fixture-card p {
+            margin: 5px 0;
+            color: var(--bbc-medium-grey);
+            font-size: 0.9em;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bbc-black);
+            color: var(--bbc-white);
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 0.8em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .global-header nav,
+            .sport-header nav {
+                display: none;
             }
 
-            .header h1 {
-                font-size: 2rem;
+            .global-header,
+            .sport-header,
+            .football-nav {
+                justify-content: center;
             }
 
-            .match-teams {
+            .football-nav ul {
                 flex-direction: column;
-                gap: 10px;
+                align-items: center;
             }
 
-            .team.away {
-                justify-content: flex-start;
-                text-align: left;
+            .football-nav li {
+                margin: 5px 0;
             }
 
-            .score-section {
-                margin: 10px 0;
-            }
-
-            .match-info {
-                flex-direction: column;
-                gap: 5px;
-                text-align: center;
+            .container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
+    <header>
+        <div class="global-header">
+            <div class="logo">BBC</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Sport</a></li>
+                    <li><a href="#">Weather</a></li>
+                    <li><a href="#">iPlayer</a></li>
+                    <li><a href="#">Sounds</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="sport-header">
+            <div class="sport-logo">BBC Sport</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Football</a></li>
+                    <li><a href="#">Formula 1</a></li>
+                    <li><a href="#">Cricket</a></li>
+                    <li><a href="#">Tennis</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="football-nav">
+            <nav>
+                <ul>
+                    <li><a href="liverpool-detail.html">リヴァプール</a></li>
+                    <li><a href="arne-slot-special.html">アルネ・スロット</a></li>
+                    <li><a href="teams-advanced-stats.html">チーム統計</a></li>
+                    <li><a href="arsenal.html">アーセナル</a></li>
+                    <li><a href="chelsea.html">チェルシー</a></li>
+                    <li><a href="fixtures.html" class="active">試合日程</a></li>
+                    <li><a href="stats.html">順位表</a></li>
+                    <li><a href="character-system-test.html">キャラクタシステムテスト</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     <div class="container">
-        <div class="header">
-            <h1>📅 Premier League Fixtures</h1>
-            <p>2025-26シーズンの試合日程と結果</p>
-        </div>
+        <main class="main-content">
+            <h1>試合日程</h1>
 
-        <div class="gameweek-nav">
-            <button class="gameweek-btn active" onclick="showGameweek(1)">第1節</button>
-            <button class="gameweek-btn" onclick="showGameweek(2)">第2節</button>
-            <button class="gameweek-btn" onclick="showGameweek(3)">第3節</button>
-            <button class="gameweek-btn" onclick="showGameweek(4)">第4節</button>
-            <button class="gameweek-btn" onclick="showGameweek(5)">第5節</button>
-            <button class="gameweek-btn" onclick="showGameweek(6)">第6節</button>
-        </div>
+            <section>
+                <h2>プレミアリーグ</h2>
+                <div class="fixture-card">
+                    <h3>マンチェスター・ユナイテッド vs リヴァプール</h3>
+                    <p>2025年9月28日 16:00 BST</p>
+                    <p>オールド・トラッフォード</p>
+                </div>
+                <div class="fixture-card">
+                    <h3>アーセナル vs チェルシー</h3>
+                    <p>2025年9月28日 18:30 BST</p>
+                    <p>エミレーツ・スタジアム</p>
+                </div>
+            </section>
 
-        <div id="fixtures-container">
-            <!-- 動的に生成される -->
-        </div>
+            <section>
+                <h2>チャンピオンズリーグ</h2>
+                <div class="fixture-card">
+                    <h3>レアル・マドリード vs バイエルン・ミュンヘン</h3>
+                    <p>2025年10月1日 20:00 BST</p>
+                    <p>サンティアゴ・ベルナベウ</p>
+                </div>
+            </section>
+        </main>
+
+        <aside class="sidebar">
+            <h2>最新ニュース</h2>
+            <div class="news-item">
+                <p>リヴァプール、新監督の下で好調を維持</p>
+                <a href="#">続きを読む</a>
+            </div>
+            <div class="news-item">
+                <p>プレミアリーグ、上位争いが激化</p>
+                <a href="#">続きを読む</a>
+            </div>
+        </aside>
     </div>
 
-    <script>
-        const fixturesData = {
-            1: {
-                title: "第1節 - 2025年8月15日-18日",
-                matches: [
-                    {
-                        date: "2025年8月15日（金）20:00",
-                        homeTeam: "Liverpool",
-                        awayTeam: "AFC Bournemouth",
-                        homeScore: 4,
-                        awayScore: 2,
-                        status: "finished",
-                        venue: "アンフィールド",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月16日（土）15:00",
-                        homeTeam: "Tottenham Hotspur",
-                        awayTeam: "Burnley",
-                        homeScore: 3,
-                        awayScore: 0,
-                        status: "finished",
-                        venue: "トッテナム・ホットスパー・スタジアム",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月17日（日）14:00",
-                        homeTeam: "Chelsea",
-                        awayTeam: "Crystal Palace",
-                        homeScore: 0,
-                        awayScore: 0,
-                        status: "finished",
-                        venue: "スタンフォード・ブリッジ",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月17日（日）16:30",
-                        homeTeam: "Manchester United",
-                        awayTeam: "Arsenal",
-                        homeScore: 0,
-                        awayScore: 1,
-                        status: "finished",
-                        venue: "オールド・トラッフォード",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月16日（土）15:00",
-                        homeTeam: "Tottenham",
-                        awayTeam: "Burnley",
-                        homeScore: 3,
-                        awayScore: 0,
-                        status: "finished",
-                        venue: "トッテナム・ホットスパー・スタジアム",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月16日（土）17:30",
-                        homeTeam: "Wolverhampton Wanderers",
-                        awayTeam: "Manchester City",
-                        homeScore: 0,
-                        awayScore: 4,
-                        status: "finished",
-                        venue: "モリニュー・スタジアム",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月17日（日）14:00",
-                        homeTeam: "Chelsea",
-                        awayTeam: "Crystal Palace",
-                        homeScore: 0,
-                        awayScore: 0,
-                        status: "finished",
-                        venue: "スタンフォード・ブリッジ",
-                        competition: "Premier League"
-                    }
-                ]
-            },
-            2: {
-                title: "第2節 - 2025年8月22日-25日",
-                matches: [
-                    {
-                        date: "2025年8月22日（金）20:00",
-                        homeTeam: "West Ham United",
-                        awayTeam: "Chelsea",
-                        homeScore: 1,
-                        awayScore: 5,
-                        status: "finished",
-                        venue: "ロンドン・スタジアム",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月23日（土）12:30",
-                        homeTeam: "Manchester City",
-                        awayTeam: "Tottenham Hotspur",
-                        homeScore: 0,
-                        awayScore: 2,
-                        status: "finished",
-                        venue: "エティハド・スタジアム",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月23日（土）15:00",
-                        homeTeam: "Arsenal",
-                        awayTeam: "Leeds United",
-                        homeScore: 5,
-                        awayScore: 0,
-                        status: "finished",
-                        venue: "エミレーツ・スタジアム",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月25日（月）20:00",
-                        homeTeam: "Newcastle United",
-                        awayTeam: "Liverpool",
-                        homeScore: 2,
-                        awayScore: 3,
-                        status: "finished",
-                        venue: "セント・ジェームズ・パーク",
-                        competition: "Premier League"
-                    }
-                ]
-            },
-            3: {
-                title: "第3節 - 2025年8月30日-31日",
-                matches: [
-                    {
-                        date: "2025年8月30日（土）12:30",
-                        homeTeam: "Chelsea",
-                        awayTeam: "Fulham",
-                        homeScore: 2,
-                        awayScore: 0,
-                        status: "finished",
-                        venue: "スタンフォード・ブリッジ",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月30日（土）15:00",
-                        homeTeam: "Tottenham Hotspur",
-                        awayTeam: "AFC Bournemouth",
-                        homeScore: 0,
-                        awayScore: 1,
-                        status: "finished",
-                        venue: "トッテナム・ホットスパー・スタジアム",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月30日（土）17:30",
-                        homeTeam: "Manchester United",
-                        awayTeam: "Burnley",
-                        homeScore: 3,
-                        awayScore: 2,
-                        status: "finished",
-                        venue: "オールド・トラッフォード",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月31日（日）14:00",
-                        homeTeam: "Brighton & Hove Albion",
-                        awayTeam: "Manchester City",
-                        homeScore: 2,
-                        awayScore: 1,
-                        status: "finished",
-                        venue: "アメックス・スタジアム",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月31日（日）16:30",
-                        homeTeam: "Liverpool",
-                        awayTeam: "Arsenal",
-                        homeScore: 1,
-                        awayScore: 0,
-                        status: "finished",
-                        venue: "アンフィールド",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月30日（土）15:00",
-                        homeTeam: "Chelsea",
-                        awayTeam: "Fulham",
-                        homeScore: 2,
-                        awayScore: 0,
-                        status: "finished",
-                        venue: "スタンフォード・ブリッジ",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月30日（土）17:30",
-                        homeTeam: "Brighton",
-                        awayTeam: "Manchester City",
-                        homeScore: 2,
-                        awayScore: 1,
-                        status: "finished",
-                        venue: "アメックス・スタジアム",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月31日（日）14:00",
-                        homeTeam: "Manchester United",
-                        awayTeam: "Burnley",
-                        homeScore: 3,
-                        awayScore: 2,
-                        status: "finished",
-                        venue: "オールド・トラッフォード",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年8月31日（日）16:30",
-                        homeTeam: "Bournemouth",
-                        awayTeam: "Tottenham",
-                        homeScore: 1,
-                        awayScore: 0,
-                        status: "finished",
-                        venue: "ヴァイタリティ・スタジアム",
-                        competition: "Premier League"
-                    }
-                ]
-            },
-            4: {
-                title: "第4節 - 2025年9月14日-15日",
-                matches: [
-                    {
-                        date: "2025年9月14日（土）12:30",
-                        homeTeam: "Arsenal",
-                        awayTeam: "Nottingham Forest",
-                        homeScore: 3,
-                        awayScore: 0,
-                        status: "finished",
-                        venue: "エミレーツ・スタジアム",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年9月14日（土）15:00",
-                        homeTeam: "Manchester City",
-                        awayTeam: "Manchester United",
-                        homeScore: 3,
-                        awayScore: 0,
-                        status: "finished",
-                        venue: "エティハド・スタジアム",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年9月14日（土）17:30",
-                        homeTeam: "West Ham United",
-                        awayTeam: "Tottenham",
-                        homeScore: 0,
-                        awayScore: 3,
-                        status: "finished",
-                        venue: "ロンドン・スタジアム",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年9月15日（日）14:00",
-                        homeTeam: "Burnley",
-                        awayTeam: "Liverpool",
-                        homeScore: 0,
-                        awayScore: 1,
-                        status: "finished",
-                        venue: "ターフ・ムーア",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年9月15日（日）16:30",
-                        homeTeam: "Brentford",
-                        awayTeam: "Chelsea",
-                        homeScore: 2,
-                        awayScore: 2,
-                        status: "finished",
-                        venue: "Gtech Community Stadium",
-                        competition: "Premier League"
-                    }
-                ]
-            },
-            5: {
-                title: "第5節 - 2025年9月21日-22日",
-                matches: [
-                    {
-                        date: "2025年9月21日（土）12:30",
-                        homeTeam: "Liverpool",
-                        awayTeam: "Everton",
-                        homeScore: 2,
-                        awayScore: 1,
-                        status: "finished",
-                        venue: "アンフィールド",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年9月21日（土）15:00",
-                        homeTeam: "Arsenal",
-                        awayTeam: "Manchester City",
-                        homeScore: 1,
-                        awayScore: 1,
-                        status: "finished",
-                        venue: "エミレーツ・スタジアム",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年9月21日（土）17:30",
-                        homeTeam: "Manchester United",
-                        awayTeam: "Chelsea",
-                        homeScore: 2,
-                        awayScore: 1,
-                        status: "finished",
-                        venue: "オールド・トラッフォード",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年9月22日（日）14:00",
-                        homeTeam: "Tottenham",
-                        awayTeam: "Brighton",
-                        homeScore: 2,
-                        awayScore: 2,
-                        status: "finished",
-                        venue: "トッテナム・ホットスパー・スタジアム",
-                        competition: "Premier League"
-                    }
-                ]
-            },
-            6: {
-                title: "第6節 - 2025年9月27日-29日",
-                matches: [
-                    {
-                        date: "2025年9月27日（土）11:30",
-                        homeTeam: "Brentford",
-                        awayTeam: "Manchester United",
-                        status: "upcoming",
-                        venue: "Gtech Community Stadium",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年9月27日（土）14:00",
-                        homeTeam: "Chelsea",
-                        awayTeam: "Brighton",
-                        status: "upcoming",
-                        venue: "スタンフォード・ブリッジ",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年9月27日（土）14:00",
-                        homeTeam: "Crystal Palace",
-                        awayTeam: "Liverpool",
-                        status: "upcoming",
-                        venue: "セルハースト・パーク",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年9月28日（日）15:30",
-                        homeTeam: "Newcastle United",
-                        awayTeam: "Arsenal",
-                        status: "upcoming",
-                        venue: "セント・ジェームズ・パーク",
-                        competition: "Premier League"
-                    },
-                    {
-                        date: "2025年9月27日（土）19:00",
-                        homeTeam: "Tottenham",
-                        awayTeam: "Wolverhampton Wanderers",
-                        status: "upcoming",
-                        venue: "トッテナム・ホットスパー・スタジアム",
-                        competition: "Premier League"
-                    }
-                ]
-            }
-        };
-
-        function showGameweek(gameweek) {
-            // ボタンのアクティブ状態を更新
-            document.querySelectorAll('.gameweek-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-
-            // 試合データを表示
-            const data = fixturesData[gameweek];
-            const container = document.getElementById('fixtures-container');
-            
-            container.innerHTML = `
-                <div class="fixtures-section">
-                    <h2 class="section-title">${data.title}</h2>
-                    ${data.matches.map(match => createMatchCard(match)).join('')}
-                </div>
-            `;
-        }
-
-        function createMatchCard(match) {
-            const statusClass = `status-${match.status}`;
-            const statusText = {
-                'upcoming': '予定',
-                'live': 'ライブ',
-                'finished': '終了'
-            }[match.status];
-
-            const scoreSection = match.status === 'upcoming' 
-                ? '<div class="vs">vs</div>'
-                : `
-                    <div class="score">${match.homeScore}</div>
-                    <div class="vs">-</div>
-                    <div class="score">${match.awayScore}</div>
-                `;
-
-            return `
-                <div class="match-card" onclick="viewMatchDetails('${match.homeTeam}', '${match.awayTeam}')">
-                    <div class="match-header">
-                        <div class="match-date">${match.date}</div>
-                        <div class="match-status ${statusClass}">${statusText}</div>
-                    </div>
-                    <div class="match-teams">
-                        <div class="team home">
-                            <div class="team-name">${match.homeTeam}</div>
-                        </div>
-                        <div class="score-section">
-                            ${scoreSection}
-                        </div>
-                        <div class="team away">
-                            <div class="team-name">${match.awayTeam}</div>
-                        </div>
-                    </div>
-                    <div class="match-info">
-                        <div class="venue">📍 ${match.venue}</div>
-                        <div class="competition">${match.competition}</div>
-                    </div>
-                </div>
-            `;
-        }
-
-        function viewMatchDetails(homeTeam, awayTeam) {
-            const matchId = `${homeTeam.toLowerCase().replace(/\s+/g, '-')}-${awayTeam.toLowerCase().replace(/\s+/g, '-')}`;
-            window.location.href = `match-preview.html?match=${matchId}`;
-        }
-
-        // 初期表示
-        document.addEventListener('DOMContentLoaded', () => {
-            showGameweek(1);
-        });
-    </script>
+    <footer class="footer">
+        <p>&copy; 2025 BBC Sport. All rights reserved.</p>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,138 @@
+{
+  "season": "2025-26",
+  "last_updated": "2025-09-27",
+  "competitions": {
+    "efl_cup": {
+      "official_name": "Carabao Cup",
+      "sponsor": "Carabao",
+      "format": "Knockout tournament",
+      "current_round": "Third Round",
+      "key_dates": {
+        "preliminary_round": "w/c 4 August 2025",
+        "first_round": "w/c 11 August 2025",
+        "second_round": "w/c 25 August 2025",
+        "third_round": "w/c 23 September 2025",
+        "fourth_round": "w/c 28 October 2025",
+        "quarter_finals": "w/c 16 December 2025",
+        "semi_finals": "January 2026 (two legs)",
+        "final": "February 2026 (Wembley)"
+      },
+      "big_6_status": {
+        "liverpool": "Third Round",
+        "arsenal": "Third Round", 
+        "chelsea": "Third Round",
+        "manchester_city": "Third Round",
+        "manchester_united": "Third Round",
+        "tottenham": "Third Round"
+      },
+      "notable_results": [
+        "Brighton 6-0 Barnsley (Third Round)",
+        "Cardiff City 2-1 Burnley (Third Round)"
+      ]
+    },
+    "fa_cup": {
+      "official_name": "The Emirates FA Cup",
+      "sponsor": "Emirates",
+      "format": "Knockout tournament",
+      "current_stage": "Qualifying Rounds",
+      "key_dates": {
+        "preliminary_round": "2 August 2025",
+        "first_qualifying": "30 August 2025",
+        "second_qualifying": "14 September 2025",
+        "third_qualifying": "28 September 2025",
+        "fourth_qualifying": "12 October 2025",
+        "first_round": "1 November 2025",
+        "second_round": "30 November 2025",
+        "third_round": "4 January 2026",
+        "fourth_round": "25 January 2026",
+        "fifth_round": "15 February 2026",
+        "quarter_finals": "8 March 2026",
+        "semi_finals": "19 April 2026",
+        "final": "16 May 2026 (Wembley)"
+      },
+      "total_teams": 747,
+      "qualifying_teams": 655,
+      "main_competition_teams": 124,
+      "big_6_entry": "Third Round (January 2026)"
+    },
+    "champions_league": {
+      "official_name": "UEFA Champions League",
+      "season": "2025-26",
+      "format": "New 36-team league phase + knockout",
+      "english_participants": [
+        "Liverpool",
+        "Arsenal", 
+        "Manchester City",
+        "Chelsea",
+        "Tottenham",
+        "Newcastle United"
+      ],
+      "historic_milestone": "First season with 6 English clubs",
+      "qualification_method": {
+        "liverpool": "Premier League Champions 2024-25",
+        "arsenal": "Premier League 2nd place 2024-25",
+        "manchester_city": "Premier League 3rd place 2024-25", 
+        "chelsea": "Premier League 4th place 2024-25",
+        "tottenham": "Premier League 5th place 2024-25",
+        "newcastle": "UEFA coefficient ranking (extra spot)"
+      },
+      "key_dates": {
+        "league_phase_start": "September 2025",
+        "league_phase_end": "January 2026",
+        "knockout_phase": "February-May 2026",
+        "final": "May 2026"
+      }
+    },
+    "europa_league": {
+      "official_name": "UEFA Europa League",
+      "english_participants": [
+        "Manchester United"
+      ],
+      "qualification": "Premier League 6th place 2024-25"
+    },
+    "conference_league": {
+      "official_name": "UEFA Conference League", 
+      "english_participants": [
+        "Brighton & Hove Albion"
+      ],
+      "qualification": "Premier League 7th place 2024-25"
+    }
+  },
+  "big_6_cup_priorities": {
+    "liverpool": {
+      "champions_league": "High priority - Title defense",
+      "efl_cup": "Medium priority - Squad rotation",
+      "fa_cup": "High priority - Domestic treble attempt"
+    },
+    "arsenal": {
+      "champions_league": "High priority - European success target",
+      "efl_cup": "Medium priority - Trophy opportunity", 
+      "fa_cup": "High priority - Recent success to build on"
+    },
+    "chelsea": {
+      "champions_league": "High priority - Return to elite level",
+      "efl_cup": "Medium priority - Early trophy chance",
+      "fa_cup": "Medium priority - Domestic cup focus"
+    },
+    "manchester_city": {
+      "champions_league": "Highest priority - European dominance",
+      "efl_cup": "Low priority - Squad development",
+      "fa_cup": "Medium priority - Domestic double"
+    },
+    "manchester_united": {
+      "europa_league": "High priority - European qualification",
+      "efl_cup": "High priority - Realistic trophy chance",
+      "fa_cup": "High priority - Traditional cup specialists"
+    },
+    "tottenham": {
+      "champions_league": "Highest priority - End trophy drought",
+      "efl_cup": "High priority - Realistic trophy target",
+      "fa_cup": "High priority - Break cup curse"
+    }
+  },
+  "sources": [
+    "https://www.sportingnews.com/us/soccer/news/carabao-cup-2025-26-round-dates-schedule-results/e7a9039401d564dea5548f8d",
+    "https://www.thefa.com/competitions/thefacup/round-dates",
+    "https://www.uefa.com/uefachampionsleague/news/0296-1d21e9bdf7e4-808a7511165c-1000--2025-26-champions-league-teams-format-dates-draws-final/"
+  ]
+}

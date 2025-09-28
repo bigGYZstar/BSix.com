@@ -9,12 +9,16 @@ import {
   isKatakanaName,
   hasKanji,
 } from '../src/features/players/displayName'
-import type { Player } from '../src/types'
+import type { PlayerProfile } from '../src/features/liverpoolDetail/types'
 
 describe('displayName', () => {
   describe('getDisplayName', () => {
     it('should return full name for short Japanese names', () => {
-      const player: Player = {
+      const player: PlayerProfile = {
+        id: '1',
+        name: '田中太郎',
+        position: 'FW',
+        teamId: 'liverpool',
         jp: '田中太郎',
         intl: 'Taro Tanaka',
       }
@@ -23,7 +27,11 @@ describe('displayName', () => {
     })
 
     it('should return surname only for long Japanese names', () => {
-      const player: Player = {
+      const player: PlayerProfile = {
+        id: '2',
+        name: 'デクラン・ライス',
+        position: 'MF',
+        teamId: 'arsenal',
         jp: 'デクラン・ライス',
         intl: 'Declan Rice',
       }
@@ -32,7 +40,11 @@ describe('displayName', () => {
     })
 
     it('should handle names with middle dots', () => {
-      const player: Player = {
+      const player: PlayerProfile = {
+        id: '3',
+        name: 'ダビド・ラヤ',
+        position: 'GK',
+        teamId: 'arsenal',
         jp: 'ダビド・ラヤ',
         intl: 'David Raya',
       }
@@ -41,16 +53,24 @@ describe('displayName', () => {
     })
 
     it('should fallback to English surname when Japanese name is missing', () => {
-      const player: Player = {
-        jp: '',
-        intl: 'Martin Odegaard',
+      const player: PlayerProfile = {
+        id: '4',
+        name: 'Martin Odegaard',
+        position: 'MF',
+        teamId: 'arsenal',
+        jp: "",
+        intl: "Martin Odegaard",
       }
 
       expect(getDisplayName(player, 5)).toBe('Odegaard')
     })
 
     it('should respect custom threshold', () => {
-      const player: Player = {
+      const player: PlayerProfile = {
+        id: '5',
+        name: '冨安健洋',
+        position: 'DF',
+        teamId: 'arsenal',
         jp: '冨安健洋',
         intl: 'Takehiro Tomiyasu',
       }
@@ -83,7 +103,11 @@ describe('displayName', () => {
 
   describe('getFullName', () => {
     it('should prefer Japanese name', () => {
-      const player: Player = {
+      const player: PlayerProfile = {
+        id: '5',
+        name: '冨安健洋',
+        position: 'DF',
+        teamId: 'arsenal',
         jp: '冨安健洋',
         intl: 'Takehiro Tomiyasu',
       }
@@ -92,7 +116,11 @@ describe('displayName', () => {
     })
 
     it('should fallback to international name', () => {
-      const player: Player = {
+      const player: PlayerProfile = {
+        id: '6',
+        name: 'Bukayo Saka',
+        position: 'FW',
+        teamId: 'arsenal',
         jp: '',
         intl: 'Bukayo Saka',
       }
@@ -101,7 +129,11 @@ describe('displayName', () => {
     })
 
     it('should handle missing names', () => {
-      const player: Player = {
+      const player: PlayerProfile = {
+        id: '7',
+        name: 'Unknown Player',
+        position: 'Unknown',
+        teamId: 'Unknown',
         jp: '',
         intl: '',
       }
@@ -163,8 +195,12 @@ describe('displayName', () => {
   })
 
   describe('edge cases', () => {
-    it('should handle players with only position', () => {
-      const player: Player = {
+    it("should handle players with only position", () => {
+      const player: PlayerProfile = {
+        id: '8',
+        name: 'Unknown Player',
+        position: 'GK',
+        teamId: 'unknown',
         jp: '',
         intl: '',
         pos: 'GK',
@@ -175,7 +211,11 @@ describe('displayName', () => {
     })
 
     it('should handle numbers in names', () => {
-      const player: Player = {
+      const player: PlayerProfile = {
+        id: '9',
+        name: 'プレイヤー1',
+        position: 'Unknown',
+        teamId: 'unknown',
         jp: 'プレイヤー1',
         intl: 'Player 1',
       }
@@ -184,7 +224,11 @@ describe('displayName', () => {
     })
 
     it('should handle special characters', () => {
-      const player: Player = {
+      const player: PlayerProfile = {
+        id: '10',
+        name: 'オ・マリー',
+        position: 'Unknown',
+        teamId: 'unknown',
         jp: 'オ・マリー',
         intl: "O'Malley",
       }

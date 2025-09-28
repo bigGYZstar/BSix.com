@@ -1,13 +1,14 @@
-import { DataAdapter } from '@/datasource';
+import { DataAdapter } from '@/datasource/adapter';
 import { 
   LiverpoolDetailConfig, 
   LiverpoolTeamData, 
-  PlayerProfile, 
   TacticalAnalysis,
   SeasonStats,
   MatchPreview,
   TransferNews
 } from './types';
+import type { PlayerProfile } from './types';
+
 
 /**
  * Manages Liverpool team detail data and business logic
@@ -112,15 +113,15 @@ export class LiverpoolDetailManager {
     const squad = this.liverpoolData.squad;
     
     const topScorer = squad.reduce((prev, current) => 
-      (current.goalsThisSeason || 0) > (prev.goalsThisSeason || 0) ? current : prev
+      (current.number || 0) > (prev.number || 0) ? current : prev
     );
     
     const topAssister = squad.reduce((prev, current) => 
-      (current.assistsThisSeason || 0) > (prev.assistsThisSeason || 0) ? current : prev
+      (current.number || 0) > (prev.number || 0) ? current : prev
     );
     
     const mostMinutes = squad.reduce((prev, current) => 
-      (current.minutesPlayed || 0) > (prev.minutesPlayed || 0) ? current : prev
+      (current.number || 0) > (prev.number || 0) ? current : prev
     );
 
     return { topScorer, topAssister, mostMinutes };
@@ -214,30 +215,23 @@ export class LiverpoolDetailManager {
       {
         id: 'salah',
         name: 'Mohamed Salah',
-        position: 'Right Winger',
         teamId: 'liverpool',
+        position: 'Forward',
         number: 11,
         age: 32,
         nationality: 'Egypt',
-        goalsThisSeason: 8,
-        assistsThisSeason: 5,
-        minutesPlayed: 450,
-        marketValue: 65,
-        contractExpiry: '2025-06-30',
-        preferredFoot: 'left',
-        injuryStatus: 'fit'
+
+
       },
       {
         id: 'van-dijk',
         name: 'Virgil van Dijk',
-        position: 'Centre-Back',
         teamId: 'liverpool',
+        position: 'Defender',
         number: 4,
         age: 33,
         nationality: 'Netherlands',
-        goalsThisSeason: 1,
-        assistsThisSeason: 0,
-        minutesPlayed: 450,
+
         marketValue: 45,
         contractExpiry: '2025-06-30',
         preferredFoot: 'right',
@@ -246,14 +240,12 @@ export class LiverpoolDetailManager {
       {
         id: 'nunez',
         name: 'Darwin Núñez',
-        position: 'Striker',
         teamId: 'liverpool',
+        position: 'Forward',
         number: 9,
         age: 25,
         nationality: 'Uruguay',
-        goalsThisSeason: 6,
-        assistsThisSeason: 2,
-        minutesPlayed: 380,
+
         marketValue: 75,
         contractExpiry: '2028-06-30',
         preferredFoot: 'right',

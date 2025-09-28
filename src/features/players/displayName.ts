@@ -1,6 +1,6 @@
 // 選手名表示ロジック - 姓のみ/短い和名はフル表示
 
-import type { Player } from '@/types'
+import type { PlayerProfile } from '@/features/liverpoolDetail/types'
 
 /**
  * 選手の表示名を決定する
@@ -9,18 +9,17 @@ import type { Player } from '@/types'
  * 2. 日本語名が閾値より長い → 姓のみ表示（最初の単語）
  * 3. 日本語名がない場合 → 英名の姓のみ
  */
-export function getDisplayName(player: Player, threshold: number = 5): string {
-  const japanseName = (player.jp || '').trim()
+export function getDisplayName(player: PlayerProfile, threshold: number = 5): string {
+  const japanseName = (player.jp || "").trim()
 
-  // 日本語名がない場合はフォールバック
   if (!japanseName) {
-    return getLastName(player.intl || '')
+    return getLastName(player.intl || "")
   }
 
   // 中点や空白で区切られている場合は、最初の部分を優先
   const japaneseParts = japanseName
     .split(/[\s・]/g)
-    .filter(part => part.length > 0)
+    .filter((part: string) => part.length > 0)
   if (japaneseParts.length > 1) {
     return japaneseParts[0] // 複数部分がある場合は最初の部分（姓）
   }
@@ -43,14 +42,14 @@ export function getDisplayName(player: Player, threshold: number = 5): string {
     return japanseName.substring(0, 2)
   }
 
-  // フォールバック: 英名の姓
-  return getLastName(player.intl || '')
+  // 上記のルールに当てはまらない場合、または最終的なフォールバック
+  return getLastName(player.intl || player.name || "")
 }
 
 /**
  * 英名から姓を抽出
  */
-export function getLastName(fullName: string): string {
+export function getLastName(fullName: string | undefined): string {
   const name = (fullName || '').trim()
 
   if (!name) {
@@ -74,9 +73,9 @@ export function getLastName(fullName: string): string {
 /**
  * フル名を取得（モーダルでの表示用）
  */
-export function getFullName(player: Player): string {
-  const jp = (player.jp || '').trim()
-  const intl = (player.intl || '').trim()
+export function getFullName(player: PlayerProfile): string {
+  const jp = player.jp ? player.jp.trim() : "";
+  const intl = player.intl ? player.intl.trim() : "";
 
   if (jp) {
     return jp
@@ -90,32 +89,31 @@ export function getFullName(player: Player): string {
 /**
  * 英語名を取得
  */
-export function getInternationalName(player: Player): string {
-  return player.intl || 'Unknown'
+export function getInternationalName(player: PlayerProfile): string | undefined {
+  return player.intl
 }
 
 /**
  * ポジション表示名を取得
  */
-export function getPositionDisplay(player: Player): string {
-  return player.pos || 'Unknown'
+export function getPositionDisplay(player: PlayerProfile): string | undefined {
+  return player.position;
 }
 
 /**
  * 背番号表示を取得
  */
-export function getNumberDisplay(player: Player): string {
+export function getNumberDisplay(player: PlayerProfile): string {
   if (player.num === undefined || player.num === null) {
     return ''
   }
-
   return String(player.num)
 }
 
 /**
  * 選手の検索キーワードを生成（検索機能用）
  */
-export function getSearchKeywords(player: Player): string[] {
+export function getSearchKeywords(player: PlayerProfile): string[] {
   const keywords: string[] = []
 
   if (player.jp) {
@@ -132,8 +130,8 @@ export function getSearchKeywords(player: Player): string[] {
     keywords.push(...parts.map(part => part.toLowerCase()))
   }
 
-  if (player.pos) {
-    keywords.push(player.pos.toLowerCase())
+  if (player.position) {
+    keywords.push(player.position.toLowerCase());
   }
 
   if (player.num) {

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSix.com - プレミアリーグ ビッグ6 完全ガイド</title>
+    <meta name="description" content="プレミアリーグBig 6チームの試合を詳細分析。専門家予想、戦術解説、選手情報まで完全網羅。">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --bg-white: #ffffff;
+            --bg-light: #f7fafc;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat;
+            background-size: 100px 100px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            position: relative;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #f0f8ff, #fff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--secondary-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-xl);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 35px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation Grid */
+        .nav-section {
+            padding: 100px 0;
+            background: var(--bg-white);
+            color: var(--text-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .nav-card {
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .nav-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-features {
+            list-style: none;
+            text-align: left;
+        }
+
+        .card-features li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .card-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+        }
+
+        /* Special Cards */
+        .nav-card.featured {
+            background: var(--primary-gradient);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .nav-card.featured .card-icon {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-card.featured .card-title,
+        .nav-card.featured .card-description,
+        .nav-card.featured .card-features li {
+            color: white;
+        }
+
+        .nav-card.featured .card-features li::before {
+            color: #ffd700;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 0;
+            background: var(--dark-gradient);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 30px;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 10px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a202c;
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 30px;
+        }
+
+        .footer-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .footer-description {
+            opacity: 0.8;
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-link:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .nav-card {
+                padding: 30px 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .hero-content {
+                padding: 0 15px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-card:nth-child(1) { animation-delay: 0.1s; }
+        .nav-card:nth-child(2) { animation-delay: 0.2s; }
+        .nav-card:nth-child(3) { animation-delay: 0.3s; }
+        .nav-card:nth-child(4) { animation-delay: 0.4s; }
+        .nav-card:nth-child(5) { animation-delay: 0.5s; }
+        .nav-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">BSix.com</h1>
+            <p class="hero-subtitle">プレミアリーグ ビッグ6 完全ガイド</p>
+            <p class="hero-description">
+                Arsenal、Chelsea、Liverpool、Manchester City、Manchester United、Tottenham<br>
+                ビッグ6チームの詳細分析、戦術解説、選手情報を完全網羅
+            </p>
+            <a href="#navigation" class="cta-button">
+                今すぐ探索する
+            </a>
+        </div>
+        <div class="scroll-indicator">
+            <div style="font-size: 1.5rem;">↓</div>
+            <div style="font-size: 0.9rem; margin-top: 5px;">スクロール</div>
+        </div>
+    </section>
+
+    <!-- Navigation Section -->
+    <section id="navigation" class="nav-section">
+        <div class="container">
+            <h2 class="section-title">コンテンツを探索</h2>
+            <p class="section-subtitle">
+                プレミアリーグビッグ6の詳細分析から戦術解説まで、サッカーファンのための完全ガイド
+            </p>
+
+            <div class="nav-grid">
+                <a href="teams-advanced-stats.html" class="nav-card fade-in">
+                    <div class="card-icon">📊</div>
+                    <h3 class="card-title">チーム詳細統計</h3>
+                    <p class="card-description">ビッグ6チームの高度な統計分析とパフォーマンス比較</p>
+                    <ul class="card-features">
+                        <li>詳細なパフォーマンス指標</li>
+                        <li>チーム間比較分析</li>
+                        <li>インタラクティブなデータ表示</li>
+                    </ul>
+                </a>
+
+                <a href="liverpool-detail.html" class="nav-card featured fade-in">
+                    <div class="card-icon">🔴</div>
+                    <h3 class="card-title">リヴァプール詳細</h3>
+                    <p class="card-description">アルネ・スロット新体制下でのリヴァプール完全分析</p>
+                    <ul class="card-features">
+                        <li>新監督の戦術分析</li>
+                        <li>選手プロファイル</li>
+                        <li>シーズン展望</li>
+                        <li>移籍情報</li>
+                    </ul>
+                </a>
+
+                <a href="arne-slot-special.html" class="nav-card fade-in">
+                    <div class="card-icon">👨‍💼</div>
+                    <h3 class="card-title">スロット監督特集</h3>
+                    <p class="card-description">リヴァプール新監督アルネ・スロットの戦術革命</p>
+                    <ul class="card-features">
+                        <li>指導フィロソフィー</li>
+                        <li>戦術分析</li>
+                        <li>キャリアの軌跡</li>
+                        <li>リヴァプールでの挑戦</li>
+                    </ul>
+                </a>
+
+                <a href="arsenal.html" class="nav-card fade-in">
+                    <div class="card-icon">🔴</div>
+                    <h3 class="card-title">アーセナル</h3>
+                    <p class="card-description">ガナーズの最新情報と詳細分析</p>
+                    <ul class="card-features">
+                        <li>チーム戦術</li>
+                        <li>主要選手分析</li>
+                        <li>試合プレビュー</li>
+                    </ul>
+                </a>
+
+                <a href="chelsea.html" class="nav-card fade-in">
+                    <div class="card-icon">🔵</div>
+                    <h3 class="card-title">チェルシー</h3>
+                    <p class="card-description">ブルーズの戦術と選手情報</p>
+                    <ul class="card-features">
+                        <li>新体制分析</li>
+                        <li>若手選手情報</li>
+                        <li>戦術的変化</li>
+                    </ul>
+                </a>
+
+                <a href="fixtures.html" class="nav-card fade-in">
+                    <div class="card-icon">📅</div>
+                    <h3 class="card-title">試合日程</h3>
+                    <p class="card-description">ビッグ6チームの試合スケジュールと詳細情報</p>
+                    <ul class="card-features">
+                        <li>最新の試合日程</li>
+                        <li>試合プレビュー</li>
+                        <li>結果分析</li>
+                    </ul>
+                </a>
+
+                <a href="stats.html" class="nav-card fade-in">
+                    <div class="card-icon">📈</div>
+                    <h3 class="card-title">統計ページ</h3>
+                    <p class="card-description">プレミアリーグ全体の統計とランキング</p>
+                    <ul class="card-features">
+                        <li>リーグテーブル</li>
+                        <li>得点ランキング</li>
+                        <li>パフォーマンス指標</li>
+                    </ul>
+                </a>
+
+                <a href="character-system-test.html" class="nav-card fade-in">
+                    <div class="card-icon">🤖</div>
+                    <h3 class="card-title">Character System</h3>
+                    <p class="card-description">AI駆動のコンテンツ生成システムのテスト</p>
+                    <ul class="card-features">
+                        <li>インタラクティブAI</li>
+                        <li>パーソナライズ機能</li>
+                        <li>コンテンツ生成</li>
+                    </ul>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                プラットフォーム統計
+            </h2>
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">ビッグ6チーム</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number">9</span>
+                    <span class="stat-label">専門ページ</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">詳細分析</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">最新情報更新</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3 class="footer-title">BSix.com</h3>
+                <p class="footer-description">
+                    プレミアリーグビッグ6チームの最も包括的な分析プラットフォーム。
+                    戦術、統計、選手情報まで、サッカーファンのための完全ガイド。
+                </p>
+                <div class="footer-links">
+                    <a href="teams-advanced-stats.html" class="footer-link">チーム統計</a>
+                    <a href="liverpool-detail.html" class="footer-link">リヴァプール</a>
+                    <a href="arne-slot-special.html" class="footer-link">スロット特集</a>
+                    <a href="fixtures.html" class="footer-link">試合日程</a>
+                    <a href="stats.html" class="footer-link">統計</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BSix.com. プレミアリーグビッグ6完全ガイド. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+
+        // Parallax effect for hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        console.log('BSix.com - プレミアリーグビッグ6完全ガイド loaded successfully!');
+    </script>
+</body>
+</html>

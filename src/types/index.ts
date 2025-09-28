@@ -2,7 +2,6 @@
 export * from './generated/match.schema';
 export * from './generated/team.schema';
 export * from './generated/player.schema';
-
 // Additional application types
 export interface AppConfig {
   version: string;
@@ -52,3 +51,41 @@ export interface PageConfig {
   description: string;
   version: string;
 }
+
+// DataAdapterの型定義
+export interface DataAdapter {
+  fetchData<T>(endpoint: string): Promise<T>;
+  postData<T>(endpoint: string, data: any): Promise<T>;
+}
+
+// SyncStatusの型定義
+export interface SyncStatus {
+  status: 'idle' | 'syncing' | 'success' | 'error';
+  progress: number;
+  lastSync?: string; // lastSyncをオプションにする
+  nextSync?: string;
+  currentVersion?: string;
+  availableVersion?: string;
+  errors: SyncError[];
+  metrics?: { syncDuration: number; dataSize: number; networkLatency: number; };
+}
+
+export interface SyncError {
+  code: string;
+  message: string;
+}
+
+// ContentContextの型定義
+export interface ContentContext {
+  content_type: string;
+  team?: string; // teamをオプションにする
+  result: any;
+  time_of_day?: string;
+  data: any;
+}
+
+export * from './generated/player.schema';
+// AvatarConfigの型定義
+
+
+

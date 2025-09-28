@@ -1,0 +1,82 @@
+[
+  {
+    "rank": 1,
+    "team": "Liverpool",
+    "played": 6,
+    "wins": 5,
+    "draws": 1,
+    "losses": 0,
+    "gd": 5,
+    "points": 15
+  },
+  {
+    "rank": 2,
+    "team": "Crystal Palace",
+    "played": 6,
+    "wins": 3,
+    "draws": 3,
+    "losses": 0,
+    "gd": 5,
+    "points": 12
+  },
+  {
+    "rank": 3,
+    "team": "Tottenham Hotspur",
+    "played": 6,
+    "wins": 3,
+    "draws": 2,
+    "losses": 1,
+    "gd": 7,
+    "points": 11
+  },
+  {
+    "rank": 4,
+    "team": "Sunderland",
+    "played": 6,
+    "wins": 3,
+    "draws": 2,
+    "losses": 1,
+    "gd": 3,
+    "points": 11
+  },
+  {
+    "rank": 5,
+    "team": "Arsenal",
+    "played": 5,
+    "wins": 3,
+    "draws": 1,
+    "losses": 1,
+    "gd": 8,
+    "points": 10
+  },
+  {
+    "rank": 6,
+    "team": "Manchester City",
+    "played": 5,
+    "wins": 3,
+    "draws": 1,
+    "losses": 1,
+    "gd": 7,
+    "points": 10
+  },
+  {
+    "rank": 7,
+    "team": "Chelsea",
+    "played": 5,
+    "wins": 2,
+    "draws": 2,
+    "losses": 1,
+    "gd": 4,
+    "points": 8
+  },
+  {
+    "rank": 8,
+    "team": "Manchester United",
+    "played": 5,
+    "wins": 2,
+    "draws": 1,
+    "losses": 2,
+    "gd": 2,
+    "points": 7
+  }
+]

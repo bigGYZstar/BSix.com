@@ -1,0 +1,366 @@
+/* NOTHING Style Core CSS System for BSix.com */
+
+/* ===== NOTHING DESIGN VARIABLES ===== */
+:root {
+  /* NOTHING Core Colors */
+  --nothing-black: #000000;
+  --nothing-dark-gray: #1a1a1a;
+  --nothing-medium-gray: #333333;
+  --nothing-light-gray: #666666;
+  --nothing-white: #ffffff;
+  
+  /* NOTHING Accent Colors */
+  --nothing-pink: #ff006e;
+  --nothing-cyan: #00ffff;
+  --nothing-orange: #ff6600;
+  --nothing-green: #00ff00;
+  --nothing-blue: #0066ff;
+  --nothing-purple: #8b5cf6;
+  
+  /* Premier League Team Colors */
+  --liverpool-red: #c8102e;
+  --arsenal-red: #ef0107;
+  --chelsea-blue: #034694;
+  --city-blue: #6cabdd;
+  --united-red: #da020e;
+  --spurs-navy: #132257;
+  
+  /* NOTHING Typography */
+  --nothing-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --nothing-font-weight-light: 300;
+  --nothing-font-weight-normal: 400;
+  --nothing-font-weight-medium: 500;
+  --nothing-font-weight-bold: 700;
+  
+  /* NOTHING Spacing */
+  --nothing-space-xs: 0.25rem;
+  --nothing-space-sm: 0.5rem;
+  --nothing-space-md: 1rem;
+  --nothing-space-lg: 1.5rem;
+  --nothing-space-xl: 2rem;
+  --nothing-space-2xl: 3rem;
+  --nothing-space-3xl: 4rem;
+  
+  /* NOTHING Effects */
+  --nothing-blur-sm: 4px;
+  --nothing-blur-md: 8px;
+  --nothing-blur-lg: 16px;
+  --nothing-glow-sm: 0 0 10px;
+  --nothing-glow-md: 0 0 20px;
+  --nothing-glow-lg: 0 0 40px;
+  
+  /* NOTHING Transitions */
+  --nothing-transition-fast: 0.15s ease-out;
+  --nothing-transition-normal: 0.3s ease-out;
+  --nothing-transition-slow: 0.5s ease-out;
+}
+
+/* ===== NOTHING BASE STYLES ===== */
+.nothing-theme {
+  font-family: var(--nothing-font-family);
+  background: var(--nothing-black);
+  color: var(--nothing-white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.nothing-theme * {
+  box-sizing: border-box;
+}
+
+/* ===== NOTHING LAYOUT SYSTEM ===== */
+.nothing-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--nothing-black);
+}
+
+.nothing-floating-grid {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: var(--nothing-space-md);
+  padding: var(--nothing-space-xl);
+}
+
+/* ===== NOTHING FLOATING CARDS ===== */
+.nothing-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(var(--nothing-blur-md));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: var(--nothing-space-lg);
+  transition: all var(--nothing-transition-normal);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.nothing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+  opacity: 0;
+  transition: opacity var(--nothing-transition-normal);
+  pointer-events: none;
+}
+
+.nothing-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--nothing-glow-md) rgba(255, 255, 255, 0.2);
+}
+
+.nothing-card:hover::before {
+  opacity: 1;
+}
+
+/* ===== NOTHING CARD VARIANTS ===== */
+.nothing-card--pink {
+  border-color: var(--nothing-pink);
+  box-shadow: var(--nothing-glow-sm) rgba(255, 0, 110, 0.3);
+}
+
+.nothing-card--pink:hover {
+  box-shadow: var(--nothing-glow-md) rgba(255, 0, 110, 0.5);
+}
+
+.nothing-card--cyan {
+  border-color: var(--nothing-cyan);
+  box-shadow: var(--nothing-glow-sm) rgba(0, 255, 255, 0.3);
+}
+
+.nothing-card--cyan:hover {
+  box-shadow: var(--nothing-glow-md) rgba(0, 255, 255, 0.5);
+}
+
+.nothing-card--orange {
+  border-color: var(--nothing-orange);
+  box-shadow: var(--nothing-glow-sm) rgba(255, 102, 0, 0.3);
+}
+
+.nothing-card--orange:hover {
+  box-shadow: var(--nothing-glow-md) rgba(255, 102, 0, 0.5);
+}
+
+.nothing-card--green {
+  border-color: var(--nothing-green);
+  box-shadow: var(--nothing-glow-sm) rgba(0, 255, 0, 0.3);
+}
+
+.nothing-card--green:hover {
+  box-shadow: var(--nothing-glow-md) rgba(0, 255, 0, 0.5);
+}
+
+.nothing-card--blue {
+  border-color: var(--nothing-blue);
+  box-shadow: var(--nothing-glow-sm) rgba(0, 102, 255, 0.3);
+}
+
+.nothing-card--blue:hover {
+  box-shadow: var(--nothing-glow-md) rgba(0, 102, 255, 0.5);
+}
+
+/* ===== TEAM COLOR VARIANTS ===== */
+.nothing-card--liverpool {
+  border-color: var(--liverpool-red);
+  box-shadow: var(--nothing-glow-sm) rgba(200, 16, 46, 0.3);
+}
+
+.nothing-card--liverpool:hover {
+  box-shadow: var(--nothing-glow-md) rgba(200, 16, 46, 0.5);
+}
+
+.nothing-card--arsenal {
+  border-color: var(--arsenal-red);
+  box-shadow: var(--nothing-glow-sm) rgba(239, 1, 7, 0.3);
+}
+
+.nothing-card--arsenal:hover {
+  box-shadow: var(--nothing-glow-md) rgba(239, 1, 7, 0.5);
+}
+
+.nothing-card--chelsea {
+  border-color: var(--chelsea-blue);
+  box-shadow: var(--nothing-glow-sm) rgba(3, 70, 148, 0.3);
+}
+
+.nothing-card--chelsea:hover {
+  box-shadow: var(--nothing-glow-md) rgba(3, 70, 148, 0.5);
+}
+
+/* ===== NOTHING NAVIGATION ===== */
+.nothing-nav {
+  position: fixed;
+  top: var(--nothing-space-lg);
+  left: var(--nothing-space-lg);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nothing-space-sm);
+}
+
+.nothing-nav-item {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(var(--nothing-blur-md));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: var(--nothing-space-sm) var(--nothing-space-md);
+  color: var(--nothing-white);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: var(--nothing-font-weight-medium);
+  transition: all var(--nothing-transition-normal);
+  white-space: nowrap;
+}
+
+.nothing-nav-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(4px);
+  box-shadow: var(--nothing-glow-sm) rgba(255, 255, 255, 0.3);
+}
+
+/* ===== NOTHING HERO SECTION ===== */
+.nothing-hero {
+  position: relative;
+  grid-column: 4 / 10;
+  grid-row: 2 / 7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+}
+
+.nothing-hero-title {
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: var(--nothing-font-weight-bold);
+  line-height: 1.1;
+  margin-bottom: var(--nothing-space-lg);
+  background: linear-gradient(135deg, var(--nothing-white) 0%, var(--nothing-pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nothing-hero-subtitle {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: var(--nothing-font-weight-normal);
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: var(--nothing-space-xl);
+  max-width: 600px;
+}
+
+/* ===== NOTHING FLOATING ELEMENTS ===== */
+.nothing-floating-stats {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(var(--nothing-blur-md));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: var(--nothing-space-md);
+  font-size: 0.875rem;
+  transition: all var(--nothing-transition-normal);
+}
+
+.nothing-floating-stats:hover {
+  transform: scale(1.05);
+  box-shadow: var(--nothing-glow-sm) rgba(255, 255, 255, 0.3);
+}
+
+/* ===== NOTHING TYPOGRAPHY ===== */
+.nothing-text-glow {
+  text-shadow: var(--nothing-glow-sm) currentColor;
+}
+
+.nothing-text-gradient {
+  background: linear-gradient(135deg, var(--nothing-white) 0%, var(--nothing-pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== NOTHING ANIMATIONS ===== */
+@keyframes nothing-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes nothing-glow-pulse {
+  0%, 100% { box-shadow: var(--nothing-glow-sm) rgba(255, 255, 255, 0.2); }
+  50% { box-shadow: var(--nothing-glow-md) rgba(255, 255, 255, 0.4); }
+}
+
+.nothing-animate-float {
+  animation: nothing-float 3s ease-in-out infinite;
+}
+
+.nothing-animate-glow {
+  animation: nothing-glow-pulse 2s ease-in-out infinite;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+  .nothing-floating-grid {
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    padding: var(--nothing-space-lg);
+  }
+  
+  .nothing-hero {
+    grid-column: 2 / 8;
+    grid-row: 3 / 8;
+  }
+  
+  .nothing-nav {
+    position: relative;
+    top: auto;
+    left: auto;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: var(--nothing-space-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .nothing-floating-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    padding: var(--nothing-space-md);
+  }
+  
+  .nothing-hero {
+    grid-column: 1 / 5;
+    grid-row: 4 / 10;
+  }
+  
+  .nothing-nav {
+    flex-wrap: wrap;
+    gap: var(--nothing-space-xs);
+  }
+  
+  .nothing-nav-item {
+    font-size: 0.75rem;
+    padding: var(--nothing-space-xs) var(--nothing-space-sm);
+  }
+}
+
+/* ===== NOTHING UTILITIES ===== */
+.nothing-hidden { display: none; }
+.nothing-visible { display: block; }
+.nothing-flex { display: flex; }
+.nothing-grid { display: grid; }
+.nothing-relative { position: relative; }
+.nothing-absolute { position: absolute; }
+.nothing-fixed { position: fixed; }
+.nothing-z-10 { z-index: 10; }
+.nothing-z-20 { z-index: 20; }
+.nothing-z-30 { z-index: 30; }

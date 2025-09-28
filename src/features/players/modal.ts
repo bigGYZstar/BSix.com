@@ -1,13 +1,16 @@
+
 // 選手モーダルの描画とイベント管理
 
-import type { Player, Modal } from '@/types'
+import type { PlayerProfile } from '@/features/liverpoolDetail/types';
+
+import type { Modal } from '@/types';
 import {
   getFullName,
   getInternationalName,
   getPositionDisplay,
   getNumberDisplay,
 } from './displayName'
-import { getPlayerAvatar } from '@/ui/avatar'
+import { getPlayerAvatar, AvatarConfig } from '@/ui/avatar'
 
 /**
  * モーダル状態管理
@@ -26,7 +29,7 @@ class PlayerModal implements Modal {
   /**
    * モーダルを開く
    */
-  open(player: Player): void {
+  open(player: PlayerProfile): void {
     if (this.isModalOpen) {
       this.close()
     }
@@ -100,7 +103,7 @@ class PlayerModal implements Modal {
   /**
    * モーダル要素を作成
    */
-  private createModal(player: Player): void {
+  private createModal(player: PlayerProfile): void {
     // バックドロップ作成
     this.backdropElement = document.createElement('div')
     this.backdropElement.className = 'modal-backdrop'
@@ -123,12 +126,15 @@ class PlayerModal implements Modal {
   /**
    * モーダルコンテンツHTML生成
    */
-  private generateModalContent(player: Player): string {
-    const fullName = getFullName(player)
-    const intlName = getInternationalName(player)
-    const position = getPositionDisplay(player)
-    const number = getNumberDisplay(player)
+  private generateModalContent(player: PlayerProfile): string {
+    const fullName = getFullName(player as PlayerProfile);
+    const intlName = getInternationalName(player as PlayerProfile);
+    const position = getPositionDisplay(player as PlayerProfile);
+    const number = getNumberDisplay(player as PlayerProfile);
+
     const avatar = getPlayerAvatar(player, 80)
+
+
 
     return `
       <div class="modal-header">
@@ -162,7 +168,7 @@ class PlayerModal implements Modal {
   /**
    * スタッツセクション生成
    */
-  private generateStatsSection(player: Player): string {
+  private generateStatsSection(player: PlayerProfile): string {
     if (!player.stats) {
       return `
         <div class="modal-section">
@@ -172,65 +178,36 @@ class PlayerModal implements Modal {
       `
     }
 
-    const {
-      apps = 0,
-      goals = 0,
-      assists = 0,
-      cleanSheets,
-      saves,
-    } = player.stats
+    const stats = player.stats;
 
-    // GK用スタッツ
-    if (player.pos === 'GK') {
-      return `
-        <div class="modal-section">
-          <h4>今季スタッツ</h4>
-          <div class="stats-grid">
-            <div class="stat-item">
-              <div class="stat-value">${apps}</div>
-              <div class="stat-label">出場</div>
-            </div>
-            ${
-              cleanSheets !== undefined
-                ? `
-              <div class="stat-item">
-                <div class="stat-value">${cleanSheets}</div>
-                <div class="stat-label">CS</div>
-              </div>
-            `
-                : ''
-            }
-            ${
-              saves !== undefined
-                ? `
-              <div class="stat-item">
-                <div class="stat-value">${saves}</div>
-                <div class="stat-label">セーブ</div>
-              </div>
-            `
-                : ''
-            }
-          </div>
-        </div>
-      `
-    }
 
-    // フィールドプレーヤー用スタッツ
     return `
       <div class="modal-section">
         <h4>今季スタッツ</h4>
         <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-value">${apps}</div>
-            <div class="stat-label">出場</div>
+          <div class="stat-card">
+            <span class="stat-label">試合</span>
+            <span class="stat-value">${stats?.appearances || 0}</span>
           </div>
-          <div class="stat-item">
-            <div class="stat-value">${goals}</div>
-            <div class="stat-label">ゴール</div>
+          <div class="stat-card">
+            <span class="stat-label">ゴール</span>
+            <span class="stat-value">${stats?.goals || 0}</span>
           </div>
-          <div class="stat-item">
-            <div class="stat-value">${assists}</div>
-            <div class="stat-label">アシスト</div>
+          <div class="stat-card">
+            <span class="stat-label">アシスト</span>
+            <span class="stat-value">${stats?.assists || 0}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">パス成功率</span>
+            <span class="stat-value">${stats?.passAccuracy || 0}%</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">タックル</span>
+            <span class="stat-value">${stats?.tackles || 0}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">クリーンシート</span>
+            <span class="stat-value">${stats?.cleanSheets || 0}</span>
           </div>
         </div>
       </div>
@@ -240,18 +217,18 @@ class PlayerModal implements Modal {
   /**
    * 詳細情報セクション生成
    */
-  private generateDetailsSection(player: Player): string {
+  private generateDetailsSection(player: PlayerProfile): string {
     const details: string[] = []
 
     if (player.avatar) {
-      const { skin, hair, style } = player.avatar
+      const { skin, hair, style } = player.avatar as AvatarConfig || {}
       details.push(
         `外見: ${this.translateAvatarFeature('skin', skin)} / ${this.translateAvatarFeature('hair', hair)} / ${this.translateAvatarFeature('style', style)}`
       )
     }
 
-    if (player.playerId) {
-      details.push(`ID: ${player.playerId}`)
+    if (player.id) {
+      details.push(`ID: ${player.id}`)
     }
 
     if (details.length === 0) {
@@ -366,7 +343,7 @@ export const playerModal = new PlayerModal()
  */
 export function addPlayerModalTrigger(
   element: HTMLElement,
-  player: Player
+  player: PlayerProfile
 ): void {
   // クリックイベント
   element.addEventListener('click', event => {
@@ -378,7 +355,7 @@ export function addPlayerModalTrigger(
   // キーボードアクセシビリティ
   element.setAttribute('role', 'button')
   element.setAttribute('tabindex', '0')
-  element.setAttribute('aria-label', `${getFullName(player)}の詳細を表示`)
+  element.setAttribute("aria-label", `${getFullName(player)}の詳細を表示`)
 
   element.addEventListener('keydown', event => {
     if (event.key === 'Enter' || event.key === ' ') {
@@ -393,7 +370,7 @@ export function addPlayerModalTrigger(
  */
 export function addModalTriggersToElements(
   elements: NodeListOf<HTMLElement>,
-  players: Player[]
+  players: PlayerProfile[]
 ): void {
   elements.forEach((element, index) => {
     if (players[index]) {
@@ -401,3 +378,5 @@ export function addModalTriggersToElements(
     }
   })
 }
+
+

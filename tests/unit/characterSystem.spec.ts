@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { CharacterSystemManager } from '@/features/characterSystem/CharacterSystemManager';
 import { CharacterSystemComponent } from '@/features/characterSystem/CharacterSystemComponent';
-import { StaticDataAdapter } from '@/datasource/static';
+// import { StaticDataAdapter } from '@/datasource/static'; // 将来の機能拡張用に保留
 import { ContentContext } from '@/features/characterSystem/types';
 
 // Mock the data adapter
@@ -9,11 +9,11 @@ vi.mock('@/datasource/static');
 
 describe('CharacterSystemManager', () => {
   let manager: CharacterSystemManager;
-  let mockAdapter: StaticDataAdapter;
+  // let mockAdapter: StaticDataAdapter; // 将来の機能拡張用に保留
 
   beforeEach(() => {
-    mockAdapter = new StaticDataAdapter();
-    manager = new CharacterSystemManager(mockAdapter);
+    // mockAdapter = new StaticDataAdapter(); // 将来の機能拡張用に保留
+    manager = new CharacterSystemManager();
   });
 
   describe('initialization', () => {
@@ -240,7 +240,7 @@ describe('CharacterSystemComponent', () => {
   let component: CharacterSystemComponent;
   let manager: CharacterSystemManager;
   let container: HTMLElement;
-  let mockAdapter: StaticDataAdapter;
+  // let mockAdapter: StaticDataAdapter; // 将来の機能拡張用に保留
 
   beforeEach(() => {
     // Create container element
@@ -248,8 +248,8 @@ describe('CharacterSystemComponent', () => {
     document.body.appendChild(container);
 
     // Setup mocks
-    mockAdapter = new StaticDataAdapter();
-    manager = new CharacterSystemManager(mockAdapter);
+    // mockAdapter = new StaticDataAdapter(); // 将来の機能拡張用に保留
+    manager = new CharacterSystemManager();
     component = new CharacterSystemComponent(manager, container);
   });
 

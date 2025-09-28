@@ -1,0 +1,38 @@
+
+> bsix-com@1.0.0 build
+> tsc && vite build
+
+src/datasource/static.ts(173,51): error TS2355: A function whose declared type is neither 'undefined', 'void', nor 'any' must return a value.
+src/features/characterSystem/CharacterSystemComponent.ts(2,49): error TS6196: 'CharacterProfile' is declared but never used.
+src/features/characterSystem/CharacterSystemManager.ts(2,1): error TS6133: 'Player' is declared but its value is never read.
+src/features/characterSystem/CharacterSystemManager.ts(9,33): error TS6196: 'PersonalityTraits' is declared but never used.
+src/features/characterSystem/CharacterSystemManager.ts(9,52): error TS6196: 'WritingStyle' is declared but never used.
+src/features/characterSystem/CharacterSystemManager.ts(19,11): error TS6133: 'dataAdapter' is declared but its value is never read.
+src/features/characterSystem/CharacterSystemManager.ts(415,32): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/features/dataSync/DataSyncComponent.ts(2,65): error TS6133: 'MasterData' is declared but its value is never read.
+src/features/dataSync/DataSyncComponent.ts(352,42): error TS18046: 'error' is of type 'unknown'.
+src/features/dataSync/DataSyncComponent.ts(367,51): error TS18046: 'error' is of type 'unknown'.
+src/features/dataSync/DataSyncManager.ts(1,10): error TS2305: Module '"@/datasource"' has no exported member 'DataAdapter'.
+src/features/dataSync/DataSyncManager.ts(24,11): error TS6133: 'dataAdapter' is declared but its value is never read.
+src/features/dataSync/DataSyncManager.ts(60,62): error TS18046: 'error' is of type 'unknown'.
+src/features/dataSync/DataSyncManager.ts(121,60): error TS18046: 'error' is of type 'unknown'.
+src/features/dataSync/DataSyncManager.ts(287,35): error TS6133: 'options' is declared but its value is never read.
+src/features/liverpoolDetail/LiverpoolDetailComponent.ts(2,10): error TS6133: 'LiverpoolDetailConfig' is declared but its value is never read.
+src/features/liverpoolDetail/LiverpoolDetailComponent.ts(291,30): error TS6133: 'transferNews' is declared but its value is never read.
+src/features/liverpoolDetail/LiverpoolDetailManager.ts(1,23): error TS6133: 'BaseDataAdapter' is declared but its value is never read.
+src/features/liverpoolDetail/LiverpoolDetailManager.ts(11,1): error TS6192: All imports in import declaration are unused.
+src/features/liverpoolDetail/LiverpoolDetailManager.ts(11,23): error TS2305: Module '"@/types/generated/player.schema"' has no exported member 'PlayerStats'.
+src/features/liverpoolDetail/types.ts(1,23): error TS2305: Module '"@/types/generated/player.schema"' has no exported member 'PlayerStats'.
+src/features/liverpoolDetail/types.ts(1,23): error TS6196: 'PlayerStats' is declared but never used.
+src/features/players/modal.ts(131,36): error TS2345: Argument of type 'import("/home/ubuntu/BSix.com/src/types").Player' is not assignable to parameter of type 'import("/home/ubuntu/BSix.com/src/types/generated/player.schema").Player'.
+  Type 'Player' is missing the following properties from type 'Player': id, name, position, teamId
+src/features/tactics/index.ts(21,24): error TS6133: 'teamId' is declared but its value is never read.
+src/ui/avatar.ts(41,19): error TS2339: Property 'skin' does not exist on type '{}'.
+src/ui/avatar.ts(42,19): error TS2339: Property 'hair' does not exist on type '{}'.
+src/ui/avatar.ts(43,20): error TS2339: Property 'style' does not exist on type '{}'.
+tests/e2e/characterSystem.spec.ts(163,11): error TS6133: 'contentText' is declared but its value is never read.
+tests/e2e/characterSystem.spec.ts(205,11): error TS6133: 'initialContent' is declared but its value is never read.
+tests/e2e/teamsAdvancedStats.spec.ts(124,11): error TS6133: 'teamName' is declared but its value is never read.
+tests/e2e/teamsAdvancedStats.spec.ts(151,27): error TS2345: Argument of type 'null' is not assignable to parameter of type 'ContextSpec | undefined'.
+tests/unit/features.spec.ts(13,19): error TS6133: 'team' is declared but its value is never read.

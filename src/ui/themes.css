@@ -1,0 +1,68 @@
+
+/* src/ui/themes.css */
+
+/* --- 基本スタイルとBBCテーマ --- */
+.bbc-theme {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    color: #171717;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: all 0.4s ease-in-out;
+}
+
+.bbc-theme .card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.17);
+    transition: all 0.3s ease;
+}
+
+.bbc-theme .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+}
+
+.bbc-theme #theme-toggle-btn {
+    background: #ffffff;
+    color: #171717;
+    border: 1px solid #e5e5e5;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* --- NOTHINGテーマ --- */
+.nothing-theme {
+    background: #000000;
+    color: #ffffff;
+    font-family: 'Courier New', monospace;
+    transition: all 0.4s ease-in-out;
+}
+
+.nothing-theme .card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+.nothing-theme .card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.nothing-theme #theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 500;
+}
+

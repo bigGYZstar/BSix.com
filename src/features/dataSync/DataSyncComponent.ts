@@ -1,5 +1,5 @@
 import { DataSyncManager } from './DataSyncManager';
-import { SyncStatus, DataValidationResult, DataIntegrityResult, MasterData } from './types';
+import { SyncStatus, DataValidationResult, DataIntegrityResult } from './types';
 
 /**
  * UI Component for Data Sync management and monitoring
@@ -349,7 +349,7 @@ export class DataSyncComponent {
       await this.updateDisplay();
     } catch (error) {
       console.error('Sync failed:', error);
-      this.showMessage('Sync failed: ' + error.message, 'error');
+      this.showMessage('Sync failed: ' + (error as Error).message, 'error');
     }
   }
 
@@ -364,7 +364,7 @@ export class DataSyncComponent {
       await this.updateDisplay();
     } catch (error) {
       console.error('Force refresh failed:', error);
-      this.showMessage('Force refresh failed: ' + error.message, 'error');
+      this.showMessage("Force refresh failed: " + (error as Error).message, "error");
     }
   }
 

@@ -1,4 +1,6 @@
-import type { Match, Team, Player } from '@/types';
+import type { Match } from '@/types/generated/match.schema';
+import type { Team } from '@/types/generated/team.schema';
+import type { Player } from '@/types/generated/player.schema';
 import { BaseDataAdapter, type ValidationResult } from './adapter';
 
 export class StaticDataAdapter extends BaseDataAdapter {
@@ -77,7 +79,7 @@ export class StaticDataAdapter extends BaseDataAdapter {
   async getMatchesByTeam(teamId: string): Promise<Match[]> {
     await this.loadData();
     return this.matches.filter(match => 
-      match.homeTeam.id === teamId || match.awayTeam.id === teamId
+      match.homeTeamId === teamId || match.awayTeamId === teamId
     );
   }
 
@@ -90,11 +92,16 @@ export class StaticDataAdapter extends BaseDataAdapter {
     // Validate teams
     this.teams.forEach((team, index) => {
       if (!team.id) {
-        errors.push({
-          type: 'data',
-          message: 'Team missing required id field',
-          path: `teams[${index}]`
-        });
+        // Fallback for missing ID, generate one from name if available
+        if (team.name) {
+          team.id = team.name.toLowerCase().replace(/\s+/g, '_');
+        } else {
+          errors.push({
+            type: 'data',
+            message: 'Team missing required id field',
+            path: `teams[${index}]`
+          });
+        }
       }
       if (!team.name) {
         errors.push({
@@ -133,22 +140,25 @@ export class StaticDataAdapter extends BaseDataAdapter {
   private transformTeamsData(data: any): Team[] {
     // Transform the current data structure to match Team schema
     if (data.teams) {
-      return data.teams.map((team: any) => ({
-        id: team.id || team.name?.toLowerCase().replace(/\s+/g, '_'),
+      return Object.values(data.teams).map((team: any): Team => ({
+        id: team.id || team.name.toLowerCase().replace(/\s+/g, '_'),// idは必須なので、nameから生成
         name: team.name,
         shortName: team.shortName || team.name,
-        position: team.position || 0,
-        points: team.points || 0,
-        played: team.played || 0,
-        won: team.won || 0,
-        drawn: team.drawn || 0,
-        lost: team.lost || 0,
-        goalsFor: team.goalsFor || 0,
-        goalsAgainst: team.goalsAgainst || 0,
-        goalDifference: team.goalDifference || 0,
-        form: team.form || [],
-        logo: team.logo || '',
-        colors: team.colors || { primary: '#000000', secondary: '#ffffff' }
+        colors: team.colors || { primary: '#000000', secondary: '#ffffff' },
+        stats: {
+          position: team.stats?.position || 0,
+          points: team.stats?.points || 0,
+          played: team.stats?.played || 0,
+          won: team.stats?.won || 0,
+          drawn: team.stats?.drawn || 0,
+          lost: team.stats?.lost || 0,
+          goalsFor: team.stats?.goalsFor || 0,
+          goalsAgainst: team.stats?.goalsAgainst || 0,
+          goalDifference: team.stats?.goalDifference || 0,
+          form: team.stats?.form || [],
+        },
+        keyStrengths: team.keyStrengths || [],
+        areasForImprovement: team.areasForImprovement || [],
       }));
     }
     return [];
@@ -162,14 +172,15 @@ export class StaticDataAdapter extends BaseDataAdapter {
         if (teamData.players) {
           teamData.players.forEach((player: any) => {
             players.push({
-              id: player.id || `${teamId}_${player.name?.toLowerCase().replace(/\s+/g, '_')}`,
+              id: player.id || `${teamId}_${player.name.toLowerCase().replace(/\s+/g, '_')}`,
               name: player.name,
-              teamId,
+              teamId: teamId,
               position: player.position || 'Unknown',
               number: player.number || 0,
               age: player.age || 0,
               nationality: player.nationality || 'Unknown',
-              stats: player.stats || {}
+
+
             });
           });
         }
@@ -181,23 +192,17 @@ export class StaticDataAdapter extends BaseDataAdapter {
   private transformMatchesData(data: any): Match[] {
     // Transform match data structure
     if (data.fixtures) {
-      return data.fixtures.map((match: any) => ({
+      return data.fixtures.map((match: any): Match => ({
         id: match.id || `${match.homeTeam}_vs_${match.awayTeam}_${match.date}`,
-        homeTeam: {
-          id: match.homeTeam?.toLowerCase().replace(/\s+/g, '_'),
-          name: match.homeTeam
-        },
-        awayTeam: {
-          id: match.awayTeam?.toLowerCase().replace(/\s+/g, '_'),
-          name: match.awayTeam
-        },
+        homeTeamId: match.homeTeam ? match.homeTeam.toLowerCase().replace(/\s+/g, '_') : '',
+        awayTeamId: match.awayTeam ? match.awayTeam.toLowerCase().replace(/\s+/g, '_') : '',
         date: match.date,
-        time: match.time,
-        venue: match.venue || '',
         status: match.status || 'scheduled',
-        score: match.score || null
+        score: match.score || undefined,
+        events: match.events || undefined,
       }));
     }
     return [];
   }
 }
+

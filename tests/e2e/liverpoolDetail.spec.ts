@@ -34,14 +34,14 @@ test.describe('Liverpool Detail Page', () => {
     
     // Check stat cards
     const statCards = page.locator('.stat-card');
-    await expect(statCards).toHaveCountGreaterThan(0);
+    await expect(statCards.count()).toBeGreaterThan(0);
     
     // Check specific stats
     await expect(page.locator('.stat-card').first()).toBeVisible();
     
     // Check form display
     await expect(page.locator('.form-display')).toBeVisible();
-    await expect(page.locator('.form-badge')).toHaveCountGreaterThan(0);
+    await expect(page.locator(".form-badge").count()).toBeGreaterThan(0);
   });
 
   test('should display tactical analysis', async ({ page }) => {
@@ -62,11 +62,11 @@ test.describe('Liverpool Detail Page', () => {
     
     // Check top performers
     await expect(page.locator('.top-performers')).toBeVisible();
-    await expect(page.locator('.performer-card')).toHaveCountGreaterThan(0);
+    await expect(page.locator(".performer-card").count()).toBeGreaterThan(0);
     
     // Check player cards
     const playerCards = page.locator('.player-card');
-    await expect(playerCards).toHaveCountGreaterThan(0);
+    await expect(playerCards.count()).toBeGreaterThan(0);
     
     // Check first player card content
     const firstCard = playerCards.first();
@@ -103,7 +103,7 @@ test.describe('Liverpool Detail Page', () => {
     
     // Check fixture cards
     const fixtureCards = page.locator('.fixture-card');
-    await expect(fixtureCards).toHaveCountGreaterThan(0);
+    await expect(fixtureCards.count()).toBeGreaterThan(0);
     
     // Check fixture content
     const firstFixture = fixtureCards.first();
@@ -118,7 +118,7 @@ test.describe('Liverpool Detail Page', () => {
     
     // Check news items
     const newsItems = page.locator('.news-item');
-    await expect(newsItems).toHaveCountGreaterThan(0);
+    await expect(newsItems.count()).toBeGreaterThan(0);
     
     // Check news content
     const firstNews = newsItems.first();
@@ -169,7 +169,7 @@ test.describe('Liverpool Detail Page', () => {
     await expect(h1).toHaveCount(1);
     
     const h2s = page.locator('h2');
-    await expect(h2s).toHaveCountGreaterThan(0);
+    await expect(h2s.count()).toBeGreaterThan(0);
     
     // Check button accessibility
     const buttons = page.locator('button');

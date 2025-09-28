@@ -23,7 +23,7 @@ test.describe('Character System', () => {
     
     // Check character options
     const characterOptions = page.locator('.character-option');
-    await expect(characterOptions).toHaveCountGreaterThan(0);
+    await expect(characterOptions.count()).toBeGreaterThan(0);
     
     // Check that one character is active
     const activeOption = page.locator('.character-option.active');
@@ -46,7 +46,7 @@ test.describe('Character System', () => {
     
     // Check personality trait bars
     const traitBars = page.locator('.trait-bar');
-    await expect(traitBars).toHaveCountGreaterThan(0);
+    await expect(traitBars.count()).toBeGreaterThan(0);
     
     // Check that trait bars have proper structure
     const firstBar = traitBars.first();
@@ -94,11 +94,11 @@ test.describe('Character System', () => {
     await expect(page.locator('#generate-content')).toBeVisible();
     
     // Check that selects have options
-    const contentTypeOptions = page.locator('#content-type option');
-    await expect(contentTypeOptions).toHaveCountGreaterThan(1);
+    const contentTypeOptions = page.locator("#content-type option");
+    await expect(contentTypeOptions.count()).toBeGreaterThan(1);
     
     const teamOptions = page.locator('#team-select option');
-    await expect(teamOptions).toHaveCountGreaterThan(1);
+    await expect(teamOptions.count()).toBeGreaterThan(1);
   });
 
   test('should generate content when form is submitted', async ({ page }) => {
@@ -117,8 +117,9 @@ test.describe('Character System', () => {
     await expect(page.locator('.content-meta')).toBeVisible();
     
     // Check that content is not empty
-    const contentText = await page.locator('.content-text').textContent();
-    expect(contentText?.trim()).not.toBe('');
+        const _contentText = await page.locator(".content-text").textContent();
+        console.log("Content text for clipboard test:", _contentText);
+    expect(_contentText?.trim()).not.toBe("");
     
     // Check that action buttons are enabled
     const actionButtons = page.locator('.content-actions .action-btn');
@@ -160,7 +161,8 @@ test.describe('Character System', () => {
     await expect(page.locator('.generated-result')).toBeVisible();
     
     // Get the content text
-    const contentText = await page.locator('.content-text').textContent();
+        // const contentText = await page.locator('.content-text').textContent(); // 将来の検証用に保留
+
     
     // Click copy button
     await page.click('#copy-content');
@@ -202,8 +204,9 @@ test.describe('Character System', () => {
     await page.click('#generate-content');
     
     // Get initial content
-    const initialContent = await page.locator('.content-text').textContent();
-    
+    const initialContent = await page.locator(".content-text").textContent();
+    console.log("Initial content for regenerate test:", initialContent);
+
     // Regenerate content
     await page.click('#regenerate-content');
     
@@ -272,10 +275,10 @@ test.describe('Character System', () => {
   test('should have proper accessibility features', async ({ page }) => {
     // Check heading hierarchy
     const h2s = page.locator('h2');
-    await expect(h2s).toHaveCountGreaterThan(0);
+    await expect(h2s.count()).toBeGreaterThan(0);
     
     const h3s = page.locator('h3');
-    await expect(h3s).toHaveCountGreaterThan(0);
+    await expect(h3s.count()).toBeGreaterThan(0);
     
     // Check form labels
     const labels = page.locator('label');
@@ -300,11 +303,12 @@ test.describe('Character System', () => {
     const buttons = page.locator('button');
     const buttonCount = await buttons.count();
     
-    for (let i = 0; i < buttonCount; i++) {
+        for (let i = 0; i < buttonCount; i++) {
       const button = buttons.nth(i);
       const text = await button.textContent();
-      expect(text?.trim()).not.toBe('');
+      expect(text?.trim()).not.toBe("");
     }
+
   });
 
   test('should handle keyboard navigation', async ({ page }) => {

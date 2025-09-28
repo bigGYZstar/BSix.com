@@ -1,5 +1,7 @@
 // アプリケーション共通の型定義
 
+import type { PlayerProfile } from '@/features/liverpoolDetail/types'
+
 export interface Player {
   playerId?: string
   jp: string
@@ -25,8 +27,8 @@ export interface Team {
   teamId: string
   name: string
   key: string
-  formation: string
-  lineup: Player[]
+  formation: string,
+  lines: Player[],
   bench: (string | Player)[]
   news?: string[]
   highlights?: string[]
@@ -144,8 +146,8 @@ export interface Position {
 
 // フォーメーション解析結果
 export interface FormationData {
-  formation: string
-  lines: Player[][]
+  formation: string;
+  lines: PlayerProfile[][];
   positions: Position[]
 }
 
@@ -168,7 +170,7 @@ export type EventCallback = (event: Event) => void
 
 // モーダル操作
 export interface Modal {
-  open: (player: Player) => void
+  open: (player: PlayerProfile) => void
   close: () => void
   isOpen: () => boolean
 }

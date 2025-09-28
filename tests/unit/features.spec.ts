@@ -10,7 +10,7 @@ describe('Teams Manager', () => {
   beforeEach(() => {
     // Clear teams before each test
     const teams = teamsManager.getAllTeams();
-    teams.forEach(team => {
+    teams.forEach(_team => {
       // Note: We'd need to add a removeTeam method to properly clear
       // For now, we'll work with the existing state
     });

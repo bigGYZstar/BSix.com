@@ -1,0 +1,71 @@
+{
+  "season": "2025-26",
+  "last_updated": "2025-09-27",
+  "source": "https://www.premierleague.com/en/managers",
+  "big_6_managers": {
+    "arsenal": {
+      "manager": "Mikel Arteta",
+      "start_date": "22 Dec 2019",
+      "tenure_years": 5.8,
+      "nationality": "Spanish",
+      "previous_role": "Assistant Coach at Manchester City"
+    },
+    "chelsea": {
+      "manager": "Enzo Maresca",
+      "start_date": "3 June 2024",
+      "tenure_years": 0.3,
+      "nationality": "Italian",
+      "previous_role": "Leicester City Manager"
+    },
+    "liverpool": {
+      "manager": "Arne Slot",
+      "start_date": "1 Jun 2024",
+      "tenure_years": 0.3,
+      "nationality": "Dutch",
+      "previous_role": "Feyenoord Manager"
+    },
+    "manchester_city": {
+      "manager": "Pep Guardiola",
+      "start_date": "1 Jul 2016",
+      "tenure_years": 9.2,
+      "nationality": "Spanish",
+      "previous_role": "Bayern Munich Manager"
+    },
+    "manchester_united": {
+      "manager": "Ruben Amorim",
+      "start_date": "11 Nov 2024",
+      "tenure_years": 0.9,
+      "nationality": "Portuguese",
+      "previous_role": "Sporting CP Manager"
+    },
+    "tottenham": {
+      "manager": "Thomas Frank",
+      "start_date": "12 Jun 2025",
+      "tenure_years": 0.3,
+      "nationality": "Danish",
+      "previous_role": "Brentford Manager"
+    }
+  },
+  "all_managers": [
+    {"club": "Arsenal", "manager": "Mikel Arteta", "start_date": "22 Dec 2019"},
+    {"club": "Aston Villa", "manager": "Unai Emery", "start_date": "5 Nov 2022"},
+    {"club": "Bournemouth", "manager": "Andoni Iraola", "start_date": "1 Jul 2023"},
+    {"club": "Brentford", "manager": "Keith Andrews", "start_date": "27 Jun 2025"},
+    {"club": "Brighton", "manager": "Fabian Hurzeler", "start_date": "15 Jun 2024"},
+    {"club": "Burnley", "manager": "Scott Parker", "start_date": "5 July 2024"},
+    {"club": "Chelsea", "manager": "Enzo Maresca", "start_date": "3 June 2024"},
+    {"club": "Crystal Palace", "manager": "Oliver Glasner", "start_date": "20 Feb 2024"},
+    {"club": "Everton", "manager": "David Moyes", "start_date": "11 Jan 2025"},
+    {"club": "Fulham", "manager": "Marco Silva", "start_date": "1 Jul 2021"},
+    {"club": "Leeds", "manager": "Daniel Farke", "start_date": "4 Jul 2023"},
+    {"club": "Liverpool", "manager": "Arne Slot", "start_date": "1 Jun 2024"},
+    {"club": "Man City", "manager": "Pep Guardiola", "start_date": "1 Jul 2016"},
+    {"club": "Man Utd", "manager": "Ruben Amorim", "start_date": "11 Nov 2024"},
+    {"club": "Newcastle", "manager": "Eddie Howe", "start_date": "8 Nov 2021"},
+    {"club": "Nott'm Forest", "manager": "Ange Postecoglou", "start_date": "9 Sep 2025"},
+    {"club": "Sunderland", "manager": "Regis Le Bris", "start_date": "1 Jul 2024"},
+    {"club": "Spurs", "manager": "Thomas Frank", "start_date": "12 Jun 2025"},
+    {"club": "West Ham", "manager": "Graham Potter", "start_date": "9 Jan 2025"},
+    {"club": "Wolves", "manager": "Vitor Pereira", "start_date": "19 Dec 2024"}
+  ]
+}

@@ -1,4 +1,4 @@
-import { DataAdapter } from '@/datasource';
+// import { DataAdapter } from '@/datasource/adapter'; // 将来の機能拡張用に保留
 import { 
   MasterData, 
   DataSyncConfig, 
@@ -21,13 +21,13 @@ export class DataSyncManager {
   private config: DataSyncConfig;
   private masterData: MasterData | null = null;
   private syncStatus: SyncStatus;
-  private dataAdapter: DataAdapter;
+  // private readonly dataAdapter: DataAdapter; // 将来の機能拡張用に保留
   private syncInterval: NodeJS.Timeout | null = null;
   private eventListeners: Map<string, SyncEventListener[]> = new Map();
   private cache: Map<string, { data: any; timestamp: number; ttl: number }> = new Map();
 
-  constructor(dataAdapter: DataAdapter) {
-    this.dataAdapter = dataAdapter;
+  constructor() {
+    // dataAdapterは将来の機能拡張用に保留
     this.config = this.getDefaultConfig();
     this.syncStatus = {
       status: 'idle',
@@ -57,7 +57,7 @@ export class DataSyncManager {
       }
     } catch (error) {
       console.error('Failed to initialize DataSyncManager:', error);
-      this.addError('INIT_FAILED', `Initialization failed: ${error.message}`, 'critical');
+      this.addError("INIT_FAILED", `Initialization failed: ${(error as Error).message}`, "critical");
       throw error;
     }
   }
@@ -118,7 +118,7 @@ export class DataSyncManager {
       return data;
     } catch (error) {
       console.error('Failed to load master data:', error);
-      this.addError('LOAD_FAILED', `Data loading failed: ${error.message}`, 'high');
+      this.addError("LOAD_FAILED", `Data loading failed: ${(error as Error).message}`, "high");
       this.updateSyncStatus('error', 0);
       
       // Try fallback to cache
@@ -284,7 +284,7 @@ export class DataSyncManager {
   /**
    * Get team data by ID or name
    */
-  getTeamData(identifier: string, options?: DataQueryOptions): TeamData | null {
+  getTeamData(identifier: string, _options?: DataQueryOptions): TeamData | null {
     if (!this.masterData) {
       this.addError('NO_DATA', 'Master data not loaded', 'medium');
       return null;

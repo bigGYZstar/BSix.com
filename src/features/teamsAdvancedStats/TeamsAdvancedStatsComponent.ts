@@ -1,4 +1,4 @@
-import type { Team } from '@/types';
+import type { Team } from '@/types/generated/team.schema';
 import { TeamsAdvancedStatsManager } from './index';
 import { StaticDataAdapter } from '@/datasource/static';
 
@@ -122,10 +122,10 @@ export class TeamsAdvancedStatsComponent {
     let value: any;
     
     // Handle nested stats properties
-    if (['position', 'points', 'played', 'won', 'drawn', 'lost', 'goalsFor', 'goalsAgainst', 'goalDifference', 'form'].includes(column)) {
-      value = (team.stats as any)[column];
-    } else {
-      value = (team as any)[column];
+    if (team.stats && ["position", "points", "played", "won", "drawn", "lost", "goalsFor", "goalsAgainst", "goalDifference", "form"].includes(column)) {
+      // team.statsがundefinedの場合に備えてデフォルト値を提供
+      const stats = team.stats as any; // Cast to any to allow dynamic access
+      value = stats[column] ?? (team as any)[column];
     }
     
     switch (column) {
